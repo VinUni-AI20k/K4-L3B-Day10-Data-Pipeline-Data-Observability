@@ -47,6 +47,6 @@
 | **Trung bình** | Mã nguồn không chạy được end-to-end trên máy giám khảo / trợ giảng | **-15đ** |
 | **Trung bình** | Sử dụng sai chuẩn Great Expectations (dùng cú pháp cũ gây crash) | **-10đ** |
 | **Trung bình** | Hardcode đường dẫn tuyệt đối local (`C:\Users\...` hoặc `D:\...`) | **-5đ** |
-| **Nhẹ** | Thiếu một trong các file quy ước chuẩn (`TEAM.md`, `SUBMISSION.md`, `CHECKPOINTS.md`, `RULES.md`) | **-5đ / file** |
+| **Nhẹ** | Thiếu một trong các file quy ước chuẩn (`TEAM.md`, `SUBMISSION.md`, `CHECKPOINTS.md`) | **-5đ / file** |
 | **Nhẹ** | File `TEAM.md` không có phần tự khai báo đóng góp chi tiết từng thành viên | **-5đ / thành viên** |
-| **Nhẹ** | Nộp muộn sau deadline quy định (theo mốc thời gian quy định tại `RULES.md`) | **-10% đến -25%** |
+| **Nhẹ** | Nộp muộn sau deadline quy định (theo mốc thời gian quy định tại `docs/SUBMISSION.md`) | **-10% đến -25%** |

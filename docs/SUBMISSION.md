@@ -1,88 +1,88 @@
-# Hướng Dẫn Nộp Bài & Quy Chuẩn Đánh Giá (SUBMISSION)
+# Nội Quy, Hướng Dẫn Nộp Bài & Checklist Nghiệm Thu
 
-> ⚠️ **QUY ĐỊNH BẮT BUỘC ĐỂ TRÁNH THIẾU BÀI HOẶC CHẤM NHẦM:**  
-> Dù bài thực hành làm theo nhóm, **MỖI CÁ NHÂN ĐỀU PHẢI TỰ NỘP ĐƯỜNG LINK REPOSITORY CỦA NHÓM LÊN CỔNG VLEARN LMS**.  
-> Cổng LMS chấm điểm độc lập theo tài khoản của từng cá nhân. Nếu thành viên nào không nộp link thì hệ thống sẽ ghi nhận vắng/chưa nộp bài!
+> ⚠️ **QUY ĐỊNH BẮT BUỘC:**  
+> Dù bài lab làm theo nhóm, **MỖI CÁ NHÂN ĐỀU PHẢI TỰ NỘP ĐƯỜNG LINK REPO LÊN VLEARN LMS** từ tài khoản cá nhân.  
+> Thành viên nào không nộp link → hệ thống ghi nhận **0 điểm**.
 
 ---
 
-## 1. QUY TẮC ĐẶT TÊN REPO BÀI NỘP
+## 1. Deadline & Chính Sách Trễ Hạn
+
+- **Hạn nộp mặc định:** `23:59:59` ngày diễn ra bài lab (GMT+7).
+- **Trễ 0–2 giờ:** Trừ 10% tổng điểm.
+- **Trễ 2–12 giờ:** Trừ 25% tổng điểm.
+- **Trễ > 12 giờ:** 0 điểm (trừ bất khả kháng được Giảng viên phê duyệt trước hạn chót).
+
+---
+
+## 2. Quy Tắc Đặt Tên Repo Bài Nộp
 
 Theo **Quy ước chung Khóa 4**:
-- **Cấu trúc đặt tên repo:**  
-  `K4-L3-DAY10-TenNhom-DataPipeline`  
-  *(Viết không dấu, không khoảng trắng, ngăn cách bằng dấu gạch nối `-`).*
-- **Ví dụ chuẩn:**  
-  `K4-L3-DAY10-DataTitans-DataPipeline`  
-  `K4-L3-DAY10-Group05-DataPipeline`
+- **Công thức:** `K4-L3B-DAY10-TenNhom-DataPipelineDataObservability`
+- **Ví dụ:** `K4-L3B-DAY10-AlphaTeam-DataPipelineDataObservability`
 
 ---
 
-## 2. DEADLINE & THỜI ĐIỂM CHỐT BÀI
+## 3. Bảo Mật API Key
 
-- **Thời hạn chốt bài (Default Deadline):** **23h59 trong ngày làm lab** (Giờ Việt Nam — GMT+7).
-- **Quy định gia hạn:** Nếu có thông báo chính thức từ Key Coach, hạn nộp có thể được mở rộng tối đa 48h sau buổi lab.
-- **Phạt nộp muộn:** Sau thời điểm chốt bài, các commit muộn sẽ bị trừ 10% tổng số điểm cho mỗi ngày trễ hạn. Không chấp nhận các commit sửa bài sau thời hạn gia hạn.
+- **Tuyệt đối cấm** commit `.env`, `GOOGLE_API_KEY`, `OPENAI_API_KEY` hoặc bất kỳ Secret/Token nào vào Git.
+- Luôn dùng `.env.example` với placeholder (`your_api_key_here`).
+- **Vi phạm:** Trừ 20 điểm + yêu cầu revoke key. Nếu gây rò rỉ chi phí trên public repo: 0 điểm toàn bài.
 
 ---
 
-## 3. CẤU TRÚC REPO PHẢI NỘP (DELIVERABLES)
+## 4. Chính Sách Sử Dụng AI
 
-Trước khi nộp bài, repository của nhóm trên GitHub phải đảm bảo có đầy đủ các artifacts sinh ra qua các giai đoạn:
+- **Được phép:** Dùng Gemini, Claude, ChatGPT, Copilot, Cursor để tra cú pháp, giải thích thư viện, gợi ý code.
+- **Bắt buộc:** Mọi dòng code commit phải do nhóm hiểu rõ logic và có khả năng giải thích trước Giảng viên/Mentor.
+- **Cấm:** Copy-paste mù quáng từ AI mà không kiểm chứng luồng dữ liệu.
+
+---
+
+## 5. Liêm Chính Học Thuật
+
+- Mỗi nhóm tự thiết kế, lập trình và chạy pipeline. Cấm clone/tráo artifact giữa các nhóm.
+- Các file báo cáo (`phase1_report.md`, `corruption_report.md`) và kết quả (`*_metrics.json`) phải được sinh từ pipeline thực tế. Cấm bịa/sửa tay số liệu.
+- **Vi phạm:** 0 điểm toàn bài + kỷ luật học thuật theo quy chế VinUni.
+
+---
+
+## 6. Đóng Góp Nhóm & Minh Bạch Phân Công
+
+- Điền đầy đủ `TEAM.md`: danh sách, MSSV, vai trò, phân công từng CP.
+- Điểm cá nhân đối chiếu giữa `TEAM.md` và lịch sử commit Git. Không commit = 0 điểm cá nhân.
+
+---
+
+## 7. Cấu Trúc Repo Phải Nộp (Deliverables)
 
 ```text
-K4-L3-DAY10-TenNhom-DataPipeline/
+K4-L3B-DAY10-TenNhom-DataPipelineDataObservability/
 ├── data/
-│   ├── raw/
-│   │   ├── crossref_response.json           <- Raw response từ Crossref API
-│   │   └── crossref_records.json            <- Raw records đã parse
-│   ├── clean/
-│   │   ├── papers_clean.csv                 <- Dữ liệu sạch đã chuẩn hóa
-│   │   └── papers_clean.json
-│   ├── chroma/                              <- Vector Database ChromaDB (chứa 3 collections tách biệt)
-│   ├── eval/
-│   │   └── test_set.json                    <- Bộ 10 câu hỏi benchmark cố định
-│   ├── quality/
-│   │   ├── baseline_quality_report.json     <- Báo cáo GX 1.x cho dữ liệu sạch (Pass)
-│   │   ├── corrupted_quality_report.json    <- Báo cáo GX 1.x khi bị tiêm lỗi (Fail)
-│   │   └── freshness_report.json            <- Báo cáo độ tươi Freshness SLA
-│   ├── results/
-│   │   ├── baseline_metrics.json            <- Hit rate & F1 của Baseline
-│   │   ├── corruption_log.json              <- Nhật ký chi tiết 6 dạng lỗi đã tiêm
-│   │   ├── corrupted_metrics.json           <- Chỉ số sụt giảm của Corrupted flow
-│   │   └── repaired_metrics.json            <- Chỉ số phục hồi sau khi Repair
-│   └── reports/
-│       ├── phase1_report.md                 <- Báo cáo phân tích Baseline
-│       └── corruption_report.md             <- BẢNG ĐỐI CHIẾU ĐỊNH LƯỢNG 3 TRẠNG THÁI
-├── script/
-│   ├── run_phase1.py                        <- Entrypoint chạy Pha 1
-│   └── run_corruption_flow.py               <- Entrypoint chạy Pha 2
-├── src/                                     <- Toàn bộ code hoàn thiện trong core/, ingestion/, retrieval/, evaluation/, observability/, pipelines/
-├── report/                                  <- Báo cáo tổng kết nhóm và cá nhân
-│   ├── group_report.md                      <- Báo cáo kết quả chung của nhóm
-│   └── <MSSV>_HoTen.md                      <- Báo cáo vai trò cá nhân của từng thành viên
-├── docs/                                    <- Thư mục tài liệu hướng dẫn và quy chuẩn
-│   ├── Guide.md                             <- Hướng dẫn kỹ thuật chi tiết
-│   ├── CHECKPOINTS.md                       <- Lộ trình 7 checkpoints và cách tự kiểm tra
-│   ├── RUBRIC.md                            <- Tiêu chí chấm điểm
-│   ├── RULES.md                             <- Quy định học vụ và liêm chính học thuật
-│   ├── SUBMISSION.md                        <- Hướng dẫn nộp bài
-│   └── TEAM.md                              <- Danh sách thành viên, MSSV & phần tự khai cá nhân
-├── README.md                                <- Đề bài và tài liệu tổng quan
+│   ├── raw/              ← crossref_response.json, crossref_records.json
+│   ├── clean/            ← papers_clean.csv, papers_clean.json
+│   ├── chroma/           ← ChromaDB vector collections
+│   ├── eval/             ← test_set.json (10 câu benchmark)
+│   ├── quality/          ← baseline/corrupted/freshness quality reports (GX 1.x)
+│   ├── results/          ← baseline/corrupted/repaired_metrics.json, corruption_log.json
+│   └── reports/          ← phase1_report.md, corruption_report.md
+├── script/               ← run_phase1.py, run_corruption_flow.py
+├── src/                  ← Code hoàn thiện: core/, ingestion/, retrieval/, evaluation/, observability/
+├── report/               ← group_report.md + <MSSV>_HoTen.md (báo cáo cá nhân)
+├── docs/                 ← CHECKPOINTS.md, RUBRIC.md, SUBMISSION.md, TEAM.md
+├── README.md
+└── .env.example
 ```
 
 ---
 
-## 4. CHECKLIST BẮT BUỘC TRƯỚC KHI NỘP LINK LÊN VLEARN
+## 8. Checklist Trước Khi Nộp Link Lên VLearn
 
-- [ ] **Chạy thành công 2 lệnh:** 
-  - `python script/run_phase1.py` (Exit code 0)
-  - `python script/run_corruption_flow.py` (Exit code 0)
-- [ ] **Báo cáo đối chiếu 3 trạng thái:** Tồn tại `data/reports/corruption_report.md` có đầy đủ bảng so sánh Baseline vs Corrupted vs Repaired.
-- [ ] **Chứng minh được độ suy giảm và phục hồi:** Có bằng chứng số liệu trong `baseline_metrics.json`, `corrupted_metrics.json`, `repaired_metrics.json`.
-- [ ] **Khai báo `TEAM.md`:** Đã điền đầy đủ họ tên, MSSV và phần tự khai cá nhân của từng thành viên.
-- [ ] **Bảo mật:** Không commit file `.env` chứa API Key lên GitHub.
-- [ ] **Kiểm tra Contributor trên GitHub nhánh `main`:**
-  - Truy cập repo nhóm trên GitHub $\rightarrow$ vào tab **Insights > Contributors**.
-  - Bắt buộc **100% thành viên trong nhóm** đều phải xuất hiện trên đồ thị commit của nhánh mặc định (`main`).
-- [ ] **Nộp link:** Từng thành viên copy link repo (ví dụ: `https://github.com/<UserTruongNhom>/K4-L3-DAY10-TenNhom-DataPipeline`) và nộp lên cổng LMS trước 23h59!
+- [ ] `python script/run_phase1.py` chạy exit code 0
+- [ ] `python script/run_corruption_flow.py` chạy exit code 0
+- [ ] `data/reports/corruption_report.md` có bảng đối chiếu Baseline vs Corrupted vs Repaired
+- [ ] Có đủ `baseline_metrics.json`, `corrupted_metrics.json`, `repaired_metrics.json`
+- [ ] `TEAM.md` điền đầy đủ họ tên, MSSV, phần tự khai cá nhân
+- [ ] Không commit `.env` lên GitHub
+- [ ] Tab **Insights → Contributors** trên GitHub: 100% thành viên có commit trên `main`
+- [ ] Mỗi cá nhân nộp link repo lên VLearn LMS trước 23:59:59
