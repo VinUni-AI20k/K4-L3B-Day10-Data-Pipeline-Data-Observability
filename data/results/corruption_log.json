@@ -3,10 +3,10 @@
     "scenario": "drop_latest_records",
     "dropped_count": 4,
     "dropped_paper_ids": [
-      "10.1145/3637528.3671821",
-      "10.1145/3637528.3671822",
-      "10.1145/3637528.3671823",
-      "10.1145/3637528.3671824"
+      "10.1145/3637528.3671812",
+      "10.1145/3637528.3671808",
+      "10.1145/3637528.3671804",
+      "10.1145/3637528.3671807"
     ]
   },
   {
@@ -26,14 +26,8 @@
   },
   {
     "scenario": "inject_noise",
-    "paper_id": "10.1145/3637528.3671804",
-    "action": "appended corruption noise string to summary"
-  },
-  {
-    "scenario": "truncate_title",
     "paper_id": "10.1145/3637528.3671805",
-    "original_title": "Evaluating Retrieval Precision with Token F1 and LLM Judges",
-    "truncated_title": "Evalu"
+    "action": "appended corruption noise string to summary"
   },
   {
     "scenario": "truncate_title",
@@ -42,18 +36,24 @@
     "truncated_title": "Seman"
   },
   {
-    "scenario": "stale_date",
-    "paper_id": "10.1145/3637528.3671807",
-    "action": "aged published date back by 365 days"
-  },
-  {
-    "scenario": "stale_date",
-    "paper_id": "10.1145/3637528.3671808",
-    "action": "aged published date back by 365 days"
-  },
-  {
-    "scenario": "stale_date",
+    "scenario": "truncate_title",
     "paper_id": "10.1145/3637528.3671809",
+    "original_title": "Chunking Strategies for Technical Documentation Retrieval",
+    "truncated_title": "Chunk"
+  },
+  {
+    "scenario": "stale_date",
+    "paper_id": "10.1145/3637528.3671810",
+    "action": "aged published date back by 365 days"
+  },
+  {
+    "scenario": "stale_date",
+    "paper_id": "10.1145/3637528.3671811",
+    "action": "aged published date back by 365 days"
+  },
+  {
+    "scenario": "stale_date",
+    "paper_id": "10.1145/3637528.3671813",
     "action": "aged published date back by 365 days"
   },
   {
