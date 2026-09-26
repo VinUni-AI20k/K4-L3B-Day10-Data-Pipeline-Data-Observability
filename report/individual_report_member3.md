@@ -4,8 +4,8 @@
 
 | Thông tin         | Nội dung                  |
 | ------------------ | -------------------------- |
-| Họ và tên       | [Thành viên 3 - điền tên] |
-| MSSV               | [MSSV pending] |
+| Họ và tên       | Vũ Hải Minh |
+| MSSV               | 2A202602452 |
 | Khóa/Lớp         | K4 - Lớp B (Ca Sáng) |
 | Tên nhóm         | 5changlinhngulam |
 | Vai trò chính    | Corruption & integration owner |
@@ -146,5 +146,5 @@ Tôi sẽ thêm một bước "smoke test" tự động sau `run_phase1_pipeline
 - [x] Báo cáo không chứa `.env`, API key, token hoặc secret.
 - [x] Báo cáo này không phải bản sao nguyên văn của báo cáo nhóm hoặc báo cáo thành viên khác.
 
-**Họ và tên:** [Thành viên 3 - điền tên]
+**Họ và tên:** Vũ Hải Minh
 **Ngày xác nhận:** 2026-09-26
