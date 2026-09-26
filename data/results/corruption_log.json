@@ -1,0 +1,63 @@
+[
+  {
+    "scenario": "drop_latest_records",
+    "dropped_count": 4,
+    "dropped_paper_ids": [
+      "10.1145/3637528.3671812",
+      "10.1145/3637528.3671808",
+      "10.1145/3637528.3671804",
+      "10.1145/3637528.3671807"
+    ]
+  },
+  {
+    "scenario": "blank_summary",
+    "paper_id": "10.1145/3637528.3671801",
+    "action": "summary cleared to blank"
+  },
+  {
+    "scenario": "blank_summary",
+    "paper_id": "10.1145/3637528.3671802",
+    "action": "summary cleared to blank"
+  },
+  {
+    "scenario": "inject_noise",
+    "paper_id": "10.1145/3637528.3671803",
+    "action": "appended corruption noise string to summary"
+  },
+  {
+    "scenario": "inject_noise",
+    "paper_id": "10.1145/3637528.3671805",
+    "action": "appended corruption noise string to summary"
+  },
+  {
+    "scenario": "truncate_title",
+    "paper_id": "10.1145/3637528.3671806",
+    "original_title": "Semantic Layer Integration for Agentic Text-to-SQL Pipelines",
+    "truncated_title": "Seman"
+  },
+  {
+    "scenario": "truncate_title",
+    "paper_id": "10.1145/3637528.3671809",
+    "original_title": "Chunking Strategies for Technical Documentation Retrieval",
+    "truncated_title": "Chunk"
+  },
+  {
+    "scenario": "stale_date",
+    "paper_id": "10.1145/3637528.3671810",
+    "action": "aged published date back by 365 days"
+  },
+  {
+    "scenario": "stale_date",
+    "paper_id": "10.1145/3637528.3671811",
+    "action": "aged published date back by 365 days"
+  },
+  {
+    "scenario": "stale_date",
+    "paper_id": "10.1145/3637528.3671813",
+    "action": "aged published date back by 365 days"
+  },
+  {
+    "scenario": "duplicate_rows",
+    "duplicated_count": 3
+  }
+]
