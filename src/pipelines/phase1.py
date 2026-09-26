@@ -20,6 +20,7 @@ from observability.reporting import generate_phase1_report
 from retrieval.agent import build_agent, run_agent_question
 from retrieval.index import LocalEmbeddingIndex
 from retrieval.qa import answer_question
+from retrieval.embeddings import build_embeddings
 
 
 def run_phase1_pipeline(settings: Settings) -> dict[str, Any]:

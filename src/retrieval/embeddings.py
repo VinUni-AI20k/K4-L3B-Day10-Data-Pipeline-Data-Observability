@@ -45,7 +45,7 @@ def build_embeddings(settings: Settings) -> Embeddings:
         try:
             from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
-            model_name = os.getenv("EMBEDDING_MODEL_NAME", "models/text-embedding-004")
+            model_name = os.getenv("EMBEDDING_MODEL", os.getenv("EMBEDDING_MODEL_NAME", "models/text-embedding-004"))
             return GoogleGenerativeAIEmbeddings(
                 model=model_name,
                 google_api_key=settings.google_api_key,
@@ -57,7 +57,7 @@ def build_embeddings(settings: Settings) -> Embeddings:
         try:
             from langchain_openai import OpenAIEmbeddings
 
-            model_name = os.getenv("EMBEDDING_MODEL_NAME", "text-embedding-3-small")
+            model_name = os.getenv("EMBEDDING_MODEL", os.getenv("EMBEDDING_MODEL_NAME", "text-embedding-3-small"))
             return OpenAIEmbeddings(
                 model=model_name,
                 api_key=settings.openai_api_key,
