@@ -10,9 +10,9 @@
 
 | STT | Họ và tên | MSSV | Email | Vai trò & Phân công công việc | Báo cáo cá nhân |
 |---:|---|---|---|---|---|
-| 1 | Trần Công Thiện | 2A202602579 | trancongthien@example.com | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption_flow.py`) | `report/2A202602579_TranCongThien.md` |
-| 2 | Phùng Gia Bảo | 2A202602386 | phunggiabao@example.com | Data Foundation & Recovery (`crossref.py`, `cleaning.py`, raw data) | `report/2A202602386_PhungGiaBao.md` |
-| 3 | Trần Thanh Thái | 2A202602454 | tranthanhthai@example.com | RAG & Vector Index (`retrieval/index.py`, `embeddings.py`, ChromaDB) | `report/2A202602454_TranThanhThai.md` |
+| 1 | Trần Công Thiện | 2A202602579 | trancongthien.ai@gmail.com | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption_flow.py`) | `report/2A202602579_TranCongThien.md` |
+| 2 | Phùng Gia Bảo | 2A202602386 | baophung0401@gmail.com | Data Foundation & Recovery (`crossref.py`, `cleaning.py`, raw data) | `report/2A202602386_PhungGiaBao.md` |
+| 3 | Trần Thanh Thái | 2A202602454 | tranthai2309hg@gmail.com | RAG & Vector Index (`retrieval/index.py`, `embeddings.py`, ChromaDB) | `report/2A202602454_TranThanhThai.md` |
 | 4 | Dương Hữu Đạt | 2A202602544 | duongdat6672@gmail.com | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/2A202602544_DuongHuuDat.md` |
 
 *(Nếu nhóm có 3 hoặc 5-6 thành viên, xem bảng phân công chi tiết theo vai trò trong file `CHECKPOINTS.md`)*.
