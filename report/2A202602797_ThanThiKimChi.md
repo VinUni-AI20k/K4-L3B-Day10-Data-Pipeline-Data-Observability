@@ -9,7 +9,7 @@
 | **Khóa/Lớp** | K4 - L3B |
 | **Tên nhóm** | 4A (4aesieunhan) |
 | **Vai trò chính** | Data Observability, Chaos Testing & Idempotent Pipeline Integrator (Bước 7 & Bước 8) |
-| **Repository** | https://github.com/TuTu99999/K4-L3B-DAY10-4aesieunhan-DataPipelineDataObservability |
+| **Repository** | https://github.com/TuTu99999/K4-L3B-DAY10-4aesieunhan-DataPipelineDataObservability/tree/chi |
 | **Ngày hoàn thành** | 2026-09-26 |
 
 ---
