@@ -10,7 +10,7 @@
 
 | STT | Họ và tên | MSSV | Email | Vai trò & Phân công công việc | Báo cáo cá nhân |
 |---:|---|---|---|---|---|
-| 1 | Trịnh Xuân Huy | 2A202602995 | huytx.2a202602995@student.edu.vn | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption.py`, `corruption_flow.py`) | `report/2A202602995_TrinhXuanHuy.md` |
+| 1 | Trịnh Xuân Huy | 2A202602995 | trinhhuy2304@gmail.com | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption.py`, `corruption_flow.py`) | `report/2A202602995_TrinhXuanHuy.md` |
 | 2 | Hoàng Ngọc Đức | 2A202602380 | duchbvts@gmail | Data Foundation & Recovery (`crossref.py`, `cleaning.py`, raw data) | `report/2A202602380_HoangNgocDuc.md` |
 | 3 | Lê Việt Hoàng | 2A202602596 | hoanglv.2a202602596@student.edu.vn | RAG & Vector Index (`retrieval/index.py`, `embeddings.py`, ChromaDB) | `report/2A202602596_LeVietHoang.md` |
 | 4 | Mai Tiến Huy | 2A202602914 | huymt.2a202602914@student.edu.vn | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/2A202602914_MaiTienHuy.md` |
