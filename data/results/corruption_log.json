@@ -1,0 +1,78 @@
+{
+  "scenarios": [
+    {
+      "name": "drop_latest_records",
+      "description": "Drop the newest 20% of records to simulate a missed incremental load.",
+      "count": 5,
+      "paper_ids": [
+        "10.1145/3637528.3671812",
+        "10.1145/3637528.3671808",
+        "10.1145/3637528.3671804",
+        "10.1145/3637528.3671807",
+        "10.1145/3637528.3671802"
+      ]
+    },
+    {
+      "name": "blank_summary",
+      "description": "Blank summaries so retrieval and answer extraction lose abstract context.",
+      "count": 4,
+      "paper_ids": [
+        "10.1145/3637528.3671824",
+        "10.1145/3637528.3671823",
+        "10.1145/3637528.3671822",
+        "10.1145/3637528.3671821"
+      ]
+    },
+    {
+      "name": "inject_noise",
+      "description": "Append garbage tokens to summaries to drift embeddings.",
+      "count": 4,
+      "paper_ids": [
+        "10.1145/3637528.3671810",
+        "10.1145/3637528.3671820",
+        "10.1145/3637528.3671819",
+        "10.1145/3637528.3671818"
+      ]
+    },
+    {
+      "name": "truncate_title",
+      "description": "Truncate titles to fewer than 8 characters, breaking exact title lookup.",
+      "count": 4,
+      "paper_ids": [
+        "10.1145/3637528.3671817",
+        "10.1145/3637528.3671816",
+        "10.1145/3637528.3671815",
+        "10.1145/3637528.3671814"
+      ]
+    },
+    {
+      "name": "stale_date",
+      "description": "Move published dates into the distant past to violate the freshness SLA.",
+      "count": 10,
+      "paper_ids": [
+        "10.1145/3637528.3671824",
+        "10.1145/3637528.3671823",
+        "10.1145/3637528.3671822",
+        "10.1145/3637528.3671821",
+        "10.1145/3637528.3671810",
+        "10.1145/3637528.3671820",
+        "10.1145/3637528.3671819",
+        "10.1145/3637528.3671818",
+        "10.1145/3637528.3671817",
+        "10.1145/3637528.3671816"
+      ]
+    },
+    {
+      "name": "duplicate_rows",
+      "description": "Duplicate rows so paper_id uniqueness checks fail.",
+      "count": 3,
+      "paper_ids": [
+        "10.1145/3637528.3671824",
+        "10.1145/3637528.3671823",
+        "10.1145/3637528.3671822"
+      ]
+    }
+  ],
+  "row_count_before": 24,
+  "row_count_after": 22
+}

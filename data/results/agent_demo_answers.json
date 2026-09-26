@@ -1,0 +1,32 @@
+[
+  {
+    "question": "Summarize the paper 'Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks'.",
+    "answer": "Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages.",
+    "retrieved_doc_ids": [
+      "10.1145/3637528.3671801",
+      "10.1145/3637528.3671813",
+      "10.1145/3637528.3671823",
+      "10.1145/3637528.3671811"
+    ]
+  },
+  {
+    "question": "Who authored 'Data Observability and Quality Gates for Production RAG Systems'?",
+    "answer": "Anh Tran, Quoc Pham",
+    "retrieved_doc_ids": [
+      "10.1145/3637528.3671802",
+      "10.1145/3637528.3671814",
+      "10.1145/3637528.3671822",
+      "10.1145/3637528.3671810"
+    ]
+  },
+  {
+    "question": "When was 'Mitigating Ghost Vectors in Dense Retrieval via Idempotent Indexing' published?",
+    "answer": "2026-04-18",
+    "retrieved_doc_ids": [
+      "10.1145/3637528.3671803",
+      "10.1145/3637528.3671815",
+      "10.1145/3637528.3671811",
+      "10.1145/3637528.3671823"
+    ]
+  }
+]
