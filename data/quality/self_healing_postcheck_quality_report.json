@@ -1,12 +1,12 @@
 {
-  "success": false,
+  "success": true,
   "results": [
     {
       "success": true,
       "expectation_config": {
         "type": "expect_table_row_count_to_be_between",
         "kwargs": {
-          "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+          "batch_id": "papers_source_self_healing_postcheck-papers_asset_self_healing_postcheck",
           "min_value": 20,
           "max_value": 30
         },
@@ -14,7 +14,7 @@
         "severity": "critical"
       },
       "result": {
-        "observed_value": 22
+        "observed_value": 24
       },
       "meta": {},
       "exception_info": {
@@ -28,14 +28,14 @@
       "expectation_config": {
         "type": "expect_column_values_to_not_be_null",
         "kwargs": {
-          "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+          "batch_id": "papers_source_self_healing_postcheck-papers_asset_self_healing_postcheck",
           "column": "paper_id"
         },
         "meta": {},
         "severity": "critical"
       },
       "result": {
-        "element_count": 22,
+        "element_count": 24,
         "unexpected_count": 0,
         "unexpected_percent": 0.0,
         "partial_unexpected_list": [],
@@ -50,46 +50,27 @@
       }
     },
     {
-      "success": false,
+      "success": true,
       "expectation_config": {
         "type": "expect_column_values_to_be_unique",
         "kwargs": {
-          "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+          "batch_id": "papers_source_self_healing_postcheck-papers_asset_self_healing_postcheck",
           "column": "paper_id"
         },
         "meta": {},
         "severity": "critical"
       },
       "result": {
-        "element_count": 22,
-        "unexpected_count": 4,
-        "unexpected_percent": 18.181818181818183,
-        "partial_unexpected_list": [
-          "10.1145/3637528.3671802",
-          "10.1145/3637528.3671824",
-          "10.1145/3637528.3671802",
-          "10.1145/3637528.3671824"
-        ],
+        "element_count": 24,
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "partial_unexpected_list": [],
         "missing_count": 0,
         "missing_percent": 0.0,
-        "unexpected_percent_total": 18.181818181818183,
-        "unexpected_percent_nonmissing": 18.181818181818183,
-        "partial_unexpected_counts": [
-          {
-            "value": "10.1145/3637528.3671802",
-            "count": 2
-          },
-          {
-            "value": "10.1145/3637528.3671824",
-            "count": 2
-          }
-        ],
-        "partial_unexpected_index_list": [
-          0,
-          1,
-          20,
-          21
-        ]
+        "unexpected_percent_total": 0.0,
+        "unexpected_percent_nonmissing": 0.0,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": []
       },
       "meta": {},
       "exception_info": {
@@ -103,14 +84,14 @@
       "expectation_config": {
         "type": "expect_column_values_to_not_be_null",
         "kwargs": {
-          "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+          "batch_id": "papers_source_self_healing_postcheck-papers_asset_self_healing_postcheck",
           "column": "title"
         },
         "meta": {},
         "severity": "critical"
       },
       "result": {
-        "element_count": 22,
+        "element_count": 24,
         "unexpected_count": 0,
         "unexpected_percent": 0.0,
         "partial_unexpected_list": [],
@@ -125,11 +106,11 @@
       }
     },
     {
-      "success": false,
+      "success": true,
       "expectation_config": {
         "type": "expect_column_value_lengths_to_be_between",
         "kwargs": {
-          "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+          "batch_id": "papers_source_self_healing_postcheck-papers_asset_self_healing_postcheck",
           "column": "title",
           "min_value": 8
         },
@@ -137,27 +118,16 @@
         "severity": "critical"
       },
       "result": {
-        "element_count": 22,
-        "unexpected_count": 2,
-        "unexpected_percent": 9.090909090909092,
-        "partial_unexpected_list": [
-          "Bad",
-          "Bad"
-        ],
+        "element_count": 24,
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "partial_unexpected_list": [],
         "missing_count": 0,
         "missing_percent": 0.0,
-        "unexpected_percent_total": 9.090909090909092,
-        "unexpected_percent_nonmissing": 9.090909090909092,
-        "partial_unexpected_counts": [
-          {
-            "value": "Bad",
-            "count": 2
-          }
-        ],
-        "partial_unexpected_index_list": [
-          4,
-          5
-        ]
+        "unexpected_percent_total": 0.0,
+        "unexpected_percent_nonmissing": 0.0,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": []
       },
       "meta": {},
       "exception_info": {
@@ -171,14 +141,14 @@
       "expectation_config": {
         "type": "expect_column_values_to_not_be_null",
         "kwargs": {
-          "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+          "batch_id": "papers_source_self_healing_postcheck-papers_asset_self_healing_postcheck",
           "column": "summary"
         },
         "meta": {},
         "severity": "critical"
       },
       "result": {
-        "element_count": 22,
+        "element_count": 24,
         "unexpected_count": 0,
         "unexpected_percent": 0.0,
         "partial_unexpected_list": [],
@@ -193,11 +163,11 @@
       }
     },
     {
-      "success": false,
+      "success": true,
       "expectation_config": {
         "type": "expect_column_value_lengths_to_be_between",
         "kwargs": {
-          "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+          "batch_id": "papers_source_self_healing_postcheck-papers_asset_self_healing_postcheck",
           "column": "summary",
           "min_value": 20
         },
@@ -205,31 +175,16 @@
         "severity": "critical"
       },
       "result": {
-        "element_count": 22,
-        "unexpected_count": 4,
-        "unexpected_percent": 18.181818181818183,
-        "partial_unexpected_list": [
-          "",
-          "",
-          "",
-          ""
-        ],
+        "element_count": 24,
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "partial_unexpected_list": [],
         "missing_count": 0,
         "missing_percent": 0.0,
-        "unexpected_percent_total": 18.181818181818183,
-        "unexpected_percent_nonmissing": 18.181818181818183,
-        "partial_unexpected_counts": [
-          {
-            "value": "",
-            "count": 4
-          }
-        ],
-        "partial_unexpected_index_list": [
-          0,
-          1,
-          20,
-          21
-        ]
+        "unexpected_percent_total": 0.0,
+        "unexpected_percent_nonmissing": 0.0,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": []
       },
       "meta": {},
       "exception_info": {
@@ -239,13 +194,13 @@
       }
     }
   ],
-  "suite_name": "papers_suite_corrupted",
+  "suite_name": "papers_suite_self_healing_postcheck",
   "suite_parameters": {},
   "statistics": {
     "evaluated_expectations": 7,
-    "successful_expectations": 4,
-    "unsuccessful_expectations": 3,
-    "success_percent": 57.14285714285714
+    "successful_expectations": 7,
+    "unsuccessful_expectations": 0,
+    "success_percent": 100.0
   },
   "meta": {
     "great_expectations_version": "1.23.2",
@@ -253,13 +208,13 @@
       "batch_data": "PandasDataFrame"
     },
     "batch_markers": {
-      "ge_load_time": "20260926T040034.048015Z",
-      "pandas_data_fingerprint": "3e723c082f9f37813e97aa2b6611f255"
+      "ge_load_time": "20260926T041450.359475Z",
+      "pandas_data_fingerprint": "171de53797ff3c9910efa0af266742ee"
     },
     "active_batch_definition": {
-      "datasource_name": "papers_source_corrupted",
+      "datasource_name": "papers_source_self_healing_postcheck",
       "data_connector_name": "fluent",
-      "data_asset_name": "papers_asset_corrupted",
+      "data_asset_name": "papers_asset_self_healing_postcheck",
       "batch_identifiers": {
         "dataframe": "<DATAFRAME>"
       }

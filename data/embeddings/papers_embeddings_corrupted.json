@@ -1,7 +1,7 @@
 {
   "backend": "chroma",
   "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
-  "persist_path": "E:\\AIthucchien\\K4-L3B-DAY10-0.5SKT-DataPipelineDataObservability\\data\\chroma",
+  "persist_path": "D:\\LabCode\\Afternoon\\K4-L3B-DAY10-0.5SKT-DataPipelineDataObservability\\data\\chroma",
   "collection_name": "papers-corrupted",
   "documents": [
     {

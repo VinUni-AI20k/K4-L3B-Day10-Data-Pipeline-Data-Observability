@@ -203,12 +203,12 @@
     "success_percent": 100.0
   },
   "meta": {
-    "great_expectations_version": "1.18.0",
+    "great_expectations_version": "1.23.2",
     "batch_spec": {
       "batch_data": "PandasDataFrame"
     },
     "batch_markers": {
-      "ge_load_time": "20260926T032049.724653Z",
+      "ge_load_time": "20260926T035600.140082Z",
       "pandas_data_fingerprint": "171de53797ff3c9910efa0af266742ee"
     },
     "active_batch_definition": {
