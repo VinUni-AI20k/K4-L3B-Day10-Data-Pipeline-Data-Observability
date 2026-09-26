@@ -10,8 +10,8 @@
 | STT | Họ và tên | MSSV | Email Git | Vai trò và phạm vi chính | Báo cáo cá nhân |
 | --: | --- | --- | --- | --- | --- |
 | 1 | Phạm Khắc Tú | 2A202602866 | `canhquat213@gmail.com` | Ingestion, benchmark, baseline integration và kiểm tra tích hợp cuối | `report/2A202602866_PhamKhacTu.md` |
-| 2 | Trần Tuấn Hoàng | 2A202602832 | `tranhoangtth123@gmail.com` | Cleaning, data modeling, Great Expectations và freshness | `report/2A202602832-TranTuanHoang.md` |
-| 3 | Thân Thị Kim Chi | 2A202602797 | `kimchi19082004@gmail.com` | Corruption suite, repair, Phase 2 integration và comparison reporting | `report/2A202602797-ThanThiKimChi.md` |
+| 2 | Trần Tuấn Hoàng | 2A202602832 | `tranhoangtth123@gmail.com` | Cleaning, data modeling, Great Expectations và freshness | `report/2A202602832_TranTuanHoang.md` |
+| 3 | Thân Thị Kim Chi | 2A202602797 | `kimchi19082004@gmail.com` | Corruption suite, repair, Phase 2 integration và comparison reporting | `report/2A202602797_ThanThiKimChi.md` |
 
 ## Phân công theo deliverable
 
