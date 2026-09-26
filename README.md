@@ -15,6 +15,7 @@
 | 3️⃣ | [RUBRIC.md](docs/RUBRIC.md) | Tiêu chí chấm điểm (100 chuẩn + 10 bonus) |
 | 4️⃣ | [SUBMISSION.md](docs/SUBMISSION.md) | Nội quy, deadline, bảo mật & checklist nộp bài |
 | 5️⃣ | [TEAM.md](docs/TEAM.md) | Điền thông tin nhóm & báo cáo cá nhân |
+| 6️⃣ | [rules/README.md](docs/rules/README.md) | Phân công 4 thành viên, timeline, contract input/output (C1–C7), fixture & `script/check_contracts.py` |
 
 ---
 

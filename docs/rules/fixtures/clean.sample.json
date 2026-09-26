@@ -1,0 +1,290 @@
+[
+  {
+    "paper_id": "10.1145/3637528.3671807",
+    "title": "Synthetic Corruption Testing: Stress-Testing Vector Search Robustness",
+    "summary": "We introduce an automated fuzzing suite that corrupts text chunks by injecting noise, truncating titles, and blanking summaries. Experiments reveal critical failure thresholds for dense embedding retrieval.",
+    "authors": [
+      "Kien Duong",
+      "Vy Ly"
+    ],
+    "categories": [
+      "Robustness",
+      "Information Retrieval"
+    ],
+    "primary_category": "Robustness",
+    "published": "2026-06-25",
+    "updated": "2026-06-25",
+    "abs_url": "https://doi.org/10.1145/3637528.3671807",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671807",
+    "comment": "Crossref record 10.1145/3637528.3671807",
+    "age_days": 93,
+    "authors_joined": "Kien Duong, Vy Ly",
+    "categories_joined": "Robustness, Information Retrieval",
+    "summary_chars": 206,
+    "text_for_embedding": "Title: Synthetic Corruption Testing: Stress-Testing Vector Search Robustness\nAuthors: Kien Duong, Vy Ly\nPublished: 2026-06-25\nCategories: Robustness, Information Retrieval\nSummary: We introduce an automated fuzzing suite that corrupts text chunks by injecting noise, truncating titles, and blanking summaries. Experiments reveal critical failure thresholds for dense embedding retrieval."
+  },
+  {
+    "paper_id": "10.1145/3637528.3671823",
+    "title": "Advanced Perspectives on Hybrid Search Architectures: Combining BM25 with Dense Representations",
+    "summary": "An extended empirical study on ense vector search excels at conceptual similarity but struggles with exact acronyms and serial numbers. Reciprocal Rank Fusion of sparse lexical scores and dense embeddings achieves optimal recall Further analysis on scaling parameters.",
+    "authors": [
+      "Dat Tran",
+      "Lan Pham"
+    ],
+    "categories": [
+      "Information Retrieval",
+      "Algorithms"
+    ],
+    "primary_category": "Information Retrieval",
+    "published": "2026-06-11",
+    "updated": "2026-06-11",
+    "abs_url": "https://doi.org/10.1145/3637528.3671823",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671823",
+    "comment": "Crossref record 10.1145/3637528.3671823",
+    "age_days": 107,
+    "authors_joined": "Dat Tran, Lan Pham",
+    "categories_joined": "Information Retrieval, Algorithms",
+    "summary_chars": 268,
+    "text_for_embedding": "Title: Advanced Perspectives on Hybrid Search Architectures: Combining BM25 with Dense Representations\nAuthors: Dat Tran, Lan Pham\nPublished: 2026-06-11\nCategories: Information Retrieval, Algorithms\nSummary: An extended empirical study on ense vector search excels at conceptual similarity but struggles with exact acronyms and serial numbers. Reciprocal Rank Fusion of sparse lexical scores and dense embeddings achieves optimal recall Further analysis on scaling parameters."
+  },
+  {
+    "paper_id": "10.1145/3637528.3671821",
+    "title": "Advanced Perspectives on Chunking Strategies for Technical Documentation Retrieval",
+    "summary": "An extended empirical study on ierarchical and semantic boundary chunking preserves code block contexts and markdown headings. Our benchmark demonstrates superior top-1 recall compared to fixed character length sliding windows Further analysis on scaling parameters.",
+    "authors": [
+      "Long Trinh",
+      "Ha Chu"
+    ],
+    "categories": [
+      "Information Retrieval",
+      "Natural Language Processing"
+    ],
+    "primary_category": "Information Retrieval",
+    "published": "2026-06-09",
+    "updated": "2026-06-09",
+    "abs_url": "https://doi.org/10.1145/3637528.3671821",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671821",
+    "comment": "Crossref record 10.1145/3637528.3671821",
+    "age_days": 109,
+    "authors_joined": "Long Trinh, Ha Chu",
+    "categories_joined": "Information Retrieval, Natural Language Processing",
+    "summary_chars": 266,
+    "text_for_embedding": "Title: Advanced Perspectives on Chunking Strategies for Technical Documentation Retrieval\nAuthors: Long Trinh, Ha Chu\nPublished: 2026-06-09\nCategories: Information Retrieval, Natural Language Processing\nSummary: An extended empirical study on ierarchical and semantic boundary chunking preserves code block contexts and markdown headings. Our benchmark demonstrates superior top-1 recall compared to fixed character length sliding windows Further analysis on scaling parameters."
+  },
+  {
+    "paper_id": "10.1145/3637528.3671819",
+    "title": "Advanced Perspectives on Synthetic Corruption Testing: Stress-Testing Vector Search Robustness",
+    "summary": "An extended empirical study on e introduce an automated fuzzing suite that corrupts text chunks by injecting noise, truncating titles, and blanking summaries. Experiments reveal critical failure thresholds for dense embedding retrieval Further analysis on scaling parameters.",
+    "authors": [
+      "Kien Duong",
+      "Vy Ly"
+    ],
+    "categories": [
+      "Robustness",
+      "Information Retrieval"
+    ],
+    "primary_category": "Robustness",
+    "published": "2026-06-07",
+    "updated": "2026-06-07",
+    "abs_url": "https://doi.org/10.1145/3637528.3671819",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671819",
+    "comment": "Crossref record 10.1145/3637528.3671819",
+    "age_days": 111,
+    "authors_joined": "Kien Duong, Vy Ly",
+    "categories_joined": "Robustness, Information Retrieval",
+    "summary_chars": 275,
+    "text_for_embedding": "Title: Advanced Perspectives on Synthetic Corruption Testing: Stress-Testing Vector Search Robustness\nAuthors: Kien Duong, Vy Ly\nPublished: 2026-06-07\nCategories: Robustness, Information Retrieval\nSummary: An extended empirical study on e introduce an automated fuzzing suite that corrupts text chunks by injecting noise, truncating titles, and blanking summaries. Experiments reveal critical failure thresholds for dense embedding retrieval Further analysis on scaling parameters."
+  },
+  {
+    "paper_id": "10.1145/3637528.3671817",
+    "title": "Advanced Perspectives on Evaluating Retrieval Precision with Token F1 and LLM Judges",
+    "summary": "An extended empirical study on valuating open-domain QA requires robust metrics. We benchmark semantic similarity, token-level overlap F1, and model-based judge verdicts to quantify RAG answer correctness across noisy corpus conditions Further analysis on scaling parameters.",
+    "authors": [
+      "Tuan Phan",
+      "Mai Bui"
+    ],
+    "categories": [
+      "Natural Language Processing",
+      "Evaluation Methodology"
+    ],
+    "primary_category": "Natural Language Processing",
+    "published": "2026-06-05",
+    "updated": "2026-06-05",
+    "abs_url": "https://doi.org/10.1145/3637528.3671817",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671817",
+    "comment": "Crossref record 10.1145/3637528.3671817",
+    "age_days": 113,
+    "authors_joined": "Tuan Phan, Mai Bui",
+    "categories_joined": "Natural Language Processing, Evaluation Methodology",
+    "summary_chars": 275,
+    "text_for_embedding": "Title: Advanced Perspectives on Evaluating Retrieval Precision with Token F1 and LLM Judges\nAuthors: Tuan Phan, Mai Bui\nPublished: 2026-06-05\nCategories: Natural Language Processing, Evaluation Methodology\nSummary: An extended empirical study on valuating open-domain QA requires robust metrics. We benchmark semantic similarity, token-level overlap F1, and model-based judge verdicts to quantify RAG answer correctness across noisy corpus conditions Further analysis on scaling parameters."
+  },
+  {
+    "paper_id": "10.1145/3637528.3671815",
+    "title": "Advanced Perspectives on Mitigating Ghost Vectors in Dense Retrieval via Idempotent Indexing",
+    "summary": "An extended empirical study on oft-deletions in vector databases leave orphaned embeddings that lead to hallucinations. This paper designs an idempotent index synchronization protocol that guarantees complete purges of outdated vector artifacts Further analysis on scaling parameters.",
+    "authors": [
+      "Duc Vu",
+      "Thao Dang"
+    ],
+    "categories": [
+      "Databases",
+      "Information Systems"
+    ],
+    "primary_category": "Databases",
+    "published": "2026-06-03",
+    "updated": "2026-06-03",
+    "abs_url": "https://doi.org/10.1145/3637528.3671815",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671815",
+    "comment": "Crossref record 10.1145/3637528.3671815",
+    "age_days": 115,
+    "authors_joined": "Duc Vu, Thao Dang",
+    "categories_joined": "Databases, Information Systems",
+    "summary_chars": 284,
+    "text_for_embedding": "Title: Advanced Perspectives on Mitigating Ghost Vectors in Dense Retrieval via Idempotent Indexing\nAuthors: Duc Vu, Thao Dang\nPublished: 2026-06-03\nCategories: Databases, Information Systems\nSummary: An extended empirical study on oft-deletions in vector databases leave orphaned embeddings that lead to hallucinations. This paper designs an idempotent index synchronization protocol that guarantees complete purges of outdated vector artifacts Further analysis on scaling parameters."
+  },
+  {
+    "paper_id": "10.1145/3637528.3671813",
+    "title": "Advanced Perspectives on Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks",
+    "summary": "An extended empirical study on etrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages. We explore agentic multi-hop reasoning and routing across heterogeneous vector indices Further analysis on scaling parameters.",
+    "authors": [
+      "Minh Nguyen",
+      "Hoang Le"
+    ],
+    "categories": [
+      "Artificial Intelligence",
+      "Information Retrieval"
+    ],
+    "primary_category": "Artificial Intelligence",
+    "published": "2026-06-01",
+    "updated": "2026-06-01",
+    "abs_url": "https://doi.org/10.1145/3637528.3671813",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671813",
+    "comment": "Crossref record 10.1145/3637528.3671813",
+    "age_days": 117,
+    "authors_joined": "Minh Nguyen, Hoang Le",
+    "categories_joined": "Artificial Intelligence, Information Retrieval",
+    "summary_chars": 292,
+    "text_for_embedding": "Title: Advanced Perspectives on Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks\nAuthors: Minh Nguyen, Hoang Le\nPublished: 2026-06-01\nCategories: Artificial Intelligence, Information Retrieval\nSummary: An extended empirical study on etrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages. We explore agentic multi-hop reasoning and routing across heterogeneous vector indices Further analysis on scaling parameters."
+  },
+  {
+    "paper_id": "10.1145/3637528.3671801",
+    "title": "Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks",
+    "summary": "Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages. We explore agentic multi-hop reasoning and routing across heterogeneous vector indices.",
+    "authors": [
+      "Minh Nguyen",
+      "Hoang Le"
+    ],
+    "categories": [
+      "Artificial Intelligence",
+      "Information Retrieval"
+    ],
+    "primary_category": "Artificial Intelligence",
+    "published": "2026-05-20",
+    "updated": "2026-05-20",
+    "abs_url": "https://doi.org/10.1145/3637528.3671801",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671801",
+    "comment": "Crossref record 10.1145/3637528.3671801",
+    "age_days": 129,
+    "authors_joined": "Minh Nguyen, Hoang Le",
+    "categories_joined": "Artificial Intelligence, Information Retrieval",
+    "summary_chars": 223,
+    "text_for_embedding": "Title: Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks\nAuthors: Minh Nguyen, Hoang Le\nPublished: 2026-05-20\nCategories: Artificial Intelligence, Information Retrieval\nSummary: Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages. We explore agentic multi-hop reasoning and routing across heterogeneous vector indices."
+  },
+  {
+    "paper_id": "10.1145/3637528.3671811",
+    "title": "Hybrid Search Architectures: Combining BM25 with Dense Representations",
+    "summary": "Dense vector search excels at conceptual similarity but struggles with exact acronyms and serial numbers. Reciprocal Rank Fusion of sparse lexical scores and dense embeddings achieves optimal recall.",
+    "authors": [
+      "Dat Tran",
+      "Lan Pham"
+    ],
+    "categories": [
+      "Information Retrieval",
+      "Algorithms"
+    ],
+    "primary_category": "Information Retrieval",
+    "published": "2026-05-14",
+    "updated": "2026-05-14",
+    "abs_url": "https://doi.org/10.1145/3637528.3671811",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671811",
+    "comment": "Crossref record 10.1145/3637528.3671811",
+    "age_days": 135,
+    "authors_joined": "Dat Tran, Lan Pham",
+    "categories_joined": "Information Retrieval, Algorithms",
+    "summary_chars": 199,
+    "text_for_embedding": "Title: Hybrid Search Architectures: Combining BM25 with Dense Representations\nAuthors: Dat Tran, Lan Pham\nPublished: 2026-05-14\nCategories: Information Retrieval, Algorithms\nSummary: Dense vector search excels at conceptual similarity but struggles with exact acronyms and serial numbers. Reciprocal Rank Fusion of sparse lexical scores and dense embeddings achieves optimal recall."
+  },
+  {
+    "paper_id": "10.1145/3637528.3671809",
+    "title": "Chunking Strategies for Technical Documentation Retrieval",
+    "summary": "Hierarchical and semantic boundary chunking preserves code block contexts and markdown headings. Our benchmark demonstrates superior top-1 recall compared to fixed character length sliding windows.",
+    "authors": [
+      "Long Trinh",
+      "Ha Chu"
+    ],
+    "categories": [
+      "Information Retrieval",
+      "Natural Language Processing"
+    ],
+    "primary_category": "Information Retrieval",
+    "published": "2026-04-30",
+    "updated": "2026-04-30",
+    "abs_url": "https://doi.org/10.1145/3637528.3671809",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671809",
+    "comment": "Crossref record 10.1145/3637528.3671809",
+    "age_days": 149,
+    "authors_joined": "Long Trinh, Ha Chu",
+    "categories_joined": "Information Retrieval, Natural Language Processing",
+    "summary_chars": 197,
+    "text_for_embedding": "Title: Chunking Strategies for Technical Documentation Retrieval\nAuthors: Long Trinh, Ha Chu\nPublished: 2026-04-30\nCategories: Information Retrieval, Natural Language Processing\nSummary: Hierarchical and semantic boundary chunking preserves code block contexts and markdown headings. Our benchmark demonstrates superior top-1 recall compared to fixed character length sliding windows."
+  },
+  {
+    "paper_id": "10.1145/3637528.3671803",
+    "title": "Mitigating Ghost Vectors in Dense Retrieval via Idempotent Indexing",
+    "summary": "Soft-deletions in vector databases leave orphaned embeddings that lead to hallucinations. This paper designs an idempotent index synchronization protocol that guarantees complete purges of outdated vector artifacts.",
+    "authors": [
+      "Duc Vu",
+      "Thao Dang"
+    ],
+    "categories": [
+      "Databases",
+      "Information Systems"
+    ],
+    "primary_category": "Databases",
+    "published": "2026-04-18",
+    "updated": "2026-04-18",
+    "abs_url": "https://doi.org/10.1145/3637528.3671803",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671803",
+    "comment": "Crossref record 10.1145/3637528.3671803",
+    "age_days": 161,
+    "authors_joined": "Duc Vu, Thao Dang",
+    "categories_joined": "Databases, Information Systems",
+    "summary_chars": 215,
+    "text_for_embedding": "Title: Mitigating Ghost Vectors in Dense Retrieval via Idempotent Indexing\nAuthors: Duc Vu, Thao Dang\nPublished: 2026-04-18\nCategories: Databases, Information Systems\nSummary: Soft-deletions in vector databases leave orphaned embeddings that lead to hallucinations. This paper designs an idempotent index synchronization protocol that guarantees complete purges of outdated vector artifacts."
+  },
+  {
+    "paper_id": "10.1145/3637528.3671805",
+    "title": "Evaluating Retrieval Precision with Token F1 and LLM Judges",
+    "summary": "Evaluating open-domain QA requires robust metrics. We benchmark semantic similarity, token-level overlap F1, and model-based judge verdicts to quantify RAG answer correctness across noisy corpus conditions.",
+    "authors": [
+      "Tuan Phan",
+      "Mai Bui"
+    ],
+    "categories": [
+      "Natural Language Processing",
+      "Evaluation Methodology"
+    ],
+    "primary_category": "Natural Language Processing",
+    "published": "2026-03-28",
+    "updated": "2026-03-28",
+    "abs_url": "https://doi.org/10.1145/3637528.3671805",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671805",
+    "comment": "Crossref record 10.1145/3637528.3671805",
+    "age_days": 182,
+    "authors_joined": "Tuan Phan, Mai Bui",
+    "categories_joined": "Natural Language Processing, Evaluation Methodology",
+    "summary_chars": 206,
+    "text_for_embedding": "Title: Evaluating Retrieval Precision with Token F1 and LLM Judges\nAuthors: Tuan Phan, Mai Bui\nPublished: 2026-03-28\nCategories: Natural Language Processing, Evaluation Methodology\nSummary: Evaluating open-domain QA requires robust metrics. We benchmark semantic similarity, token-level overlap F1, and model-based judge verdicts to quantify RAG answer correctness across noisy corpus conditions."
+  }
+]
