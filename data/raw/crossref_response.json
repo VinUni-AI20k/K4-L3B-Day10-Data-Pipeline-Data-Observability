@@ -120,7 +120,7 @@
           "date-time": "2026-06-17T08:00:36Z",
           "timestamp": 1781683236000
         },
-        "score": 39.824097,
+        "score": 39.88559,
         "resource": {
           "primary": {
             "URL": "https://ieiap.ru/journal"
@@ -285,7 +285,7 @@
           "date-time": "2026-09-13T10:04:32Z",
           "timestamp": 1789293872000
         },
-        "score": 37.858883,
+        "score": 37.852856,
         "resource": {
           "primary": {
             "URL": "https://journals.zeuspress.org/index.php/conference/article/view/1352"
@@ -413,7 +413,7 @@
           "date-time": "2026-09-15T08:27:58Z",
           "timestamp": 1789460878000
         },
-        "score": 37.83891,
+        "score": 37.83847,
         "resource": {
           "primary": {
             "URL": "https://ace.ewapub.com/article/view/36624"
@@ -628,7 +628,7 @@
           "date-time": "2026-04-07T00:32:52Z",
           "timestamp": 1775521972000
         },
-        "score": 37.276104,
+        "score": 37.29015,
         "resource": {
           "primary": {
             "URL": "https://www.preprints.org/manuscript/202604.0339/v1"
@@ -793,7 +793,7 @@
           "date-time": "2026-07-17T01:44:05Z",
           "timestamp": 1784252645000
         },
-        "score": 37.126335,
+        "score": 37.120747,
         "resource": {
           "primary": {
             "URL": "https://inatgi.net/index.php/jaiaa/article/view/806"
@@ -973,7 +973,7 @@
           "date-time": "2026-09-12T16:12:33Z",
           "timestamp": 1789229553000
         },
-        "score": 36.491364,
+        "score": 36.491985,
         "resource": {
           "primary": {
             "URL": "https://www.researchsquare.com/article/rs-10349437/v1"
@@ -1096,7 +1096,7 @@
           "date-time": "2026-05-06T16:40:10Z",
           "timestamp": 1778085610000
         },
-        "score": 36.436302,
+        "score": 36.43676,
         "resource": {
           "primary": {
             "URL": "https://isjem.com/download/speculative-retrieval-augmented-generation-for-cost-efficient-large-language-model-inference/"
@@ -1588,7 +1588,7 @@
           "date-time": "2026-07-02T10:56:27Z",
           "timestamp": 1782989787000
         },
-        "score": 35.56808,
+        "score": 35.520687,
         "resource": {
           "primary": {
             "URL": "https://www.mdpi.com/2075-5309/16/13/2637"
@@ -1750,7 +1750,7 @@
           "date-time": "2026-07-06T03:55:08Z",
           "timestamp": 1783310108000
         },
-        "score": 35.503883,
+        "score": 35.513416,
         "resource": {
           "primary": {
             "URL": "http://preprints.jmir.org/preprint/106157"
@@ -2144,7 +2144,7 @@
           "date-time": "2026-08-25T08:39:01Z",
           "timestamp": 1787647141000
         },
-        "score": 35.167046,
+        "score": 35.178272,
         "resource": {
           "primary": {
             "URL": "https://www.mdpi.com/2673-9585/6/3/22"
@@ -2319,7 +2319,7 @@
           "date-time": "2026-09-15T11:49:09Z",
           "timestamp": 1789472949000
         },
-        "score": 35.10666,
+        "score": 35.104553,
         "resource": {
           "primary": {
             "URL": "https://www.researchsquare.com/article/rs-10489777/v1"
@@ -2490,7 +2490,7 @@
           "date-time": "2026-06-15T06:08:17Z",
           "timestamp": 1781503697000
         },
-        "score": 34.996975,
+        "score": 34.979248,
         "resource": {
           "primary": {
             "URL": "https://www.researchsquare.com/article/rs-10012178/v1"
@@ -2718,7 +2718,7 @@
           "date-time": "2026-09-04T08:34:52Z",
           "timestamp": 1788510892000
         },
-        "score": 34.84398,
+        "score": 34.835217,
         "resource": {
           "primary": {
             "URL": "https://ujae.org.ua/en/intelligent-automation-of-economic-processes-based-on-retrieval-augmented-generation-and-large-language-models/"
@@ -3228,7 +3228,7 @@
           "date-time": "2026-08-05T14:18:01Z",
           "timestamp": 1785939481000
         },
-        "score": 34.807556,
+        "score": 34.758892,
         "resource": {
           "primary": {
             "URL": "https://onepetro.org/SJ/article/doi/10.2118/234689-PA/801839/SafeRAG-A-Large-Language-Model-Based-Multistage"
@@ -3371,7 +3371,7 @@
           "date-time": "2026-08-15T12:19:26Z",
           "timestamp": 1786796366000
         },
-        "score": 34.494656,
+        "score": 34.502037,
         "resource": {
           "primary": {
             "URL": "https://www.ijfmr.com/research-paper.php?id=85777"
@@ -3417,6 +3417,155 @@
           ]
         },
         "article-number": "85777"
+      },
+      {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              7,
+              10
+            ]
+          ],
+          "date-time": "2026-07-10T15:16:13Z",
+          "timestamp": 1783696573695,
+          "version": "3.55.0"
+        },
+        "reference-count": 0,
+        "publisher": "U.S. Army Engineer Research and Development Center",
+        "content-domain": {
+          "domain": [],
+          "crossmark-restriction": false
+        },
+        "abstract": "<jats:p>The US Army Corps of Engineers (USACE) Civil Works (CW) research and development (R&amp;D) mission is to address challenging environmental sustainability problems through innovative science and engineering, which helps to ensure a safer, more prosperous, and more resilient nation. To achieve this, the US Army Engineer Research and Development Center (ERDC) plans, executes, leads, and directs many R&amp;D programs in coordination with USACE Headquarters, Districts, and Divisions through its multiple strategic focus areas, which include infrastructure, water modeling, crisis preparedness, ecosystem, sediment management, data, artificial intelligence, and robotics. In this process, much information is generated, including internal progress reviews, financial reports, scopes of work, work package planning, and success stories.</jats:p>",
+        "DOI": "10.21079/11681/50309",
+        "type": "report",
+        "created": {
+          "date-parts": [
+            [
+              2026,
+              7,
+              10
+            ]
+          ],
+          "date-time": "2026-07-10T14:51:37Z",
+          "timestamp": 1783695097000
+        },
+        "source": "Crossref",
+        "is-referenced-by-count": 0,
+        "title": [
+          "Microsoft Azure artificial intelligence / machine learning hackathon for development of retrieval-augmented generation large language model"
+        ],
+        "prefix": "10.21079",
+        "author": [
+          {
+            "given": "Janet L.",
+            "family": "Autrey",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Lacey S.",
+            "family": "Duckworth",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Ashly N.",
+            "family": "Horner",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Thomas",
+            "family": "Sigler",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Victoria D.",
+            "family": "Moore",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "8667",
+        "published-online": {
+          "date-parts": [
+            [
+              2026,
+              7
+            ]
+          ]
+        },
+        "deposited": {
+          "date-parts": [
+            [
+              2026,
+              7,
+              10
+            ]
+          ],
+          "date-time": "2026-07-10T14:51:37Z",
+          "timestamp": 1783695097000
+        },
+        "score": 34.449932,
+        "resource": {
+          "primary": {
+            "URL": "https://hdl.handle.net/11681/50309"
+          }
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2026,
+              7
+            ]
+          ]
+        },
+        "references-count": 0,
+        "alternative-id": [
+          "ERDC/ITL TN-26-4"
+        ],
+        "URL": "https://doi.org/10.21079/11681/50309",
+        "published": {
+          "date-parts": [
+            [
+              2026,
+              7
+            ]
+          ]
+        }
       },
       {
         "indexed": {
@@ -3584,7 +3733,7 @@
           "date-time": "2026-07-04T20:37:12Z",
           "timestamp": 1783197432000
         },
-        "score": 34.447964,
+        "score": 34.44473,
         "resource": {
           "primary": {
             "URL": "https://www.ejournal.ummuba.ac.id/index.php/JUPTIK/article/view/4318"
@@ -3628,155 +3777,6 @@
               2026,
               6,
               1
-            ]
-          ]
-        }
-      },
-      {
-        "indexed": {
-          "date-parts": [
-            [
-              2026,
-              7,
-              10
-            ]
-          ],
-          "date-time": "2026-07-10T15:16:13Z",
-          "timestamp": 1783696573695,
-          "version": "3.55.0"
-        },
-        "reference-count": 0,
-        "publisher": "U.S. Army Engineer Research and Development Center",
-        "content-domain": {
-          "domain": [],
-          "crossmark-restriction": false
-        },
-        "abstract": "<jats:p>The US Army Corps of Engineers (USACE) Civil Works (CW) research and development (R&amp;D) mission is to address challenging environmental sustainability problems through innovative science and engineering, which helps to ensure a safer, more prosperous, and more resilient nation. To achieve this, the US Army Engineer Research and Development Center (ERDC) plans, executes, leads, and directs many R&amp;D programs in coordination with USACE Headquarters, Districts, and Divisions through its multiple strategic focus areas, which include infrastructure, water modeling, crisis preparedness, ecosystem, sediment management, data, artificial intelligence, and robotics. In this process, much information is generated, including internal progress reviews, financial reports, scopes of work, work package planning, and success stories.</jats:p>",
-        "DOI": "10.21079/11681/50309",
-        "type": "report",
-        "created": {
-          "date-parts": [
-            [
-              2026,
-              7,
-              10
-            ]
-          ],
-          "date-time": "2026-07-10T14:51:37Z",
-          "timestamp": 1783695097000
-        },
-        "source": "Crossref",
-        "is-referenced-by-count": 0,
-        "title": [
-          "Microsoft Azure artificial intelligence / machine learning hackathon for development of retrieval-augmented generation large language model"
-        ],
-        "prefix": "10.21079",
-        "author": [
-          {
-            "given": "Janet L.",
-            "family": "Autrey",
-            "sequence": "first",
-            "affiliation": [],
-            "role": [
-              {
-                "vocabulary": "crossref",
-                "role": "author"
-              }
-            ]
-          },
-          {
-            "given": "Lacey S.",
-            "family": "Duckworth",
-            "sequence": "additional",
-            "affiliation": [],
-            "role": [
-              {
-                "vocabulary": "crossref",
-                "role": "author"
-              }
-            ]
-          },
-          {
-            "given": "Ashly N.",
-            "family": "Horner",
-            "sequence": "additional",
-            "affiliation": [],
-            "role": [
-              {
-                "vocabulary": "crossref",
-                "role": "author"
-              }
-            ]
-          },
-          {
-            "given": "Thomas",
-            "family": "Sigler",
-            "sequence": "additional",
-            "affiliation": [],
-            "role": [
-              {
-                "vocabulary": "crossref",
-                "role": "author"
-              }
-            ]
-          },
-          {
-            "given": "Victoria D.",
-            "family": "Moore",
-            "sequence": "additional",
-            "affiliation": [],
-            "role": [
-              {
-                "vocabulary": "crossref",
-                "role": "author"
-              }
-            ]
-          }
-        ],
-        "member": "8667",
-        "published-online": {
-          "date-parts": [
-            [
-              2026,
-              7
-            ]
-          ]
-        },
-        "deposited": {
-          "date-parts": [
-            [
-              2026,
-              7,
-              10
-            ]
-          ],
-          "date-time": "2026-07-10T14:51:37Z",
-          "timestamp": 1783695097000
-        },
-        "score": 34.389774,
-        "resource": {
-          "primary": {
-            "URL": "https://hdl.handle.net/11681/50309"
-          }
-        },
-        "issued": {
-          "date-parts": [
-            [
-              2026,
-              7
-            ]
-          ]
-        },
-        "references-count": 0,
-        "alternative-id": [
-          "ERDC/ITL TN-26-4"
-        ],
-        "URL": "https://doi.org/10.21079/11681/50309",
-        "published": {
-          "date-parts": [
-            [
-              2026,
-              7
             ]
           ]
         }
@@ -4326,7 +4326,7 @@
           "date-time": "2026-07-13T14:44:27Z",
           "timestamp": 1783953867000
         },
-        "score": 34.32419,
+        "score": 34.404335,
         "resource": {
           "primary": {
             "URL": "https://link.springer.com/10.1007/s10278-026-02086-9"
@@ -4583,7 +4583,7 @@
           "date-time": "2026-08-26T06:36:23Z",
           "timestamp": 1787726183000
         },
-        "score": 34.162743,
+        "score": 34.158527,
         "resource": {
           "primary": {
             "URL": "https://www.researchsquare.com/article/rs-10423755/v1"
@@ -4610,132 +4610,6 @@
           ]
         },
         "subtype": "preprint"
-      },
-      {
-        "indexed": {
-          "date-parts": [
-            [
-              2026,
-              8,
-              11
-            ]
-          ],
-          "date-time": "2026-08-11T12:41:09Z",
-          "timestamp": 1786452069067,
-          "version": "build-2736575974"
-        },
-        "reference-count": 0,
-        "publisher": "American Scholarly Publishing Group Inc",
-        "issue": "04",
-        "content-domain": {
-          "domain": [],
-          "crossmark-restriction": false
-        },
-        "short-container-title": [
-          "ajdsa"
-        ],
-        "abstract": "<jats:p>This study has examined whether a foundation model architecture, combining large language models with a supply chain knowledge graph and retrieval-augmented generation, can predict supply chain disruptions from unstructured evidence more effectively than the classical machine learning methods that dominate current practice, and it has developed and tested a framework for automated disruption alerting across supplier, logistics, regulatory, and hazard risk domains. The central problem has been that the great majority of the information that signals an impending disruption arrives as unstructured text, in supplier annual reports and financial disclosures, in global news reporting, in tariff and sanctions registers, and in hazard bulletins, whereas classical supply chain risk models require structured tabular features, so that this evidence is either discarded or converted into features by manual analyst reading that cannot scale to a multi-tier network of thousands of suppliers. Guided by five research questions, concerning how the foundation model architecture affects alerting performance, what each architectural component independently contributes, which evidence sources drive which event types through to which alert dispositions, what failure modes the architecture introduces, and whether alert quality transmits architectural capability into risk response performance, the study has proposed a framework comprising five contributing constructs: multi-source signal ingestion and coverage; knowledge graph construction and entity resolution; retrieval-augmented reasoning and evidence grounding; alert precision, calibration and hallucination control; and analyst workflow integration and human verification, with disruption alert quality as the proximal outcome and risk response performance as the distal outcome. A quantitative, cross-sectional design supplemented by a benchmark evaluation and an architectural ablation has been used, and data have been collected from supply chain risk managers, procurement and category leads, data science and machine learning engineers, business continuity and compliance officers, and logistics managers. Out of 364 distributed questionnaires, 289 valid responses have been retained, producing a 79.4% valid response rate. The analysis has included descriptive statistics, reliability and validity testing, correlation analysis, hierarchical multiple regression, relative importance decomposition, bootstrapped mediation analysis, and a benchmark evaluation of alert lead time, precision, recall, evidence attribution, and unsupported-claim rate. The findings have shown that all five constructs were significantly and positively associated with disruption alert quality, that the model was significant, F(5, 283) = 82.85, p &lt; .001, explaining 59.4% of the variance, and that retrieval-augmented reasoning and knowledge graph construction were the strongest predictors. Alert quality in turn predicted risk response performance and partially mediated the relationship between retrieval-augmented reasoning and performance, carrying 64.7% of the total effect. The ablation showed that retrieval and the knowledge graph contribute along different axes, retrieval principally raising evidence attribution and suppressing unsupported claims while the graph principally raising recall of multi-hop tier-n exposure, and that only their combination reached the precision required for alerting without exhaustive human review. The study concludes that the value of foundation models in supply chain risk lies not in their generative fluency but in their capacity to read evidence at scale, and that this capacity is safe to rely upon only when every assertion is grounded in a retrieved and cited source and resolved against an explicit graph of the network.</jats:p>",
-        "DOI": "10.63125/gseh0k17",
-        "type": "journal-article",
-        "created": {
-          "date-parts": [
-            [
-              2026,
-              8,
-              11
-            ]
-          ],
-          "date-time": "2026-08-11T12:20:31Z",
-          "timestamp": 1786450831000
-        },
-        "page": "167-190",
-        "source": "Crossref",
-        "is-referenced-by-count": 0,
-        "title": [
-          "A Foundation Model Architecture for Supply Chain Risk Prediction: Integrating Large Language Models and Retrieval-Augmented Generation for Automated Disruption Alerting"
-        ],
-        "prefix": "10.63125",
-        "volume": "07",
-        "author": [
-          {
-            "given": "Nadia Islam",
-            "family": "Tanha",
-            "sequence": "first",
-            "affiliation": [
-              {
-                "name": "College of Engineering, Industrial Engineering, Lamar University, Beaumont, Texas, USA"
-              }
-            ],
-            "role": [
-              {
-                "vocabulary": "crossref",
-                "role": "author"
-              }
-            ]
-          }
-        ],
-        "member": "52477",
-        "published-online": {
-          "date-parts": [
-            [
-              2026,
-              4,
-              1
-            ]
-          ]
-        },
-        "container-title": [
-          "American Journal of Data Science and Analytics"
-        ],
-        "deposited": {
-          "date-parts": [
-            [
-              2026,
-              8,
-              11
-            ]
-          ],
-          "date-time": "2026-08-11T12:20:32Z",
-          "timestamp": 1786450832000
-        },
-        "score": 34.074924,
-        "resource": {
-          "primary": {
-            "URL": "https://ajdsa-journal.org/index.php/ajdsa/article/view/80"
-          }
-        },
-        "issued": {
-          "date-parts": [
-            [
-              2026,
-              4,
-              1
-            ]
-          ]
-        },
-        "references-count": 0,
-        "journal-issue": {
-          "issue": "04",
-          "published-online": {
-            "date-parts": [
-              [
-                2026,
-                4,
-                1
-              ]
-            ]
-          }
-        },
-        "URL": "https://doi.org/10.63125/gseh0k17",
-        "published": {
-          "date-parts": [
-            [
-              2026,
-              4,
-              1
-            ]
-          ]
-        }
       },
       {
         "indexed": {
@@ -4959,7 +4833,7 @@
           "date-time": "2026-05-09T02:39:59Z",
           "timestamp": 1778294399000
         },
-        "score": 34.066402,
+        "score": 34.104958,
         "resource": {
           "primary": {
             "URL": "https://academic.oup.com/sleep/article/49/Supplement_1/A153/8673444"
@@ -5023,6 +4897,132 @@
             [
               2026,
               5
+            ]
+          ]
+        }
+      },
+      {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              8,
+              11
+            ]
+          ],
+          "date-time": "2026-08-11T12:41:09Z",
+          "timestamp": 1786452069067,
+          "version": "build-2736575974"
+        },
+        "reference-count": 0,
+        "publisher": "American Scholarly Publishing Group Inc",
+        "issue": "04",
+        "content-domain": {
+          "domain": [],
+          "crossmark-restriction": false
+        },
+        "short-container-title": [
+          "ajdsa"
+        ],
+        "abstract": "<jats:p>This study has examined whether a foundation model architecture, combining large language models with a supply chain knowledge graph and retrieval-augmented generation, can predict supply chain disruptions from unstructured evidence more effectively than the classical machine learning methods that dominate current practice, and it has developed and tested a framework for automated disruption alerting across supplier, logistics, regulatory, and hazard risk domains. The central problem has been that the great majority of the information that signals an impending disruption arrives as unstructured text, in supplier annual reports and financial disclosures, in global news reporting, in tariff and sanctions registers, and in hazard bulletins, whereas classical supply chain risk models require structured tabular features, so that this evidence is either discarded or converted into features by manual analyst reading that cannot scale to a multi-tier network of thousands of suppliers. Guided by five research questions, concerning how the foundation model architecture affects alerting performance, what each architectural component independently contributes, which evidence sources drive which event types through to which alert dispositions, what failure modes the architecture introduces, and whether alert quality transmits architectural capability into risk response performance, the study has proposed a framework comprising five contributing constructs: multi-source signal ingestion and coverage; knowledge graph construction and entity resolution; retrieval-augmented reasoning and evidence grounding; alert precision, calibration and hallucination control; and analyst workflow integration and human verification, with disruption alert quality as the proximal outcome and risk response performance as the distal outcome. A quantitative, cross-sectional design supplemented by a benchmark evaluation and an architectural ablation has been used, and data have been collected from supply chain risk managers, procurement and category leads, data science and machine learning engineers, business continuity and compliance officers, and logistics managers. Out of 364 distributed questionnaires, 289 valid responses have been retained, producing a 79.4% valid response rate. The analysis has included descriptive statistics, reliability and validity testing, correlation analysis, hierarchical multiple regression, relative importance decomposition, bootstrapped mediation analysis, and a benchmark evaluation of alert lead time, precision, recall, evidence attribution, and unsupported-claim rate. The findings have shown that all five constructs were significantly and positively associated with disruption alert quality, that the model was significant, F(5, 283) = 82.85, p &lt; .001, explaining 59.4% of the variance, and that retrieval-augmented reasoning and knowledge graph construction were the strongest predictors. Alert quality in turn predicted risk response performance and partially mediated the relationship between retrieval-augmented reasoning and performance, carrying 64.7% of the total effect. The ablation showed that retrieval and the knowledge graph contribute along different axes, retrieval principally raising evidence attribution and suppressing unsupported claims while the graph principally raising recall of multi-hop tier-n exposure, and that only their combination reached the precision required for alerting without exhaustive human review. The study concludes that the value of foundation models in supply chain risk lies not in their generative fluency but in their capacity to read evidence at scale, and that this capacity is safe to rely upon only when every assertion is grounded in a retrieved and cited source and resolved against an explicit graph of the network.</jats:p>",
+        "DOI": "10.63125/gseh0k17",
+        "type": "journal-article",
+        "created": {
+          "date-parts": [
+            [
+              2026,
+              8,
+              11
+            ]
+          ],
+          "date-time": "2026-08-11T12:20:31Z",
+          "timestamp": 1786450831000
+        },
+        "page": "167-190",
+        "source": "Crossref",
+        "is-referenced-by-count": 0,
+        "title": [
+          "A Foundation Model Architecture for Supply Chain Risk Prediction: Integrating Large Language Models and Retrieval-Augmented Generation for Automated Disruption Alerting"
+        ],
+        "prefix": "10.63125",
+        "volume": "07",
+        "author": [
+          {
+            "given": "Nadia Islam",
+            "family": "Tanha",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "College of Engineering, Industrial Engineering, Lamar University, Beaumont, Texas, USA"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "52477",
+        "published-online": {
+          "date-parts": [
+            [
+              2026,
+              4,
+              1
+            ]
+          ]
+        },
+        "container-title": [
+          "American Journal of Data Science and Analytics"
+        ],
+        "deposited": {
+          "date-parts": [
+            [
+              2026,
+              8,
+              11
+            ]
+          ],
+          "date-time": "2026-08-11T12:20:32Z",
+          "timestamp": 1786450832000
+        },
+        "score": 34.075462,
+        "resource": {
+          "primary": {
+            "URL": "https://ajdsa-journal.org/index.php/ajdsa/article/view/80"
+          }
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2026,
+              4,
+              1
+            ]
+          ]
+        },
+        "references-count": 0,
+        "journal-issue": {
+          "issue": "04",
+          "published-online": {
+            "date-parts": [
+              [
+                2026,
+                4,
+                1
+              ]
+            ]
+          }
+        },
+        "URL": "https://doi.org/10.63125/gseh0k17",
+        "published": {
+          "date-parts": [
+            [
+              2026,
+              4,
+              1
             ]
           ]
         }
@@ -5178,7 +5178,7 @@
           "date-time": "2026-09-02T06:41:33Z",
           "timestamp": 1788331293000
         },
-        "score": 34.06251,
+        "score": 34.06226,
         "resource": {
           "primary": {
             "URL": "https://journal.maranatha.edu/index.php/jutisi/article/view/13099"
@@ -5372,7 +5372,7 @@
           "date-time": "2026-08-11T06:13:06Z",
           "timestamp": 1786428786000
         },
-        "score": 33.881096,
+        "score": 33.904015,
         "resource": {
           "primary": {
             "URL": "https://www.researchsquare.com/article/rs-10178277/v1"
@@ -5526,7 +5526,7 @@
           "date-time": "2026-08-27T00:42:04Z",
           "timestamp": 1787791324000
         },
-        "score": 33.83812,
+        "score": 33.831615,
         "resource": {
           "primary": {
             "URL": "https://www.preprints.org/manuscript/202608.1849/v1"
