@@ -46,6 +46,27 @@ def fetch_source_records(settings: Settings) -> list[PaperRecord]:
     raise NotImplementedError("Student task: implement source fetching.")
 
 
+import json
+
+
 def load_raw_records(path: Path) -> list[PaperRecord]:
-    """TODO(student): doc JSON snapshot va map thanh `PaperRecord`."""
-    raise NotImplementedError("Student task: implement raw record loading.")
+    """Doc JSON snapshot va map thanh `PaperRecord`."""
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return [
+        PaperRecord(
+            paper_id=item.get("paper_id", ""),
+            title=item.get("title", ""),
+            summary=item.get("summary", ""),
+            authors=item.get("authors", []),
+            categories=item.get("categories", []),
+            primary_category=item.get("primary_category", ""),
+            published=item.get("published", ""),
+            updated=item.get("updated", ""),
+            abs_url=item.get("abs_url", ""),
+            pdf_url=item.get("pdf_url", ""),
+            comment=item.get("comment", ""),
+        )
+        for item in data
+    ]
+
