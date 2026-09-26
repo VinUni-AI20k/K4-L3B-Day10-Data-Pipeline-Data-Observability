@@ -1,0 +1,97 @@
+{
+  "generated_at": "2026-09-26T03:33:09.456066+00:00",
+  "original_rows": 24,
+  "corrupted_rows": 21,
+  "scenarios": [
+    {
+      "scenario": "drop_latest_records",
+      "description": "Bỏ rơi 20% các bài báo mới nhất dựa trên published date",
+      "count": 5,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671812",
+        "10.1145/3637528.3671808",
+        "10.1145/3637528.3671804",
+        "10.1145/3637528.3671807",
+        "10.1145/3637528.3671824"
+      ],
+      "parameters": {
+        "drop_ratio": 0.2,
+        "dropped_count": 5
+      },
+      "expected_quality_signal": "Giảm retrieval hit rate và token F1 đối với các truy vấn về bài báo mới nhất."
+    },
+    {
+      "scenario": "blank_summary",
+      "description": "Xóa trắng phần tóm tắt ở một số dòng",
+      "count": 2,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671802",
+        "10.1145/3637528.3671823"
+      ],
+      "parameters": {
+        "blanked_count": 2
+      },
+      "expected_quality_signal": "Vi phạm Great Expectations ExpectColumnValueLengthsToBeBetween(min_value=30)."
+    },
+    {
+      "scenario": "inject_noise",
+      "description": "Chèn chuỗi ký tự rác vào tóm tắt",
+      "count": 2,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671822",
+        "10.1145/3637528.3671821"
+      ],
+      "parameters": {
+        "noise_token": "[CORRUPTED_NOISE_TOKEN_7749_GARBAGE_DATA_STREAM_ERROR_404_NULL_BYTE]"
+      },
+      "expected_quality_signal": "Gây nhiễu embedding và suy giảm chất lượng câu trả lời của RAG Agent."
+    },
+    {
+      "scenario": "truncate_title",
+      "description": "Cắt ngắn tiêu đề bài báo xuống dưới 8 ký tự",
+      "count": 2,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671820",
+        "10.1145/3637528.3671810"
+      ],
+      "parameters": {
+        "max_length": 5
+      },
+      "expected_quality_signal": "Mất thông tin tiêu đề, làm sai lệch kết quả tìm kiếm ngữ nghĩa theo tiêu đề."
+    },
+    {
+      "scenario": "stale_date",
+      "description": "Lùi ngày xuất bản về 365 ngày trước đối với các bài báo",
+      "count": 8,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671814",
+        "10.1145/3637528.3671813",
+        "10.1145/3637528.3671801",
+        "10.1145/3637528.3671811",
+        "10.1145/3637528.3671806",
+        "10.1145/3637528.3671809",
+        "10.1145/3637528.3671803",
+        "10.1145/3637528.3671805"
+      ],
+      "parameters": {
+        "days_subtracted": 365,
+        "stale_count": 8
+      },
+      "expected_quality_signal": "Vi phạm Freshness SLA (tỷ lệ bài báo age_days > 180 vượt ngưỡng 25%, is_fresh=False)."
+    },
+    {
+      "scenario": "duplicate_rows",
+      "description": "Nhân đôi các dòng để tạo trùng lặp",
+      "count": 2,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671802",
+        "10.1145/3637528.3671823"
+      ],
+      "parameters": {
+        "duplicated_count": 2
+      },
+      "expected_quality_signal": "Vi phạm Great Expectations ExpectColumnValuesToBeUnique(column='paper_id')."
+    }
+  ],
+  "total_affected_scenarios": 6
+}
