@@ -10,15 +10,28 @@ def generate_phase1_report(
     quality: dict[str, Any],
     freshness: dict[str, Any],
 ) -> None:
-    """TODO(student): viet markdown report cho baseline phase.
+    content = f"""# Phase 1: Baseline Report
 
-    Pseudo-code:
-    1. Gom source summary.
-    2. In metrics retrieval/evaluation.
-    3. In data quality va freshness.
-    4. Ghi markdown vao report_path.
-    """
-    raise NotImplementedError("Student task: implement phase 1 report.")
+## Source Summary
+- Source: {source_summary.get('source', 'Unknown')}
+- Total Records: {source_summary.get('total_records', 0)}
+
+## Evaluation Metrics
+- Samples: {metrics.get('samples', 0)}
+- Hit Rate: {metrics.get('retrieval_hit_rate', 0.0):.4f}
+- Mean Token F1: {metrics.get('mean_token_f1', 0.0):.4f}
+- Mean Judge Score: {metrics.get('mean_judge_score', 0.0):.4f}
+- Judge Accuracy: {metrics.get('judge_accuracy', 0.0):.4f}
+
+## Data Quality
+- Success: {quality.get('success', False)}
+
+## Freshness
+- Is Fresh: {freshness.get('is_fresh', False)}
+- Stale Rows: {freshness.get('stale_rows', 0)} / {freshness.get('total_rows', 0)}
+"""
+    with open(report_path, "w", encoding="utf-8") as f:
+        f.write(content)
 
 
 def generate_corruption_report(
@@ -31,5 +44,22 @@ def generate_corruption_report(
     corrupted_freshness: dict[str, Any],
     repaired_freshness: dict[str, Any],
 ) -> None:
-    """TODO(student): viet markdown report so sanh baseline/corrupted/repaired."""
-    raise NotImplementedError("Student task: implement corruption comparison report.")
+    content = f"""# Corruption & Repair Comparison Report
+
+## Evaluation Metrics
+| Metric | Baseline | Corrupted | Repaired |
+|--------|----------|-----------|----------|
+| Hit Rate | {baseline_metrics.get('retrieval_hit_rate', 0.0):.4f} | {corrupted_metrics.get('retrieval_hit_rate', 0.0):.4f} | {repaired_metrics.get('retrieval_hit_rate', 0.0):.4f} |
+| Token F1 | {baseline_metrics.get('mean_token_f1', 0.0):.4f} | {corrupted_metrics.get('mean_token_f1', 0.0):.4f} | {repaired_metrics.get('mean_token_f1', 0.0):.4f} |
+| Judge Score | {baseline_metrics.get('mean_judge_score', 0.0):.4f} | {corrupted_metrics.get('mean_judge_score', 0.0):.4f} | {repaired_metrics.get('mean_judge_score', 0.0):.4f} |
+
+## Data Quality (Success)
+- Corrupted: {corrupted_quality.get('success', False)}
+- Repaired: {repaired_quality.get('success', False)}
+
+## Freshness (Stale / Total)
+- Corrupted: {corrupted_freshness.get('stale_rows', 0)} / {corrupted_freshness.get('total_rows', 0)} ({corrupted_freshness.get('is_fresh', False)})
+- Repaired: {repaired_freshness.get('stale_rows', 0)} / {repaired_freshness.get('total_rows', 0)} ({repaired_freshness.get('is_fresh', False)})
+"""
+    with open(report_path, "w", encoding="utf-8") as f:
+        f.write(content)
