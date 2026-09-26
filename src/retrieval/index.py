@@ -36,7 +36,7 @@ class LocalEmbeddingIndex:
         self.embedding_backend = "chroma"
         self.embedding_model = MiniLMEmbeddings(settings.embedding_model)
         self.client = chromadb.PersistentClient(path=str(persist_path))
-        self.collection = self.client.get_collection(name=collection_name)
+        self.collection = self.client.get_collection(name=collection_name, embedding_function=None)
         self.documents_by_paper_id = {document["paper_id"].lower(): document for document in documents}
         self.documents_by_title = {document["title"].lower(): document for document in documents}
 
@@ -94,21 +94,27 @@ class LocalEmbeddingIndex:
 
         embedding_model = MiniLMEmbeddings(settings.embedding_model)
         client = chromadb.PersistentClient(path=str(persist_path))
-        try:
+        # Encode before replacing the existing collection so model failures keep it intact.
+        embeddings = (
+            embedding_model.embed_documents([document["content"] for document in documents])
+            if documents else []
+        )
+        if collection_name in {item.name for item in client.list_collections()}:
             client.delete_collection(name=collection_name)
-        except Exception:
-            pass
         collection = client.create_collection(
             name=collection_name,
+            embedding_function=None,
             configuration={"hnsw": {"space": "cosine"}},
         )
-        embeddings = embedding_model.embed_documents([document["content"] for document in documents])
-        collection.add(
-            ids=[document["record_id"] for document in documents],
-            embeddings=embeddings,
-            documents=[document["content"] for document in documents],
-            metadatas=[document["metadata"] for document in documents],
-        )
+        batch_size = client.get_max_batch_size()
+        for start in range(0, len(documents), batch_size):
+            batch = documents[start : start + batch_size]
+            collection.add(
+                ids=[document["record_id"] for document in batch],
+                embeddings=embeddings[start : start + batch_size],
+                documents=[document["content"] for document in batch],
+                metadatas=[document["metadata"] for document in batch],
+            )
 
         manifest_path = embeddings_output_path or settings.paths.embeddings_json
         write_json(
@@ -139,10 +145,16 @@ class LocalEmbeddingIndex:
         )
 
     def search(self, query: str, top_k: int | None = None) -> list[SearchResult]:
+        limit = self.settings.top_k if top_k is None else top_k
+        if limit <= 0:
+            raise ValueError("top_k must be a positive integer.")
+        count = self.collection.count()
+        if count == 0 or not query.strip():
+            return []
         query_embedding = self.embedding_model.embed_query(query)
         results = self.collection.query(
             query_embeddings=[query_embedding],
-            n_results=top_k or self.settings.top_k,
+            n_results=min(limit, count),
             include=["documents", "metadatas", "distances"],
         )
         ids = results.get("ids", [[]])[0]
