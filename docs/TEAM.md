@@ -13,7 +13,7 @@
 |---:|---|---|---|---|---|---|
 | 1 | **Phạm Đình Hải** | **2A202602482** | phamhaicute9@gmail.com | Data Foundation & Quality Engineer | `src/ingestion/crossref.py`<br>`src/ingestion/cleaning.py`<br>`src/observability/quality.py` | [`report/2A202602482_PhamDinhHai.md`](../report/2A202602482_PhamDinhHai.md) |
 | 2 | **Nguyễn Minh Ngọc** | **2A202602530** | nguyenminhngoc234it@gmail.com | Evaluation & Failure Injection Engineer | `src/evaluation/testset.py`<br>`src/ingestion/corruption.py` | [`report/individual_2A202602530_NguyenMinhNgoc.md`](../report/individual_2A202602530_NguyenMinhNgoc.md) |
-| 3 | **Vũ Huy Đỗ** *(Lead)* | **2A202602555** | dovh25x@gmail.com | Pipeline Orchestrator & Integration Lead | `src/pipelines/phase1.py`<br>`src/pipelines/corruption_flow.py`<br>`src/observability/reporting.py` | [`report/2A202602555_VuHuyDo.md`](../report/2A202602555_VuHuyDo.md) |
+| 3 | **Vũ Huy Đô** *(Lead)* | **2A202602555** | dovh25x@gmail.com | Pipeline Orchestrator & Integration Lead | `src/pipelines/phase1.py`<br>`src/pipelines/corruption_flow.py`<br>`src/observability/reporting.py` | [`report/2A202602555_VuHuyDo.md`](../report/2A202602555_VuHuyDo.md) |
 
 ---
 
@@ -39,7 +39,7 @@
   - Thiết kế benchmark cố định để đánh giá khách quan xuyên suốt 3 trạng thái; kỹ thuật ghi log trước/sau để kiểm toán dữ liệu.
   - Chi tiết: [`report/individual_2A202602530_NguyenMinhNgoc.md`](../report/individual_2A202602530_NguyenMinhNgoc.md).
 
-### 👤 Vũ Huy Đỗ — 2A202602555
+### 👤 Vũ Huy Đô — 2A202602555
 - **Vai trò:** Trưởng nhóm / Pipeline Orchestrator & Integration Lead.
 - **Công việc chi tiết đã hoàn thành:**
   - Lắp ráp và điều phối toàn bộ Baseline Pipeline Pha 1 trong `src/pipelines/phase1.py` qua entrypoint `script/run_phase1.py`.

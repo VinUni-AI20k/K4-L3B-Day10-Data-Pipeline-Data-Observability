@@ -15,7 +15,7 @@
 | :--- | :--- | :--- | :--- | :--- |
 | **Thành viên 1**<br>*(Phạm Đình Hải - 2A202602482)* | **Data Foundation & Quality Engineer** | Ingestion, Cleaning, Great Expectations 1.x & Freshness SLA | - `src/ingestion/crossref.py`<br>- `src/ingestion/cleaning.py`<br>- `src/observability/quality.py` | `report/2A202602482_PhamDinhHai.md` |
 | **Thành viên 2**<br>*(Nguyễn Minh Ngọc - 2A202602530)* | **Evaluation & Failure Injection Engineer** | Benchmark Test Set, 6 Kịch bản Data Corruption & Log kiểm định | - `src/evaluation/testset.py`<br>- `src/ingestion/corruption.py` | `report/individual_2A202602530_NguyenMinhNgoc.md` |
-| **Thành viên 3** *(Lead)*<br>*(Vũ Huy Đỗ - 2A202602555)* | **Pipeline Orchestrator & Integration Lead** | Lắp ráp Pipeline end-to-end, Phục hồi Idempotent, Báo cáo đối chiếu, Điều hành Demo | - `src/pipelines/phase1.py`<br>- `src/pipelines/corruption_flow.py`<br>- `src/observability/reporting.py` | - `report/2A202602555_VuHuyDo.md`<br>- `report/group_report.md`<br>- `docs/TEAM.md` |
+| **Thành viên 3** *(Lead)*<br>*(Vũ Huy Đô - 2A202602555)* | **Pipeline Orchestrator & Integration Lead** | Lắp ráp Pipeline end-to-end, Phục hồi Idempotent, Báo cáo đối chiếu, Điều hành Demo | - `src/pipelines/phase1.py`<br>- `src/pipelines/corruption_flow.py`<br>- `src/observability/reporting.py` | - `report/2A202602555_VuHuyDo.md`<br>- `report/group_report.md`<br>- `docs/TEAM.md` |
 
 ---
 
@@ -188,7 +188,7 @@ python -c "from core.config import load_settings; from ingestion.corruption impo
 
 ---
 
-### 👤 THÀNH VIÊN 3 (Trưởng nhóm): Vũ Huy Đỗ (MSSV: 2A202602555) - Pipeline Orchestrator & Integration Lead
+### 👤 THÀNH VIÊN 3 (Trưởng nhóm): Vũ Huy Đô (MSSV: 2A202602555) - Pipeline Orchestrator & Integration Lead
 > **Mục tiêu:** Điều phối và lắp ráp chuỗi pipeline end-to-end, hiện thực hóa cơ chế tự phục hồi (Idempotent Repair), sinh báo cáo đối chiếu Markdown 3 trạng thái và chủ trì phần Live Demo trước lớp.
 
 #### 1. File mã nguồn & tài liệu sở hữu độc quyền:
