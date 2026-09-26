@@ -6,3 +6,10 @@ src/*.egg-info/
 lab/
 **/__pycache__/
 doc_verification_report.md
+plan.md
+docs/CP0_GUIDE.md
+docs/CP1_GUIDE.md
+docs/TRIO_WORKFLOW.md
+docs/MEMBER_1_ACTION_PLAN.md
+pland.md
+huongdan.md

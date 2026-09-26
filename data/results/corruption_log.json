@@ -1,0 +1,77 @@
+{
+  "drop_latest_records": {
+    "scenario": "drop_latest_records",
+    "ratio": 0.2,
+    "dropped_count": 4,
+    "dropped_paper_ids": [
+      "10.1145/3637528.3671812",
+      "10.1145/3637528.3671808",
+      "10.1145/3637528.3671804",
+      "10.1145/3637528.3671807"
+    ]
+  },
+  "blank_summary": {
+    "scenario": "blank_summary",
+    "sample_ratio": 0.25,
+    "affected_count": 5,
+    "affected_paper_ids": [
+      "10.1145/3637528.3671802",
+      "10.1145/3637528.3671821",
+      "10.1145/3637528.3671818",
+      "10.1145/3637528.3671814",
+      "10.1145/3637528.3671806"
+    ]
+  },
+  "inject_noise": {
+    "scenario": "inject_noise",
+    "sample_ratio": 0.25,
+    "noise_tag": "@@#$! CORRUPTED DATA !$%#@@",
+    "affected_count": 5,
+    "affected_paper_ids": [
+      "10.1145/3637528.3671824",
+      "10.1145/3637528.3671810",
+      "10.1145/3637528.3671817",
+      "10.1145/3637528.3671813",
+      "10.1145/3637528.3671809"
+    ]
+  },
+  "truncate_title": {
+    "scenario": "truncate_title",
+    "sample_ratio": 0.25,
+    "max_length": 5,
+    "affected_count": 5,
+    "affected_paper_ids": [
+      "10.1145/3637528.3671823",
+      "10.1145/3637528.3671820",
+      "10.1145/3637528.3671816",
+      "10.1145/3637528.3671801",
+      "10.1145/3637528.3671803"
+    ]
+  },
+  "stale_date": {
+    "scenario": "stale_date",
+    "sample_ratio": 0.3,
+    "stale_published_date": "2016-01-01",
+    "stale_age_days": 3800,
+    "affected_count": 6,
+    "affected_paper_ids": [
+      "10.1145/3637528.3671822",
+      "10.1145/3637528.3671820",
+      "10.1145/3637528.3671817",
+      "10.1145/3637528.3671814",
+      "10.1145/3637528.3671811",
+      "10.1145/3637528.3671803"
+    ]
+  },
+  "duplicate_rows": {
+    "scenario": "duplicate_rows",
+    "duplicated_count": 3,
+    "duplicated_paper_ids": [
+      "10.1145/3637528.3671802",
+      "10.1145/3637528.3671824",
+      "10.1145/3637528.3671823"
+    ]
+  },
+  "records_before_corruption": 24,
+  "records_after_corruption": 23
+}
