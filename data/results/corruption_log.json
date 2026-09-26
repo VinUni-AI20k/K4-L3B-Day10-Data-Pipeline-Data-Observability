@@ -1,0 +1,41 @@
+[
+  {
+    "corruption_type": "drop_latest_records",
+    "paper_id": "10.1000/0",
+    "details": "Dropped latest record published at 2026-09-26 03:58:02.381423+00:00"
+  },
+  {
+    "corruption_type": "drop_latest_records",
+    "paper_id": "10.1000/1",
+    "details": "Dropped latest record published at 2026-09-16 03:58:02.382741+00:00"
+  },
+  {
+    "corruption_type": "blank_summary",
+    "paper_id": "10.1000/2",
+    "before": "This is the full summary for paper 2. Detailed experimental observations.",
+    "after": ""
+  },
+  {
+    "corruption_type": "inject_noise",
+    "paper_id": "10.1000/3",
+    "before": "This is the full summary for paper 3. Detailed experimental observations.",
+    "after": " [CORRUPTED_NOISE_#@!$%_GARBAGE_TEXT] This is the full summary for paper 3. Detailed experimental observations."
+  },
+  {
+    "corruption_type": "truncate_title",
+    "paper_id": "10.1000/4",
+    "before": "Research Paper Long Title Number 4",
+    "after": "Resear"
+  },
+  {
+    "corruption_type": "stale_date",
+    "paper_id": "10.1000/5",
+    "before": "2026-08-07 03:58:02.382741+00:00",
+    "after": "2025-08-07 03:58:02.382741+00:00"
+  },
+  {
+    "corruption_type": "duplicate_rows",
+    "paper_id": "10.1000/6",
+    "details": "Duplicated row added back into dataframe"
+  }
+]
