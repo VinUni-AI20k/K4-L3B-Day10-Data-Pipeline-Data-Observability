@@ -6,20 +6,18 @@
 
 | Thông tin         | Nội dung                  |
 | ------------------ | -------------------------- |
-| Khóa/Lớp         | [K3 hoặc K4]              |
-| Tên nhóm         | [Tên hoặc mã nhóm]     |
-| Repository         | [Đường dẫn repository] |
-| Ngày hoàn thành | [YYYY-MM-DD]               |
+| Khóa/Lớp         | K4              |
+| Tên nhóm         | acer     |
+| Repository         | https://github.com/HoangVanSon252/K4-L3B-Day10-acer-Data-Pipeline-Data-Observability.git |
+| Ngày hoàn thành | 26/09/2026               |
 
 ### Thành viên và phân công
 
 | STT | Họ và tên | MSSV | Vai trò chính | Module/deliverable sở hữu |
 | --: | --- | --- | --- | --- |
-| 1 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 2 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 3 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 4 | [Nếu có] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 5 | [Nếu có] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
+| 1 | Hoàng Văn Sơn | 2A202602375 | Pipeline Integrator & Data Recovery | `phase1.py`, `crossref.py`, `cleaning.py` |
+| 2 | Nguyễn Hữu Chương | 2A202602601 | RAG, Vector Database & Embedding | `retrieval/index.py`, `embeddings.py`, ChromaDB |
+| 3 | Phạm Quốc Đạt | 2A202602384 | Observability & Evaluation | `quality.py`, `testset.py`, reporting |
 
 ## 2. Tóm tắt kết quả
 
@@ -58,13 +56,13 @@ Crossref API
 
 | Khối             | Input          | Xử lý chính             | Output/artifact          | Owner          |
 | ----------------- | -------------- | -------------------------- | ------------------------ | -------------- |
-| Ingestion         | [Nguồn/input] | [Fetch, retry, parse...]   | [Đường dẫn artifact] | [Thành viên] |
-| Cleaning          | [Input]        | [Các quy tắc chính]     | [Đường dẫn artifact] | [Thành viên] |
-| Embedding/index   | [Input]        | [Model/index config]       | [Đường dẫn artifact] | [Thành viên] |
-| Evaluation        | [Input]        | [Test set và metrics]     | [Đường dẫn artifact] | [Thành viên] |
-| Observability     | [Input]        | [Quality/freshness checks] | [Đường dẫn artifact] | [Thành viên] |
-| Corruption/repair | [Input]        | [Corruption và repair]    | [Đường dẫn artifact] | [Thành viên] |
-| Orchestration     | [Input]        | [Thứ tự chạy]           | [Reports/metrics]        | [Thành viên] |
+| Ingestion         | Crossref API | Lấy metadata, parse JSON   | `data/raw/crossref_records.json` | Hoàng Văn Sơn |
+| Cleaning          | Raw Records    | Lọc null, tạo text nhúng     | `data/clean/papers_clean.csv/json` | Hoàng Văn Sơn |
+| Embedding/index   | Cleaned Data        | Khởi tạo index, add documents       | Thư mục ChromaDB | Nguyễn Hữu Chương |
+| Evaluation        | Cleaned Data        | Tạo bộ câu hỏi Q&A     | `data/eval/test_set.json` | Phạm Quốc Đạt |
+| Observability     | Cleaned Data        | Kiểm tra Great Expectations | `data/quality/baseline_quality_report.json` | Phạm Quốc Đạt |
+| Corruption/repair | Cleaned Data        | Thay đổi data / khôi phục lại    | `papers_clean_corrupted/repaired` | Hoàng Văn Sơn |
+| Orchestration     | Toàn bộ config        | Gắn kết các module lại với nhau           | Báo cáo đánh giá tổng thể        | Hoàng Văn Sơn |
 
 ## 4. Cách tái hiện kết quả
 
@@ -138,7 +136,7 @@ python script/run_corruption_flow.py
 | Source                      | [Crossref endpoint/dataset thực tế] |
 | Query/filter                | [Query hoặc filter]                  |
 | Thời điểm lấy dữ liệu | [Timestamp]                           |
-| Số record nhận được    | [Số lượng]                         |
+| Số record nhận được  | [Số lượng]                         |
 | Cơ chế retry/backoff      | [Mô tả ngắn]                       |
 
 ### Raw và clean schema

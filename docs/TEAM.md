@@ -1,17 +1,17 @@
 # Danh Sách Thành Viên & Báo Cáo Phân Công Nhóm
 
-- **Tên Nhóm:** `[Điền tên nhóm]`
-- **Mã Nhóm / Lớp:** `K4-L3-DAY10`
-- **Tên Repository Nộp Bài:** `K4-L3-DAY10-TenNhom-DataPipeline`
+- **Tên Nhóm:** `acer`
+- **Mã Nhóm / Lớp:** `K4-L3B-DAY10`
+- **Tên Repository Nộp Bài:** `K4-L3B-DAY10-acer-DataPipeline`
 
 ---
 
-## # Thành viên
+## Thành viên
 
 | STT | Họ và tên | MSSV | Email | Vai trò & Phân công công việc | Báo cáo cá nhân |
 |---:|---|---|---|---|---|
-| 1 | | | | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption_flow.py`) | `report/<MSSV1>_HoTen.md` |
-| 2 | | | | Data Foundation & Recovery (`crossref.py`, `cleaning.py`, raw data) | `report/<MSSV2>_HoTen.md` |
+| 1 | Hoàng Văn Sơn|2A202602375 |26ai.sonhv@vinuni.edu.vn | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption_flow.py`) | `report/<MSSV1>_HoTen.md` |
+| 2 | Hoàng Văn Sơn|2A202602376 |26ai.sonhv@vinuni.edu.vn | Data Foundation & Recovery (`crossref.py`, `cleaning.py`, raw data) | `report/<MSSV2>_HoTen.md` |
 | 3 | | | | RAG & Vector Index (`retrieval/index.py`, `embeddings.py`, ChromaDB) | `report/<MSSV3>_HoTen.md` |
 | 4 | | | | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/<MSSV4>_HoTen.md` |
 
@@ -21,7 +21,7 @@
 
 ## # Cá nhân
 
-### ## HoVaTen1-MSSV1
+### Hoàng Văn Sơn (2A202602375) - Trưởng nhóm & Điều phối Pipeline
 - **Vai trò:** Trưởng nhóm & Điều phối Pipeline.
 - **Công việc chi tiết đã hoàn thành:**
   - Thiết lập cấu hình hệ thống `core/config.py` và đường dẫn artifacts `core/utils.py`.
@@ -30,7 +30,7 @@
 - **Điều học được / Đóng góp chính:**
   - Hiểu sâu sắc về thiết kế Idempotent Pipeline và quản lý trạng thái luồng dữ liệu đa tầng.
 
-### ## HoVaTen2-MSSV2
+### Hoàng Văn Sơn (2A202602375) - Data Foundation & Recovery
 - **Vai trò:** Phụ trách Ingestion, Làm sạch & Phục hồi dữ liệu.
 - **Công việc chi tiết đã hoàn thành:**
   - Xây dựng module thu thập Crossref API với cơ chế Fallback offline trong `src/ingestion/crossref.py`.
@@ -39,7 +39,7 @@
 - **Điều học được / Đóng góp chính:**
   - Kỹ thuật truy vết nguồn gốc dữ liệu (Data Lineage) và bảo toàn raw snapshot trước khi biến đổi.
 
-### ## HoVaTen3-MSSV3
+### ## Nguyễn Hữu Chương-2A202602601
 - **Vai trò:** Phụ trách RAG, Vector Database & Embedding.
 - **Công việc chi tiết đã hoàn thành:**
   - Quản lý mô hình embedding `sentence-transformers/all-MiniLM-L6-v2`.
@@ -48,7 +48,7 @@
 - **Điều học được / Đóng góp chính:**
   - Cách cô lập các không gian vector để so sánh khách quan giữa dữ liệu sạch và dữ liệu bị lỗi.
 
-### ## HoVaTen4-MSSV4
+### ## Phạm Quốc Đạt - 2A202602384
 - **Vai trò:** Phụ trách Data Observability & Benchmark Evaluation.
 - **Công việc chi tiết đã hoàn thành:**
   - Thiết lập Quality Gate theo chuẩn mới **Great Expectations 1.x** và giám sát Freshness SLA trong `src/observability/quality.py`.
