@@ -10,10 +10,10 @@
 
 | STT | Họ và tên | MSSV | Email | Vai trò & Phân công công việc | Báo cáo cá nhân |
 |---:|---|---|---|---|---|
-| 1 | | | | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption_flow.py`) | `report/<MSSV1>_HoTen.md` |
-| 2 | | | | Data Foundation & Recovery (`crossref.py`, `cleaning.py`, raw data) | `report/<MSSV2>_HoTen.md` |
-| 3 | | | | RAG & Vector Index (`retrieval/index.py`, `embeddings.py`, ChromaDB) | `report/<MSSV3>_HoTen.md` |
-| 4 | | | | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/<MSSV4>_HoTen.md` |
+| 1 | Trần Cao Quốc Dinh | 2A202602939 | tdinh7735@gmail.com | Source & Environment Owner (`src/ingestion/crossref.py`, setup môi trường & `.env`) | `report/2A202602939_TranCaoQuocDinh.md` |
+| 2 | | | | Data Model & Evaluation-Set Owner (`src/ingestion/cleaning.py`, `src/evaluation/testset.py`) | `report/<MSSV2>_HoTen.md` |
+| 3 | | | | Observability Owner (`src/observability/quality.py` GX 1.x, `src/observability/reporting.py`) | `report/<MSSV3>_HoTen.md` |
+| 4 | | | | Corruption & Integration Owner (`src/ingestion/corruption.py`, `src/pipelines/phase1.py`, `src/pipelines/corruption_flow.py`) | `report/<MSSV4>_HoTen.md` |
 
 *(Nếu nhóm có 3 hoặc 5-6 thành viên, xem bảng phân công chi tiết theo vai trò trong file `CHECKPOINTS.md`)*.
 
@@ -21,23 +21,23 @@
 
 ## # Cá nhân
 
-### ## HoVaTen1-MSSV1
-- **Vai trò:** Trưởng nhóm & Điều phối Pipeline.
+### ## Trần Cao Quốc Dinh - 2A202602939
+- **Vai trò:** Source & Environment Owner.
 - **Công việc chi tiết đã hoàn thành:**
-  - Thiết lập cấu hình hệ thống `core/config.py` và đường dẫn artifacts `core/utils.py`.
-  - Kết nối luồng thực thi trong `src/pipelines/phase1.py` và `src/pipelines/corruption_flow.py`.
-  - Kiểm tra tính nhất quán của các artifacts và theo dõi Contributor tracking trên GitHub nhánh `main`.
+  - Setup môi trường: tạo `.venv` qua `uv`, cấu hình `.env` (chọn đúng `LLM_PROVIDER=anthropic` khớp với API key đang dùng).
+  - Triển khai `src/ingestion/crossref.py`: `parse_crossref_payload` (map DOI/title/abstract/authors/subject/dates từ payload Crossref sang `PaperRecord`, bỏ record thiếu field bắt buộc), `fetch_source_records` (gọi Crossref API kèm retry cho `429/503`, fallback đọc snapshot offline `data/raw/crossref_response.json` khi mất mạng), `load_raw_records` (đọc lại raw snapshot phục vụ bước Repair).
+- **Trạng thái:** Code đã viết và compile được (`py_compile` pass). Đang chờ hoàn tất cài dependencies (`uv sync`) để chạy lệnh nghiệm thu CP0 thực tế và xác nhận kết quả tải 24 bài báo.
 - **Điều học được / Đóng góp chính:**
-  - Hiểu sâu sắc về thiết kế Idempotent Pipeline và quản lý trạng thái luồng dữ liệu đa tầng.
+  - Cơ chế fallback offline giữ pipeline hoạt động được khi mất mạng hoặc bị rate-limit từ nguồn API bên ngoài.
+  - Luôn phải chạy đúng interpreter trong virtualenv (`.venv/bin/python`, không phải `python3` hệ thống) để tránh xung đột package đã cài sẵn ở môi trường khác trên máy.
 
 ### ## HoVaTen2-MSSV2
-- **Vai trò:** Phụ trách Ingestion, Làm sạch & Phục hồi dữ liệu.
+- **Vai trò:** Data Model & Evaluation-Set Owner.
 - **Công việc chi tiết đã hoàn thành:**
-  - Xây dựng module thu thập Crossref API với cơ chế Fallback offline trong `src/ingestion/crossref.py`.
   - Chuẩn hóa schema, tính toán trường `age_days` và `text_for_embedding` trong `src/ingestion/cleaning.py`.
-  - Thực thi cơ chế Idempotent Repair phục hồi dữ liệu từ raw snapshot.
+  - Sinh bộ câu hỏi đánh giá 4 loại (`summary`, `authors`, `date`, `categories`) trong `src/evaluation/testset.py`.
 - **Điều học được / Đóng góp chính:**
-  - Kỹ thuật truy vết nguồn gốc dữ liệu (Data Lineage) và bảo toàn raw snapshot trước khi biến đổi.
+  - Kỹ thuật truy vết nguồn gốc dữ liệu (Data Lineage) và giữ schema nhất quán trước khi build embedding index.
 
 ### ## HoVaTen3-MSSV3
 - **Vai trò:** Phụ trách RAG, Vector Database & Embedding.
