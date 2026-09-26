@@ -1,0 +1,38 @@
+{
+  "report_name": "test",
+  "success": true,
+  "total_rows": 24,
+  "evaluated_at": "2026-09-26T03:54:08.901751+00:00",
+  "expectations": [
+    {
+      "expectation": "expect_table_row_count_to_be_between",
+      "column": "",
+      "success": true
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "paper_id",
+      "success": true
+    },
+    {
+      "expectation": "expect_column_values_to_be_unique",
+      "column": "paper_id",
+      "success": true
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "title",
+      "success": true
+    },
+    {
+      "expectation": "expect_column_value_lengths_to_be_between",
+      "column": "title",
+      "success": true
+    },
+    {
+      "expectation": "expect_column_value_lengths_to_be_between",
+      "column": "summary",
+      "success": true
+    }
+  ]
+}
