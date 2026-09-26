@@ -3,7 +3,7 @@
     "id": "eval_001",
     "question_type": "summary",
     "question": "What is the summary of the paper 'Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks'?",
-    "ground_truth": "Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages",
+    "ground_truth": "Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages.",
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671801"
     ]
@@ -39,7 +39,7 @@
     "id": "eval_005",
     "question_type": "summary",
     "question": "What is the summary of the paper 'Evaluating Retrieval Precision with Token F1 and LLM Judges'?",
-    "ground_truth": "Evaluating open-domain QA requires robust metrics",
+    "ground_truth": "Evaluating open-domain QA requires robust metrics.",
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671805"
     ]
@@ -75,7 +75,7 @@
     "id": "eval_009",
     "question_type": "summary",
     "question": "What is the summary of the paper 'Chunking Strategies for Technical Documentation Retrieval'?",
-    "ground_truth": "Hierarchical and semantic boundary chunking preserves code block contexts and markdown headings",
+    "ground_truth": "Hierarchical and semantic boundary chunking preserves code block contexts and markdown headings.",
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671809"
     ]
