@@ -7,7 +7,7 @@ import sys
 import types
 from typing import Any
 
-from datasets import Dataset
+# datasets is imported lazily inside _run_ragas
 from pydantic import BaseModel, Field
 
 from core.config import Settings
@@ -78,6 +78,7 @@ def _run_ragas(settings: Settings, answers: list[dict[str, Any]]) -> dict[str, A
             shim = types.ModuleType("langchain_community.chat_models.vertexai")
             shim.ChatVertexAI = type("ChatVertexAI", (), {})
             sys.modules["langchain_community.chat_models.vertexai"] = shim
+        from datasets import Dataset
         from ragas import evaluate
         from ragas.metrics import answer_relevancy, context_precision, context_recall, faithfulness
 

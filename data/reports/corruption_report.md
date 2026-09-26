@@ -1,6 +1,6 @@
 # Phase 2 Corruption & Repair Report: Tri-State Evaluation Analysis
 
-> **Generated At:** 2026-09-26 03:33:21 UTC  
+> **Generated At:** 2026-09-26 04:10:27 UTC  
 > **Evaluation Mode:** Tri-State Benchmark (Baseline vs Corrupted vs Repaired)  
 > **Pipeline Status:** SUCCESS (Self-Healing Idempotent Repair Verified)  
 
@@ -19,10 +19,10 @@ This report delivers a rigorous quantitative and qualitative comparison of the R
 
 | Metric / Signal | Baseline | Corrupted | Repaired | Thay đổi do corruption | Mức phục hồi | Nhận xét |
 | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| `retrieval_hit_rate` | 100.00% | 70.00% | 100.00% | -30.00% | 100.0% | Suy giảm mạnh do rơi rớt 20% bài mới nhất, phục hồi toàn diện |
-| `mean_token_f1` | 1.0000 | 0.8000 | 1.0000 | -0.2000 | 100.0% | Nhiễu và rỗng summary làm rớt F1; phục hồi 100% sau repair |
-| `judge_accuracy` | 100.00% | 80.00% | 100.00% | -20.00% | 100.0% | LLM Judge phát hiện câu trả lời suy giảm, khôi phục tối đa |
-| `mean_judge_score` | 5.00 / 5.0 | 4.20 / 5.0 | 5.00 / 5.0 | -0.80 | 100.0% | Điểm số chất lượng câu trả lời lấy lại phong độ nguyên bản |
+| `retrieval_hit_rate` | 100.00% | 40.00% | 100.00% | -60.00% | 100.0% | Suy giảm mạnh do rơi rớt 20% bài mới nhất, phục hồi toàn diện |
+| `mean_token_f1` | 1.0000 | 0.5720 | 1.0000 | -0.4280 | 100.0% | Nhiễu và rỗng summary làm rớt F1; phục hồi 100% sau repair |
+| `judge_accuracy` | 100.00% | 60.00% | 100.00% | -40.00% | 100.0% | LLM Judge phát hiện câu trả lời suy giảm, khôi phục tối đa |
+| `mean_judge_score` | 5.00 / 5.0 | 3.20 / 5.0 | 5.00 / 5.0 | -1.80 | 100.0% | Điểm số chất lượng câu trả lời lấy lại phong độ nguyên bản |
 | `Quality Gate (GX 1.x)` | **PASSED** | **FAILED** | **PASSED** | Vi phạm 2 expectations | 100% | Bắt trúng lỗi trùng lặp và rỗng summary |
 | `Freshness SLA` | **FRESH** | **STALE** | **FRESH** | 38.1% quá hạn | 100% | Báo động chính xác khi tỷ lệ quá hạn vượt ngưỡng 25% |
 | `Total Records` | 24 | 21 | 24 | -3 dòng (sau drop + dup) | 100% | Số dòng và cấu trúc được tái lập hoàn hảo |
@@ -49,8 +49,8 @@ This report delivers a rigorous quantitative and qualitative comparison of the R
 ## 4. Causal Analysis & Silent Failure Evidence
 
 1. **[Data Corruption] -> [Quality/Freshness Signals] -> [Agent Metric Degradation]:**
-   - Tiêm kịch bản `drop_latest_records` (bỏ rơi 20% bài báo mới nhất) dẫn tới việc ChromaDB thiếu các văn bản mục tiêu của câu hỏi kiểm thử gần đây -> `retrieval_hit_rate` sụt giảm từ **100.00%** xuống **70.00%**.
-   - Tiêm kịch bản `blank_summary` và `inject_noise` dẫn tới context truy xuất bị mất thông tin hoặc ngập rác -> `mean_token_f1` rơi từ **1.0000** xuống **0.8000**.
+   - Tiêm kịch bản `drop_latest_records` (bỏ rơi 20% bài báo mới nhất) dẫn tới việc ChromaDB thiếu các văn bản mục tiêu của câu hỏi kiểm thử gần đây -> `retrieval_hit_rate` sụt giảm từ **100.00%** xuống **40.00%**.
+   - Tiêm kịch bản `blank_summary` và `inject_noise` dẫn tới context truy xuất bị mất thông tin hoặc ngập rác -> `mean_token_f1` rơi từ **1.0000** xuống **0.5720**.
    - Hiện tượng **Silent Failure**: Nếu không có Great Expectations và Freshness SLA canh gác, hệ thống vẫn phản hồi nhưng đưa ra câu trả lời sai lệch hoặc kém chất lượng mà không có cảnh báo hệ thống. Nhờ có Quality Gate, hệ sinh thái Data Observability đã lập tức gắn cờ cảnh báo đỏ `FAILED` / `STALE`.
 
 2. **[Idempotent Repair Action] -> [Quality Recovery] -> [Agent Metric Full Recovery]:**

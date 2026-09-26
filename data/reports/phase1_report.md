@@ -1,6 +1,6 @@
 # Phase 1 Baseline Report: Data Pipeline & Data Observability
 
-> **Execution Timestamp:** 2026-09-26 03:14:15 UTC  
+> **Execution Timestamp:** 2026-09-26 04:09:54 UTC  
 > **Pipeline Run Status:** COMPLETED  
 > **Overall Data Quality Gate:** **PASSED**  
 
@@ -27,8 +27,8 @@ The pipeline integrates metadata ingestion from Crossref, rigorous data cleaning
 | Parameter | Value |
 |:---|:---|
 | **Source API** | Crossref REST API |
-| **Search Query** | `agentic retrieval augmented generation large language model` |
-| **Filter** | `from-pub-date:2026-03-30,has-abstract:true` |
+| **Search Query** | `N/A` |
+| **Filter** | `N/A` |
 | **Max Results** | 24 |
 | **Raw API Response** | `data/raw/crossref_response.json` |
 | **Raw Records** | `data/raw/crossref_records.json` |

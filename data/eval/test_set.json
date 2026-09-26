@@ -1,15 +1,51 @@
 [
   {
-    "id": "eval_001",
+    "id": "test-01",
     "question_type": "summary",
-    "question": "What is the summary of the paper 'Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks'?",
-    "ground_truth": "Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages.",
+    "question": "What is the summary of the paper 'Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines'?",
+    "ground_truth": "Static benchmarks fail to capture domain drift in enterprise knowledge bases.",
     "ground_truth_doc_ids": [
-      "10.1145/3637528.3671801"
+      "10.1145/3637528.3671812"
     ]
   },
   {
-    "id": "eval_002",
+    "id": "test-02",
+    "question_type": "summary",
+    "question": "What is the summary of the paper 'Multi-Agent Consensus for High-Stakes Fact Verification'?",
+    "ground_truth": "A single LLM is susceptible to confirmation bias when evaluating retrieved evidence.",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671808"
+    ]
+  },
+  {
+    "id": "test-03",
+    "question_type": "summary",
+    "question": "What is the summary of the paper 'Freshness SLAs for Real-Time LLM Knowledge Augmentation'?",
+    "ground_truth": "We define freshness service-level agreements (SLAs) for temporal document ingestion.",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671804"
+    ]
+  },
+  {
+    "id": "test-04",
+    "question_type": "authors",
+    "question": "Who authored the paper 'Synthetic Corruption Testing: Stress-Testing Vector Search Robustness'?",
+    "ground_truth": "Kien Duong, Vy Ly",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671807"
+    ]
+  },
+  {
+    "id": "test-05",
+    "question_type": "authors",
+    "question": "Who authored the paper 'Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines'?",
+    "ground_truth": "Quang Le, Yen Vu",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671824"
+    ]
+  },
+  {
+    "id": "test-06",
     "question_type": "authors",
     "question": "Who authored the paper 'Data Observability and Quality Gates for Production RAG Systems'?",
     "ground_truth": "Anh Tran, Quoc Pham",
@@ -18,75 +54,39 @@
     ]
   },
   {
-    "id": "eval_003",
+    "id": "test-07",
     "question_type": "date",
-    "question": "When was the paper 'Mitigating Ghost Vectors in Dense Retrieval via Idempotent Indexing' published?",
-    "ground_truth": "2026-04-18",
+    "question": "When was the paper 'Advanced Perspectives on Hybrid Search Architectures: Combining BM25 with Dense Representations' published?",
+    "ground_truth": "2026-06-11",
     "ground_truth_doc_ids": [
-      "10.1145/3637528.3671803"
+      "10.1145/3637528.3671823"
     ]
   },
   {
-    "id": "eval_004",
-    "question_type": "categories",
-    "question": "What categories belong to the paper 'Freshness SLAs for Real-Time LLM Knowledge Augmentation'?",
-    "ground_truth": "Data Management, Artificial Intelligence",
-    "ground_truth_doc_ids": [
-      "10.1145/3637528.3671804"
-    ]
-  },
-  {
-    "id": "eval_005",
-    "question_type": "summary",
-    "question": "What is the summary of the paper 'Evaluating Retrieval Precision with Token F1 and LLM Judges'?",
-    "ground_truth": "Evaluating open-domain QA requires robust metrics.",
-    "ground_truth_doc_ids": [
-      "10.1145/3637528.3671805"
-    ]
-  },
-  {
-    "id": "eval_006",
-    "question_type": "authors",
-    "question": "Who authored the paper 'Semantic Layer Integration for Agentic Text-to-SQL Pipelines'?",
-    "ground_truth": "Huy Dinh, Trang Vo",
-    "ground_truth_doc_ids": [
-      "10.1145/3637528.3671806"
-    ]
-  },
-  {
-    "id": "eval_007",
+    "id": "test-08",
     "question_type": "date",
-    "question": "When was the paper 'Synthetic Corruption Testing: Stress-Testing Vector Search Robustness' published?",
-    "ground_truth": "2026-06-25",
+    "question": "When was the paper 'Advanced Perspectives on Automated Data Quality Profiling with Great Expectations in CI/CD' published?",
+    "ground_truth": "2026-06-10",
     "ground_truth_doc_ids": [
-      "10.1145/3637528.3671807"
+      "10.1145/3637528.3671822"
     ]
   },
   {
-    "id": "eval_008",
+    "id": "test-09",
     "question_type": "categories",
-    "question": "What categories belong to the paper 'Multi-Agent Consensus for High-Stakes Fact Verification'?",
+    "question": "What categories are associated with the paper 'Advanced Perspectives on Chunking Strategies for Technical Documentation Retrieval'?",
+    "ground_truth": "Information Retrieval, Natural Language Processing",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671821"
+    ]
+  },
+  {
+    "id": "test-10",
+    "question_type": "categories",
+    "question": "What categories are associated with the paper 'Advanced Perspectives on Multi-Agent Consensus for High-Stakes Fact Verification'?",
     "ground_truth": "Multi-Agent Systems, Artificial Intelligence",
     "ground_truth_doc_ids": [
-      "10.1145/3637528.3671808"
-    ]
-  },
-  {
-    "id": "eval_009",
-    "question_type": "summary",
-    "question": "What is the summary of the paper 'Chunking Strategies for Technical Documentation Retrieval'?",
-    "ground_truth": "Hierarchical and semantic boundary chunking preserves code block contexts and markdown headings.",
-    "ground_truth_doc_ids": [
-      "10.1145/3637528.3671809"
-    ]
-  },
-  {
-    "id": "eval_010",
-    "question_type": "authors",
-    "question": "Who authored the paper 'Automated Data Quality Profiling with Great Expectations in CI/CD'?",
-    "ground_truth": "Son Nguyen, Thuy Doan",
-    "ground_truth_doc_ids": [
-      "10.1145/3637528.3671810"
+      "10.1145/3637528.3671820"
     ]
   }
 ]
