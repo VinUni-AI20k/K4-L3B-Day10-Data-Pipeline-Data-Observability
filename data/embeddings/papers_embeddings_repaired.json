@@ -1,7 +1,7 @@
 {
   "backend": "chroma",
   "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
-  "persist_path": "C:\\Users\\msi\\Documents\\Lap_VinUni\\Lap10\\K4-L3B-Day10-Saphoaqua-DataPipelineDataObservability\\data\\chroma",
+  "persist_path": "F:\\AI TH\u1ef0C CHI\u1ebeN\\LABS\\K4-L3B-Day10-Saphoaqua-DataPipelineDataObservability\\data\\chroma",
   "collection_name": "papers-repaired",
   "documents": [
     {
