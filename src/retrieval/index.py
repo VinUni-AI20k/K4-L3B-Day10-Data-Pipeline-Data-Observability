@@ -42,24 +42,50 @@ class LocalEmbeddingIndex:
 
     @staticmethod
     def _build_documents(df: pd.DataFrame) -> list[dict[str, Any]]:
+        required_columns = {
+            "paper_id",
+            "title",
+            "text_for_embedding",
+            "published",
+            "authors_joined",
+            "categories_joined",
+            "summary",
+            "abs_url",
+            "pdf_url",
+        }
+        missing_columns = sorted(required_columns.difference(df.columns))
+        if missing_columns:
+            raise ValueError(f"Cannot build index; missing columns: {', '.join(missing_columns)}")
+        if df.empty:
+            raise ValueError("Cannot build an embedding index from an empty dataframe.")
+
         records = df.to_dict(orient="records")
         documents: list[dict[str, Any]] = []
         for index, row in enumerate(records):
+            paper_id = str(row["paper_id"]).strip()
+            title = str(row["title"]).strip()
+            content = str(row["text_for_embedding"]).strip()
+            if not paper_id or not title or not content:
+                raise ValueError(
+                    f"Cannot index row {index}; paper_id, title, and text_for_embedding are required."
+                )
+            published = pd.to_datetime(row["published"], errors="coerce")
+            published_text = "" if pd.isna(published) else published.strftime("%Y-%m-%d")
             documents.append(
                 {
-                    "record_id": f"{row['paper_id']}::{index}",
-                    "paper_id": row["paper_id"],
-                    "title": row["title"],
-                    "content": row["text_for_embedding"],
+                    "record_id": f"{paper_id}::{index}",
+                    "paper_id": paper_id,
+                    "title": title,
+                    "content": content,
                     "metadata": {
-                        "paper_id": row["paper_id"],
-                        "title": row["title"],
-                        "published": row["published"],
-                        "authors_joined": row["authors_joined"],
-                        "categories_joined": row["categories_joined"],
-                        "summary": row["summary"],
-                        "abs_url": row["abs_url"],
-                        "pdf_url": row["pdf_url"],
+                        "paper_id": paper_id,
+                        "title": title,
+                        "published": published_text,
+                        "authors_joined": str(row["authors_joined"]),
+                        "categories_joined": str(row["categories_joined"]),
+                        "summary": str(row["summary"]),
+                        "abs_url": str(row["abs_url"]),
+                        "pdf_url": str(row["pdf_url"]),
                     },
                 }
             )
@@ -111,12 +137,16 @@ class LocalEmbeddingIndex:
         )
 
         manifest_path = embeddings_output_path or settings.paths.embeddings_json
+        try:
+            stored_persist_path = str(persist_path.relative_to(settings.paths.project_dir))
+        except ValueError:
+            stored_persist_path = str(persist_path)
         write_json(
             manifest_path,
             {
                 "backend": "chroma",
                 "embedding_model": settings.embedding_model,
-                "persist_path": str(persist_path),
+                "persist_path": stored_persist_path,
                 "collection_name": collection_name,
                 "documents": documents,
             },
@@ -131,18 +161,30 @@ class LocalEmbeddingIndex:
     @classmethod
     def load(cls, settings: Settings, embeddings_path: Path | None = None) -> "LocalEmbeddingIndex":
         payload = read_json(embeddings_path or settings.paths.embeddings_json)
+        persist_path = Path(payload["persist_path"])
+        if not persist_path.is_absolute():
+            persist_path = settings.paths.project_dir / persist_path
         return cls(
             settings=settings,
             collection_name=payload["collection_name"],
             documents=payload["documents"],
-            persist_path=Path(payload["persist_path"]),
+            persist_path=persist_path,
         )
 
     def search(self, query: str, top_k: int | None = None) -> list[SearchResult]:
+        query = query.strip()
+        if not query:
+            return []
+        requested_results = top_k or self.settings.top_k
+        if requested_results < 1:
+            raise ValueError("top_k must be at least 1.")
+        collection_size = self.collection.count()
+        if collection_size == 0:
+            return []
         query_embedding = self.embedding_model.embed_query(query)
         results = self.collection.query(
             query_embeddings=[query_embedding],
-            n_results=top_k or self.settings.top_k,
+            n_results=min(requested_results, collection_size),
             include=["documents", "metadatas", "distances"],
         )
         ids = results.get("ids", [[]])[0]
