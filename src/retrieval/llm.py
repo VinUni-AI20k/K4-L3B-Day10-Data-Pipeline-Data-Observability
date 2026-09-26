@@ -18,6 +18,15 @@ def build_llm(settings: Settings, temperature: float = 0.0):
             google_api_key=settings.google_api_key,
             temperature=temperature,
         )
+    if provider == "groq":
+        import os
+
+        return ChatOpenAI(
+            model=settings.model_name,
+            api_key=settings.groq_api_key or os.getenv("GROQ_API_KEY"),
+            base_url="https://api.groq.com/openai/v1",
+            temperature=temperature,
+        )
     if provider == "openai":
         return ChatOpenAI(
             model=settings.model_name,
