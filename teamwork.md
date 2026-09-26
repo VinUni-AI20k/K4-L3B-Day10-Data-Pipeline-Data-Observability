@@ -5,43 +5,114 @@
 
 ---
 
+## 👥 DANH SÁCH THÀNH VIÊN
+
+| # | Tên | Branch | Module | Files |
+|---|------|--------|--------|-------|
+| 1 | 👤 **Gia Huy** | `giahuy-ingestion` | Data Foundation | 2 files |
+| 2 | 👤 **Mạnh Hùng** | `manhhung-observability` | Data Observability | 2 files |
+| 3 | 👤 **Anh Minh** | `anhminh-evaluation` | Evaluation + Corruption | 2 files |
+| 4 | 👤 **Thế Việt** | `theviet-pipeline` | Pipeline Orchestration | 2 files |
+| 5 | 👤 **Minh Tiến** | `minhtien-support` | Support + Integration | Review + Docs |
+
+---
+
 ## 📊 TỔNG QUAN FILES & TRẠNG THÁI
 
 ### ✅ ĐÃ HOÀN THÀNH (Không cần làm)
 
-| File                              | Trạng thái          |
-| --------------------------------- | --------------------- |
-| `src/core/config.py`            | ✅ Hoàn thành       |
-| `src/core/utils.py`             | ✅ Hoàn thành       |
-| `src/retrieval/embeddings.py`   | ✅ Hoàn thành       |
-| `src/retrieval/index.py`        | ✅ Hoàn thành       |
-| `src/retrieval/llm.py`          | ✅ Hoàn thành       |
-| `src/retrieval/agent.py`        | ✅ Hoàn thành       |
-| `src/retrieval/qa.py`           | ✅ Hoàn thành       |
-| `src/evaluation/metrics.py`     | ✅ Hoàn thành       |
-| `script/run_phase1.py`          | ✅ Wrapper sẵn sàng |
+| File | Trạng thái |
+|------|------------|
+| `src/core/config.py` | ✅ Hoàn thành |
+| `src/core/utils.py` | ✅ Hoàn thành |
+| `src/retrieval/embeddings.py` | ✅ Hoàn thành |
+| `src/retrieval/index.py` | ✅ Hoàn thành |
+| `src/retrieval/llm.py` | ✅ Hoàn thành |
+| `src/retrieval/agent.py` | ✅ Hoàn thành |
+| `src/retrieval/qa.py` | ✅ Hoàn thành |
+| `src/evaluation/metrics.py` | ✅ Hoàn thành |
+| `script/run_phase1.py` | ✅ Wrapper sẵn sàng |
 | `script/run_corruption_flow.py` | ✅ Wrapper sẵn sàng |
 
 ### ⚠️ CẦN HOÀN THIỆN (TODO)
 
-| File                                 | Người phụ trách   |
-| ------------------------------------ | --------------------- |
-| `src/ingestion/crossref.py`        | 👤**NGƯỜI 1** |
-| `src/ingestion/cleaning.py`        | 👤**NGƯỜI 1** |
-| `src/ingestion/corruption.py`      | 👤**NGƯỜI 1** |
-| `src/observability/quality.py`     | 👤**NGƯỜI 2** |
-| `src/observability/reporting.py`   | 👤**NGƯỜI 2** |
-| `src/evaluation/testset.py`        | 👤**NGƯỜI 3** |
-| `src/pipelines/phase1.py`          | 👤**NGƯỜI 4** |
-| `src/pipelines/corruption_flow.py` | 👤**NGƯỜI 4** |
+| File | Người phụ trách |
+|------|------------------|
+| `src/ingestion/crossref.py` | 👤 **Gia Huy** |
+| `src/ingestion/cleaning.py` | 👤 **Gia Huy** |
+| `src/observability/quality.py` | 👤 **Mạnh Hùng** |
+| `src/observability/reporting.py` | 👤 **Mạnh Hùng** |
+| `src/evaluation/testset.py` | 👤 **Anh Minh** |
+| `src/ingestion/corruption.py` | 👤 **Anh Minh** |
+| `src/pipelines/phase1.py` | 👤 **Thế Việt** |
+| `src/pipelines/corruption_flow.py` | 👤 **Thế Việt** |
 
 ---
 
-## 👤 Gia Huy: DATA INGESTION MODULE
+## 🔗 SƠ ĐỒ PHỤ THUỘC (DEPENDENCY)
+
+### THỨ TỰ BẮT BUỘC:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                             │
+│  1. GIA HUY (TRƯỚC TIÊN)                                                  │
+│     └─── ✅ KHÔNG ĐỢI AI                                                    │
+│         ├── crossref.py                                                     │
+│         └── cleaning.py ────────► tạo data/clean/                           │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                     │
+                    ┌────────────────┴────────────────┐
+                    ▼                                 ▼
+┌─────────────────────────────────┐    ┌─────────────────────────────────────┐
+│  2. MẠNH HÙNG                 │    │  2. ANH MINH                       │
+│     Observability               │    │     Evaluation + Corruption         │
+│     ⏳ Đợi Gia Huy xong       │    │     ⏳ Đợi Gia Huy xong            │
+│     ├── quality.py              │    │     ├── testset.py                  │
+│     └── reporting.py            │    │     └── corruption.py               │
+└─────────────────────────────────┘    └─────────────────────────────────────┘
+                    │                                 │
+                    └────────────────┬────────────────┘
+                                     ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  3. THẾ VIỆT (CUỐI CÙNG)                                                 │
+│     Pipeline Orchestration                                                  │
+│     ⏳ Đợi Gia Huy + Mạnh Hùng + Anh Minh xong                           │
+│     ├── phase1.py                                                          │
+│     └── corruption_flow.py                                                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                     │
+                                     ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  4. MINH TIẾN (SUPPORT + INTEGRATION)                                      │
+│     ⏳ Đợi Thế Việt xong phase1.py                                        │
+│     ├── Review & Fix bugs                                                  │
+│     ├── Hoàn thiện reports                                                 │
+│     ├── Điền TEAM.md                                                      │
+│     └── Final E2E test                                                     │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### BẢNG PHỤ THUỘC:
+
+| Người | Bắt đầu khi | Kết thúc khi |
+|-------|--------------|--------------|
+| 👤 **Gia Huy** | ✅ Ngay lập tức | GIA HUY xong |
+| 👤 **Mạnh Hùng** | ⏳ Gia Huy xong `cleaning.py` | MẠNH HÙNG xong |
+| 👤 **Anh Minh** | ⏳ Gia Huy xong `cleaning.py` | ANH MINH xong |
+| 👤 **Thế Việt** | ⏳ Mạnh Hùng + Anh Minh xong | THẾ VIỆT xong |
+| 👤 **Minh Tiến** | ⏳ Thế Việt xong `phase1.py` | MỌI THỨ hoàn tất |
+
+---
+
+## 👤 GIA HUY: DATA FOUNDATION (TRƯỚC TIÊN)
 
 **Branch:** `giahuy-ingestion`
 **Thời gian:** 0 - 90 phút
-**Files:** 3 files trong `src/ingestion/`
+**Files:** 2 files trong `src/ingestion/`
+
+> ⚠️ **QUAN TRỌNG:** Gia Huy làm TRƯỚC TIÊN. Không đợi ai. Các bạn khác phụ thuộc vào output của Gia Huy.
 
 > 📤 **OUTPUT cần tạo (để người khác dùng):**
 > - `data/raw/crossref_response.json`
@@ -49,7 +120,7 @@
 > - `data/clean/papers_clean.json`
 > - `data/clean/papers_clean.csv`
 
-### 1.1 `src/ingestion/crossref.py` (3 functions)
+### 1.1 `src/ingestion/crossref.py`
 
 ```python
 # Function 1: parse_crossref_payload(payload: dict) -> list[PaperRecord]
@@ -71,7 +142,7 @@
 # - Fallback: đọc từ data/raw/crossref_response.json nếu API fail
 ```
 
-### 1.2 `src/ingestion/cleaning.py` (1 function)
+### 1.2 `src/ingestion/cleaning.py`
 
 ```python
 # build_clean_dataframe(records: list[PaperRecord], run_date: datetime) -> pd.DataFrame
@@ -86,21 +157,6 @@
 #        "Title: {title}\nAuthors: {authors_joined}\nPublished: {published}\nCategories: {categories_joined}\nSummary: {summary}"
 # 5. Drop duplicates theo paper_id
 # 6. Sort dataframe và return
-```
-
-### 1.3 `src/ingestion/corruption.py` (1 function)
-
-```python
-# corrupt_clean_dataframe(df: pd.DataFrame, output_log_path) -> pd.DataFrame
-# Tiêm 6 corruption scenarios:
-# 1. Drop latest records: bỏ 20% records mới nhất
-# 2. Blank summary: xóa trắng summary ở 30% rows
-# 3. Inject noise: chèn "!!!CORRUPTED!!!" vào text
-# 4. Truncate title: cắt title < 8 ký tự
-# 5. Stale date: lùi published về 365 ngày trước
-# 6. Duplicate rows: nhân đôi 20% rows
-# Rebuild text_for_embedding sau khi corrupt
-# Ghi corruption_log.json với chi tiết từng lỗi
 ```
 
 ### ✅ Test sau khi xong:
@@ -118,17 +174,24 @@ print(f'✅ Clean thành công {len(df)} dòng')
 "
 ```
 
+### ✅ Checkpoint để bạn khác bắt đầu:
+
+```bash
+# Khi có output này, Mạnh Hùng & Anh Minh mới được bắt đầu:
+ls data/clean/papers_clean.json  # File phải tồn tại
+```
+
 ---
 
-## 👤 Mạnh Hùng: OBSERVABILITY MODULE
+## 👤 MẠNH HÙNG: DATA OBSERVABILITY
 
 **Branch:** `manhhung-observability`
-**Thời gian:** 60 - 120 phút (⏳ **PHỤ THUỘC GIA HUY** - chỉ bắt đầu sau Checkpoint 1)
+**Thời gian:** 60 - 120 phút
 **Files:** 2 files trong `src/observability/`
 
-> ⚠️ **QUAN TRỌNG:** Mạnh Hùng phải đợi Gia Huy xong `cleaning.py` và push lên branch trước. Khi `data/clean/papers_clean.json` tồn tại, Mạnh Hùng mới bắt đầu được.
+> ⏳ **PHỤ THUỘC:** Chỉ bắt đầu khi `data/clean/papers_clean.json` tồn tại (do Gia Huy tạo)
 
-### 2.1 `src/observability/quality.py` (2 functions)
+### 2.1 `src/observability/quality.py`
 
 ```python
 # Function 1: run_data_quality_checks(df, settings, report_name) -> dict
@@ -156,7 +219,7 @@ print(f'✅ Clean thành công {len(df)} dòng')
 # - Ghi JSON report
 ```
 
-### 2.2 `src/observability/reporting.py` (2 functions)
+### 2.2 `src/observability/reporting.py`
 
 ```python
 # Function 1: generate_phase1_report(report_path, source_summary, metrics, quality, freshness)
@@ -191,15 +254,15 @@ print(f'✅ Quality check status = {res[\"success\"]}')
 
 ---
 
-## 👤 Anh Minh: EVALUATION MODULE
+## 👤 ANH MINH: EVALUATION + CORRUPTION
 
 **Branch:** `anhminh-evaluation`
-**Thời gian:** 60 - 120 phút (⏳ **PHỤ THUỘC GIA HUY** - chỉ bắt đầu sau Checkpoint 1)
-**Files:** 1 file trong `src/evaluation/`
+**Thời gian:** 60 - 120 phút
+**Files:** 2 files
 
-> ⚠️ **QUAN TRỌNG:** Anh Minh phải đợi Gia Huy xong `cleaning.py` và push lên branch trước. Khi `data/clean/papers_clean.json` tồn tại, Anh Minh mới bắt đầu được.
+> ⏳ **PHỤ THUỘC:** Chỉ bắt đầu khi `data/clean/papers_clean.json` tồn tại (do Gia Huy tạo)
 
-### 3.1 `src/evaluation/testset.py` (1 function)
+### 3.1 `src/evaluation/testset.py`
 
 ```python
 # build_test_set(df: pd.DataFrame, output_path) -> list[dict]
@@ -221,9 +284,25 @@ print(f'✅ Quality check status = {res[\"success\"]}')
 # Lưu vào data/eval/test_set.json
 ```
 
+### 3.2 `src/ingestion/corruption.py`
+
+```python
+# corrupt_clean_dataframe(df: pd.DataFrame, output_log_path) -> pd.DataFrame
+# Tiêm 6 corruption scenarios:
+# 1. Drop latest records: bỏ 20% records mới nhất
+# 2. Blank summary: xóa trắng summary ở 30% rows
+# 3. Inject noise: chèn "!!!CORRUPTED!!!" vào text
+# 4. Truncate title: cắt title < 8 ký tự
+# 5. Stale date: lùi published về 365 ngày trước
+# 6. Duplicate rows: nhân đôi 20% rows
+# Rebuild text_for_embedding sau khi corrupt
+# Ghi corruption_log.json với chi tiết từng lỗi
+```
+
 ### ✅ Test sau khi xong:
 
 ```bash
+# Test testset
 python -c "
 from core.config import load_settings
 from evaluation.testset import build_test_set
@@ -233,23 +312,30 @@ df = pd.read_json(s.paths.clean_json)
 ts = build_test_set(df, s.paths.eval_testset)
 print(f'✅ Sinh được {len(ts)} câu hỏi test')
 "
+
+# Test corruption
+python -c "
+from core.config import load_settings
+from ingestion.corruption import corrupt_clean_dataframe
+import pandas as pd
+s = load_settings()
+df = pd.read_json(s.paths.clean_json)
+c = corrupt_clean_dataframe(df, s.paths.corruption_log)
+print(f'✅ Corrupted {len(c)} dòng')
+"
 ```
 
 ---
 
-## 👤 Minh Tiến: PIPELINE INTEGRATION
+## 👤 THẾ VIỆT: PIPELINE ORCHESTRATION
 
-**Branch:** `minhtien-pipeline`
-**Thời gian:** 120 - 240 phút (⏳ **PHỤ THUỘC GIA HUY + ANH MINH + MẠNH HÙNG** - chỉ bắt đầu sau Checkpoint 3)
+**Branch:** `theviet-pipeline`
+**Thời gian:** 120 - 200 phút
 **Files:** 2 files trong `src/pipelines/`
 
-> ⚠️ **QUAN TRỌNG:** Minh Tiến phải đợi cả 3 người kia xong và push lên branch trước. Khi:
-> - `data/clean/papers_clean.json` tồn tại (từ Gia Huy)
-> - `data/eval/test_set.json` tồn tại (từ Anh Minh)
-> - `src/observability/` hoàn chỉnh (từ Mạnh Hùng)
-> Thì Minh Tiến mới bắt đầu được.
+> ⏳ **PHỤ THUỘC:** Chỉ bắt đầu khi Mạnh Hùng + Anh Minh xong
 
-### 4.1 `src/pipelines/phase1.py` (1 function)
+### 4.1 `src/pipelines/phase1.py`
 
 ```python
 # main() -> None
@@ -307,7 +393,7 @@ print(f'✅ Sinh được {len(ts)} câu hỏi test')
 #    print(f'✅ Phase 1 hoàn tất! Hit Rate: {bundle.summary[\"retrieval_hit_rate\"]:.2%}')
 ```
 
-### 4.2 `src/pipelines/corruption_flow.py` (1 function)
+### 4.2 `src/pipelines/corruption_flow.py`
 
 ```python
 # main() -> None
@@ -362,159 +448,133 @@ print(f'✅ Sinh được {len(ts)} câu hỏi test')
 # 8. Print comparison table
 ```
 
----
+### ✅ Test sau khi xong:
 
-## 🔗 SƠ ĐỒ PHỤ THUỘC (DEPENDENCY)
-
-### THỨ TỰ BẮT BUỘC:
-
-| Thứ tự | Người | Module | Được phép bắt đầu khi |
-|:-------:|-------|--------|-------------------------|
-| **1** | 👤 **GIA HUY** | Ingestion | ✅ **LÀM TRƯỚC TIÊN** - Không đợi ai |
-| **2** | 👤 **ANH MINH** | Evaluation | ⏳ Đợi Gia Huy xong `cleaning.py` |
-| **2** | 👤 **MẠNH HÙNG** | Observability | ⏳ Đợi Gia Huy xong `cleaning.py` |
-| **3** | 👤 **MINH TIẾN** | Pipeline | ⏳ Đợi cả 3 người trên xong |
-
-### SƠ ĐỒ:
-
-```
-  ┌─────────────────┐
-  │  1. GIA HUY     │
-  │  (Ingestion)    │
-  │  ✅ KHÔNG ĐỢI  │
-  └────────┬────────┘
-           │
-           ▼
-  ┌─────────────────┐
-  │  data/clean/    │
-  │  papers_clean.json│
-  └────────┬────────┘
-           │
-     ┌─────┴─────┐
-     ▼           ▼
-┌─────────┐ ┌─────────────┐
-│2.ANH MINH│ │2.MẠNH HÙNG │
-│Evaluation│ │Observability│
-│ ⏳Đợi CP1│ │ ⏳ Đợi CP1 │
-└────┬────┘ └──────┬──────┘
-     │             │
-     └──────┬──────┘
-            ▼
-  ┌─────────────────┐
-  │ data/eval/     │
-  │ test_set.json  │
-  │ observability/ │
-  └────────┬────────┘
-           │
-           ▼
-  ┌─────────────────┐
-  │ 3. MINH TIẾN   │
-  │   (Pipeline)    │
-  │  ⏳ Đợi CP3    │
-  └─────────────────┘
-```
-
-### ⚠️ THỨ TỰ BẮT BUỘC:
-
-1. **GIA HUY làm TRƯỚC** → Tạo `data/raw/` và `data/clean/`
-2. **ANH MINH + MẠNH HÙNG làm SAU** → Cần `data/clean/` từ Gia Huy
-3. **MINH TIẾN làm CUỐI CÙNG** → Cần cả 3 người kia xong
-
----
-
-## 📅 TIMELINE CHI TIẾT (CÓ CHECKPOINT ĐỢI)
-
-```
-PHÚT  | HOẠT ĐỘNG                              | NGƯỜI     | ĐỢI GÌ?
-------|----------------------------------------|-----------|----------
-0-30  | Gia Huy: crossref.py                   | GIA HUY   | -
-30-60 | Gia Huy: cleaning.py                   | GIA HUY   | -
-      |                                          |           |
-      │  ⏸️ CHECKPOINT 1: GIA HUY PUSH           |           |
-      │  → Có data/clean/papers_clean.json       |           |
-      │                                          |           |
-60-90 | Gia Huy: corruption.py + push            | GIA HUY   | -
-      | Anh Minh: testset.py (bắt đầu sau CP1)  | ANH MINH  | ⏳ Đợi CP1
-      | Mạnh Hùng: quality.py (bắt đầu sau CP1)| MẠNH HÙNG | ⏳ Đợi CP1
-      │                                          |           |
-      │  ⏸️ CHECKPOINT 2: GIA HUY PUSH           |           |
-      │  → Có đủ ingestion module hoàn chỉnh    |           |
-      │                                          |           |
-90-120| Gia Huy: Review & support               | GIA HUY   | -
-      | Anh Minh: testset.py (tiếp)              | ANH MINH  | ⏳ Từ CP1
-      | Mạnh Hùng: reporting.py                 | MẠNH HÙNG | ⏳ Từ CP1
-      │                                          |           |
-      │  ⏸️ CHECKPOINT 3: ANH MINH + MẠNH HÙNG PUSH |     |
-      │  → Có data/eval/test_set.json           |           |
-      │  → Có observability module hoàn chỉnh    |           |
-      │                                          |           |
-120-150| Gia Huy: Support                        | GIA HUY   | -
-      | Anh Minh: Review & support               | ANH MINH  | -
-      | Mạnh Hùng: Review & support            | MẠNH HÙNG | -
-      | Minh Tiến: phase1.py (bắt đầu sau CP3) | MINH TIẾN | ⏳ Đợi CP3
-      │                                          |           |
-      │  ⏸️ CHECKPOINT 4: MINH TIẾN PUSH          |           |
-      │  → run_phase1.py chạy thành công        |           |
-      │                                          |           |
-150-180| Minh Tiến: corruption_flow.py            | MINH TIẾN | ⏳ Từ CP4
-      │                                          |           |
-      │  ⏸️ CHECKPOINT 5: RUN E2E                 |           |
-      │  → run_corruption_flow.py thành công    |           |
-      │                                          |           |
-180-210| Tất cả: Fix bugs, test lại             | TẤT CẢ   | -
-210-230| Hoàn thiện reports, TEAM.md            | TẤT CẢ   | -
-230-240| Final check & submit                    | TẤT CẢ   | -
+```bash
+python script/run_phase1.py
+# Exit code phải = 0
 ```
 
 ---
 
-## 🚦 CHECKPOINT SIGNALS (ĐỂ BIẾT KHI NÀO NGƯỜI SAU ĐƯỢC BẮT ĐẦU)
+## 👤 MINH TIẾN: SUPPORT + INTEGRATION
 
-### Checkpoint 1: GIA HUY xong `cleaning.py`
-```
-# Anh Minh & Mạnh Hùng CHỈ được bắt đầu khi:
-python -c "
-from core.config import load_settings
-import json
-settings = load_settings()
-data = json.loads(settings.paths.clean_json.read_text())
-print(f'✅ Có {len(data)} records sạch')
-"
-# Output: ✅ Có 24 records sạch
-```
+**Branch:** `minhtien-support`
+**Thời gian:** 0 - 240 phút (xuyên suốt)
+**Vai trò:** Support, Review, Docs, Final Integration
 
-### Checkpoint 2: GIA HUY xong `ingestion/` module
-```
-# Cần có:
-# - data/raw/crossref_response.json
-# - data/raw/crossref_records.json  
-# - data/clean/papers_clean.json
-# - data/clean/papers_clean.csv
-```
+> ⏳ **PHỤ THUỘC:** Bắt đầu support sau Checkpoint 1, chính thức integrate sau Checkpoint 3
 
-### Checkpoint 3: ANH MINH xong `testset.py`
-```
-# Minh Tiến CHỈ được bắt đầu pipeline khi:
-python -c "
-from core.config import load_settings
-import json
-data = json.loads(settings.paths.eval_testset.read_text())
-print(f'✅ Có {len(data)} câu hỏi test')
-"
-# Output: ✅ Có 10 câu hỏi test
-```
+### Nhiệm vụ chi tiết:
 
-### Checkpoint 4: MẠNH HÙNG xong `observability/` module
-```
-# Cần có:
-# - src/observability/quality.py hoàn chỉnh
-# - src/observability/reporting.py hoàn chỉnh
+#### 0-60 phút: Chuẩn bị & Support
+- Setup `.env` file từ `.env.example`
+- Kiểm tra môi trường hoạt động
+- Support Gia Huy nếu cần
+
+#### 60-120 phút: Review & Support
+- Review code của Gia Huy (crossref, cleaning)
+- Review code của Mạnh Hùng + Anh Minh nếu cần
+
+#### 120-180 phút: Integration Support
+- Support Thế Việt viết pipeline
+- Review logic orchestration
+
+#### 180-240 phút: Final Integration
+- Test E2E: `python script/run_phase1.py`
+- Test E2E: `python script/run_corruption_flow.py`
+- Fix bugs nếu có
+- Hoàn thiện reports
+- Điền `docs/TEAM.md`
+
+### Output cuối cùng:
+```bash
+# Kiểm tra tất cả artifacts có mặt:
+ls data/results/baseline_metrics.json
+ls data/results/corrupted_metrics.json
+ls data/results/repaired_metrics.json
+ls data/reports/phase1_report.md
+ls data/reports/corruption_report.md
 ```
 
-### Checkpoint 5: MINH TIẾN xong `phase1.py`
+---
+
+## 📅 TIMELINE CHI TIẾT
+
 ```
+PHÚT  | HOẠT ĐỘNG                                  | NGƯỜI     | ĐỢI GÌ?
+------|--------------------------------------------|-----------|----------
+0-30  | Gia Huy: crossref.py                       | GIA HUY   | -
+      | Minh Tiến: Setup .env, check env            | MINH TIẾN | -
+30-60 | Gia Huy: cleaning.py                       | GIA HUY   | -
+      | Minh Tiến: Support Gia Huy                 | MINH TIẾN | -
+      |                                              |           |
+      |  ⏸️ CHECKPOINT 1: GIA HUY PUSH              |           |
+      |  → Có data/clean/papers_clean.json          |           |
+      |                                              |           |
+60-90 | Gia Huy: Review & Support                  | GIA HUY   | ✅ Xong
+      | Mạnh Hùng: quality.py                      | MẠNH HÙNG | ⏳ Từ CP1
+      | Anh Minh: testset.py                        | ANH MINH  | ⏳ Từ CP1
+      | Minh Tiến: Review Gia Huy code              | MINH TIẾN | ⏳ Từ CP1
+      |                                              |           |
+90-120| Mạnh Hùng: reporting.py                    | MẠNH HÙNG | ⏳ Đang làm
+      | Anh Minh: corruption.py                      | ANH MINH  | ⏳ Đang làm
+      |                                              |           |
+      |  ⏸️ CHECKPOINT 2: MẠNH HÙNG + ANH MINH PUSH |          |
+      |  → Có observability + corruption module    |           |
+      |                                              |           |
+120-150| Gia Huy: Support                          | GIA HUY   | ✅ Xong
+      | Mạnh Hùng: Review & Support               | MẠNH HÙNG | ✅ Xong
+      | Anh Minh: Review & Support                  | ANH MINH  | ✅ Xong
+      | Thế Việt: phase1.py (bắt đầu)            | THẾ VIỆT | ⏳ Từ CP2
+      | Minh Tiến: Support Thế Việt                | MINH TIẾN | ⏳ Từ CP2
+      |                                              |           |
+      |  ⏸️ CHECKPOINT 3: THẾ VIỆT PUSH              |           |
+      |  → run_phase1.py chạy thành công           |           |
+      |                                              |           |
+150-180| Thế Việt: corruption_flow.py               | THẾ VIỆT | ⏳ Đang làm
+      | Minh Tiến: Review Thế Việt code            | MINH TIẾN | ⏳ Từ CP3
+      |                                              |           |
+      |  ⏸️ CHECKPOINT 4: FINAL E2E                  |           |
+      |  → run_corruption_flow.py thành công       |           |
+      |                                              |           |
+180-200| Thế Việt: Fix bugs nếu có               | THẾ VIỆT | -
+      | Minh Tiến: Test E2E                         | MINH TIẾN | -
+      |                                              |           |
+200-230| Tất cả: Review & Fix bugs                | TẤT CẢ   | -
+      | Hoàn thiện reports, TEAM.md                | MINH TIẾN | -
+      |                                              |           |
+230-240| Final check & submit                       | TẤT CẢ   | -
+```
+
+---
+
+## 🚦 CHECKPOINT SIGNALS
+
+### Checkpoint 1: GIA HUY xong (60 phút)
+```bash
+# Mạnh Hùng & Anh Minh CHỈ được bắt đầu khi:
+ls data/clean/papers_clean.json  # File phải tồn tại
+```
+
+### Checkpoint 2: MẠNH HÙNG + ANH MINH xong (120 phút)
+```bash
+# Thế Việt CHỈ được bắt đầu khi:
+ls src/observability/quality.py    # Tồn tại
+ls src/observability/reporting.py  # Tồn tại
+ls src/ingestion/corruption.py      # Tồn tại
+```
+
+### Checkpoint 3: THẾ VIỆT xong phase1.py (150 phút)
+```bash
 # Test bằng:
 python script/run_phase1.py
+# Exit code phải = 0
+```
+
+### Checkpoint 4: FINAL E2E (180 phút)
+```bash
+python script/run_corruption_flow.py
 # Exit code phải = 0
 ```
 
@@ -525,43 +585,59 @@ python script/run_phase1.py
 ### Bước 1: Mỗi người tạo branch riêng
 
 ```bash
-# Người 1
+# Gia Huy
 git checkout -b giahuy-ingestion
 
-# Người 2
+# Mạnh Hùng
 git checkout -b manhhung-observability
 
-# Người 3
+# Anh Minh
 git checkout -b anhminh-evaluation
 
-# Người 4
-git checkout -b minhtien-pipeline
+# Thế Việt
+git checkout -b theviet-pipeline
+
+# Minh Tiến
+git checkout -b minhtien-support
 ```
 
 ### Bước 2: Sau khi xong file của mình - commit & push
 
 ```bash
-# Sau khi hoàn thành tất cả files trong module
+# Gia Huy
 git add src/ingestion/
-git commit -m "feat: complete ingestion module"
-
+git commit -m "feat: complete ingestion module by Gia Huy"
 git push origin giahuy-ingestion
+
+# Mạnh Hùng
+git add src/observability/
+git commit -m "feat: complete observability module by Manh Hung"
+git push origin manhhung-observability
+
+# Anh Minh
+git add src/evaluation/ src/ingestion/corruption.py
+git commit -m "feat: complete evaluation and corruption by Anh Minh"
+git push origin anhminh-evaluation
+
+# Thế Việt
+git add src/pipelines/
+git commit -m "feat: complete pipeline orchestration by The Viet"
+git push origin theviet-pipeline
 ```
 
-### Bước 3: Merge theo thứ tự (Người 4 làm)
+### Bước 3: Merge theo thứ tự (Minh Tiến làm)
 
 ```bash
-# Người 4 checkout main
 git checkout main
 git pull origin main
 
 # Merge theo thứ tự
-git merge giahuy-ingestion   # Trước
-git merge manhhung-observability # Sau
-git merge anhminh-evaluation  # Sau
-git merge minhtien-pipeline    # Cuối cùng
+git merge giahuy-ingestion           # Trước
+git merge manhhung-observability    # Sau
+git merge anhminh-evaluation       # Sau
+git merge theviet-pipeline          # Sau
+git merge minhtien-support          # Cuối cùng
 
-# Push lên main
 git push origin main
 ```
 
@@ -577,10 +653,11 @@ python script/run_corruption_flow.py
 ## ⚠️ LƯU Ý QUAN TRỌNG
 
 1. **KHÔNG edit file của người khác** - chỉ edit trong module của mình
-2. **Nếu cần import từ module khác** - đợi họ push lên branch, sau đó rebase
+2. **Đợi checkpoint trước khi bắt đầu** - tránh conflict
 3. **Test từng function** trước khi commit
 4. **Commit thường xuyên** - tránh mất code
 5. **Nếu conflict xảy ra** - chỉ người phụ trách file đó mới sửa
+6. **Minh Tiến là người support** - giúp đỡ bất kỳ ai cần
 
 ---
 
