@@ -14,10 +14,12 @@ def corrupt_clean_dataframe(df: pd.DataFrame, output_log_path: Any) -> pd.DataFr
     corrupted_df = df.copy()
     logs: list[dict[str, Any]] = []
 
-    # 1. Drop latest records (drop 20% of newest records)
+    # 1. Drop latest records (drop 20% of newest records by published date)
     drop_count = max(1, int(len(corrupted_df) * 0.2))
-    dropped_ids = list(corrupted_df.tail(drop_count)["paper_id"])
-    corrupted_df = corrupted_df.iloc[:-drop_count].copy()
+    published_dates = pd.to_datetime(corrupted_df["published"], errors="coerce")
+    newest_indices = published_dates.sort_values(ascending=False).head(drop_count).index
+    dropped_ids = list(corrupted_df.loc[newest_indices, "paper_id"])
+    corrupted_df = corrupted_df.drop(index=newest_indices).copy()
     logs.append({
         "scenario": "drop_latest_records",
         "dropped_count": drop_count,
