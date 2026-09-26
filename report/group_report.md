@@ -13,9 +13,9 @@
 
 | STT | Họ và tên | MSSV | Vai trò chính | Module/deliverable sở hữu |
 | --: | --- | --- | --- | --- |
-| 1 | [Thành viên 1 - điền tên] | [MSSV pending] | Data ingestion & cleaning owner | `src/ingestion/crossref.py`, `src/ingestion/cleaning.py` — raw records, cleaned dataset |
-| 2 | [Thành viên 2 - điền tên] | [MSSV pending] | Evaluation & observability owner | `src/evaluation/testset.py`, `src/observability/quality.py`, `src/observability/reporting.py` |
-| 3 | [Thành viên 3 - điền tên] | [MSSV pending] | Corruption & integration owner | `src/ingestion/corruption.py`, `src/pipelines/phase1.py`, `src/pipelines/corruption_flow.py` |
+| 1 | Đinh Lệnh Tiến Anh | 2A202602928 | Data ingestion & cleaning owner | `src/ingestion/crossref.py`, `src/ingestion/cleaning.py` — raw records, cleaned dataset |
+| 2 | Nguyễn Đức Triệu | 2A202602978 | Evaluation & observability owner | `src/evaluation/testset.py`, `src/observability/quality.py`, `src/observability/reporting.py` |
+| 3 | Vũ Hải Minh | 2A202602452 | Corruption & integration owner | `src/ingestion/corruption.py`, `src/pipelines/phase1.py`, `src/pipelines/corruption_flow.py` |
 
 ## 2. Tóm tắt kết quả
 
@@ -256,5 +256,5 @@ Kết luận nhân quả:
 - [x] Bảng metrics khớp với các file trong `data/results/`.
 - [x] Quality/freshness conclusions khớp với `data/quality/`.
 - [x] Các đường dẫn báo cáo và artifact truy cập được.
-- [ ] Mỗi thành viên có một `individual_report.md` riêng về vai trò và phần việc của mình (điền tên/MSSV thật trước khi nộp).
+- [x] Mỗi thành viên có một `individual_report.md` riêng về vai trò và phần việc của mình (điền tên/MSSV thật trước khi nộp).
 - [x] Không có `.env`, API key hoặc secret trong repository, report hoặc log.
