@@ -48,7 +48,7 @@ File audit log chi tiết **`data/results/corruption_log.json`** ghi nhận đ�
 - `blank_summary_records`: 2 bài bị xóa trắng tóm tắt.
 - `injected_noise_records`: 2 bài bị chèn chuỗi ký tự rác.
 - `truncated_title_records`: 2 bài bị cắt ngắn tiêu đề dưới 8 ký tự (`Draft`).
-- `stale_date_records`: 2 bài bị lùi ngày xuất bản về 365 ngày trước.
+- `stale_date_records`: 6 bài bị lùi ngày xuất bản về 365 ngày trước để stale ratio vượt ngưỡng 25%.
 - `duplicated_records`: 2 bài bị nhân bản tạo trùng lặp khóa chính.
 
 ---
@@ -102,10 +102,8 @@ python -c "from core.config import load_settings; from ingestion.corruption impo
   ```
 - **Lệnh hoặc bước tái hiện:** Khi chạy lệnh kiểm tra trên Windows PowerShell có in chuỗi tiếng Việt có dấu (`Tín hiệu hoàn thành...`).
 - **Nguyên nhân gốc:** Bảng mã mặc định của Windows PowerShell Console là `cp1252`, không hỗ trợ đầy đủ các ký tự Unicode tiếng Việt có dấu.
-- **Cách xử lý:** 
-  1. Thiết lập biến môi trường `$env:PYTHONIOENCODING = "utf-8"` trong PowerShell trước khi thực thi script.
-  2. Sử dụng chuỗi log không dấu hoặc cấu hình chuẩn UTF-8 trong `write_json()` / `write_text()` (`encoding="utf-8"`).
-- **Cách xác minh sau khi sửa:** Chạy lại script kiểm thử, console in ra trơn tru mà không văng ngoại lệ mã hóa.
+- **Cách xử lý:** Entry point `script/run_corruption_flow.py` cấu hình `stdout` và `stderr` sang UTF-8 trước khi chạy pipeline.
+- **Cách xác minh sau khi sửa:** Chạy `python script/run_corruption_flow.py`; console in đúng tiếng Việt, pipeline kết thúc với mã thoát `0` và tạo comparison report.
 
 ---
 
@@ -144,7 +142,7 @@ python -c "from core.config import load_settings; from ingestion.corruption impo
 | **`retrieval_hit_rate`** | **100.0%** | **80.0%** 🔻 | **100.0%** 🔺 | Giảm xuống 80% do bài mới bị drop, phục hồi 100% sau repair. |
 | **`mean_token_f1`** | **1.0000** | **0.7720** 🔻 | **1.0000** 🔺 | Giảm rõ rệt do tóm tắt bị xóa trắng và chèn chuỗi rác. |
 | **`judge_accuracy`** | **100.0%** | **80.0%** 🔻 | **100.0%** 🔺 | AI trả lời sai ngữ cảnh khi tài liệu bị làm bẩn. |
-| **`mean_judge_score`** | **5.00** | **4.00** 🔻 | **5.00** 🔺 | Điểm đánh giá chất lượng giảm sút trên tập dữ liệu bẩn. |
+| **`mean_judge_score`** | **5.00** | **4.10** 🔻 | **5.00** 🔺 | Điểm đánh giá bằng 9Router giảm trên tập dữ liệu bẩn rồi phục hồi. |
 | **Data Quality Gate** | **PASS** | **FAIL (Alert)** 🚨 | **PASS** ✅ | GX 1.x phát hiện lỗi trùng lặp khóa chính và tóm tắt rỗng. |
 | **Freshness SLA** | **Fresh** | **Stale Alert** ⚠️ | **Fresh** ✅ | Phát hiện tỷ lệ bài cũ 31.82% vượt ngưỡng 25%. |
 
@@ -164,7 +162,7 @@ python -c "from core.config import load_settings; from ingestion.corruption impo
 ### Ba điều quan trọng nhất
 1. **Kiến trúc Idempotent Pipeline:** Hiểu rõ tầm quan trọng của việc bảo toàn dữ liệu thô (Raw Preservation) làm điểm neo (Lineage Anchor) để phục hồi hệ thống khi có sự cố mà không tốn chi phí gọi lại API ngoài.
 2. **Data Observability chặn đứng Silent Failure:** Thấy được giá trị sống còn của Great Expectations và Freshness SLA trong việc phát hiện sớm sự suy thoái dữ liệu trước khi dữ liệu độc hại lan sang mô hình AI.
-3. **Mối quan hệ nhân quả Dữ liệu – AI:** Chất lượng của hệ thống RAG phụ thuộc 90% vào độ sạch và tính kịp thời của dữ liệu đầu vào ("Garbage in, Garbage out").
+3. **Mối quan hệ nhân quả Dữ liệu – AI:** Chất lượng của hệ thống RAG phụ thuộc mạnh vào độ sạch và tính kịp thời của dữ liệu đầu vào ("Garbage in, Garbage out").
 
 ### Nếu có thêm thời gian
 Tôi sẽ xây dựng cơ chế **Automated Self-Healing Trigger (Tự động phục hồi theo thời gian thực)**: Khi Great Expectations hoặc Freshness SLA phát hiện tín hiệu `FAIL`, hệ thống sẽ tự động kích hoạt tiến trình rollback và chạy hàm `repair_from_raw_snapshot()` ngay lập tức mà không cần sự can thiệp thủ công của kỹ sư vận hành.

@@ -6,11 +6,11 @@
 | ------------------ | -------------------------- |
 | Họ và tên       | Trần Tuấn Hoàng      |
 | MSSV               | 2A202602832               |
-| Khóa/Lớp         | K4-H202      |
+| Khóa/Lớp         | K4-L3B      |
 | Tên nhóm         | 4aesieunhan         |
-| Vai trò chính    | Xử lý dữ liệu từ các bài báo |
+| Vai trò chính    | Cleaning, data modeling và data observability (Bước 3–4) |
 | Repository         | https://github.com/TuTu99999/K4-L3B-DAY10-4aesieunhan-DataPipelineDataObservability/tree/main    |
-| Ngày hoàn thành | [2026-09-26]               |
+| Ngày hoàn thành | 2026-09-26               |
 
 ## 2. Vai trò và phạm vi công việc
 
@@ -18,7 +18,6 @@
 
 | Module/deliverable | File/hàm phụ trách | Input nhận vào | Output bàn giao | Trạng thái |
 | --- | --- | --- | --- | --- |
-| Thu thập metadata từ Crossref API và cất giữ bản gốc | `src/ingestion/crossref.py`: `parse_crossref_payload()`, `fetch_source_records()`, `load_raw_records()` | File snapshot `data/raw/crossref_response.json` hoặc response từ Crossref REST API | `data/raw/crossref_response.json` (raw JSON gốc), `data/raw/crossref_records.json` (danh sách PaperRecord đã bóc tách) | Hoàn thành |
 | Làm sạch dữ liệu và chuẩn bị văn bản cho embedding | `src/ingestion/cleaning.py`: `build_clean_dataframe()` | `list[PaperRecord]` từ `load_raw_records()` | `data/clean/papers_clean.json`, `data/clean/papers_clean.csv` (24 dòng sạch, có cột `text_for_embedding`, `age_days`) | Hoàn thành |
 | Thiết lập chốt kiểm soát chất lượng dữ liệu với Great Expectations 1.x | `src/observability/quality.py`: `run_data_quality_checks()`, `evaluate_freshness_sla()`, `build_freshness_report()` | DataFrame sạch từ `papers_clean.json` | Report JSON trong `data/quality/`, freshness report | Hoàn thành |
 
@@ -34,21 +33,20 @@
 
 | Nhiệm vụ đã thực hiện | File/hàm/artifact liên quan | Kết quả bàn giao | Cách xác minh |
 | --- | --- | --- | --- |
-| Parse payload Crossref, loại bỏ thẻ XML rác trong abstract, chuẩn hóa tên tác giả và ngày tháng | `src/ingestion/crossref.py` → `parse_crossref_payload()` | 24 bản ghi PaperRecord hợp lệ, lưu vào `data/raw/crossref_records.json` | `python script/run_clean.py` in ra "Thành công: Đã lưu 24 dòng" |
 | Xây dựng DataFrame sạch với `text_for_embedding` theo cấu trúc 5 phần, tính `age_days`, khử trùng lặp theo `paper_id` | `src/ingestion/cleaning.py` → `build_clean_dataframe()` | `data/clean/papers_clean.json` và `papers_clean.csv` với 24 dòng | Lệnh kiểm tra bước 3 in ra "Clean thành công 24 dòng" |
-| Cài đặt 4 Expectations bắt buộc trên GX 1.x ephemeral context, kết hợp đánh giá Freshness SLA | `src/observability/quality.py` → `run_data_quality_checks()` | Quality report JSON trong `data/quality/`, tất cả 31 metrics pass | `python script/test_step4.py` in ra "Quality check status = True" |
+| Cài đặt 4 nhóm expectation bắt buộc trên GX 1.x ephemeral context, kết hợp đánh giá Freshness SLA | `src/observability/quality.py` → `run_data_quality_checks()` | `baseline_quality_report.json` có 6 expectation instances và trạng thái PASS | Lệnh nghiệm thu Bước 4 in `Quality check status = True` |
 
-Một output cụ thể minh chứng cho phần việc: chạy `python script/test_step4.py` sẽ thấy progress bar `Calculating Metrics: 100%|██████████| 31/31` và kết quả `Quality check status = True`. File report tự động được ghi ra `data/quality/test_quality_report.json` chứa chi tiết từng expectation và trạng thái freshness.
+Output minh chứng cho phần việc là `data/clean/papers_clean.json` có 24 dòng sạch và `data/quality/baseline_quality_report.json` có `success=true`, 6 expectation instances đều pass. Freshness report ghi nhận 1/24 record stale, tỷ lệ `0.0417`, thấp hơn giới hạn `0.25`.
 
 ## 4. Giải thích phần kỹ thuật đã thực hiện
 
 ### Vấn đề cần giải quyết
 
-Dữ liệu metadata bài báo khoa học thu về từ Crossref API ở dạng JSON thô, chứa các thẻ XML lẫn trong abstract (ví dụ `<jats:p>`, `</jats:p>`), ngày tháng ở dạng mảng lồng nhau (`date-parts: [[2026, 5, 20]]`), và tên tác giả tách riêng `given`/`family`. Dữ liệu ở trạng thái này chưa thể đưa vào mô hình embedding hay vector database được. Ngoài ra, cần có cơ chế kiểm soát để đảm bảo dữ liệu sạch trước khi đi vào hệ thống phục vụ (serving layer), tránh tình trạng Silent Failure khi dữ liệu bị lỗi mà không ai hay biết.
+Dữ liệu `PaperRecord` sau ingestion vẫn cần được chuẩn hóa khoảng trắng, định dạng ngày và cấu trúc context trước khi đưa vào embedding. Ngoài ra, cần có chốt kiểm soát để phát hiện null, DOI trùng, summary quá ngắn và dữ liệu quá cũ trước khi index, tránh tình trạng Silent Failure khi pipeline vẫn chạy nhưng chất lượng đầu vào đã suy giảm.
 
 ### Cách triển khai
 
-Phần thu thập (`crossref.py`) được thiết kế theo hướng ưu tiên ổn định. Hàm `fetch_source_records` sẽ thử gọi Crossref REST API trước, nhưng nếu gặp lỗi mạng, timeout, hoặc bị rate limit (429), nó tự động chuyển sang đọc từ file snapshot local đã có sẵn trong repo (`data/raw/crossref_response.json`). Cơ chế fallback này giúp nhóm vẫn làm việc bình thường kể cả khi mạng yếu hoặc không có internet. Mọi dữ liệu gốc đều được lưu nguyên vẹn trước khi xử lý, để sau này nếu pipeline lỗi ở bước nào thì có thể chạy lại từ bản thô mà không phải gọi API lần nữa.
+Phần việc nhận danh sách `PaperRecord` do ingestion bàn giao. `build_clean_dataframe()` chuẩn hóa từng trường text, parse ngày, tính tuổi dữ liệu và duy trì contract chung với các module retrieval/evaluation.
 
 Phần làm sạch (`cleaning.py`) duyệt qua từng PaperRecord, chuẩn hóa khoảng trắng cho tất cả các trường text, parse ngày tháng từ chuỗi `YYYY-MM-DD` sang đối tượng `date` để tính `age_days`, rồi ghép nối 5 trường thông tin (title, authors, published, categories, summary) thành một đoạn văn bản có cấu trúc rõ ràng cho embedding. Cuối cùng, DataFrame được khử trùng lặp theo `paper_id` và sắp xếp theo ngày xuất bản giảm dần.
 
@@ -58,43 +56,32 @@ Phần kiểm soát chất lượng (`quality.py`) sử dụng Great Expectation
 
 | Thành phần | Mô tả |
 | --- | --- |
-| Input | `data/raw/crossref_response.json` (JSON payload gốc từ Crossref) hoặc response trực tiếp từ API |
-| Output | `data/raw/crossref_records.json` (danh sách PaperRecord), `data/clean/papers_clean.json` và `.csv` (DataFrame sạch), `data/quality/*.json` (báo cáo chất lượng) |
+| Input | Danh sách `PaperRecord` từ `data/raw/crossref_records.json` hoặc clean DataFrame |
+| Output | `data/clean/papers_clean.json`, `.csv` và các report trong `data/quality/` |
 | Module phụ thuộc | `core/config.py` (settings, paths), `core/utils.py` (normalize_whitespace, read_json, write_json) |
 | Module sử dụng output | `retrieval/index.py` (đọc DataFrame sạch để tạo ChromaDB index), `evaluation/testset.py` (đọc DataFrame để sinh câu hỏi test), `pipelines/phase1.py` (gọi toàn bộ chuỗi xử lý) |
-| Điều kiện lỗi cần xử lý | API trả về 429/503 hoặc mất mạng (fallback sang snapshot local), file raw chưa tồn tại (raise FileNotFoundError rõ ràng), record thiếu DOI hoặc title (bỏ qua, không crash) |
+| Điều kiện lỗi cần xử lý | Record thiếu trường, ngày sai định dạng, DOI trùng, summary quá ngắn và tỷ lệ stale vượt ngưỡng |
 
 ### Cách xác minh
 
 ```bash
-python script/run_clean.py
+python -c "from datetime import datetime, timezone; from core.config import load_settings; from ingestion.crossref import load_raw_records; from ingestion.cleaning import build_clean_dataframe; s=load_settings(); df=build_clean_dataframe(load_raw_records(s.paths.raw_records_json), datetime.now(timezone.utc)); print(f'Clean thành công {len(df)} dòng')"
+python -c "from core.config import load_settings; from observability.quality import run_data_quality_checks; import pandas as pd; s=load_settings(); df=pd.read_json(s.paths.clean_json); res=run_data_quality_checks(df, s, 'test'); print('Quality check status =', res['success'])"
 ```
 
-Kết quả mong đợi: In ra "Thành công: Đã lưu 24 dòng vào:" kèm đường dẫn JSON và CSV.
-
-Kết quả thực tế: Đúng như mong đợi. File `papers_clean.json` chứa 24 bản ghi, mỗi bản ghi có đầy đủ `text_for_embedding`, `age_days`, `authors_joined`, `categories_joined`.
-
-```bash
-python script/test_step4.py
-```
-
-Kết quả mong đợi: `Quality check status = True`.
-
-Kết quả thực tế: `Calculating Metrics: 100%|██████████| 31/31` → `Tín hiệu hoàn thành: Quality check status = True`.
-
-Artifact: `data/quality/test_quality_report.json`, `data/clean/papers_clean.json`, `data/raw/crossref_records.json`.
+Kết quả thực tế: clean thành công 24 dòng và quality status `True`. Artifact đối chiếu là `data/clean/papers_clean.json`, `data/quality/baseline_quality_report.json` và `data/quality/freshness_report.json`.
 
 ## 5. Một quyết định kỹ thuật quan trọng
 
-Bối cảnh: Khi parse abstract từ Crossref, dữ liệu gốc chứa các thẻ XML lồng nhau như `<jats:p>`, `<jats:italic>`, `<title>`. Câu hỏi đặt ra là nên dùng thư viện parser XML chuyên dụng (ví dụ BeautifulSoup hoặc lxml) hay chỉ dùng regex đơn giản.
+Bối cảnh: Great Expectations 1.x thay đổi API so với các ví dụ cũ; cần chọn giữa context lưu trên filesystem và ephemeral context cho bài lab tái lập nhanh.
 
-Các phương án đã cân nhắc: (1) Dùng BeautifulSoup để parse chính xác cây DOM rồi lấy text. Ưu điểm là xử lý đúng mọi trường hợp lồng nhau, nhược điểm là thêm dependency nặng và chậm hơn. (2) Dùng regex `re.sub(r"<[^>]+>", " ", text)` để xóa toàn bộ thẻ. Ưu điểm là không cần thêm thư viện, nhanh, đủ chính xác cho trường hợp abstract đơn giản của Crossref.
+Các phương án đã cân nhắc: (1) File context có cấu hình/persistence đầy đủ nhưng tạo thêm nhiều file runtime. (2) Ephemeral context tạo datasource, dataframe asset và whole-dataframe batch ngay trong lần chạy.
 
-Phương án đã chọn: Regex.
+Phương án đã chọn: Ephemeral context theo chuẩn GX 1.x.
 
-Lý do: Abstract từ Crossref thực tế chỉ chứa vài loại thẻ JATS đơn giản, không có cấu trúc lồng phức tạp. Regex hoạt động chính xác trong trường hợp này và giúp giữ `requirements.txt` nhẹ (không phải cài thêm BeautifulSoup). Với 24 bài báo, hiệu năng không phải vấn đề, nhưng việc giữ ít dependency giúp cài đặt môi trường nhanh hơn cho cả nhóm.
+Lý do: Dataset nhỏ, pipeline cần chạy độc lập trên máy từng thành viên và artifact kết quả đã được xuất riêng thành JSON. Cách này giảm cấu hình phụ nhưng vẫn kiểm tra đủ row count, non-null, uniqueness và summary length.
 
-Bằng chứng: Sau khi chạy `parse_crossref_payload`, kiểm tra trường `summary` trong `data/raw/crossref_records.json` thấy tất cả 24 bản ghi đều sạch, không còn thẻ XML nào sót lại, text đọc được tự nhiên.
+Bằng chứng: Baseline report có 6 expectation instances đều pass; corrupted report phát hiện DOI trùng và hai summary rỗng.
 
 ## 6. Một lỗi hoặc blocker đã xử lý
 
@@ -113,10 +100,10 @@ Cách xử lý: Thay toàn bộ `from datetime import UTC` thành `from datetime
 Cách xác minh sau khi sửa:
 
 ```bash
-python script/run_clean.py
+python script/run_phase1.py
 ```
 
-Chạy thành công, in ra "Thành công: Đã lưu 24 dòng".
+Pipeline chạy thành công trên môi trường Python 3.12.10 và tạo đủ clean/quality artifacts.
 
 Điều học được: Khi viết code cho dự án nhóm, nên tránh dùng các API chỉ có ở phiên bản Python mới nhất. `timezone.utc` là cách viết an toàn hơn `UTC` vì hoạt động trên mọi phiên bản Python 3.x.
 
@@ -138,23 +125,21 @@ Chạy thành công, in ra "Thành công: Đã lưu 24 dòng".
 
 | Metric/signal | Baseline | Corrupted | Repaired | Nhận xét của cá nhân |
 | --- | ---: | ---: | ---: | --- |
-| `retrieval_hit_rate` | [Điền] | [Điền] | [Điền] | [Điền sau khi chạy full pipeline] |
-| `mean_token_f1` | [Điền] | [Điền] | [Điền] | [Điền sau khi chạy full pipeline] |
-| `judge_accuracy` | [Điền] | [Điền] | [Điền] | [Điền sau khi chạy full pipeline] |
-| `mean_judge_score` | [Điền] | [Điền] | [Điền] | [Điền sau khi chạy full pipeline] |
-| Quality checks | True | [Điền] | [Điền] | Baseline đã pass toàn bộ 4 GX expectations và freshness SLA |
-| Freshness status | True | [Điền] | [Điền] | 24 bài báo đều trong khoảng 180 ngày gần đây |
+| `retrieval_hit_rate` | 1.0000 | 0.8000 | 1.0000 | Giảm 20% khi dữ liệu bị làm bẩn và phục hồi hoàn toàn |
+| `mean_token_f1` | 1.0000 | 0.7720 | 1.0000 | Blank/noisy summary làm giảm độ khớp câu trả lời |
+| `judge_accuracy` | 1.0000 | 0.8000 | 1.0000 | 9Router judge ghi nhận hai câu corrupted không đúng |
+| `mean_judge_score` | 5.0000 | 4.1000 | 5.0000 | Điểm giảm 0,9 rồi trở về baseline |
+| Quality checks | PASS | FAIL | PASS | Duplicate DOI và summary rỗng bị GX phát hiện |
+| Freshness status | PASS | FAIL | PASS | Stale ratio: 4,17% → 31,82% → 4,17% |
 
 ### Kết luận từ số liệu
 
-[Phần này điền sau khi nhóm chạy xong toàn bộ pipeline corruption và repair]
+1. Drop latest, blank summary, duplicate rows và stale dates → quality/freshness chuyển sang FAIL → Hit Rate giảm từ `1.0` xuống `0.8`, Token F1 giảm còn `0.772`.
+2. Repair từ raw snapshot → clean contract và freshness được dựng lại → quality/freshness PASS và toàn bộ metrics trở về baseline.
 
-1. [Data corruption] → [quality/freshness signal thay đổi] → [agent metric thay đổi].
-2. [Repair action] → [quality/freshness signal phục hồi] → [agent metric phục hồi hoặc chưa phục hồi].
+Drop latest ảnh hưởng trực tiếp đến retrieval vì tài liệu ground truth biến mất. Blank/noisy summary ảnh hưởng đến answer quality vì context không còn đầy đủ. Kết quả là tác động tổng hợp; chưa có ablation riêng cho từng corruption.
 
-Corruption nào ảnh hưởng rõ nhất và vì sao: [Điền sau khi có số liệu thực tế].
-
-Kết quả nào khác với kỳ vọng ban đầu: [Điền sau khi có số liệu thực tế].
+Điểm cần lưu ý là baseline có 1/24 record stale chứ không phải toàn bộ 24 record đều mới. Tỷ lệ `0.0417` vẫn thấp hơn giới hạn `0.25`, nên freshness baseline vẫn PASS.
 
 ## 9. Điều học được và hướng cải thiện
 
