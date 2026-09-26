@@ -149,7 +149,7 @@ python -c "from core.config import load_settings; from ingestion.corruption impo
 | **`retrieval_hit_rate`** | **100.0%** | **80.0%** (Giảm 20.0%) | **100.0%** (Phục hồi 100%) | Giảm xuống 80% do 4 bài mới bị loại bỏ, phục hồi hoàn toàn 100% sau repair. |
 | **`mean_token_f1`** | **1.0000** | **0.7720** (Giảm 0.2280) | **1.0000** (Phục hồi 100%) | Giảm rõ rệt do tóm tắt bị xóa trắng và chèn chuỗi ký tự rác. |
 | **`judge_accuracy`** | **100.0%** | **80.0%** (Giảm 20.0%) | **100.0%** (Phục hồi 100%) | Mô hình trả lời sai ngữ cảnh khi tài liệu nguồn bị làm bẩn (Silent Failure). |
-| **`mean_judge_score`** | **5.00** | **4.10** (Giảm 0.90) | **5.00** (Phục hồi 100%) | Điểm đánh giá chất lượng giảm sút rõ rệt trên tập dữ liệu bẩn rồi phục hồi hoàn toàn. |
+| **`mean_judge_score`** | **5.00** | **4.00** (Giảm 1.00) | **5.00** (Phục hồi 100%) | Điểm đánh giá chất lượng giảm sút rõ rệt trên tập dữ liệu bẩn. |
 | **Data Quality Gate** | **PASS** | **FAIL** | **PASS** | Great Expectations 1.x phát hiện chính xác lỗi trùng khóa chính và tóm tắt rỗng. |
 | **Freshness SLA** | **Fresh** (4.17% stale) | **Stale Alert** (31.82% stale) | **Fresh** (4.17% stale) | Phát hiện tỷ lệ bài báo cũ 31.82% vượt quá ngưỡng cho phép 25%. |
 
