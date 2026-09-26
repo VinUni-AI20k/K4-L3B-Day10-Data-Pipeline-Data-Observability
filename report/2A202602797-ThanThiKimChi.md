@@ -141,19 +141,19 @@ python -c "from core.config import load_settings; from ingestion.corruption impo
 
 | Metric / Signal | 1. Baseline | 2. Corrupted | 3. Repaired | Nhận xét của cá nhân |
 | :--- | :---: | :---: | :---: | :--- |
-| **`retrieval_hit_rate`** | **100.0%** | **60.0%** 🔻 | **100.0%** 🔺 | Giảm mạnh do 20% bài mới bị drop, phục hồi 100% sau repair. |
-| **`mean_token_f1`** | **0.8500** | **0.4200** 🔻 | **0.8500** 🔺 | Giảm một nửa do tóm tắt bị xóa trắng và chèn chuỗi rác. |
-| **`judge_accuracy`** | **100.0%** | **50.0%** 🔻 | **100.0%** 🔺 | AI trả lời sai ngữ cảnh khi tài liệu bị làm bẩn. |
-| **`mean_judge_score`** | **4.80** | **2.30** 🔻 | **4.80** 🔺 | Điểm đánh giá chất lượng giảm sâu xuống mức không đạt. |
-| **Data Quality Gate** | **PASS** | **FAIL (Alert)** 🚨 | **PASS** ✅ | Phát hiện thành công lỗi trùng lặp và tiêu đề quá ngắn. |
-| **Freshness SLA** | **Fresh** | **Stale Alert** ⚠️ | **Fresh** ✅ | Phát hiện thành công sự cố lùi ngày xuất bản. |
+| **`retrieval_hit_rate`** | **100.0%** | **80.0%** 🔻 | **100.0%** 🔺 | Giảm xuống 80% do bài mới bị drop, phục hồi 100% sau repair. |
+| **`mean_token_f1`** | **1.0000** | **0.7720** 🔻 | **1.0000** 🔺 | Giảm rõ rệt do tóm tắt bị xóa trắng và chèn chuỗi rác. |
+| **`judge_accuracy`** | **100.0%** | **80.0%** 🔻 | **100.0%** 🔺 | AI trả lời sai ngữ cảnh khi tài liệu bị làm bẩn. |
+| **`mean_judge_score`** | **5.00** | **4.00** 🔻 | **5.00** 🔺 | Điểm đánh giá chất lượng giảm sút trên tập dữ liệu bẩn. |
+| **Data Quality Gate** | **PASS** | **FAIL (Alert)** 🚨 | **PASS** ✅ | GX 1.x phát hiện lỗi trùng lặp khóa chính và tóm tắt rỗng. |
+| **Freshness SLA** | **Fresh** | **Stale Alert** ⚠️ | **Fresh** ✅ | Phát hiện tỷ lệ bài cũ 31.82% vượt ngưỡng 25%. |
 
 ### Kết luận từ số liệu
 
 1. **Chuỗi nguyên nhân – bằng chứng 1 (Tiêm lỗi):**
-   `Data corruption (Drop bài mới & xóa tóm tắt)` ➔ `Quality gate FAIL & Freshness báo động` ➔ `Retrieval Hit Rate giảm từ 100% xuống 60%, F1 giảm từ 0.85 xuống 0.42`.
+   `Data corruption (Drop bài mới & xóa/nhiễu tóm tắt)` ➔ `Quality gate FAIL & Freshness báo động (31.82% stale)` ➔ `Retrieval Hit Rate giảm từ 100% xuống 80%, F1 giảm từ 1.0000 xuống 0.7720`.
 2. **Chuỗi nguyên nhân – bằng chứng 2 (Tự phục hồi):**
-   `Idempotent Repair từ raw snapshot` ➔ `Quality gate PASS & Freshness trở lại chuẩn` ➔ `Hit Rate và F1 phục hồi hoàn toàn về mức 100% và 0.85`.
+   `Idempotent Repair từ raw snapshot` ➔ `Quality gate PASS & Freshness trở lại chuẩn (4.17% stale)` ➔ `Hit Rate và F1 phục hồi hoàn toàn về mức 100% và 1.0000`.
 
 - **Corruption ảnh hưởng rõ nhất:** Lỗi **Drop latest records** và **Blank summary** gây ảnh hưởng nặng nề nhất, vì RAG hoàn toàn phụ thuộc vào việc tìm đúng tài liệu và đọc được tóm tắt để tổng hợp câu trả lời.
 

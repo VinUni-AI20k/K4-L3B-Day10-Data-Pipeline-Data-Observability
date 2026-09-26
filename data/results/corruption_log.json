@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-26T04:50:22.185137+00:00",
+  "timestamp": "2026-09-26T04:56:20.087667+00:00",
   "initial_rows": 24,
   "corrupted_rows": 22,
   "summary": {
@@ -110,14 +110,14 @@
   ],
   "blank_summary_records": [
     {
-      "paper_id": "10.1145/3637528.3671824",
-      "title": "Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines",
-      "original_summary_len": 262
-    },
-    {
       "paper_id": "10.1145/3637528.3671802",
       "title": "Data Observability and Quality Gates for Production RAG Systems",
       "original_summary_len": 227
+    },
+    {
+      "paper_id": "10.1145/3637528.3671824",
+      "title": "Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines",
+      "original_summary_len": 262
     }
   ],
   "injected_noise_records": [
@@ -139,14 +139,14 @@
       "corrupted_title": "Draft"
     },
     {
-      "paper_id": "10.1145/3637528.3671820",
-      "original_title": "Advanced Perspectives on Multi-Agent Consensus for High-Stakes Fact Verification",
+      "paper_id": "10.1145/3637528.3671810",
+      "original_title": "Automated Data Quality Profiling with Great Expectations in CI/CD",
       "corrupted_title": "Draft"
     }
   ],
   "stale_date_records": [
     {
-      "paper_id": "10.1145/3637528.3671810",
+      "paper_id": "10.1145/3637528.3671820",
       "original_published": "2026-06-08",
       "corrupted_published": "2025-06-08",
       "age_days": 475
