@@ -8,7 +8,6 @@
 | ------------------ | -------------------------- |
 | Họ và tên       | Trịnh Xuân Huy             |
 | MSSV               | 2A202602995                |
-| Email              | trinhhuy2304@gmail.com     |
 | Khóa/Lớp         | K4                         |
 | Tên nhóm         | T052AI                     |
 | Vai trò chính    | Trưởng nhóm / Pipeline Integrator |
