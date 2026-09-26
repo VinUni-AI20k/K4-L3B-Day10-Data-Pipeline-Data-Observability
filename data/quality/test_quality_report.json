@@ -10,6 +10,8 @@
     "stale_rows": 1,
     "stale_ratio": 0.0417,
     "total_rows": 24,
+    "threshold_days": 180,
+    "max_stale_ratio": 0.25,
     "is_fresh": true
   },
   "validation_result": {
@@ -20,12 +22,12 @@
         "expectation_config": {
           "type": "expect_table_row_count_to_be_between",
           "kwargs": {
-            "batch_id": "papers_source_test-papers_asset_test",
+            "batch_id": "papers_source_test_bf95e57b-papers_asset_test_bf95e57b",
             "min_value": 5,
             "max_value": 5000
           },
           "meta": {},
-          "id": "04faa056-7a1e-4ac0-beb5-e25d52255615",
+          "id": "08aa7321-e40e-44da-9256-f022c17a4e72",
           "severity": "critical"
         },
         "result": {
@@ -43,11 +45,11 @@
         "expectation_config": {
           "type": "expect_column_values_to_not_be_null",
           "kwargs": {
-            "batch_id": "papers_source_test-papers_asset_test",
+            "batch_id": "papers_source_test_bf95e57b-papers_asset_test_bf95e57b",
             "column": "paper_id"
           },
           "meta": {},
-          "id": "e654c4bc-5431-4179-af5b-f0db39f4ca7f",
+          "id": "d43ae1bb-683d-4eb3-922c-b071a426e732",
           "severity": "critical"
         },
         "result": {
@@ -70,11 +72,11 @@
         "expectation_config": {
           "type": "expect_column_values_to_be_unique",
           "kwargs": {
-            "batch_id": "papers_source_test-papers_asset_test",
+            "batch_id": "papers_source_test_bf95e57b-papers_asset_test_bf95e57b",
             "column": "paper_id"
           },
           "meta": {},
-          "id": "ecb1f289-66ac-446c-ad12-969ea0a7e0a2",
+          "id": "74d56a93-0439-4061-b103-ab75cd0dccde",
           "severity": "critical"
         },
         "result": {
@@ -101,11 +103,11 @@
         "expectation_config": {
           "type": "expect_column_values_to_not_be_null",
           "kwargs": {
-            "batch_id": "papers_source_test-papers_asset_test",
+            "batch_id": "papers_source_test_bf95e57b-papers_asset_test_bf95e57b",
             "column": "title"
           },
           "meta": {},
-          "id": "96b452c1-e7da-485f-b2a2-21ddd397961d",
+          "id": "77b7e581-7048-4915-8acd-82322bb7b3d9",
           "severity": "critical"
         },
         "result": {
@@ -128,11 +130,11 @@
         "expectation_config": {
           "type": "expect_column_values_to_not_be_null",
           "kwargs": {
-            "batch_id": "papers_source_test-papers_asset_test",
+            "batch_id": "papers_source_test_bf95e57b-papers_asset_test_bf95e57b",
             "column": "text_for_embedding"
           },
           "meta": {},
-          "id": "8ef3cdd5-46a5-4512-b076-c6370fb890ab",
+          "id": "937d3bc2-51de-4f9f-bc6c-d4d987ec11f5",
           "severity": "critical"
         },
         "result": {
@@ -155,12 +157,12 @@
         "expectation_config": {
           "type": "expect_column_value_lengths_to_be_between",
           "kwargs": {
-            "batch_id": "papers_source_test-papers_asset_test",
+            "batch_id": "papers_source_test_bf95e57b-papers_asset_test_bf95e57b",
             "column": "summary",
             "min_value": 30
           },
           "meta": {},
-          "id": "43552b24-3cf5-4755-b7e2-bf5586673a5a",
+          "id": "415143da-fd70-4718-b7e7-bf3a70dd59f7",
           "severity": "critical"
         },
         "result": {
@@ -183,7 +185,7 @@
         }
       }
     ],
-    "suite_name": "papers_suite_test",
+    "suite_name": "papers_suite_test_bf95e57b",
     "suite_parameters": {},
     "statistics": {
       "evaluated_expectations": 6,
@@ -197,13 +199,13 @@
         "batch_data": "PandasDataFrame"
       },
       "batch_markers": {
-        "ge_load_time": "20260926T030949.919453Z",
+        "ge_load_time": "20260926T042547.186368Z",
         "pandas_data_fingerprint": "2f8bd4c801aae1bac9a04311a3ff8cdf"
       },
       "active_batch_definition": {
-        "datasource_name": "papers_source_test",
+        "datasource_name": "papers_source_test_bf95e57b",
         "data_connector_name": "fluent",
-        "data_asset_name": "papers_asset_test",
+        "data_asset_name": "papers_asset_test_bf95e57b",
         "batch_identifiers": {
           "dataframe": "<DATAFRAME>"
         }

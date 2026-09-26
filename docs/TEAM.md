@@ -13,7 +13,7 @@
 | 1 | Nguyễn Đức Đông | | dong160805@gmail.com | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption_flow.py`) | `report/NguyenDucDong.md` |
 | 2 | Nguyễn Thị Lê Na | | | Data Foundation & Ingestion (`crossref.py`, `cleaning.py`, `corruption.py`) | `report/NguyenThiLeNa.md` |
 | 3 | Bùi Quốc Việt | | | RAG & Vector Index (`retrieval/index.py`, `llm.py`, ChromaDB) | `report/BuiQuocViet.md` |
-| 4 | Lê Thị Duyên | | | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/LeThiDuyen.md` |
+| 4 | Lê Thị Duyên | 2A202602411 | | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/2A202602411-duyen.md` |
 
 ---
 
