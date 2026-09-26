@@ -1,6 +1,6 @@
 # Data Observability & Idempotent Repair Report — 3-State Comparison
 
-- **Report Date:** 2026-09-26 03:13:34 UTC
+- **Report Date:** 2026-09-26 03:19:21 UTC
 
 ## 📊 Comparison Matrix (Baseline vs Corrupted vs Repaired)
 
