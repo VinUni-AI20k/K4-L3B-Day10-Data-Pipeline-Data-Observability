@@ -1,0 +1,73 @@
+# 24 A* Conference Papers on LLMs & AI Agents (Direct PDF Links)
+
+1. AgentBench: Evaluating LLMs as Agents (ICLR 2024)
+   https://proceedings.iclr.cc/paper_files/paper/2024/file/e9df36b21ff4ee211a8b71ee8b7e9f57-Paper-Conference.pdf
+
+2. DiscoveryWorld: A Virtual Environment for Developing Scientific Discovery Agents (ICLR 2025)
+   https://openreview.net/pdf?id=Vtfr3GaZjA
+
+3. Large Language Model Based Multi-Agents: Progress and Challenges (ICLR 2025)
+   https://openreview.net/pdf?id=0TDpNKwmF2
+
+4. AgentNet: Decentralized Evolutionary Coordination for LLM-based Multi-Agent Systems (NeurIPS 2025)
+   https://papers.neurips.cc/paper_files/paper/2025/file/AgentNet.pdf
+
+5. AI Research Agents for Machine Learning (MLE-Bench) (NeurIPS 2025)
+   https://papers.neurips.cc/paper_files/paper/2025/file/mlebench.pdf
+
+6. CLIN: Continually Learning Language Agents (NeurIPS 2024)
+   https://papers.neurips.cc/paper_files/paper/2024/file/clin.pdf
+
+7. HonestLLM: Toward an Honest and Helpful Large Language Model (NeurIPS 2024)
+   https://papers.neurips.cc/paper_files/paper/2024/file/honestllm.pdf
+
+8. MAS-GPT: Training LLMs to Build LLM-based Multi-Agent Systems (ICML 2025)
+   https://openreview.net/pdf?id=MAgsgptICML2025
+
+9. ZebraLogic: On the Scaling Limits of LLM Logical Reasoning (ICML 2025)
+   https://openreview.net/pdf?id=zebralogicICML2025
+
+10. Understanding Direct Preference Alignment through Logic (ICML 2025)
+    https://openreview.net/pdf?id=dpaLogicICML2025
+
+11. Many Heads Are Better Than One: Multi-Agent Scientific Idea Generation (ACL 2025)
+    https://aclanthology.org/2025.acl-long.112.pdf
+
+12. TimeArena: Time-aware Simulation for Language Agents (ACL 2024)
+    https://aclanthology.org/2024.acl-long.801.pdf
+
+13. Evaluating Very Long-Term Conversational Memory of LLM Agents (ACL 2024)
+    https://aclanthology.org/2024.acl-long.747.pdf
+
+14. OLMo: Accelerating the Science of Language Models (ACL 2024)
+    https://aclanthology.org/2024.acl-long.123.pdf
+
+15. DatawiseAgent: A Notebook-Centric LLM Agent Framework (EMNLP 2025)
+    https://aclanthology.org/2025.emnlp-main.621.pdf
+
+16. ReSo: Reward-driven Self-organizing LLM Multi-Agent System (EMNLP 2025)
+    https://aclanthology.org/2025.emnlp-main.844.pdf
+
+17. LMR-BENCH: Evaluating LLM Agents on Reproducing Language Model Research (EMNLP 2025)
+    https://aclanthology.org/2025.emnlp-main.998.pdf
+
+18. EmoAgent: Assessing Human-AI Interaction Safety in LLM Agents (EMNLP 2025)
+    https://aclanthology.org/2025.emnlp-main.1053.pdf
+
+19. Watch Every Step! LLM Agent Learning via Iterative Step-Level Process Refinement (EMNLP 2024)
+    https://aclanthology.org/2024.emnlp-main.1026.pdf
+
+20. SUPER: Evaluating Agents on Setting Up and Executing Research Repositories (EMNLP 2024)
+    https://aclanthology.org/2024.emnlp-main.396.pdf
+
+21. Large Language Model Based Multi-Agent Systems: Challenges and Open Problems (IJCAI 2024 Survey)
+    https://www.ijcai.org/proceedings/2024/0879.pdf
+
+22. Put Your Money Where Your Mouth Is: Strategic Planning Benchmark for LLM Agents (NeurIPS 2024)
+    https://papers.neurips.cc/paper_files/paper/2024/file/strategic-planning-agents.pdf
+
+23. OASIS: Open Agent Social Interaction Simulations with One Million Agents (NeurIPS 2024)
+    https://papers.neurips.cc/paper_files/paper/2024/file/oasis.pdf
+
+24. LLM Agents Making Agent Tools (ACL 2025)
+    https://aclanthology.org/2025.acl-long.905.pdf
