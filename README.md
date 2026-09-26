@@ -6,6 +6,22 @@
 
 ---
 
+## Dashboard demo
+
+Dashboard Streamlit đọc các artifact local đã có, hiển thị pipeline, Data Quality,
+Freshness và so sánh Baseline/Corrupted/Repaired khi các artifact tương ứng tồn tại.
+Dashboard không tự gọi Crossref hoặc chạy pipeline nặng khi mở trang.
+
+```powershell
+python -m venv .venv
+.\\.venv\\Scripts\\Activate.ps1
+python -m pip install -r requirements.txt
+python script/run_phase1.py
+streamlit run app.py
+```
+
+Nếu thiếu artifact, giao diện sẽ hiển thị “Chưa chạy bước này” và lệnh tương ứng.
+
 ## 🧭 Đọc gì, theo thứ tự nào?
 
 | # | Tài liệu | Mô tả |
