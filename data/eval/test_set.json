@@ -1,0 +1,92 @@
+[
+  {
+    "id": "q001",
+    "question_type": "summary",
+    "question": "What is the main idea of 'DOLPHIN: A Privacy-Preserving Digital Investigation Readiness Assessment Framework based on Offline Large Language Models and Retrieval-Augmented Generation'?",
+    "ground_truth": "Abstract Increasingly, digital forensic investigations require a quick, reliable, and privacy-preserving assessment of case materials before formal forensic examination.",
+    "ground_truth_doc_ids": [
+      "10.21203/rs.3.rs-10489777/v1"
+    ]
+  },
+  {
+    "id": "q002",
+    "question_type": "authors",
+    "question": "Who authored 'Advances in Reinforcement Learning for Retrieval-Augmented Generation in Large Language Model'?",
+    "ground_truth": "Zunlong Hong",
+    "ground_truth_doc_ids": [
+      "10.54254/2755-2721/2026.36624"
+    ]
+  },
+  {
+    "id": "q003",
+    "question_type": "date",
+    "question": "When was 'An Agentic Retrieval-Augmented Vision-Language Recommendation System for Hyperdimensional Encoding Optimization' published?",
+    "ground_truth": "2026-08-26",
+    "ground_truth_doc_ids": [
+      "10.20944/preprints202608.1849.v1"
+    ]
+  },
+  {
+    "id": "q004",
+    "question_type": "categories",
+    "question": "What categories does 'A Framework for Adaptive Knowledge-Augmented Mizo Large Language Models Using Retrieval-Augmented Generation and Continual Learning' belong to?",
+    "ground_truth": "Uncategorized",
+    "ground_truth_doc_ids": [
+      "10.36948/ijfmr.2026.v08i04.85777"
+    ]
+  },
+  {
+    "id": "q005",
+    "question_type": "summary",
+    "question": "What is the main idea of 'JADE-Plus: A Multimodal Agentic Retrieval-Augmented Generation Large Language Framework for Diagnostic Support in Jawbone Lesions: Development and Technical Validation Study'?",
+    "ground_truth": "Abstract Diagnosing jawbone lesions in oral and maxillofacial radiology remains challenging due to overlapping radiological features and the need for integrated clinical reasoning.",
+    "ground_truth_doc_ids": [
+      "10.1007/s10278-026-02086-9"
+    ]
+  },
+  {
+    "id": "q006",
+    "question_type": "authors",
+    "question": "Who authored 'An Agentic AI System for Roof Design Compliance Using Computer Vision, Retrieval-Augmented Generation and Large Language Models'?",
+    "ground_truth": "Nawari O. Nawari, Oluwatoyin O. Lawal",
+    "ground_truth_doc_ids": [
+      "10.3390/buildings16132637"
+    ]
+  },
+  {
+    "id": "q007",
+    "question_type": "date",
+    "question": "When was 'The Age of Autonomous Agents: A Bibliometric Review of Agentic AI Architectures, Applications, and Emerging Challenges' published?",
+    "ground_truth": "2026-06-30",
+    "ground_truth_doc_ids": [
+      "10.63646/kpqm1958"
+    ]
+  },
+  {
+    "id": "q008",
+    "question_type": "categories",
+    "question": "What categories does 'Operationalizing Reliability Gaps in Large Language Models: A Semi-Systematic Evidence Map of Reasoning, Factuality, Evaluation, and Retrieval-Augmented Generation' belong to?",
+    "ground_truth": "Uncategorized",
+    "ground_truth_doc_ids": [
+      "10.21203/rs.3.rs-9882260/v1"
+    ]
+  },
+  {
+    "id": "q009",
+    "question_type": "summary",
+    "question": "What is the main idea of 'A large language model-driven scientific literature surveys generation framework based on multi-agents and retrieval-augmented generation'?",
+    "ground_truth": "The escalating volume and complexity of scientific publications have intensified the demand for intelligent literature survey tools.",
+    "ground_truth_doc_ids": [
+      "10.7717/peerj-cs.3882"
+    ]
+  },
+  {
+    "id": "q010",
+    "question_type": "authors",
+    "question": "Who authored 'A Foundation Model Architecture for Supply Chain Risk Prediction: Integrating Large Language Models and Retrieval-Augmented Generation for Automated Disruption Alerting'?",
+    "ground_truth": "Nadia Islam Tanha",
+    "ground_truth_doc_ids": [
+      "10.63125/gseh0k17"
+    ]
+  }
+]
