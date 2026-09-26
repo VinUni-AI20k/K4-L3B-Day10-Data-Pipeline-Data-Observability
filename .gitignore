@@ -6,3 +6,7 @@ src/*.egg-info/
 lab/
 **/__pycache__/
 doc_verification_report.md
+HUONG_DAN_CHI_TIET_LAB10.md
+test_quality_standalone.py
+test_reporting_standalone.py
+Huong_dan.txt
