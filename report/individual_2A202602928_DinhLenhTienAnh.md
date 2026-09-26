@@ -142,5 +142,5 @@ Tôi sẽ thêm cơ chế versioning cho raw snapshot (lưu timestamp fetch vào
 - [x] Báo cáo không chứa `.env`, API key, token hoặc secret.
 - [x] Báo cáo này không phải bản sao nguyên văn của báo cáo nhóm hoặc báo cáo thành viên khác.
 
-**Họ và tên:** [Thành viên 1 - điền tên]
+**Họ và tên:** [Đinh Lệnh Tiến Anh]
 **Ngày xác nhận:** 2026-09-26
