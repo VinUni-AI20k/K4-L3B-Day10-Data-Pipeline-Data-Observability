@@ -1,0 +1,17 @@
+{
+  "source_api": "Crossref REST API",
+  "source_query": "agentic retrieval augmented generation large language model",
+  "source_filter": "from-pub-date:2026-03-30,has-abstract:true",
+  "fetch_mode": "snapshot",
+  "raw_records": 24,
+  "clean_rows": 12,
+  "run_date": "2026-09-26T03:00:00+00:00",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "collection_name": "papers-baseline",
+  "top_k": 4,
+  "llm_provider": "mock",
+  "llm_model": "fixture-model",
+  "test_set_path": "data/eval/test_set.json",
+  "test_set_size": 10,
+  "test_set_sha256": "FIXTURE"
+}

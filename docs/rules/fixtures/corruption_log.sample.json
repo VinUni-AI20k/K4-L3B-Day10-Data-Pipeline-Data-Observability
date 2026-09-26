@@ -1,0 +1,82 @@
+{
+  "seed": 42,
+  "input_rows": 12,
+  "output_rows": 9,
+  "generated_at": "2026-09-26T04:00:00+00:00",
+  "scenarios": [
+    {
+      "name": "drop_latest_records",
+      "description": "Drop the 20% most recently published records",
+      "params": {
+        "fraction": 0.2,
+        "count": 3
+      },
+      "affected_rows": 3,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671807",
+        "10.1145/3637528.3671823",
+        "10.1145/3637528.3671821"
+      ]
+    },
+    {
+      "name": "blank_summary",
+      "description": "Set summary to empty string",
+      "params": {
+        "count": 3
+      },
+      "affected_rows": 3,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671819",
+        "10.1145/3637528.3671817",
+        "10.1145/3637528.3671815"
+      ]
+    },
+    {
+      "name": "inject_noise",
+      "description": "Insert noise token into summary",
+      "params": {
+        "count": 3,
+        "noise_token": "@#$%&*~^"
+      },
+      "affected_rows": 3,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671813",
+        "10.1145/3637528.3671801",
+        "10.1145/3637528.3671811"
+      ]
+    },
+    {
+      "name": "truncate_title",
+      "description": "Truncate title to 6 characters",
+      "params": {
+        "count": 3,
+        "max_len": 6
+      },
+      "affected_rows": 3,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671809",
+        "10.1145/3637528.3671803",
+        "10.1145/3637528.3671805"
+      ]
+    },
+    {
+      "name": "stale_date",
+      "description": "Shift published date 400 days into the past",
+      "params": {
+        "count": 0,
+        "shift_days": 400
+      },
+      "affected_rows": 0,
+      "affected_paper_ids": []
+    },
+    {
+      "name": "duplicate_rows",
+      "description": "Append exact duplicate rows",
+      "params": {
+        "count": 0
+      },
+      "affected_rows": 0,
+      "affected_paper_ids": []
+    }
+  ]
+}
