@@ -1,5 +1,5 @@
 from __future__ import annotations
-
+import math
 from pathlib import Path
 
 import pandas as pd
@@ -23,6 +23,7 @@ def _rebuild_text_for_embedding(df: pd.DataFrame) -> pd.DataFrame:
             f"Title: {_safe_text(row.get('title'))}\n"
             f"Authors: {_safe_text(row.get('authors_joined'))}\n"
             f"Categories: {_safe_text(row.get('categories_joined'))}\n"
+            f"Published: {_safe_text(row.get('published'))}\n"
             f"Summary: {_safe_text(row.get('summary'))}"
         ),
         axis=1,
@@ -151,9 +152,18 @@ def corrupt_clean_dataframe(
     # ---------------------------------------------------------
     # 5. Stale published date
     # ---------------------------------------------------------
-    stale_start = title_end
-    stale_end = min(stale_start + chunk, n)
-    stale_indices = list(range(stale_start, stale_end))
+    stale_count = max(
+        1,
+        math.ceil(len(corrupted) * 0.30),
+    )
+
+    stale_indices = (
+        corrupted
+        .tail(stale_count)
+        .index
+        .tolist()
+    )
+
 
     stale_ids = corrupted.loc[
         stale_indices, "paper_id"
