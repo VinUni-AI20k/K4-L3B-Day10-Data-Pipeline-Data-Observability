@@ -7,7 +7,6 @@ import sys
 import types
 from typing import Any
 
-from datasets import Dataset
 from pydantic import BaseModel, Field
 
 from core.config import Settings
@@ -74,6 +73,8 @@ def _run_ragas(settings: Settings, answers: list[dict[str, Any]]) -> dict[str, A
     if os.getenv("RUN_RAGAS", "").lower() not in {"1", "true", "yes"}:
         return {"skipped": "Set RUN_RAGAS=1 to enable the slower Ragas pass."}
     try:
+        from datasets import Dataset
+
         if "langchain_community.chat_models.vertexai" not in sys.modules:
             shim = types.ModuleType("langchain_community.chat_models.vertexai")
             shim.ChatVertexAI = type("ChatVertexAI", (), {})
@@ -136,7 +137,19 @@ def evaluate_pipeline(
         "mean_token_f1": mean(item["token_f1"] for item in answers),
         "judge_accuracy": mean(1.0 if item["judge"]["correct"] else 0.0 for item in answers),
         "mean_judge_score": mean(item["judge"]["score"] for item in answers),
+        "fallback_judge_count": sum(
+            item["judge"]["reasoning"].startswith("Fallback heuristic judge") for item in answers
+        ),
     }
+    summary["question_type_metrics"] = {}
+    for question_type in ("summary", "authors", "date", "categories"):
+        group = [item for item in answers if item["question_type"] == question_type]
+        if group:
+            summary["question_type_metrics"][question_type] = {
+                "samples": len(group),
+                "retrieval_hit_rate": mean(1.0 if item["retrieval_hit"] else 0.0 for item in group),
+                "mean_token_f1": mean(item["token_f1"] for item in group),
+            }
     summary["ragas"] = _run_ragas(settings, answers)
 
     bundle = EvaluationBundle(summary=summary, answers=answers)
