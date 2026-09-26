@@ -7,7 +7,8 @@
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671812"
     ],
-    "answer": "",
+    "answer": "I don't know from the indexed corpus.",
+    "answer_source": "llm",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671824",
       "10.1145/3637528.3671817",
@@ -25,7 +26,7 @@
     "judge": {
       "score": 1,
       "correct": false,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer does not provide the paper's summary and instead states that it does not know."
     }
   },
   {
@@ -37,6 +38,7 @@
       "10.1145/3637528.3671804"
     ],
     "answer": "Bao Do, Linh Ngo",
+    "answer_source": "llm",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671816",
       "10.1145/3637528.3671813",
@@ -54,7 +56,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer exactly matches the reference authors: Bao Do and Linh Ngo."
     }
   },
   {
@@ -66,6 +68,7 @@
       "10.1145/3637528.3671802"
     ],
     "answer": "2026-06-12",
+    "answer_source": "llm",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671802",
       "10.1145/3637528.3671814",
@@ -83,7 +86,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer exactly matches the reference publication date: 2026-06-12."
     }
   },
   {
@@ -95,6 +98,7 @@
       "10.1145/3637528.3671822"
     ],
     "answer": "Data Quality, DevOps",
+    "answer_source": "llm",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671822",
       "10.1145/3637528.3671814",
@@ -112,7 +116,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer exactly matches the reference categories: Data Quality and DevOps."
     }
   },
   {
@@ -124,6 +128,7 @@
       "10.1145/3637528.3671810"
     ],
     "answer": "An extended empirical study on mbedding quality checks directly into data pipelines enables fail-closed governance.",
+    "answer_source": "llm",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671822",
       "10.1145/3637528.3671814",
@@ -139,9 +144,9 @@
     "retrieval_hit": true,
     "token_f1": 0.7200000000000001,
     "judge": {
-      "score": 3,
+      "score": 4,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The answer conveys the same core summary as the reference, with only a minor typo and an unnecessary phrase."
     }
   },
   {
@@ -153,6 +158,7 @@
       "10.1145/3637528.3671818"
     ],
     "answer": "Huy Dinh, Trang Vo",
+    "answer_source": "llm",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671818",
       "10.1145/3637528.3671806",
@@ -170,7 +176,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer exactly matches the reference authors: Huy Dinh and Trang Vo."
     }
   },
   {
@@ -182,6 +188,7 @@
       "10.1145/3637528.3671815"
     ],
     "answer": "2025-06-03",
+    "answer_source": "llm",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671815",
       "10.1145/3637528.3671803",
@@ -199,7 +206,7 @@
     "judge": {
       "score": 1,
       "correct": false,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer gives 2025-06-03, but the reference answer states the paper was published on 2026-06-03."
     }
   },
   {
@@ -211,6 +218,7 @@
       "10.1145/3637528.3671813"
     ],
     "answer": "Artificial Intelligence, Information Retrieval",
+    "answer_source": "llm",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671813",
       "10.1145/3637528.3671801",
@@ -226,7 +234,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer exactly matches the reference answer: Artificial Intelligence and Information Retrieval."
     }
   },
   {
@@ -238,6 +246,7 @@
       "10.1145/3637528.3671806"
     ],
     "answer": "Connecting LLMs directly to raw warehouse tables often results in schema misunderstandings.",
+    "answer_source": "llm",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671806",
       "10.1145/3637528.3671818",
@@ -255,7 +264,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer exactly matches the reference answer and accurately summarizes the paper's key point."
     }
   },
   {
@@ -267,6 +276,7 @@
       "10.1145/3637528.3671805"
     ],
     "answer": "Tuan Phan, Mai Bui",
+    "answer_source": "llm",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671805",
       "10.1145/3637528.3671817",
@@ -284,7 +294,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer exactly matches the reference answer: Tuan Phan and Mai Bui."
     }
   }
 ]

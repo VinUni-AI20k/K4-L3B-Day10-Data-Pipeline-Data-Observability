@@ -7,7 +7,7 @@
 | **`retrieval_hit_rate`** | **1.0000** | **0.8000** 🔻 | **1.0000** 🔺 | Drops due to missing latest records (20% dropped); fully recovers after repair. |
 | **`mean_token_f1`** | **1.0000** | **0.7720** 🔻 | **1.0000** 🔺 | Degrades sharply because summaries were blanked & corrupted with noise payloads. |
 | **`judge_accuracy`** | **1.0000** | **0.8000** 🔻 | **1.0000** 🔺 | Model correctness plummets when retrieved evidence is degraded (Silent Failure). |
-| **`mean_judge_score`** | **5** | **4** 🔻 | **5** 🔺 | Overall qualitative score drops significantly on corrupted data. |
+| **`mean_judge_score`** | **5** | **4.10** 🔻 | **5** 🔺 | Overall qualitative score drops significantly on corrupted data. |
 | **Data Quality Gate** | **PASS** | **FAIL** 🚨 | **PASS** ✅ | GX caught primary key collisions, missing content, and truncated titles. |
 | **Freshness SLA** | **PASS** | **FAIL** ⚠️ | **PASS** ✅ | SLA violation detected when stale date exceeded 25% threshold. |
 
