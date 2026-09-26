@@ -1,0 +1,60 @@
+[
+  {
+    "corruption_type": "drop_latest_records",
+    "affected_count": 4,
+    "affected_ids": [
+      "10.1145/3637528.3671812",
+      "10.1145/3637528.3671808",
+      "10.1145/3637528.3671804",
+      "10.1145/3637528.3671807"
+    ],
+    "description": "Dropped 4 most-recent records (17% of total)."
+  },
+  {
+    "corruption_type": "blank_summary",
+    "affected_count": 3,
+    "affected_ids": [
+      "10.1145/3637528.3671822",
+      "10.1145/3637528.3671802",
+      "10.1145/3637528.3671818"
+    ],
+    "description": "Blanked summary for 3 rows."
+  },
+  {
+    "corruption_type": "inject_noise",
+    "affected_count": 3,
+    "affected_ids": [
+      "10.1145/3637528.3671819",
+      "10.1145/3637528.3671805",
+      "10.1145/3637528.3671821"
+    ],
+    "description": "Injected random noise characters into summary for 3 rows."
+  },
+  {
+    "corruption_type": "truncate_title",
+    "affected_count": 2,
+    "affected_ids": [
+      "10.1145/3637528.3671823",
+      "10.1145/3637528.3671814"
+    ],
+    "description": "Truncated title to <8 characters for 2 rows."
+  },
+  {
+    "corruption_type": "stale_date",
+    "affected_count": 2,
+    "affected_ids": [
+      "10.1145/3637528.3671814",
+      "10.1145/3637528.3671801"
+    ],
+    "description": "Set published date to 2020-01-01 (>400 days ago) for 2 rows."
+  },
+  {
+    "corruption_type": "duplicate_rows",
+    "affected_count": 2,
+    "affected_ids": [
+      "10.1145/3637528.3671806",
+      "10.1145/3637528.3671818"
+    ],
+    "description": "Duplicated 2 rows."
+  }
+]
