@@ -25,7 +25,7 @@
     "judge": {
       "score": 1,
       "correct": false,
-      "reasoning": "The model answer does not address the main point of the reference answer, which highlights the limitations of static benchmarks in relation to domain drift in enterprise knowledge bases. Instead, it focuses on a different aspect of evaluation in open-domain QA, making it materially incorrect."
+      "reasoning": "The model answer does not address the main point of the reference answer, which focuses on the limitations of static benchmarks in capturing domain drift in enterprise knowledge bases. Instead, it discusses an unrelated topic about open-domain QA and metrics."
     }
   },
   {
@@ -54,7 +54,7 @@
     "judge": {
       "score": 1,
       "correct": false,
-      "reasoning": "The model answer does not address the question about the authors of the paper and instead provides irrelevant information about a study on LLMs."
+      "reasoning": "The model answer does not address the question about the authors of the paper and instead discusses a different topic related to LLM and confirmation bias."
     }
   },
   {
@@ -141,7 +141,7 @@
     "judge": {
       "score": 4,
       "correct": false,
-      "reasoning": "The model answer is mostly correct but contains a typographical error ('ilent' instead of 'silent') and adds 'extended empirical study' which is not mentioned in the reference answer. This affects the accuracy of the summary."
+      "reasoning": "The model answer is mostly correct but contains a typographical error ('ilent' instead of 'silent') and adds 'extended empirical study' which is not mentioned in the reference answer. This alters the meaning slightly, hence it is not materially correct."
     }
   },
   {
