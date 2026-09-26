@@ -116,17 +116,14 @@ def _render_freshness(data: dict, settings) -> None:
     if ages.empty:
         st.info("Không có dữ liệu age_days để vẽ phân bố.")
         return
-    chart_df = (
-    ages.astype(float)
-    .round(0)
-    .astype(int)
-    .value_counts()
-    .sort_index()
-    .rename_axis("Tuổi dữ liệu (ngày)")
-    .reset_index(name="Số bài báo")
-)
-
-st.bar_chart(chart_df, x="Tuổi dữ liệu (ngày)", y="Số bài báo")
+    counts = ages.astype(float).round(0).astype(int).value_counts().sort_index()
+    chart_df = pd.DataFrame(
+        {
+            "age_days": counts.index.to_numpy(),
+            "record_count": counts.to_numpy(),
+        }
+    )
+    st.bar_chart(chart_df, x="age_days", y="record_count")
     st.caption(f"Kết luận freshness lấy từ report: **{_bool_status(freshness.get('is_fresh'))}**.")
 
 
