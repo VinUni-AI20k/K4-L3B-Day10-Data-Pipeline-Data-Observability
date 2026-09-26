@@ -18,7 +18,7 @@
 | --: | :--- | :---: | :--- | :--- |
 | 1 | **Phạm Đình Hải** | 2A202602482 | Data Foundation & Quality Engineer | `src/ingestion/crossref.py`, `src/ingestion/cleaning.py`, `src/observability/quality.py`, `report/2A202602482_PhamDinhHai.md` |
 | 2 | **Nguyễn Minh Ngọc** | 2A202602530 | Evaluation & Failure Injection Engineer | `src/evaluation/testset.py`, `src/ingestion/corruption.py`, `tests/test_member2.py`, `report/individual_2A202602530_NguyenMinhNgoc.md` |
-| 3 | **Vũ Huy Đỗ** *(Lead)* | 2A202602555 | Pipeline Orchestrator & Integration Lead | `src/pipelines/phase1.py`, `src/pipelines/corruption_flow.py`, `src/observability/reporting.py`, `docs/TEAM.md`, `report/group_report.md`, `report/2A202602555_VuHuyDo.md` |
+| 3 | **Vũ Huy Đô** *(Lead)* | 2A202602555 | Pipeline Orchestrator & Integration Lead | `src/pipelines/phase1.py`, `src/pipelines/corruption_flow.py`, `src/observability/reporting.py`, `docs/TEAM.md`, `report/group_report.md`, `report/2A202602555_VuHuyDo.md` |
 
 ---
 
@@ -80,11 +80,11 @@ Nhóm **Team VN** đã hoàn thành 100% các mục tiêu từ Checkpoint CP0 đ
 | :--- | :--- | :--- | :--- | :--- |
 | **Ingestion** | Crossref REST API / Snapshot local | Fetch API có retry/fallback, trích xuất metadata chuẩn | `crossref_response.json`<br>`crossref_records.json` | Phạm Đình Hải (TV1) |
 | **Cleaning** | List `PaperRecord` | Strip JATS XML, dedup `paper_id`, tính `age_days`, tạo `text_for_embedding` | `papers_clean.csv`<br>`papers_clean.json` | Phạm Đình Hải (TV1) |
-| **Vector DB** | Clean DataFrame | Embed văn bản MiniLM-L6-v2, quản lý ChromaDB collections | `data/chroma/`<br>`papers_embeddings.json` | Vũ Huy Đỗ (TV3) |
+| **Vector DB** | Clean DataFrame | Embed văn bản MiniLM-L6-v2, quản lý ChromaDB collections | `data/chroma/`<br>`papers_embeddings.json` | Vũ Huy Đô (TV3) |
 | **Evaluation** | Clean DataFrame | Sinh đề thi 10 câu qua 4 nhóm (`summary`, `authors`, `date`, `categories`) | `data/eval/test_set.json` | Nguyễn Minh Ngọc (TV2) |
 | **Observability** | DataFrame (sạch/bẩn/phục hồi) | Chạy 4 Expectations GX 1.x Ephemeral & Freshness SLA 180 ngày | `*_quality_report.json`<br>`freshness_report.json` | Phạm Đình Hải (TV1) |
 | **Corruption** | Clean DataFrame | Tiêm 6 dạng lỗi dữ liệu thực tế và xuất log kiểm toán | `papers_clean_corrupted.json`<br>`corruption_log.json` | Nguyễn Minh Ngọc (TV2) |
-| **Orchestration** | Toàn bộ các module | Điều phối Phase 1, Corruption Flow, Idempotent Repair & sinh báo cáo so sánh | `phase1.py`, `corruption_flow.py`<br>`phase1_report.md`, `corruption_report.md` | Vũ Huy Đỗ (TV3) |
+| **Orchestration** | Toàn bộ các module | Điều phối Phase 1, Corruption Flow, Idempotent Repair & sinh báo cáo so sánh | `phase1.py`, `corruption_flow.py`<br>`phase1_report.md`, `corruption_report.md` | Vũ Huy Đô (TV3) |
 
 ---
 
