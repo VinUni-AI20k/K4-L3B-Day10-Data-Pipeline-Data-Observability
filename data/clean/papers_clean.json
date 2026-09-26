@@ -96,30 +96,6 @@
     "text_for_embedding": "Title: Synthetic Corruption Testing: Stress-Testing Vector Search Robustness\nAuthors: Kien Duong, Vy Ly\nPublished: 2026-06-25\nCategories: Robustness, Information Retrieval\nSummary: We introduce an automated fuzzing suite that corrupts text chunks by injecting noise, truncating titles, and blanking summaries. Experiments reveal critical failure thresholds for dense embedding retrieval."
   },
   {
-    "paper_id": "10.1145/3637528.3671824",
-    "title": "Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines",
-    "summary": "An extended empirical study on tatic benchmarks fail to capture domain drift in enterprise knowledge bases. We establish a synthetic test generator that auto-creates paired evaluation sets whenever new corpora are ingested Further analysis on scaling parameters.",
-    "authors": [
-      "Quang Le",
-      "Yen Vu"
-    ],
-    "authors_joined": "Quang Le, Yen Vu",
-    "categories": [
-      "Evaluation Methodology",
-      "Enterprise Systems"
-    ],
-    "categories_joined": "Evaluation Methodology, Enterprise Systems",
-    "primary_category": "Evaluation Methodology",
-    "published": "2026-06-12",
-    "updated": "2026-06-12",
-    "abs_url": "https://doi.org/10.1145/3637528.3671824",
-    "pdf_url": "https://doi.org/10.1145/3637528.3671824",
-    "comment": "",
-    "summary_chars": 262,
-    "age_days": 106,
-    "text_for_embedding": "Title: Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\nAuthors: Quang Le, Yen Vu\nPublished: 2026-06-12\nCategories: Evaluation Methodology, Enterprise Systems\nSummary: An extended empirical study on tatic benchmarks fail to capture domain drift in enterprise knowledge bases. We establish a synthetic test generator that auto-creates paired evaluation sets whenever new corpora are ingested Further analysis on scaling parameters."
-  },
-  {
     "paper_id": "10.1145/3637528.3671802",
     "title": "Data Observability and Quality Gates for Production RAG Systems",
     "summary": "Silent data corruption in RAG pipelines degrades LLM answer faithfulness without throwing runtime errors. We introduce automated quality gates using Great Expectations 1.x to catch stale and malformed embeddings before serving.",
@@ -142,6 +118,30 @@
     "summary_chars": 227,
     "age_days": 106,
     "text_for_embedding": "Title: Data Observability and Quality Gates for Production RAG Systems\nAuthors: Anh Tran, Quoc Pham\nPublished: 2026-06-12\nCategories: Software Engineering, Data Systems\nSummary: Silent data corruption in RAG pipelines degrades LLM answer faithfulness without throwing runtime errors. We introduce automated quality gates using Great Expectations 1.x to catch stale and malformed embeddings before serving."
+  },
+  {
+    "paper_id": "10.1145/3637528.3671824",
+    "title": "Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines",
+    "summary": "An extended empirical study on tatic benchmarks fail to capture domain drift in enterprise knowledge bases. We establish a synthetic test generator that auto-creates paired evaluation sets whenever new corpora are ingested Further analysis on scaling parameters.",
+    "authors": [
+      "Quang Le",
+      "Yen Vu"
+    ],
+    "authors_joined": "Quang Le, Yen Vu",
+    "categories": [
+      "Evaluation Methodology",
+      "Enterprise Systems"
+    ],
+    "categories_joined": "Evaluation Methodology, Enterprise Systems",
+    "primary_category": "Evaluation Methodology",
+    "published": "2026-06-12",
+    "updated": "2026-06-12",
+    "abs_url": "https://doi.org/10.1145/3637528.3671824",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671824",
+    "comment": "",
+    "summary_chars": 262,
+    "age_days": 106,
+    "text_for_embedding": "Title: Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\nAuthors: Quang Le, Yen Vu\nPublished: 2026-06-12\nCategories: Evaluation Methodology, Enterprise Systems\nSummary: An extended empirical study on tatic benchmarks fail to capture domain drift in enterprise knowledge bases. We establish a synthetic test generator that auto-creates paired evaluation sets whenever new corpora are ingested Further analysis on scaling parameters."
   },
   {
     "paper_id": "10.1145/3637528.3671823",
@@ -216,30 +216,6 @@
     "text_for_embedding": "Title: Advanced Perspectives on Chunking Strategies for Technical Documentation Retrieval\nAuthors: Long Trinh, Ha Chu\nPublished: 2026-06-09\nCategories: Information Retrieval, Natural Language Processing\nSummary: An extended empirical study on ierarchical and semantic boundary chunking preserves code block contexts and markdown headings. Our benchmark demonstrates superior top-1 recall compared to fixed character length sliding windows Further analysis on scaling parameters."
   },
   {
-    "paper_id": "10.1145/3637528.3671820",
-    "title": "Advanced Perspectives on Multi-Agent Consensus for High-Stakes Fact Verification",
-    "summary": "An extended empirical study on single LLM is susceptible to confirmation bias when evaluating retrieved evidence. We demonstrate a multi-agent debate architecture where specialized verifier agents critique and corroborate citations Further analysis on scaling parameters.",
-    "authors": [
-      "Phong Vu",
-      "Ngan Hoang"
-    ],
-    "authors_joined": "Phong Vu, Ngan Hoang",
-    "categories": [
-      "Multi-Agent Systems",
-      "Artificial Intelligence"
-    ],
-    "categories_joined": "Multi-Agent Systems, Artificial Intelligence",
-    "primary_category": "Multi-Agent Systems",
-    "published": "2026-06-08",
-    "updated": "2026-06-08",
-    "abs_url": "https://doi.org/10.1145/3637528.3671820",
-    "pdf_url": "https://doi.org/10.1145/3637528.3671820",
-    "comment": "",
-    "summary_chars": 271,
-    "age_days": 110,
-    "text_for_embedding": "Title: Advanced Perspectives on Multi-Agent Consensus for High-Stakes Fact Verification\nAuthors: Phong Vu, Ngan Hoang\nPublished: 2026-06-08\nCategories: Multi-Agent Systems, Artificial Intelligence\nSummary: An extended empirical study on single LLM is susceptible to confirmation bias when evaluating retrieved evidence. We demonstrate a multi-agent debate architecture where specialized verifier agents critique and corroborate citations Further analysis on scaling parameters."
-  },
-  {
     "paper_id": "10.1145/3637528.3671810",
     "title": "Automated Data Quality Profiling with Great Expectations in CI/CD",
     "summary": "Embedding quality checks directly into data pipelines enables fail-closed governance. We show how Great Expectations suites catch schema drifts and null fields before documents reach the embedding model.",
@@ -262,6 +238,30 @@
     "summary_chars": 203,
     "age_days": 110,
     "text_for_embedding": "Title: Automated Data Quality Profiling with Great Expectations in CI/CD\nAuthors: Son Nguyen, Thuy Doan\nPublished: 2026-06-08\nCategories: Data Quality, DevOps\nSummary: Embedding quality checks directly into data pipelines enables fail-closed governance. We show how Great Expectations suites catch schema drifts and null fields before documents reach the embedding model."
+  },
+  {
+    "paper_id": "10.1145/3637528.3671820",
+    "title": "Advanced Perspectives on Multi-Agent Consensus for High-Stakes Fact Verification",
+    "summary": "An extended empirical study on single LLM is susceptible to confirmation bias when evaluating retrieved evidence. We demonstrate a multi-agent debate architecture where specialized verifier agents critique and corroborate citations Further analysis on scaling parameters.",
+    "authors": [
+      "Phong Vu",
+      "Ngan Hoang"
+    ],
+    "authors_joined": "Phong Vu, Ngan Hoang",
+    "categories": [
+      "Multi-Agent Systems",
+      "Artificial Intelligence"
+    ],
+    "categories_joined": "Multi-Agent Systems, Artificial Intelligence",
+    "primary_category": "Multi-Agent Systems",
+    "published": "2026-06-08",
+    "updated": "2026-06-08",
+    "abs_url": "https://doi.org/10.1145/3637528.3671820",
+    "pdf_url": "https://doi.org/10.1145/3637528.3671820",
+    "comment": "",
+    "summary_chars": 271,
+    "age_days": 110,
+    "text_for_embedding": "Title: Advanced Perspectives on Multi-Agent Consensus for High-Stakes Fact Verification\nAuthors: Phong Vu, Ngan Hoang\nPublished: 2026-06-08\nCategories: Multi-Agent Systems, Artificial Intelligence\nSummary: An extended empirical study on single LLM is susceptible to confirmation bias when evaluating retrieved evidence. We demonstrate a multi-agent debate architecture where specialized verifier agents critique and corroborate citations Further analysis on scaling parameters."
   },
   {
     "paper_id": "10.1145/3637528.3671819",
