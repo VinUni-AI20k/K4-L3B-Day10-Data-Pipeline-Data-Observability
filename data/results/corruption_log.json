@@ -1,0 +1,142 @@
+[
+  {
+    "action": "drop_latest_records",
+    "paper_id": "10.1145/3637528.3671812",
+    "changes": {
+      "dropped": true,
+      "published": "2026-07-22"
+    }
+  },
+  {
+    "action": "drop_latest_records",
+    "paper_id": "10.1145/3637528.3671808",
+    "changes": {
+      "dropped": true,
+      "published": "2026-07-19"
+    }
+  },
+  {
+    "action": "drop_latest_records",
+    "paper_id": "10.1145/3637528.3671804",
+    "changes": {
+      "dropped": true,
+      "published": "2026-07-05"
+    }
+  },
+  {
+    "action": "drop_latest_records",
+    "paper_id": "10.1145/3637528.3671807",
+    "changes": {
+      "dropped": true,
+      "published": "2026-06-25"
+    }
+  },
+  {
+    "action": "drop_latest_records",
+    "paper_id": "10.1145/3637528.3671802",
+    "changes": {
+      "dropped": true,
+      "published": "2026-06-12"
+    }
+  },
+  {
+    "action": "blank_summary",
+    "paper_id": "10.1145/3637528.3671801",
+    "changes": {
+      "summary": {
+        "before": "Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages. We explore agentic multi-hop reasoning and routing across heterogeneous vector indices.",
+        "after": ""
+      }
+    }
+  },
+  {
+    "action": "blank_summary",
+    "paper_id": "10.1145/3637528.3671803",
+    "changes": {
+      "summary": {
+        "before": "Soft-deletions in vector databases leave orphaned embeddings that lead to hallucinations. This paper designs an idempotent index synchronization protocol that guarantees complete purges of outdated vector artifacts.",
+        "after": ""
+      }
+    }
+  },
+  {
+    "action": "inject_noise",
+    "paper_id": "10.1145/3637528.3671805",
+    "changes": {
+      "summary": {
+        "before": "Evaluating open-domain QA requires robust metrics. We benchmark semantic similarity, token-level overlap F1, and model-based judge verdicts to quantify RAG answer correctness across noisy corpus conditions.",
+        "after": "Evaluating open-domain QA requires robust metrics. We benchmark semantic similarity, token-level overlap F1, and model-based judge verdicts to quantify RAG answer correctness across noisy corpus conditions. @@###CORRUPTED_TEXT###@@ "
+      }
+    }
+  },
+  {
+    "action": "inject_noise",
+    "paper_id": "10.1145/3637528.3671806",
+    "changes": {
+      "summary": {
+        "before": "Connecting LLMs directly to raw warehouse tables often results in schema misunderstandings. A governed semantic layer standardizes business metric definitions, dramatically boosting SQL generation accuracy.",
+        "after": "Connecting LLMs directly to raw warehouse tables often results in schema misunderstandings. A governed semantic layer standardizes business metric definitions, dramatically boosting SQL generation accuracy. @@###CORRUPTED_TEXT###@@ "
+      }
+    }
+  },
+  {
+    "action": "truncate_title",
+    "paper_id": "10.1145/3637528.3671809",
+    "changes": {
+      "title": {
+        "before": "Chunking Strategies for Technical Documentation Retrieval",
+        "after": "Chunkin"
+      }
+    }
+  },
+  {
+    "action": "truncate_title",
+    "paper_id": "10.1145/3637528.3671810",
+    "changes": {
+      "title": {
+        "before": "Automated Data Quality Profiling with Great Expectations in CI/CD",
+        "after": "Automat"
+      }
+    }
+  },
+  {
+    "action": "stale_date",
+    "paper_id": "10.1145/3637528.3671811",
+    "changes": {
+      "published": {
+        "before": "2026-05-14",
+        "after": "2025-09-26"
+      },
+      "age_days": {
+        "after": 365
+      }
+    }
+  },
+  {
+    "action": "stale_date",
+    "paper_id": "10.1145/3637528.3671813",
+    "changes": {
+      "published": {
+        "before": "2026-06-01",
+        "after": "2025-09-26"
+      },
+      "age_days": {
+        "after": 365
+      }
+    }
+  },
+  {
+    "action": "duplicate_rows",
+    "paper_id": "10.1145/3637528.3671801",
+    "changes": {
+      "duplicated": true
+    }
+  },
+  {
+    "action": "duplicate_rows",
+    "paper_id": "10.1145/3637528.3671803",
+    "changes": {
+      "duplicated": true
+    }
+  }
+]
