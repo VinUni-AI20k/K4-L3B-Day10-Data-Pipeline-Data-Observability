@@ -168,5 +168,8 @@ def fetch_source_records(settings: Settings) -> list[PaperRecord]:
 
 
 def load_raw_records(path: Path) -> list[PaperRecord]:
-    """TODO(student): doc JSON snapshot va map thanh `PaperRecord`."""
-    raise NotImplementedError("Student task: implement raw record loading.")
+    """Restore paper records from the saved raw-records artifact."""
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, list):
+        raise ValueError(f"Expected a list of paper records in {path}")
+    return [PaperRecord(**item) for item in payload]
