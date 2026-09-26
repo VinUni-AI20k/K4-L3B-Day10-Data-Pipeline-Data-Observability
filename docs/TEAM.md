@@ -1,58 +1,50 @@
 # Danh Sách Thành Viên & Báo Cáo Phân Công Nhóm
 
-- **Tên Nhóm:** `[Điền tên nhóm]`
-- **Mã Nhóm / Lớp:** `K4-L3-DAY10`
-- **Tên Repository Nộp Bài:** `K4-L3-DAY10-TenNhom-DataPipeline`
+- **Tên Nhóm:** `Latentia`
+- **Mã Nhóm / Lớp:** `K4-L3B-DAY10`
+- **Tên Repository Nộp Bài:** `K4-L3B-DAY10-Latentia-DataPipelineDataObservability`
 
 ---
 
-## # Thành viên
+## 👥 Danh Sách Thành Viên
 
-| STT | Họ và tên | MSSV | Email | Vai trò & Phân công công việc | Báo cáo cá nhân |
-|---:|---|---|---|---|---|
-| 1 | | | | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption_flow.py`) | `report/<MSSV1>_HoTen.md` |
-| 2 | | | | Data Foundation & Recovery (`crossref.py`, `cleaning.py`, raw data) | `report/<MSSV2>_HoTen.md` |
-| 3 | | | | RAG & Vector Index (`retrieval/index.py`, `embeddings.py`, ChromaDB) | `report/<MSSV3>_HoTen.md` |
-| 4 | | | | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/<MSSV4>_HoTen.md` |
-
-*(Nếu nhóm có 3 hoặc 5-6 thành viên, xem bảng phân công chi tiết theo vai trò trong file `CHECKPOINTS.md`)*.
+| STT | Họ và tên | MSSV | GitHub | Email | Vai trò & Phân công công việc | Báo cáo cá nhân |
+|---:|---|---|---|---|---|---|
+| 1 | Nguyễn Minh Tuấn | 2A202602420 | `minhtuann1102` | `nguyenminhtuan07082004@gmail.com` | **Techlead & Pipeline Integrator** (`core/`, `pipelines/`, `script/run_phase1.py`, `script/run_corruption_flow.py`) | [2A202602420_NguyenMinhTuan.md](../report/2A202602420_NguyenMinhTuan.md) |
+| 2 | Nguyễn Minh Thắng | 2A202602706 | `nmthang2004-tn` | `nmthang2004@gmail.com` | **Data Foundation & Quality Gate** (`crossref.py`, `cleaning.py`, Great Expectations 1.x & Freshness SLA `quality.py`) | [2A202602706_NguyenMinhThang.md](../report/2A202602706_NguyenMinhThang.md) |
+| 3 | Nguyễn Thị Vàng | 2A202602897 | `vanganh230` | `vanganh230@gmail.com` | **RAG, Vector Index & Benchmark** (`embeddings.py`, `index.py`, `testset.py`, `corruption.py`) | [2A202602897_NguyenThiVang.md](../report/2A202602897_NguyenThiVang.md) |
 
 ---
 
-## # Cá nhân
+## 📋 Phân Công Chi Tiết & Báo Cáo Đóng Góp Cá Nhân
 
-### ## HoVaTen1-MSSV1
-- **Vai trò:** Trưởng nhóm & Điều phối Pipeline.
-- **Công việc chi tiết đã hoàn thành:**
-  - Thiết lập cấu hình hệ thống `core/config.py` và đường dẫn artifacts `core/utils.py`.
-  - Kết nối luồng thực thi trong `src/pipelines/phase1.py` và `src/pipelines/corruption_flow.py`.
-  - Kiểm tra tính nhất quán của các artifacts và theo dõi Contributor tracking trên GitHub nhánh `main`.
+### 1. Nguyễn Minh Tuấn (MSSV: 2A202602420)
+- **Vai trò:** Trưởng nhóm (Techlead) & Điều phối Pipeline.
+- **Phạm vi sở hữu (Ownership):**
+  - Khởi tạo môi trường, chuẩn hóa biến môi trường và cấu hình hệ thống tại `src/core/config.py`, `src/core/utils.py`.
+  - Tích hợp và điều phối luồng end-to-end trong `src/pipelines/phase1.py` và `src/pipelines/corruption_flow.py`.
+  - Quản trị Git repository, theo dõi Contributor Insights, điều phối live demo và nghiệm thu bài nộp LMS.
 - **Điều học được / Đóng góp chính:**
-  - Hiểu sâu sắc về thiết kế Idempotent Pipeline và quản lý trạng thái luồng dữ liệu đa tầng.
+  - Nắm vững kiến trúc Idempotent Data Pipeline, xử lý tính nhất quán đa trạng thái (Baseline vs Corrupted vs Repaired) trong hệ thống RAG phục vụ sản xuất.
 
-### ## HoVaTen2-MSSV2
-- **Vai trò:** Phụ trách Ingestion, Làm sạch & Phục hồi dữ liệu.
-- **Công việc chi tiết đã hoàn thành:**
-  - Xây dựng module thu thập Crossref API với cơ chế Fallback offline trong `src/ingestion/crossref.py`.
+---
+
+### 2. Nguyễn Minh Thắng (MSSV: 2A202602706)
+- **Vai trò:** Kỹ sư Dữ liệu (Data Foundation & Observability).
+- **Phạm vi sở hữu (Ownership):**
+  - Xây dựng module Ingestion `src/ingestion/crossref.py` hỗ trợ API Fetching và Offline Fallback snapshot.
   - Chuẩn hóa schema, tính toán trường `age_days` và `text_for_embedding` trong `src/ingestion/cleaning.py`.
-  - Thực thi cơ chế Idempotent Repair phục hồi dữ liệu từ raw snapshot.
+  - Thiết lập Data Quality Gate bằng **Great Expectations 1.x** (ephemeral context với 4 expectations) và giám sát Freshness SLA trong `src/observability/quality.py`.
 - **Điều học được / Đóng góp chính:**
-  - Kỹ thuật truy vết nguồn gốc dữ liệu (Data Lineage) và bảo toàn raw snapshot trước khi biến đổi.
+  - Thành thạo Great Expectations 1.x Fluent API, kỹ thuật Data Lineage và bảo đảm tính toàn vẹn dữ liệu trước khi đẩy vào Vector Database.
 
-### ## HoVaTen3-MSSV3
-- **Vai trò:** Phụ trách RAG, Vector Database & Embedding.
-- **Công việc chi tiết đã hoàn thành:**
-  - Quản lý mô hình embedding `sentence-transformers/all-MiniLM-L6-v2`.
-  - Nạp và quản lý 3 collection riêng biệt trong ChromaDB (`papers-baseline`, `papers-corrupted`, `papers-repaired`).
-  - Xây dựng QA Agent truy vấn ngữ cảnh chính xác theo tài liệu.
-- **Điều học được / Đóng góp chính:**
-  - Cách cô lập các không gian vector để so sánh khách quan giữa dữ liệu sạch và dữ liệu bị lỗi.
+---
 
-### ## HoVaTen4-MSSV4
-- **Vai trò:** Phụ trách Data Observability & Benchmark Evaluation.
-- **Công việc chi tiết đã hoàn thành:**
-  - Thiết lập Quality Gate theo chuẩn mới **Great Expectations 1.x** và giám sát Freshness SLA trong `src/observability/quality.py`.
-  - Xây dựng bộ câu hỏi đánh giá chuẩn trong `src/evaluation/testset.py`.
-  - Đo lường và xuất bảng đối chiếu 3 trạng thái vào `data/reports/corruption_report.md`.
+### 3. Nguyễn Thị Vàng (MSSV: 2A202602897)
+- **Vai trò:** Kỹ sư AI & Đánh giá Benchmark (RAG & Evaluation).
+- **Phạm vi sở hữu (Ownership):**
+  - Quản lý mô hình embedding `sentence-transformers/all-MiniLM-L6-v2` và nạp chỉ mục ChromaDB (`src/retrieval/embeddings.py`, `src/retrieval/index.py`).
+  - Xây dựng bộ test benchmark 10 câu hỏi đa dạng qua 4 nhóm nghiệp vụ trong `src/evaluation/testset.py`.
+  - Triển khai 6 kịch bản Synthetic Data Corruption trong `src/ingestion/corruption.py` để mô phỏng hiện tượng Silent Failure.
 - **Điều học được / Đóng góp chính:**
-  - Cách thiết lập hệ thống cảnh báo sớm chặn đứng hiện tượng Silent Failure trước khi dữ liệu vào serving layer.
+  - Hiểu rõ tác động của dữ liệu bẩn tới vector representation và sự sụt giảm chất lượng câu trả lời RAG, cách đo lường Hit Rate và Token F1.
