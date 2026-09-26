@@ -86,17 +86,10 @@ def run_data_quality_checks(df: pd.DataFrame, settings: Settings, stage: str) ->
 
 
 def build_freshness_report(df: pd.DataFrame, settings: Settings, report_path) -> dict[str, Any]:
-    """TODO(student): tong hop freshness report.
-
-    Pseudo-code:
-    1. Tim latest va oldest published date.
-    2. Dem so dong stale.
-    3. Tao payload:
-       - latest_published
-       - oldest_published
-       - stale_rows
-       - total_rows
-       - is_fresh
-    4. Ghi JSON report.
-    """
-    raise NotImplementedError("Student task: implement freshness reporting.")
+    """Save a dated summary of the freshness SLA."""
+    report = evaluate_freshness_sla(df, settings)
+    dates = pd.to_datetime(df["published"], errors="coerce", utc=True).dropna() if "published" in df else pd.Series(dtype="datetime64[ns, UTC]")
+    report["latest_published"] = dates.max().date().isoformat() if not dates.empty else None
+    report["oldest_published"] = dates.min().date().isoformat() if not dates.empty else None
+    write_json(report_path, report)
+    return report
