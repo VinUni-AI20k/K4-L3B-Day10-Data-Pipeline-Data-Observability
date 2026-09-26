@@ -1,37 +1,37 @@
 {
-  "report_name": "corrupted",
-  "success": false,
-  "gx_success": false,
-  "is_fresh": false,
+  "report_name": "repaired",
+  "success": true,
+  "gx_success": true,
+  "is_fresh": true,
   "statistics": {
     "evaluated_expectations": 8,
-    "successful_expectations": 5,
-    "unsuccessful_expectations": 3,
-    "success_percent": 62.5
+    "successful_expectations": 8,
+    "unsuccessful_expectations": 0,
+    "success_percent": 100.0
   },
   "freshness": {
-    "latest_published": "2026-06-12",
-    "oldest_published": "2016-01-01",
-    "stale_rows": 7,
-    "total_rows": 23,
-    "stale_ratio": 0.30434782608695654,
-    "stale_percentage": 30.43,
+    "latest_published": "2026-07-22",
+    "oldest_published": "2026-03-28",
+    "stale_rows": 1,
+    "total_rows": 24,
+    "stale_ratio": 0.041666666666666664,
+    "stale_percentage": 4.17,
     "threshold_days": 180,
     "max_stale_ratio_allowed": 0.25,
-    "is_fresh": false
+    "is_fresh": true
   },
   "evaluated_expectations_count": 8,
-  "successful_expectations_count": 5,
-  "unsuccessful_expectations_count": 3,
+  "successful_expectations_count": 8,
+  "unsuccessful_expectations_count": 0,
   "details": {
-    "success": false,
+    "success": true,
     "results": [
       {
         "success": true,
         "expectation_config": {
           "type": "expect_table_row_count_to_be_between",
           "kwargs": {
-            "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+            "batch_id": "papers_source_repaired-papers_asset_repaired",
             "min_value": 20,
             "max_value": 30
           },
@@ -39,7 +39,7 @@
           "severity": "critical"
         },
         "result": {
-          "observed_value": 23
+          "observed_value": 24
         },
         "meta": {},
         "exception_info": {
@@ -53,14 +53,14 @@
         "expectation_config": {
           "type": "expect_column_values_to_not_be_null",
           "kwargs": {
-            "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+            "batch_id": "papers_source_repaired-papers_asset_repaired",
             "column": "paper_id"
           },
           "meta": {},
           "severity": "critical"
         },
         "result": {
-          "element_count": 23,
+          "element_count": 24,
           "unexpected_count": 0,
           "unexpected_percent": 0.0,
           "partial_unexpected_list": [],
@@ -75,54 +75,27 @@
         }
       },
       {
-        "success": false,
+        "success": true,
         "expectation_config": {
           "type": "expect_column_values_to_be_unique",
           "kwargs": {
-            "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+            "batch_id": "papers_source_repaired-papers_asset_repaired",
             "column": "paper_id"
           },
           "meta": {},
           "severity": "critical"
         },
         "result": {
-          "element_count": 23,
-          "unexpected_count": 6,
-          "unexpected_percent": 26.08695652173913,
-          "partial_unexpected_list": [
-            "10.1145/3637528.3671802",
-            "10.1145/3637528.3671824",
-            "10.1145/3637528.3671823",
-            "10.1145/3637528.3671802",
-            "10.1145/3637528.3671824",
-            "10.1145/3637528.3671823"
-          ],
+          "element_count": 24,
+          "unexpected_count": 0,
+          "unexpected_percent": 0.0,
+          "partial_unexpected_list": [],
           "missing_count": 0,
           "missing_percent": 0.0,
-          "unexpected_percent_total": 26.08695652173913,
-          "unexpected_percent_nonmissing": 26.08695652173913,
-          "partial_unexpected_counts": [
-            {
-              "value": "10.1145/3637528.3671802",
-              "count": 2
-            },
-            {
-              "value": "10.1145/3637528.3671823",
-              "count": 2
-            },
-            {
-              "value": "10.1145/3637528.3671824",
-              "count": 2
-            }
-          ],
-          "partial_unexpected_index_list": [
-            0,
-            1,
-            2,
-            20,
-            21,
-            22
-          ]
+          "unexpected_percent_total": 0.0,
+          "unexpected_percent_nonmissing": 0.0,
+          "partial_unexpected_counts": [],
+          "partial_unexpected_index_list": []
         },
         "meta": {},
         "exception_info": {
@@ -136,14 +109,14 @@
         "expectation_config": {
           "type": "expect_column_values_to_not_be_null",
           "kwargs": {
-            "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+            "batch_id": "papers_source_repaired-papers_asset_repaired",
             "column": "title"
           },
           "meta": {},
           "severity": "critical"
         },
         "result": {
-          "element_count": 23,
+          "element_count": 24,
           "unexpected_count": 0,
           "unexpected_percent": 0.0,
           "partial_unexpected_list": [],
@@ -158,11 +131,11 @@
         }
       },
       {
-        "success": false,
+        "success": true,
         "expectation_config": {
           "type": "expect_column_value_lengths_to_be_between",
           "kwargs": {
-            "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+            "batch_id": "papers_source_repaired-papers_asset_repaired",
             "column": "title",
             "min_value": 8
           },
@@ -170,43 +143,16 @@
           "severity": "critical"
         },
         "result": {
-          "element_count": 23,
-          "unexpected_count": 6,
-          "unexpected_percent": 26.08695652173913,
-          "partial_unexpected_list": [
-            "Advan",
-            "Advan",
-            "Advan",
-            "Agent",
-            "Mitig",
-            "Advan"
-          ],
+          "element_count": 24,
+          "unexpected_count": 0,
+          "unexpected_percent": 0.0,
+          "partial_unexpected_list": [],
           "missing_count": 0,
           "missing_percent": 0.0,
-          "unexpected_percent_total": 26.08695652173913,
-          "unexpected_percent_nonmissing": 26.08695652173913,
-          "partial_unexpected_counts": [
-            {
-              "value": "Advan",
-              "count": 4
-            },
-            {
-              "value": "Agent",
-              "count": 1
-            },
-            {
-              "value": "Mitig",
-              "count": 1
-            }
-          ],
-          "partial_unexpected_index_list": [
-            2,
-            6,
-            10,
-            14,
-            18,
-            22
-          ]
+          "unexpected_percent_total": 0.0,
+          "unexpected_percent_nonmissing": 0.0,
+          "partial_unexpected_counts": [],
+          "partial_unexpected_index_list": []
         },
         "meta": {},
         "exception_info": {
@@ -220,14 +166,14 @@
         "expectation_config": {
           "type": "expect_column_values_to_not_be_null",
           "kwargs": {
-            "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+            "batch_id": "papers_source_repaired-papers_asset_repaired",
             "column": "summary"
           },
           "meta": {},
           "severity": "critical"
         },
         "result": {
-          "element_count": 23,
+          "element_count": 24,
           "unexpected_count": 0,
           "unexpected_percent": 0.0,
           "partial_unexpected_list": [],
@@ -242,11 +188,11 @@
         }
       },
       {
-        "success": false,
+        "success": true,
         "expectation_config": {
           "type": "expect_column_value_lengths_to_be_between",
           "kwargs": {
-            "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+            "batch_id": "papers_source_repaired-papers_asset_repaired",
             "column": "summary",
             "min_value": 20
           },
@@ -254,35 +200,16 @@
           "severity": "critical"
         },
         "result": {
-          "element_count": 23,
-          "unexpected_count": 6,
-          "unexpected_percent": 26.08695652173913,
-          "partial_unexpected_list": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
+          "element_count": 24,
+          "unexpected_count": 0,
+          "unexpected_percent": 0.0,
+          "partial_unexpected_list": [],
           "missing_count": 0,
           "missing_percent": 0.0,
-          "unexpected_percent_total": 26.08695652173913,
-          "unexpected_percent_nonmissing": 26.08695652173913,
-          "partial_unexpected_counts": [
-            {
-              "value": "",
-              "count": 6
-            }
-          ],
-          "partial_unexpected_index_list": [
-            0,
-            4,
-            8,
-            12,
-            16,
-            20
-          ]
+          "unexpected_percent_total": 0.0,
+          "unexpected_percent_nonmissing": 0.0,
+          "partial_unexpected_counts": [],
+          "partial_unexpected_index_list": []
         },
         "meta": {},
         "exception_info": {
@@ -296,14 +223,14 @@
         "expectation_config": {
           "type": "expect_column_values_to_not_be_null",
           "kwargs": {
-            "batch_id": "papers_source_corrupted-papers_asset_corrupted",
+            "batch_id": "papers_source_repaired-papers_asset_repaired",
             "column": "text_for_embedding"
           },
           "meta": {},
           "severity": "critical"
         },
         "result": {
-          "element_count": 23,
+          "element_count": 24,
           "unexpected_count": 0,
           "unexpected_percent": 0.0,
           "partial_unexpected_list": [],
@@ -318,13 +245,13 @@
         }
       }
     ],
-    "suite_name": "papers_corrupted_suite",
+    "suite_name": "papers_repaired_suite",
     "suite_parameters": {},
     "statistics": {
       "evaluated_expectations": 8,
-      "successful_expectations": 5,
-      "unsuccessful_expectations": 3,
-      "success_percent": 62.5
+      "successful_expectations": 8,
+      "unsuccessful_expectations": 0,
+      "success_percent": 100.0
     },
     "meta": {
       "great_expectations_version": "1.23.2",
@@ -332,13 +259,13 @@
         "batch_data": "PandasDataFrame"
       },
       "batch_markers": {
-        "ge_load_time": "20260926T154040.074378Z",
-        "pandas_data_fingerprint": "5a2216dfa3ecab133d4e1e7acda9acfe"
+        "ge_load_time": "20260926T154314.784532Z",
+        "pandas_data_fingerprint": "188080e2159eb3d693d837e72bab5880"
       },
       "active_batch_definition": {
-        "datasource_name": "papers_source_corrupted",
+        "datasource_name": "papers_source_repaired",
         "data_connector_name": "fluent",
-        "data_asset_name": "papers_asset_corrupted",
+        "data_asset_name": "papers_asset_repaired",
         "batch_identifiers": {
           "dataframe": "<DATAFRAME>"
         }
