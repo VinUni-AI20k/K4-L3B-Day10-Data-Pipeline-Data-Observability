@@ -1,283 +1,268 @@
 # Group Report — Day 10: Data Pipeline & Data Observability
 
-> Dùng mẫu này cho báo cáo chung của nhóm 3–5 thành viên. Thay toàn bộ nội dung trong dấu `[ ]` bằng thông tin và kết quả thực tế. Xóa các dòng hướng dẫn không còn cần thiết trước khi nộp.
-
 ## 1. Thông tin bài nộp
 
-| Thông tin         | Nội dung                  |
-| ------------------ | -------------------------- |
-| Khóa/Lớp         | [K3 hoặc K4]              |
-| Tên nhóm         | [Tên hoặc mã nhóm]     |
-| Repository         | [Đường dẫn repository] |
-| Ngày hoàn thành | [YYYY-MM-DD]               |
+| Thông tin | Nội dung |
+|---|---|
+| Khóa/Lớp | K4-L3B |
+| Tên nhóm | haianh |
+| Repository | https://github.com/AnhDuc0712/K4-L3B-DAY10-haianh-DataPipelineDataObservability |
+| Ngày hoàn thành | 2026-09-26 |
 
 ### Thành viên và phân công
 
 | STT | Họ và tên | MSSV | Vai trò chính | Module/deliverable sở hữu |
-| --: | --- | --- | --- | --- |
-| 1 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 2 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 3 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 4 | [Nếu có] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 5 | [Nếu có] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
+|---:|---|---|---|---|
+| 1 | Tô Anh Đức | 2A202602639 | Pipeline integration, observability và dashboard | `phase1.py`, `corruption_flow.py`, `quality.py`, `reporting.py`, `app.py`, các report |
+| 2 | Vũ Bá Anh | 2A202602893 | Data foundation, RAG và evaluation | `crossref.py`, `cleaning.py`, `retrieval/`, `testset.py`, metrics và raw/clean artifacts |
 
 ## 2. Tóm tắt kết quả
 
-Viết từ 150–250 từ, trả lời ngắn gọn:
+Nhóm đã hoàn thành pipeline từ ingestion dữ liệu Crossref đến cleaning, data modeling,
+embedding, ChromaDB indexing, baseline evaluation và observability. Dữ liệu được chuẩn
+hóa với `age_days`, `text_for_embedding` và khử trùng lặp theo `paper_id`. Quality Gate
+dùng Great Expectations 1.x với sáu validation results thuộc bốn nhóm expectation bắt
+buộc, kết hợp Freshness SLA 180 ngày và ngưỡng stale tối đa 25%.
 
-- Nhóm đã hoàn thành những phần nào?
-- Baseline pipeline đã tạo ra các artifact nào?
-- Corruption nào ảnh hưởng rõ nhất đến data quality hoặc agent?
-- Repair đã phục hồi được chỉ số nào?
-- Blocker hoặc giới hạn quan trọng nhất còn lại là gì?
+Baseline tạo 24 clean records, test set 10 câu hỏi thuộc bốn loại, collection
+`papers-baseline`, metrics và quality/freshness reports. Corruption flow thực hiện đủ
+sáu kịch bản: drop latest records, blank summary, inject noise, truncate title, stale
+date và duplicate rows. Hit Rate giảm từ 1.0 xuống 0.9, Token F1 từ 0.5 xuống 0.4.
+Repair dựng lại dữ liệu từ raw snapshot, đưa Hit Rate về 1.0 và Token F1 về 0.5.
 
-**Tóm tắt của nhóm:**
-
-[Viết phần tóm tắt tại đây.]
+Giới hạn còn lại là Ragas chưa chạy, chưa có automated test suite, `uv.lock` chưa cập
+nhật Streamlit và thông tin submission/GitHub/LMS cần nhóm hoàn thiện thủ công.
 
 ## 3. Kiến trúc và luồng dữ liệu
 
 ### Luồng end-to-end
 
-Điều chỉnh sơ đồ dưới đây nếu cách triển khai thực tế của nhóm khác starter:
-
 ```text
-Crossref API
-    -> raw response/raw records
-    -> cleaning và data modeling
-    -> embedding + ChromaDB index
-    -> evaluation baseline
-    -> quality/freshness reports
-    -> corruption
-    -> re-index và re-evaluate
-    -> repair từ dữ liệu nguồn
-    -> comparison report
+Crossref REST API
+    -> Raw data
+    -> Data cleaning
+    -> Embedding và ChromaDB indexing
+    -> Baseline evaluation
+    -> Quality và Freshness checks
+    -> Data corruption
+    -> Corrupted evaluation
+    -> Repair từ raw data
+    -> Re-evaluation
+    -> Comparison report
 ```
 
 ### Trách nhiệm của từng khối
 
-| Khối             | Input          | Xử lý chính             | Output/artifact          | Owner          |
-| ----------------- | -------------- | -------------------------- | ------------------------ | -------------- |
-| Ingestion         | [Nguồn/input] | [Fetch, retry, parse...]   | [Đường dẫn artifact] | [Thành viên] |
-| Cleaning          | [Input]        | [Các quy tắc chính]     | [Đường dẫn artifact] | [Thành viên] |
-| Embedding/index   | [Input]        | [Model/index config]       | [Đường dẫn artifact] | [Thành viên] |
-| Evaluation        | [Input]        | [Test set và metrics]     | [Đường dẫn artifact] | [Thành viên] |
-| Observability     | [Input]        | [Quality/freshness checks] | [Đường dẫn artifact] | [Thành viên] |
-| Corruption/repair | [Input]        | [Corruption và repair]    | [Đường dẫn artifact] | [Thành viên] |
-| Orchestration     | [Input]        | [Thứ tự chạy]           | [Reports/metrics]        | [Thành viên] |
+| Khối | Input | Xử lý chính | Output/artifact |
+|---|---|---|---|
+| Ingestion | Crossref API hoặc snapshot | Fetch, parse, fallback và lưu raw lineage | `data/raw/crossref_response.json`, `crossref_records.json` |
+| Cleaning | Raw `PaperRecord` | Normalize, tính tuổi, deduplicate và ghép context | `data/clean/papers_clean.csv/json` |
+| Embedding/index | Clean dataframe | `all-MiniLM-L6-v2`, ChromaDB persistent collections | `data/embeddings/`, `papers-baseline` |
+| Evaluation | `test_set.json` và index | Retrieval, answer, Hit Rate, Token F1, judge metrics | `data/results/*_metrics.json`, `*_answers.json` |
+| Observability | Dataframe các stage | GX 1.x expectations và Freshness SLA | `data/quality/` |
+| Corruption/repair | Clean dataframe/raw snapshot | Sáu lỗi có log; rebuild repair từ raw | corrupted/repaired artifacts |
+| Orchestration | Settings và artifact paths | Chạy Phase 1 hoặc corruption flow | `phase1_report.md`, `corruption_report.md` |
 
 ## 4. Cách tái hiện kết quả
 
 ### Cấu hình không chứa secret
 
-| Biến/cấu hình             | Giá trị sử dụng |
-| ---------------------------- | ------------------- |
-| `LLM_PROVIDER`             | [Giá trị]         |
-| `LLM_MODEL`                | [Giá trị]         |
-| Embedding model              | [Giá trị]         |
-| Số lượng Crossref records | [Giá trị]         |
-| Retrieval`top_k`           | [Giá trị]         |
-| Freshness threshold          | [Giá trị]         |
-| Random seed, nếu có        | [Giá trị]         |
+| Biến/cấu hình | Giá trị sử dụng |
+|---|---|
+| `LLM_PROVIDER` | `openai` |
+| `LLM_MODEL` | `gpt-4o-mini` |
+| Embedding model | `sentence-transformers/all-MiniLM-L6-v2` |
+| Số Crossref records | 24 |
+| Retrieval `top_k` | 4 |
+| Freshness threshold | 180 ngày; stale ratio tối đa 25% |
+| Evaluation set | `data/eval/test_set.json`, 10 câu hỏi dùng chung |
 
-Không dán nội dung API key hoặc file `.env` vào báo cáo.
+Không đưa API key hoặc nội dung `.env` vào báo cáo.
 
-### Lệnh cài đặt
+### Lệnh cài đặt và chạy
 
-Chỉ giữ lại cách nhóm đã dùng.
-
-```bash
-uv sync
-```
-
-Hoặc:
-
-```bash
-python -m pip install -e .
-```
-
-### Lệnh chạy
-
-Baseline:
-
-```bash
-uv run python script/run_phase1.py
-```
-
-Hoặc với môi trường `pip` đã kích hoạt:
-
-```bash
+```powershell
+python -m pip install -r requirements.txt
 python script/run_phase1.py
+python script/run_corruption_flow.py
+streamlit run app.py
 ```
 
-Corruption flow:
+Trong môi trường không có kết nối Hugging Face nhưng model đã có cache local:
 
-```bash
-uv run python script/run_corruption_flow.py
-```
-
-Hoặc với môi trường `pip` đã kích hoạt:
-
-```bash
+```powershell
+$env:HF_HUB_OFFLINE="1"
+$env:TRANSFORMERS_OFFLINE="1"
 python script/run_corruption_flow.py
 ```
 
 ### Kết quả tái hiện
 
-| Lệnh             | Trạng thái                                    | Thời điểm chạy gần nhất | Bằng chứng                         |
-| ----------------- | ----------------------------------------------- | ----------------------------- | ------------------------------------ |
-| Baseline pipeline | [Thành công/Thất bại một phần/Thất bại] | [Thời gian]                  | [Artifact hoặc log đã che secret] |
-| Corruption flow   | [Thành công/Thất bại một phần/Thất bại] | [Thời gian]                  | [Artifact hoặc log đã che secret] |
+| Lệnh | Trạng thái | Bằng chứng |
+|---|---|---|
+| `python script/run_phase1.py` | Thành công | `data/results/baseline_metrics.json`, `phase1_report.md` |
+| `python script/run_corruption_flow.py` | Thành công | `corruption_log.json`, corrupted/repaired metrics và report |
+| `streamlit run app.py` | Thành công | Dashboard startup trên local Streamlit |
 
 ## 5. Ingestion, cleaning và data contract
 
 ### Nguồn dữ liệu
 
-| Thuộc tính                | Giá trị                             |
-| --------------------------- | ------------------------------------- |
-| Source                      | [Crossref endpoint/dataset thực tế] |
-| Query/filter                | [Query hoặc filter]                  |
-| Thời điểm lấy dữ liệu | [Timestamp]                           |
-| Số record nhận được    | [Số lượng]                         |
-| Cơ chế retry/backoff      | [Mô tả ngắn]                       |
+| Thuộc tính | Giá trị |
+|---|---|
+| Source | Crossref REST API |
+| Query | `agentic retrieval augmented generation large language model` |
+| Filter | `from-pub-date:2026-03-30,has-abstract:true` |
+| Số record nhận được | 24 |
+| Fallback | Đọc local snapshot khi API lỗi/offline hoặc bị rate limit |
 
 ### Raw và clean schema
 
-| Trường        | Kiểu dữ liệu | Bắt buộc?  | Ý nghĩa   | Xử lý khi thiếu/sai |
-| --------------- | --------------- | ------------ | ----------- | ---------------------- |
-| [Tên trường] | [Kiểu]         | [Có/Không] | [Ý nghĩa] | [Cách xử lý]        |
-| [Tên trường] | [Kiểu]         | [Có/Không] | [Ý nghĩa] | [Cách xử lý]        |
+| Trường | Kiểu | Bắt buộc | Ý nghĩa/xử lý |
+|---|---|---|---|
+| `paper_id` | string | Có | DOI, khóa duy nhất; dòng thiếu bị loại |
+| `title` | string | Có | Tiêu đề đã normalize |
+| `summary` | string | Có | Abstract đã loại whitespace/XML tag; dùng cho quality |
+| `authors`, `categories` | list[string] | Không | Danh sách metadata gốc |
+| `authors_joined`, `categories_joined` | string | Có trong clean | Chuỗi phục vụ context/index |
+| `published`, `updated` | ISO date/string | Có published | Dùng để tính `age_days` |
+| `primary_category`, `abs_url`, `pdf_url`, `comment` | string | Không | Metadata bổ sung |
+| `age_days`, `summary_chars` | integer | Có trong clean | Tuổi dữ liệu và độ dài summary |
+| `text_for_embedding` | string | Có | Context gồm Title, Authors, Published, Categories, Summary |
 
 ### Quy tắc cleaning
 
-| Quy tắc                                 | Quality dimension liên quan | Số record bị tác động | Cách xác minh      |
-| ---------------------------------------- | ---------------------------- | -------------------------: | -------------------- |
-| [Ví dụ: loại record không có title] | [Completeness/Validity/...]  |              [Số lượng] | [Artifact/kiểm tra] |
-| [Quy tắc thực tế]                     | [Dimension]                  |              [Số lượng] | [Artifact/kiểm tra] |
+| Quy tắc | Quality dimension | Kết quả thực tế | Xác minh |
+|---|---|---:|---|
+| Bỏ whitespace/XML tag và chuẩn hóa text | Validity/Consistency | 24 dòng sạch | `papers_clean.csv/json` |
+| Bỏ record thiếu `paper_id`, `title` hoặc ngày publish hợp lệ | Completeness/Validity | Không làm mất record baseline | `cleaning.py` và row count 24 |
+| Tính `age_days` theo run date | Freshness | 0 stale trên baseline | `freshness_report.json` |
+| Deduplicate theo `paper_id` | Uniqueness | 24 DOI duy nhất | GX `paper_id_unique` PASS |
 
-Giải thích cách nhóm tạo `text_for_embedding`, document ID và `age_days`:
-
-[Mô tả tại đây.]
+Giá trị `text_for_embedding` ghép năm phần: Title, Authors, Published, Categories và
+Summary. `paper_id` là DOI dùng làm document identity; `age_days` là số ngày từ ngày
+publish đến run date.
 
 ## 6. Evaluation setup
 
-| Thành phần                             | Cấu hình thực tế          |
-| ---------------------------------------- | ----------------------------- |
-| Số câu hỏi                            | [Số lượng]                 |
-| Các`question_type`                    | [Danh sách]                  |
-| Ground-truth document ID                 | [Cách tạo/đối chiếu]     |
-| Embedding model                          | [Tên model]                  |
-| Vector store/collection                  | [Tên/config]                 |
-| Retrieval`top_k`                       | [Giá trị]                   |
-| LLM provider/model                       | [Giá trị]                   |
-| Test set dùng chung cho ba trạng thái | [Đường dẫn hoặc ID/hash] |
+| Thành phần | Cấu hình thực tế |
+|---|---|
+| Số câu hỏi | 10 |
+| `question_type` | `summary`, `authors`, `date`, `categories` |
+| Ground-truth document ID | DOI trong `ground_truth_doc_ids` |
+| Embedding model | `sentence-transformers/all-MiniLM-L6-v2` |
+| Vector store | ChromaDB persistent; `papers-baseline`, `papers-corrupted`, `papers-repaired` |
+| Retrieval `top_k` | 4 |
+| LLM provider/model | OpenAI / `gpt-4o-mini` |
+| Test set dùng chung | `data/eval/test_set.json` cho cả ba trạng thái |
 
-Giải thích vì sao test set được giữ nguyên khi đánh giá baseline, corrupted và repaired:
-
-[Giải thích tại đây.]
+Giữ nguyên test set để mọi thay đổi metrics phản ánh trạng thái dữ liệu/index,
+không bị trộn với thay đổi câu hỏi hoặc ground truth.
 
 ## 7. Kết quả baseline
 
-### Artifact checklist
+| Artifact | Đường dẫn | Trạng thái | Ghi chú |
+|---|---|---|---|
+| Raw response/records | `data/raw/` | Có | 24 records và raw response |
+| Cleaned dataset | `data/clean/` | Có | 24 dòng |
+| Embedding/index | `data/embeddings/`, `data/chroma/` | Có | Collection baseline có 24 documents |
+| Evaluation set | `data/eval/test_set.json` | Có | 10 câu hỏi |
+| Baseline metrics | `data/results/baseline_metrics.json` | Có | Hit Rate, Token F1, judge metrics |
+| Quality/freshness | `data/quality/` | Có | GX PASS, FRESH |
+| Baseline report | `data/reports/phase1_report.md` | Có | Report tái lập được |
 
-| Artifact                 | Đường dẫn thực tế                | Trạng thái | Ghi chú   |
-| ------------------------ | -------------------------------------- | ------------ | ---------- |
-| Raw response/records     | `data/raw/`                          | [Có/Thiếu] | [Ghi chú] |
-| Cleaned dataset          | `data/clean/`                        | [Có/Thiếu] | [Ghi chú] |
-| Embedding manifest/index | `data/embeddings/`                   | [Có/Thiếu] | [Ghi chú] |
-| Evaluation set           | `data/eval/`                         | [Có/Thiếu] | [Ghi chú] |
-| Baseline metrics         | `data/results/baseline_metrics.json` | [Có/Thiếu] | [Ghi chú] |
-| Quality/freshness        | `data/quality/`                      | [Có/Thiếu] | [Ghi chú] |
-| Baseline report          | `data/reports/phase1_report.md`      | [Có/Thiếu] | [Ghi chú] |
-
-### Baseline metrics
-
-| Metric                 |       Giá trị | Diễn giải                             |
-| ---------------------- | --------------: | --------------------------------------- |
-| `retrieval_hit_rate` |     [Giá trị] | [Ý nghĩa trong kết quả của nhóm]  |
-| `mean_token_f1`      |     [Giá trị] | [Diễn giải]                           |
-| `judge_accuracy`     |     [Giá trị] | [Diễn giải]                           |
-| `mean_judge_score`   |     [Giá trị] | [Diễn giải]                           |
-| Ragas, nếu có        | [Giá trị/N/A] | [Diễn giải hoặc lý do không chạy] |
+| Metric | Giá trị | Diễn giải |
+|---|---:|---|
+| `retrieval_hit_rate` | 1.0 | 10/10 câu truy hồi đúng document ID |
+| `mean_token_f1` | 0.5 | F1 trung bình giữa câu trả lời và ground truth |
+| `judge_accuracy` | 0.5 | Tỷ lệ judge đánh giá câu trả lời đúng |
+| `mean_judge_score` | 3.0 | Điểm judge trung bình trên thang 1–5 |
+| Ragas | N/A | Được skip nếu không bật `RUN_RAGAS=1` |
 
 ## 8. Data quality và freshness
 
-### Quality checks
+### Quality checks baseline
 
-| Check        | Quality dimension | Ngưỡng/kỳ vọng | Kết quả baseline      | Bằng chứng |
-| ------------ | ----------------- | ------------------ | ----------------------- | ------------ |
-| [Tên check] | [Dimension]       | [Ngưỡng]         | [Pass/Fail + giá trị] | [Artifact]   |
-| [Tên check] | [Dimension]       | [Ngưỡng]         | [Pass/Fail + giá trị] | [Artifact]   |
+| Check | Ngưỡng/kỳ vọng | Kết quả | Bằng chứng |
+|---|---|---|---|
+| Row count | 5–5000 | PASS, 24 | `baseline_quality_report.json` |
+| `paper_id` not null | Không null | PASS, 0 unexpected | Cùng report |
+| `title` not null | Không null | PASS, 0 unexpected | Cùng report |
+| `text_for_embedding` not null | Không null | PASS, 0 unexpected | Cùng report |
+| `paper_id` unique | DOI duy nhất | PASS, 0 duplicate | Cùng report |
+| `summary` length | Tối thiểu 30 ký tự | PASS | Cùng report |
 
 ### Freshness
 
-| Thuộc tính               | Giá trị                           |
-| -------------------------- | ----------------------------------- |
-| Freshness được đo tại | [Dataset/index/artifact]            |
-| Timestamp mới nhất       | [Giá trị]                         |
-| Ngưỡng freshness         | [Giá trị]                         |
-| Trạng thái baseline      | [Fresh/Stale/Unknown]               |
-| Lý do                     | [Giải thích dựa trên số liệu] |
+| Thuộc tính | Giá trị |
+|---|---|
+| Freshness đo trên | Clean dataframe baseline |
+| Latest published | 2026-09-15 |
+| Oldest published | 2026-04-01 |
+| Ngưỡng | `age_days > 180`, stale ratio tối đa 25% |
+| Baseline | FRESH; 0/24 stale, ratio 0.0 |
+| Corrupted | FRESH; stale date có trong dữ liệu nhưng ratio dưới 25% |
+| Repaired | FRESH; 0/24 stale |
 
 ## 9. Corruption scenarios và repair
 
-| Corruption         | Cách tạo | Record bị tác động | Quality signal kỳ vọng | Tác động thực tế | Cách repair   |
-| ------------------ | ---------- | ---------------------: | ------------------------ | --------------------- | -------------- |
-| [Loại corruption] | [Mô tả]  |          [Số lượng] | [Kỳ vọng]              | [Artifact/metric]     | [Cách repair] |
-| [Loại corruption] | [Mô tả]  |          [Số lượng] | [Kỳ vọng]              | [Artifact/metric]     | [Cách repair] |
+| Corruption | Record bị tác động | Quality signal kỳ vọng | Tác động thực tế | Cách repair |
+|---|---:|---|---|---|
+| Drop latest records | 5 | Giảm row count/index coverage | Corrupted dataset còn 20 dòng | Rebuild từ raw |
+| Blank summary | 1 | `summary_length` FAIL | Summary rỗng trong corrupted data | Rebuild summary từ raw |
+| Inject noise | 1 | Content consistency giảm | Summary chứa noise marker | Rebuild text từ raw |
+| Truncate title | 1 | Title validity giảm | Title bị cắt còn 7 ký tự | Rebuild title từ raw |
+| Stale date | 1 | Freshness tăng | Có 1 stale record, vẫn dưới SLA 25% | Rebuild published từ raw |
+| Duplicate rows | 1 | `paper_id_unique` FAIL | Output có 20 dòng nhưng 19 DOI duy nhất | Rebuild và deduplicate |
 
-Corruption log:
-
-- Đường dẫn: `data/results/corruption_log.json`
-- Trạng thái: [Có/Thiếu]
-- Nhận xét: [Log có đủ loại corruption, record bị tác động và tham số hay không?]
-
-Giải thích cách repair đảm bảo dữ liệu được phục hồi từ nguồn đáng tin cậy thay vì chỉ che kết quả lỗi:
-
-[Giải thích tại đây.]
+Corruption log nằm tại `data/results/corruption_log.json`, ghi đủ 6 scenario,
+paper IDs bị tác động, input rows 24 và output rows 20. Repair không sửa trực tiếp
+corrupted file; pipeline gọi `load_raw_records()` rồi chạy lại `build_clean_dataframe()`.
+Do đó repair giữ được data lineage và có tính idempotent.
 
 ## 10. So sánh baseline, corrupted và repaired
 
-| Metric/signal            | Baseline | Corrupted | Repaired | Thay đổi do corruption | Mức phục hồi | Nhận xét   |
-| ------------------------ | -------: | --------: | -------: | -----------------------: | --------------: | ------------ |
-| `retrieval_hit_rate`   |      [ ] |       [ ] |      [ ] |                      [ ] |             [ ] | [Nhận xét] |
-| `mean_token_f1`        |      [ ] |       [ ] |      [ ] |                      [ ] |             [ ] | [Nhận xét] |
-| `judge_accuracy`       |      [ ] |       [ ] |      [ ] |                      [ ] |             [ ] | [Nhận xét] |
-| `mean_judge_score`     |      [ ] |       [ ] |      [ ] |                      [ ] |             [ ] | [Nhận xét] |
-| Quality checks pass/fail |      [ ] |       [ ] |      [ ] |                      [ ] |             [ ] | [Nhận xét] |
-| Freshness status         |      [ ] |       [ ] |      [ ] |                      [ ] |             [ ] | [Nhận xét] |
+| Metric/signal | Baseline | Corrupted | Repaired | Thay đổi | Mức phục hồi |
+|---|---:|---:|---:|---:|---:|
+| `retrieval_hit_rate` | 1.0 | 0.9 | 1.0 | -0.1 | 100% |
+| `mean_token_f1` | 0.5 | 0.4 | 0.5 | -0.1 | 100% |
+| `judge_accuracy` | 0.5 | 0.4 | 0.5 | -0.1 | 100% |
+| `mean_judge_score` | 3.0 | 2.7 | 3.0 | -0.3 | 100% |
+| Quality checks | PASS | FAIL | PASS | Fail tại corrupted | PASS trở lại |
+| Freshness status | FRESH | FRESH | FRESH | Không vượt SLA | FRESH |
 
-Nêu ít nhất hai kết luận có quan hệ nhân quả được hỗ trợ bởi artifacts:
+Kết luận nhân quả thứ nhất: blank summary, duplicate rows và các nội dung bị biến đổi
+làm corrupted Quality Gate FAIL; cùng lúc việc mất hoặc làm sai context khiến Hit Rate
+giảm 10 điểm phần trăm và Token F1 giảm 0.1.
 
-1. [Corruption/data change] → [quality/freshness signal] → [retrieval/answer metric].
-2. [Repair action] → [quality/freshness recovery] → [agent metric recovery hoặc lý do chưa recovery].
-
-Không kết luận corruption “có tác động” nếu số liệu không cho thấy thay đổi. Nếu kết quả khác kỳ vọng, mô tả giả thuyết và cách nhóm đã kiểm tra.
+Kết luận nhân quả thứ hai: repair từ raw snapshot khôi phục đủ 24 dòng, rebuild index
+và dùng cùng test set; Quality Gate trở lại PASS, Hit Rate và Token F1 trở về baseline.
 
 ## 11. Vấn đề tích hợp quan trọng
 
-Mô tả một vấn đề phát sinh khi ghép các module trong pipeline và cách nhóm xử lý:
-
-- **Triệu chứng:** [Lỗi hoặc kết quả sai.]
-- **Nguyên nhân:** [Root cause.]
-- **Cách xử lý:** [Thay đổi đã thực hiện.]
-- **Cách xác minh:** [Lệnh và artifact.]
+- **Triệu chứng:** Lần chạy corruption đầu tiên lỗi khi một trường text rỗng từ CSV
+  được đọc thành `NaN` float và truyền vào `normalize_whitespace()`.
+- **Nguyên nhân:** CSV parser biểu diễn một số ô text rỗng bằng float `NaN`.
+- **Cách xử lý:** Thêm chuẩn hóa an toàn `_clean_text()` trước khi rebuild
+  `text_for_embedding` trong `corruption.py`.
+- **Cách xác minh:** Chạy lại `python script/run_corruption_flow.py` ở offline mode;
+  flow exit code 0 và sinh đủ corrupted/repaired artifacts.
 
 ## 12. Giới hạn và hướng cải thiện
 
-| Giới hạn hiện tại | Ảnh hưởng   | Hướng cải thiện có thể kiểm chứng |
-| --------------------- | -------------- | ----------------------------------------- |
-| [Giới hạn]          | [Ảnh hưởng] | [Đề xuất]                              |
-| [Giới hạn]          | [Ảnh hưởng] | [Đề xuất]                              |
+| Giới hạn hiện tại | Ảnh hưởng | Hướng cải thiện |
+|---|---|---|
+| Ragas đang skip | Chưa có các chỉ số faithfulness/context của Ragas | Chạy với `RUN_RAGAS=1` khi có cấu hình LLM phù hợp |
+| Chưa có automated test suite | Verification chủ yếu dựa trên script và artifact | Thêm unit/integration tests cho cleaning, corruption và report |
 
 ## 13. Checklist trước khi nộp
 
-- [ ] Thông tin nhóm và repository chính xác.
-- [ ] Phân công khớp với module, artifact và kết quả thực tế.
-- [ ] Lệnh tái hiện đã được chạy lại trên phiên bản dùng để nộp.
-- [ ] Baseline, corrupted và repaired dùng cùng evaluation set.
-- [ ] Bảng metrics khớp với các file trong `data/results/`.
-- [ ] Quality/freshness conclusions khớp với `data/quality/`.
-- [ ] Các đường dẫn báo cáo và artifact truy cập được.
-- [ ] Mỗi thành viên đã hoàn thành báo cáo vai trò riêng.
-- [ ] Không có `.env`, API key, token hoặc secret trong source, report, log hay ảnh.
+- [x] Thông tin nhóm và repository chính xác.
+- [x] Phân công khớp với module, artifact và kết quả thực tế.
+- [x] Lệnh tái hiện đã được chạy lại trên phiên bản dùng để nộp.
+- [x] Baseline, corrupted và repaired dùng cùng evaluation set.
+- [x] Bảng metrics khớp với các file trong `data/results/`.
+- [x] Quality/freshness conclusions khớp với `data/quality/`.
+- [x] Các đường dẫn báo cáo và artifact truy cập được.
+- [x] Mỗi thành viên đã hoàn thành báo cáo vai trò riêng.
+- [x] Không có `.env`, API key, token hoặc secret trong source, report, log hay ảnh.
