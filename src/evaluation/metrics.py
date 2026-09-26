@@ -2,7 +2,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from statistics import mean
+import json
 import os
+import re
 import sys
 import types
 from typing import Any
@@ -10,7 +12,7 @@ from typing import Any
 from datasets import Dataset
 from pydantic import BaseModel, Field
 
-from core.config import Settings
+from core.config import Settings, normalized_provider
 from core.utils import normalize_whitespace, read_json, write_json
 from retrieval.embeddings import MiniLMEmbeddings
 from retrieval.index import LocalEmbeddingIndex
@@ -28,6 +30,52 @@ class JudgeVerdict(BaseModel):
 class EvaluationBundle:
     summary: dict[str, Any]
     answers: list[dict[str, Any]]
+
+
+def _message_text(response: Any) -> str:
+    content = getattr(response, "content", response)
+    if isinstance(content, str):
+        return content.strip()
+    if isinstance(content, list):
+        parts = []
+        for item in content:
+            if isinstance(item, dict) and isinstance(item.get("text"), str):
+                parts.append(item["text"])
+            else:
+                parts.append(str(item))
+        return "\n".join(parts).strip()
+    return str(content).strip()
+
+
+def _parse_judge_verdict(response: Any) -> JudgeVerdict:
+    """Parse JSON or the simple labelled format returned by custom gateways."""
+    text = _message_text(response)
+    unfenced = re.sub(r"^```(?:json)?\s*|\s*```$", "", text, flags=re.IGNORECASE).strip()
+
+    try:
+        return JudgeVerdict.model_validate_json(unfenced)
+    except Exception:
+        json_match = re.search(r"\{.*\}", unfenced, flags=re.DOTALL)
+        if json_match:
+            return JudgeVerdict.model_validate(json.loads(json_match.group(0)))
+
+    score_match = re.search(r"(?im)^\s*(?:\*\*)?score(?:\*\*)?\s*[:=-]\s*([1-5])\b", unfenced)
+    correct_match = re.search(
+        r"(?im)^\s*(?:\*\*)?correct(?:\*\*)?\s*[:=-]\s*(true|false|yes|no)\b",
+        unfenced,
+    )
+    reasoning_match = re.search(
+        r"(?ims)^\s*(?:\*\*)?reasoning(?:\*\*)?\s*[:=-]\s*(.+)$",
+        unfenced,
+    )
+    if not score_match or not correct_match:
+        raise ValueError(f"Could not parse judge response: {unfenced[:200]}")
+
+    return JudgeVerdict(
+        score=int(score_match.group(1)),
+        correct=correct_match.group(1).lower() in {"true", "yes"},
+        reasoning=(reasoning_match.group(1).strip() if reasoning_match else "Judged by configured LLM."),
+    )
 
 
 def _token_f1(reference: str, prediction: str) -> float:
@@ -53,14 +101,16 @@ Question: {question}
 Reference answer: {reference}
 Model answer: {prediction}
 
-Return:
-- score from 1 to 5
-- correct = true only when the answer is materially correct
-- short reasoning
+Return only one JSON object with this exact schema:
+{{"score": 1, "correct": false, "reasoning": "short explanation"}}
+
+Use an integer score from 1 to 5. Set correct to true only when the answer is materially correct.
 """.strip()
     try:
-        llm = build_llm(settings=settings, temperature=0.0).with_structured_output(JudgeVerdict)
-        return llm.invoke(prompt)
+        llm = build_llm(settings=settings, temperature=0.0)
+        if normalized_provider(settings) == "custom":
+            return _parse_judge_verdict(llm.invoke(prompt))
+        return llm.with_structured_output(JudgeVerdict).invoke(prompt)
     except Exception:
         score = 5 if _token_f1(reference, prediction) >= 0.95 else 3 if _token_f1(reference, prediction) >= 0.5 else 1
         return JudgeVerdict(
@@ -122,6 +172,7 @@ def evaluate_pipeline(
                 "ground_truth": item["ground_truth"],
                 "ground_truth_doc_ids": item["ground_truth_doc_ids"],
                 "answer": result.answer,
+                "answer_source": result.answer_source,
                 "retrieved_doc_ids": result.retrieved_doc_ids,
                 "retrieved_contexts": result.retrieved_contexts,
                 "retrieval_hit": retrieval_hit,
