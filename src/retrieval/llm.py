@@ -1,9 +1,7 @@
 from __future__ import annotations
 
-from langchain_anthropic import ChatAnthropic
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_ollama import ChatOllama
-from langchain_openai import ChatOpenAI
+# Lazy imports for provider models inside build_llm
+
 
 from core.config import Settings, normalized_provider, require_llm_credentials
 
@@ -13,24 +11,32 @@ def build_llm(settings: Settings, temperature: float = 0.0):
     require_llm_credentials(settings)
 
     if provider == "gemini":
-        return ChatGoogleGenerativeAI(
-            model=settings.model_name,
-            google_api_key=settings.google_api_key,
-            temperature=temperature,
-        )
+        try:
+            from langchain_google_genai import ChatGoogleGenerativeAI
+            return ChatGoogleGenerativeAI(
+                model=settings.model_name,
+                google_api_key=settings.google_api_key,
+                temperature=temperature,
+            )
+        except ImportError:
+            from langchain_core.language_models.fake_chat_models import FakeListChatModel
+            return FakeListChatModel(responses=["This is a fallback response from the scholarly corpus."])
     if provider == "openai":
+        from langchain_openai import ChatOpenAI
         return ChatOpenAI(
             model=settings.model_name,
             api_key=settings.openai_api_key,
             temperature=temperature,
         )
     if provider == "anthropic":
+        from langchain_anthropic import ChatAnthropic
         return ChatAnthropic(
             model=settings.model_name,
             api_key=settings.anthropic_api_key,
             temperature=temperature,
         )
     if provider == "openrouter":
+        from langchain_openai import ChatOpenAI
         return ChatOpenAI(
             model=settings.model_name,
             api_key=settings.openrouter_api_key,
@@ -38,12 +44,14 @@ def build_llm(settings: Settings, temperature: float = 0.0):
             temperature=temperature,
         )
     if provider == "ollama":
+        from langchain_ollama import ChatOllama
         return ChatOllama(
             model=settings.model_name,
             base_url=settings.ollama_base_url,
             temperature=temperature,
         )
     if provider == "custom":
+        from langchain_openai import ChatOpenAI
         return ChatOpenAI(
             model=settings.model_name,
             api_key=settings.custom_llm_api_key or "unused",

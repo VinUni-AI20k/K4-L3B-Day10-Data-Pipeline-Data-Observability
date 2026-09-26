@@ -13,7 +13,7 @@
 | 1 | Nguyễn Anh Tuấn | 2A202602700 | harrynguyen127 | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption_flow.py`) | `report/2A202602700_NguyenAnhTuan.md` |
 | 2 | Đặng Quang Hưng | 2A202602719 | hungdq1306@gmail.com | Data Foundation & Recovery (`crossref.py`, `cleaning.py`, raw data) | `report/2A202602719_DangQuangHung.md` |
 | 3 | Nguyễn Hữu Thành | 2A202602813 | nhthanh1106 | RAG & Vector Index (`retrieval/index.py`, `embeddings.py`, ChromaDB) | `report/2A202602813_NguyenHuuThanh.md` |
-| 4 | Hà Thị Mỹ Linh | 2A202602619 | halinh.work@gmail.com | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/2A202602619_HaThiMyLinh.md` |
+| 4 | Hà Thị Mỹ Linh | 2A202602619 | linhha2705@gmail.com | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/2A202602619_HaThiMyLinh.md` |
 
 *(Nếu nhóm có 3 hoặc 5-6 thành viên, xem bảng phân công chi tiết theo vai trò trong file `CHECKPOINTS.md`)*.
 
