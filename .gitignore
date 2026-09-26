@@ -1,6 +1,11 @@
 solution/
 .env
 lab.txt
+venv/
+<<<<<<< Updated upstream
+=======
+.venv/
+>>>>>>> Stashed changes
 .venv/
 src/*.egg-info/
 lab/

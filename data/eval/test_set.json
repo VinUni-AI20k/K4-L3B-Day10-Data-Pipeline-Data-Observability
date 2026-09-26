@@ -1,0 +1,92 @@
+[
+  {
+    "id": "eval_001",
+    "question_type": "summary",
+    "question": "What is the summary of the paper 'Retrieval-Augmented Generation for Large Language Model-Based Intelligent Assistants: A Review'?",
+    "ground_truth": "Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages.",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671801"
+    ]
+  },
+  {
+    "id": "eval_002",
+    "question_type": "authors",
+    "question": "Who are the authors of the paper 'Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines'?",
+    "ground_truth": "Quang Le,Sven Hahues",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671812"
+    ]
+  },
+  {
+    "id": "eval_003",
+    "question_type": "date",
+    "question": "When was the paper 'Multi-Agent Consensus for High-Stakes Fact Verification' published?",
+    "ground_truth": "2026-07-19",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671808"
+    ]
+  },
+  {
+    "id": "eval_004",
+    "question_type": "categories",
+    "question": "What are the categories of the paper 'Advanced Perspectives on Hybrid Search Architectures: Combining BM25 with Dense Representations'?",
+    "ground_truth": "Information Retrieval,Algorithms",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671823"
+    ]
+  },
+  {
+    "id": "eval_005",
+    "question_type": "summary",
+    "question": "What is the summary of the paper 'Freshness SLAs for Real-Time LLM Knowledge Augmentation'?",
+    "ground_truth": "We define freshness service-level agreements (SLAs) for temporal document ingestion.",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671804"
+    ]
+  },
+  {
+    "id": "eval_006",
+    "question_type": "authors",
+    "question": "Who are the authors of the paper 'Microsoft Azure artificial intelligence / machine learning hackathon for development of retrieval-augmented generation large language model'?",
+    "ground_truth": "Janet L. Autrey,Lacey S. Duckworth,Ashly N. Horner,Thomas Sigler,Victoria D. Moore",
+    "ground_truth_doc_ids": [
+      "10.21079/11681/50309"
+    ]
+  },
+  {
+    "id": "eval_007",
+    "question_type": "date",
+    "question": "When was the paper 'Synthetic Corruption Testing: Stress-Testing Vector Search Robustness' published?",
+    "ground_truth": "2026-06-25",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671807"
+    ]
+  },
+  {
+    "id": "eval_008",
+    "question_type": "categories",
+    "question": "What are the categories of the paper 'Data Observability and Quality Gates for Production RAG Systems'?",
+    "ground_truth": "",
+    "ground_truth_doc_ids": [
+      "10.54254/2755-2721/2026.36624"
+    ]
+  },
+  {
+    "id": "eval_009",
+    "question_type": "summary",
+    "question": "What is the summary of the paper 'Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines'?",
+    "ground_truth": "An extended empirical study on tatic benchmarks fail to capture domain drift in enterprise knowledge bases.",
+    "ground_truth_doc_ids": [
+      "10.20944/preprints202608.1849.v1"
+    ]
+  },
+  {
+    "id": "eval_010",
+    "question_type": "authors",
+    "question": "Who are the authors of the paper 'Advanced Perspectives on Automated Data Quality Profiling with Great Expectations in CI/CD'?",
+    "ground_truth": "Son Nguyen,Thuy Doan",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671822"
+    ]
+  }
+]

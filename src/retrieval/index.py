@@ -93,11 +93,20 @@ class LocalEmbeddingIndex:
         persist_path.mkdir(parents=True, exist_ok=True)
 
         embedding_model = MiniLMEmbeddings(settings.embedding_model)
-        client = chromadb.PersistentClient(path=str(persist_path))
+        try:
+            client = chromadb.PersistentClient(path=str(persist_path))
+        except Exception:
+            import shutil
+            if persist_path.exists():
+                shutil.rmtree(persist_path, ignore_errors=True)
+            persist_path.mkdir(parents=True, exist_ok=True)
+            client = chromadb.PersistentClient(path=str(persist_path))
+
         try:
             client.delete_collection(name=collection_name)
         except Exception:
             pass
+
         collection = client.create_collection(
             name=collection_name,
             configuration={"hnsw": {"space": "cosine"}},
