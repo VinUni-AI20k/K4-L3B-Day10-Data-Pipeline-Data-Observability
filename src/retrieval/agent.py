@@ -1,21 +1,24 @@
 from __future__ import annotations
 
+from types import SimpleNamespace
 from typing import Any
-
-from langchain.agents import create_agent
-from langchain.tools import tool
 
 from core.config import Settings
 from retrieval.index import LocalEmbeddingIndex
 from retrieval.llm import build_llm
 
 
-def build_agent(settings: Settings, index: LocalEmbeddingIndex):
-    @tool
-    def semantic_search_papers(query: str, top_k: int = 4) -> str:
-        """Search the local paper corpus with embeddings and return the most relevant papers."""
-        results = index.search(query, top_k=top_k)
-        lines = []
+class SimplePaperAgent:
+    def __init__(self, settings: Settings, index: LocalEmbeddingIndex):
+        self.settings = settings
+        self.index = index
+        self.llm = build_llm(settings=settings, temperature=0.0)
+
+    def _semantic_search(self, query: str, top_k: int = 4) -> str:
+        results = self.index.search(query, top_k=top_k)
+        if not results:
+            return "No relevant papers found in the local corpus."
+        lines: list[str] = []
         for result in results:
             lines.append(
                 f"paper_id: {result.paper_id}\n"
@@ -25,10 +28,8 @@ def build_agent(settings: Settings, index: LocalEmbeddingIndex):
             )
         return "\n\n".join(lines)
 
-    @tool
-    def lookup_paper(paper_id_or_title: str) -> str:
-        """Look up a paper by exact paper_id or exact title from the local corpus."""
-        record = index.lookup(paper_id_or_title)
+    def _lookup_paper(self, paper_id_or_title: str) -> str:
+        record = self.index.lookup(paper_id_or_title)
         if not record:
             return "No exact paper match found."
         return (
@@ -37,17 +38,44 @@ def build_agent(settings: Settings, index: LocalEmbeddingIndex):
             f"{record['content']}"
         )
 
-    llm = build_llm(settings=settings, temperature=0.0)
-    return create_agent(
-        model=llm,
-        tools=[semantic_search_papers, lookup_paper],
-        system_prompt=(
-            "You answer questions about the indexed scholarly paper corpus sourced from Crossref. "
-            "Use tools before answering factual questions. "
-            "If the indexed corpus does not support the answer, say so clearly."
-        ),
-        name="paper_corpus_agent",
-    )
+    def invoke(self, payload: dict[str, Any]) -> dict[str, Any]:
+        messages = payload.get("messages", [])
+        if not messages:
+            return {"messages": [SimpleNamespace(content="No question provided.")]}
+
+        last_message = messages[-1]
+        if isinstance(last_message, dict):
+            question = str(last_message.get("content", "")).strip()
+        else:
+            question = str(getattr(last_message, "content", "")).strip()
+
+        if not question:
+            return {"messages": [SimpleNamespace(content="No question provided.")]}
+
+        context = self._semantic_search(question, top_k=self.settings.top_k)
+        exact = self.index.lookup(question)
+        if exact:
+            context = (
+                f"paper_id: {exact['paper_id']}\n"
+                f"title: {exact['title']}\n"
+                f"{exact['content']}\n\n"
+                f"Additional context:\n{context}"
+            )
+
+        prompt = (
+            "You answer questions about the indexed scholarly paper corpus sourced from Crossref.\n"
+            "Use the retrieved corpus context below and answer factually.\n"
+            "If the corpus does not support the answer, say so clearly.\n\n"
+            f"Question: {question}\n\nContext:\n{context}"
+        )
+
+        response = self.llm.invoke(prompt)
+        answer = getattr(response, "content", str(response))
+        return {"messages": [SimpleNamespace(content=str(answer))]}
+
+
+def build_agent(settings: Settings, index: LocalEmbeddingIndex) -> SimplePaperAgent:
+    return SimplePaperAgent(settings=settings, index=index)
 
 
 def run_agent_question(agent: Any, question: str) -> str:
