@@ -1,12 +1,14 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import UTC, datetime
 import re
+from pathlib import Path
 
 import pandas as pd
 
-from core.utils import compact_join, normalize_whitespace
-from ingestion.crossref import PaperRecord
+from core.config import Settings, load_settings
+from core.utils import compact_join, ensure_parent, normalize_whitespace, write_csv
+from ingestion.crossref import PaperRecord, fetch_source_records, load_raw_records
 
 
 def build_clean_dataframe(records: list[PaperRecord], run_date: datetime) -> pd.DataFrame:
@@ -133,4 +135,35 @@ def build_clean_dataframe(records: list[PaperRecord], run_date: datetime) -> pd.
     df = pd.DataFrame(cleaned_rows)
     df = df.sort_values(by=["published", "paper_id"], ascending=[False, True]).reset_index(drop=True)
     return df
+
+
+def clean_and_save_data(settings: Settings | None = None) -> pd.DataFrame:
+    """Load raw records, clean data, and save to CSV and JSON."""
+    if settings is None:
+        settings = load_settings()
+
+    if settings.paths.raw_records_json.exists():
+        records = load_raw_records(settings.paths.raw_records_json)
+    else:
+        records = fetch_source_records(settings)
+
+    run_date = datetime.now(UTC)
+    df = build_clean_dataframe(records, run_date)
+
+    ensure_parent(settings.paths.clean_csv)
+    write_csv(df, settings.paths.clean_csv)
+
+    ensure_parent(settings.paths.clean_json)
+    df.to_json(settings.paths.clean_json, orient="records", indent=2, force_ascii=False)
+
+    return df
+
+
+if __name__ == "__main__":
+    current_settings = load_settings()
+    cleaned_df = clean_and_save_data(current_settings)
+    print(f"Cleaned {len(cleaned_df)} records successfully.")
+    print(f"Saved CSV to: {current_settings.paths.clean_csv}")
+    print(f"Saved JSON to: {current_settings.paths.clean_json}")
+
 
