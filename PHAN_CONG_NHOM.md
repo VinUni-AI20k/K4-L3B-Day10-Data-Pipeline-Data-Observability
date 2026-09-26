@@ -13,8 +13,8 @@
 | STT | Thành viên | Vai trò chính | Module phụ trách chính | Nhiệm vụ chi tiết | Lệnh / File kết quả phụ trách |
 |:---:|---|---|---|---|---|
 | 1 | **Nguyễn Đức Đông** *(Leader)* | **Pipeline Integrator & Leader** | `core/`, `script/`, `src/pipelines/` | - Thiết lập Git Teamwork, cấu hình `.env`, `core/config.py`<br>- Tích hợp toàn bộ luồng Phase 1 (`src/pipelines/phase1.py`) và Phase 2 (`src/pipelines/corruption_flow.py`) thành công.<br>- Điều phối làm việc, chạy script kiểm thử và kiểm tra Git Contributors. | `script/run_phase1.py`<br>`script/run_corruption_flow.py`<br>`core/config.py` |
-| 2 | **Bùi Quốc Việt** | **Data Ingestion & Recovery Specialist** | `src/ingestion/` | - Phụ trách bóc tách dữ liệu Crossref API & fallback snapshot offline (`src/ingestion/crossref.py`).<br>- Chuẩn hóa DataFrame, tính `age_days` và `text_for_embedding` (`src/ingestion/cleaning.py`).<br>- Viết kịch bản tiêm 6 loại lỗi dữ liệu (`src/ingestion/corruption.py`) và luồng tự phục hồi (Idempotent Repair). | `src/ingestion/crossref.py`<br>`src/ingestion/cleaning.py`<br>`src/ingestion/corruption.py` |
-| 3 | **Nguyễn Thị Lê Na** | **RAG & Vector Store Specialist** | `src/retrieval/` | - Quản lý mô hình embedding `sentence-transformers/all-MiniLM-L6-v2`.<br>- Khởi tạo và nạp 3 không gian vector cô lập trên ChromaDB (`papers-baseline`, `papers-corrupted`, `papers-repaired`).<br>- Thiết lập LLM Provider (Groq / Gemini / Mock) và hàm truy vấn RAG context. | `src/retrieval/index.py`<br>`src/retrieval/llm.py`<br>`data/chroma/` |
+| 2 | **Nguyễn Thị Lê Na** | **Data Ingestion & Recovery Specialist** | `src/ingestion/` | - Phụ trách bóc tách dữ liệu Crossref API & fallback snapshot offline (`src/ingestion/crossref.py`).<br>- Chuẩn hóa DataFrame, tính `age_days` và `text_for_embedding` (`src/ingestion/cleaning.py`).<br>- Viết kịch bản tiêm 6 loại lỗi dữ liệu (`src/ingestion/corruption.py`) và luồng tự phục hồi (Idempotent Repair). | `src/ingestion/crossref.py`<br>`src/ingestion/cleaning.py`<br>`src/ingestion/corruption.py` |
+| 3 | **Bùi Quốc Việt** | **RAG & Vector Store Specialist** | `src/retrieval/` | - Quản lý mô hình embedding `sentence-transformers/all-MiniLM-L6-v2`.<br>- Khởi tạo và nạp 3 không gian vector cô lập trên ChromaDB (`papers-baseline`, `papers-corrupted`, `papers-repaired`).<br>- Thiết lập LLM Provider (Groq / Gemini / Mock) và hàm truy vấn RAG context. | `src/retrieval/index.py`<br>`src/retrieval/llm.py`<br>`data/chroma/` |
 | 4 | **Lê Thị Duyên** | **Data Observability & Evaluation Specialist** | `src/observability/`<br>`src/evaluation/` | - Thiết lập Chốt kiểm soát chất lượng dữ liệu với **Great Expectations 1.x** (4 Expectations bắt buộc + Freshness SLA 180 ngày) tại `src/observability/quality.py`.<br>- Sinh tập benchmark test set 10 câu hỏi (`src/evaluation/testset.py`).<br>- Đo lường metrics (Hit Rate, Token F1) và xuất báo cáo so sánh 3 trạng thái. | `src/observability/quality.py`<br>`src/evaluation/testset.py`<br>`data/reports/corruption_report.md` |
 
 ---
@@ -31,7 +31,7 @@
 
 ---
 
-### 2️⃣ **Bùi Quốc Việt (Data Ingestion, Cleaning & Corruption)**
+### 2️⃣ **Nguyễn Thị Lê Na (Data Ingestion, Cleaning & Corruption)**
 - **Mục tiêu:** Thu thập, làm sạch và tạo bộ tiêm lỗi dữ liệu.
 - **Các bước thực hiện:**
   1. **Bước 2 (`src/ingestion/crossref.py`):** Hoàn thiện `parse_crossref_payload()`, `fetch_source_records()` và `load_raw_records()`.
@@ -42,7 +42,7 @@
 
 ---
 
-### 3️⃣ **Nguyễn Thị Lê Na (Vector Database & RAG Retrieval)**
+### 3️⃣ **Bùi Quốc Việt (Vector Database & RAG Retrieval)**
 - **Mục tiêu:** Đánh chỉ mục vector trên ChromaDB và xây dựng bộ truy vấn RAG.
 - **Các bước thực hiện:**
   1. Kiểm tra cấu hình `src/retrieval/llm.py` và đảm bảo hàm `build_llm()` khởi tạo đúng Provider (Groq / Gemini / OpenAI / Mock).
@@ -77,8 +77,8 @@
    git pull origin main
    ```
 2. Mọi thành viên độc lập làm việc trên module thuộc vai trò của mình (File không đụng chạm nhau):
-   - **Việt:** chỉ sửa file trong `src/ingestion/`
-   - **Lê Na:** chỉ sửa file trong `src/retrieval/`
+   - **Lê Na:** chỉ sửa file trong `src/ingestion/`
+   - **Việt:** chỉ sửa file trong `src/retrieval/`
    - **Duyên:** chỉ sửa file trong `src/observability/` & `src/evaluation/`
    - **Đông:** điều phối `src/pipelines/`, `core/config.py` và `script/`
 3. Sau khi chạy test cá nhân đạt kết quả (Pass Signal), commit và push lên repository:
