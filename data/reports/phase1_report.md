@@ -11,7 +11,7 @@
 | Papers with categories | 0 |
 | Câu hỏi benchmark | 10 |
 | Embedding model | sentence-transformers/all-MiniLM-L6-v2 |
-| Embedding runtime | ONNXMiniLM_L6_V2 |
+| Embedding runtime | SentenceTransformer |
 | Chroma collection | papers-baseline |
 
 ## Chỉ số đánh giá RAG
@@ -23,7 +23,7 @@
 | Mean Token F1 | 0.8000 |
 | Judge accuracy | 80.00% |
 | Mean judge score | 4.20/5 |
-| Số câu dùng heuristic judge | 10 |
+| Số câu dùng heuristic judge | 0 |
 
 | Loại câu hỏi | Số câu | Hit Rate | Token F1 |
 | --- | ---: | ---: | ---: |
@@ -56,8 +56,6 @@
 | Freshness SLA | Đạt |
 | Mới nhất | 2026-09-15 |
 | Cũ nhất | 2026-04-01 |
-
-Judge dùng heuristic khi nhà cung cấp LLM không khả dụng; Retrieval Hit Rate và Token F1 vẫn được tính từ câu trả lời truy xuất.
 
 Crossref không cung cấp subject cho các bài trong snapshot này. 2 câu hỏi categories kiểm tra khả năng xử lý metadata thiếu; Token F1 của nhóm là 0.0000.
 

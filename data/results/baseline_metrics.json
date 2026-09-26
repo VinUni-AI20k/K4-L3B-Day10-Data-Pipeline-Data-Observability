@@ -4,7 +4,7 @@
   "mean_token_f1": 0.8,
   "judge_accuracy": 0.8,
   "mean_judge_score": 4.2,
-  "fallback_judge_count": 10,
+  "fallback_judge_count": 0,
   "question_type_metrics": {
     "summary": {
       "samples": 3,

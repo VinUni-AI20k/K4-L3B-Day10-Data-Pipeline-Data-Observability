@@ -1,58 +1,19 @@
-# Danh Sách Thành Viên & Báo Cáo Phân Công Nhóm
+# Nhóm Trike — K4-L3B-DAY10
 
-- **Tên Nhóm:** `Trike`
-- **Mã Nhóm / Lớp:** `K4-L3-DAY10`
-- **Tên Repository Nộp Bài:** `K4-L3-DAY10-Trike-DataPipeline`
+Repository: [K4-L3B-DAY10-Trike-DataPipelineDataObservability](https://github.com/hoang9605/K4-L3B-DAY10-Trike-DataPipelineDataObservability)
 
----
+## Thành viên và phân công đã xác nhận
 
-## # Thành viên
+| MSSV | Thành viên | Phần việc Phase 1 | Báo cáo cá nhân |
+| --- | --- | --- | --- |
+| 02489 | Hải Hoàng | Làm sạch dữ liệu; tích hợp và chạy baseline pipeline | [02489_HaiHoang.md](../report/02489_HaiHoang.md) |
+| 02623 | Tuấn Đạt | Thu thập và lưu raw data Crossref; tạo benchmark test set | [02623_TuanDat.md](../report/02623_TuanDat.md) |
+| 02853 | Hoàng Nam | Great Expectations quality gate; kiểm tra độ tươi mới | [02853_HoangNam.md](../report/02853_HoangNam.md) |
 
-| STT | Họ và tên | MSSV | Email | Vai trò & Phân công công việc | Báo cáo cá nhân |
-|---:|---|---|---|---|---|
-| 1 | | | | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption_flow.py`) | `report/<MSSV1>_HoTen.md` |
-| 2 | | | | Data Foundation & Recovery (`crossref.py`, `cleaning.py`, raw data) | `report/<MSSV2>_HoTen.md` |
-| 3 | | | | RAG & Vector Index (`retrieval/index.py`, `embeddings.py`, ChromaDB) | `report/<MSSV3>_HoTen.md` |
-| 4 | | | | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/<MSSV4>_HoTen.md` |
+## Phạm vi đã có bằng chứng
 
-*(Nếu nhóm có 3 hoặc 5-6 thành viên, xem bảng phân công chi tiết theo vai trò trong file `CHECKPOINTS.md`)*.
+- **Đạt:** `src/ingestion/crossref.py` chuẩn hóa payload Crossref thành `PaperRecord`, lưu nguyên bytes JSON API khi lấy trực tuyến, ghi danh sách records, và dùng snapshot khi API không khả dụng; `src/evaluation/testset.py` sinh 10 câu hỏi thuộc bốn loại.
+- **Hoàng:** `src/ingestion/cleaning.py` chuẩn hóa văn bản/ngày tháng, tính `age_days`, tạo `text_for_embedding`, khử DOI trùng; `src/pipelines/phase1.py` nối các bước ingest, clean, quality gate, Chroma, benchmark và báo cáo.
+- **Nam:** `src/observability/quality.py` chạy Great Expectations 1.x bằng Ephemeral Context, kiểm tra sáu expectation của bốn loại yêu cầu và SLA dữ liệu cũ.
 
----
-
-## # Cá nhân
-
-### ## HoVaTen1-MSSV1
-- **Vai trò:** Trưởng nhóm & Điều phối Pipeline.
-- **Công việc chi tiết đã hoàn thành:**
-  - Thiết lập cấu hình hệ thống `core/config.py` và đường dẫn artifacts `core/utils.py`.
-  - Kết nối luồng thực thi trong `src/pipelines/phase1.py` và `src/pipelines/corruption_flow.py`.
-  - Kiểm tra tính nhất quán của các artifacts và theo dõi Contributor tracking trên GitHub nhánh `main`.
-- **Điều học được / Đóng góp chính:**
-  - Hiểu sâu sắc về thiết kế Idempotent Pipeline và quản lý trạng thái luồng dữ liệu đa tầng.
-
-### ## HoVaTen2-MSSV2
-- **Vai trò:** Phụ trách Ingestion, Làm sạch & Phục hồi dữ liệu.
-- **Công việc chi tiết đã hoàn thành:**
-  - Xây dựng module thu thập Crossref API với cơ chế Fallback offline trong `src/ingestion/crossref.py`.
-  - Chuẩn hóa schema, tính toán trường `age_days` và `text_for_embedding` trong `src/ingestion/cleaning.py`.
-  - Thực thi cơ chế Idempotent Repair phục hồi dữ liệu từ raw snapshot.
-- **Điều học được / Đóng góp chính:**
-  - Kỹ thuật truy vết nguồn gốc dữ liệu (Data Lineage) và bảo toàn raw snapshot trước khi biến đổi.
-
-### ## HoVaTen3-MSSV3
-- **Vai trò:** Phụ trách RAG, Vector Database & Embedding.
-- **Công việc chi tiết đã hoàn thành:**
-  - Quản lý mô hình embedding `sentence-transformers/all-MiniLM-L6-v2`.
-  - Nạp và quản lý 3 collection riêng biệt trong ChromaDB (`papers-baseline`, `papers-corrupted`, `papers-repaired`).
-  - Xây dựng QA Agent truy vấn ngữ cảnh chính xác theo tài liệu.
-- **Điều học được / Đóng góp chính:**
-  - Cách cô lập các không gian vector để so sánh khách quan giữa dữ liệu sạch và dữ liệu bị lỗi.
-
-### ## HoVaTen4-MSSV4
-- **Vai trò:** Phụ trách Data Observability & Benchmark Evaluation.
-- **Công việc chi tiết đã hoàn thành:**
-  - Thiết lập Quality Gate theo chuẩn mới **Great Expectations 1.x** và giám sát Freshness SLA trong `src/observability/quality.py`.
-  - Xây dựng bộ câu hỏi đánh giá chuẩn trong `src/evaluation/testset.py`.
-  - Đo lường và xuất bảng đối chiếu 3 trạng thái vào `data/reports/corruption_report.md`.
-- **Điều học được / Đóng góp chính:**
-  - Cách thiết lập hệ thống cảnh báo sớm chặn đứng hiện tượng Silent Failure trước khi dữ liệu vào serving layer.
+Kết quả Phase 1 và giới hạn được ghi trong [báo cáo nhóm](../report/group_report.md). Tính đến 2026-09-26, thư mục artifact có 24 bản ghi sạch, 10 câu hỏi benchmark, Hit Rate 100%, Token F1 0,8 và quality gate đạt. Hai câu hỏi về lĩnh vực không có metadata `subject` trong snapshot hiện dùng; kết quả loại câu hỏi này có Token F1 bằng 0. Không có artifact corruption/repair để ghi nhận là đã hoàn thành.
