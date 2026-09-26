@@ -31,7 +31,7 @@
 
 ---
 
-### 2️⃣ **Bùi Quốc Việt (Data Ingestion, Cleaning & Corruption)**
+### 2️⃣ **Nguyễn Thị Lê Na (Data Ingestion, Cleaning & Corruption)**
 - **Mục tiêu:** Thu thập, làm sạch và tạo bộ tiêm lỗi dữ liệu.
 - **Các bước thực hiện:**
   1. **Bước 2 (`src/ingestion/crossref.py`):** Hoàn thiện `parse_crossref_payload()`, `fetch_source_records()` và `load_raw_records()`.
@@ -42,7 +42,7 @@
 
 ---
 
-### 3️⃣ **Nguyễn Thị Lê Na (Vector Database & RAG Retrieval)**
+### 3️⃣ **Bùi Quốc Việt (Vector Database & RAG Retrieval)**
 - **Mục tiêu:** Đánh chỉ mục vector trên ChromaDB và xây dựng bộ truy vấn RAG.
 - **Các bước thực hiện:**
   1. Kiểm tra cấu hình `src/retrieval/llm.py` và đảm bảo hàm `build_llm()` khởi tạo đúng Provider (Groq / Gemini / OpenAI / Mock).
@@ -77,8 +77,8 @@
    git pull origin main
    ```
 2. Mọi thành viên độc lập làm việc trên module thuộc vai trò của mình (File không đụng chạm nhau):
-   - **Việt:** chỉ sửa file trong `src/ingestion/`
-   - **Lê Na:** chỉ sửa file trong `src/retrieval/`
+   - **Lê Na:** chỉ sửa file trong `src/ingestion/`
+   - **Việt:** chỉ sửa file trong `src/retrieval/`
    - **Duyên:** chỉ sửa file trong `src/observability/` & `src/evaluation/`
    - **Đông:** điều phối `src/pipelines/`, `core/config.py` và `script/`
 3. Sau khi chạy test cá nhân đạt kết quả (Pass Signal), commit và push lên repository:
