@@ -8,7 +8,7 @@
 | MSSV               | 2A202602888               |
 | Khóa/Lớp         | K4 - Lớp B (Ca Sáng)      |
 | Tên nhóm         | Team 03 - DataObservability |
-| Vai trò chính    | Trưởng nhóm / Pipeline Integrator & Data Orchestration |
+| Vai trò chính    | Pipeline Integrator & Data Orchestration |
 | Repository         | K4-L3B-DAY10-Team03-DataPipelineDataObservability |
 | Ngày hoàn thành | 2026-09-26               |
 

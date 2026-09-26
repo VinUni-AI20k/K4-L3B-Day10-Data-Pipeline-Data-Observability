@@ -8,12 +8,12 @@
 
 ## 👥 Danh Sách Thành Viên & Phân Công
 
-| STT | Họ và tên | MSSV | Email | Vai trò & Trách nhiệm chính |
-| :---: | :--- | :---: | :--- | :--- |
-| 1 | **Nguyễn Đức Anh** | 2A202602888 | ducanh.nguyen@vinuni.edu.vn | **Trưởng nhóm / Pipeline Integrator & Data Orchestration** (`core/`, `phase1.py`, `corruption_flow.py`, `script/`, Self-Healing & Pytest CI) |
-| 2 | **Đặng Thái Anh** | 2A202602740 | thaianh.dang@vinuni.edu.vn | **Data Foundation, Ingestion & Idempotent Recovery** (`crossref.py`, `cleaning.py`, raw data snapshot, 6 corruption scenarios) |
-| 3 | **Đỗ Trung Tuyến** | 2A202602427 | trungtuyen.do@vinuni.edu.vn | **RAG Agent & Vector Index Architecture** (`retrieval/index.py`, `embeddings.py`, `agent.py`, `qa.py`, ChromaDB collections) |
-| 4 | **Nguyễn Khánh Duy** | 2A202602403 | khanhduy.nguyen@vinuni.edu.vn | **Data Observability, Freshness SLA & Benchmark Evaluation** (`quality.py` GX 1.x, `testset.py`, `metrics.py`, reporting, HTML Dashboard) |
+| STT | Họ và tên | MSSV | Vai trò & Trách nhiệm chính |
+| :---: | :--- | :---: | :--- |
+| 1 | **Đặng Thái Anh** | 2A202602740 | **Trưởng nhóm / Data Foundation, Ingestion & Idempotent Recovery** (`crossref.py`, `cleaning.py`, raw data snapshot, 6 corruption scenarios) |
+| 2 | **Nguyễn Đức Anh** | 2A202602888 | **Pipeline Integrator & Data Orchestration** (`core/`, `phase1.py`, `corruption_flow.py`, `script/`, Self-Healing & Pytest CI) |
+| 3 | **Đỗ Trung Tuyến** | 2A202602427 | **RAG Agent & Vector Index Architecture** (`retrieval/index.py`, `embeddings.py`, `agent.py`, `qa.py`, ChromaDB collections) |
+| 4 | **Nguyễn Khánh Duy** | 2A202602403 | **Data Observability, Freshness SLA & Benchmark Evaluation** (`quality.py` GX 1.x, `testset.py`, `metrics.py`, reporting, HTML Dashboard) |
 
 ---
 
@@ -135,5 +135,5 @@ K4-L3B-DAY10-Team03-DataPipelineDataObservability/
 - [x] `data/reports/corruption_report.md` có đầy đủ bảng đối chiếu 3 trạng thái.
 - [x] Tồn tại đủ các file metrics JSON (`baseline_metrics.json`, `corrupted_metrics.json`, `repaired_metrics.json`).
 - [x] `docs/TEAM.md` và `report/group_report.md` điền đầy đủ 100% thông tin.
-- [x] Có đầy đủ 3 báo cáo cá nhân: `2A202602888_NguyenDucAnh.md`, `2A202602740_DangThaiAnh.md`, `2A202602427_DoTrungTuyen.md`.
+- [x] Có đầy đủ 4 báo cáo cá nhân: `2A202602888_NguyenDucAnh.md`, `2A202602740_DangThaiAnh.md`, `2A202602427_DoTrungTuyen.md`, `2A202602403_NguyenKhanhDuy.md`
 - [x] Không commit file `.env` lên GitHub (đã cấu hình trong `.gitignore`).

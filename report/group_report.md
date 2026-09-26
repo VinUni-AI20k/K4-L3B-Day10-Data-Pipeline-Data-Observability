@@ -13,8 +13,8 @@
 
 | STT | Họ và tên | MSSV | Vai trò chính | Module/deliverable sở hữu |
 | --: | --- | --- | --- | --- |
-| 1 | Nguyễn Đức Anh | 2A202602888 | Trưởng nhóm / Pipeline Integrator | `src/core/`, `src/pipelines/phase1.py`, `src/pipelines/corruption_flow.py`, `script/` |
-| 2 | Đặng Thái Anh | 2A202602740 | Data Foundation & Recovery | `src/ingestion/crossref.py`, `src/ingestion/cleaning.py`, `src/ingestion/corruption.py`, raw data artifacts |
+| 1 | Đặng Thái Anh | 2A202602740 | Trưởng nhóm / Data Foundation & Recovery | `src/ingestion/crossref.py`, `src/ingestion/cleaning.py`, `src/ingestion/corruption.py`, raw data artifacts |
+| 2 | Nguyễn Đức Anh | 2A202602888 | Pipeline Integrator & Orchestration | `src/core/`, `src/pipelines/phase1.py`, `src/pipelines/corruption_flow.py`, `script/` |
 | 3 | Đỗ Trung Tuyến | 2A202602427 | RAG Agent & Vector Index Architecture | `src/retrieval/index.py`, `src/retrieval/embeddings.py`, `src/retrieval/agent.py`, `src/retrieval/qa.py`, ChromaDB |
 | 4 | Nguyễn Khánh Duy | 2A202602403 | Data Observability & Evaluation | `src/observability/quality.py`, `src/observability/reporting.py`, `src/evaluation/testset.py`, `src/evaluation/metrics.py`, Dashboard |
 

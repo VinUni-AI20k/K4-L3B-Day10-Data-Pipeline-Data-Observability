@@ -8,7 +8,7 @@
 | MSSV               | 2A202602740               |
 | Khóa/Lớp         | K4 - Lớp B (Ca Sáng)      |
 | Tên nhóm         | Team 03 - DataObservability |
-| Vai trò chính    | Data Foundation, Ingestion & Idempotent Recovery |
+| Vai trò chính    | Trưởng nhóm / Data Foundation, Ingestion & Idempotent Recovery |
 | Repository         | K4-L3B-DAY10-Team03-DataPipelineDataObservability |
 | Ngày hoàn thành | 2026-09-26               |
 
