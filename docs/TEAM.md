@@ -11,8 +11,8 @@
 | STT | Họ và tên | MSSV | Email | Vai trò & Phân công công việc | Báo cáo cá nhân |
 |---:|---|---|---|---|---|
 | 1 | Nguyễn Đức Đông | | dong160805@gmail.com | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption_flow.py`) | `report/NguyenDucDong.md` |
-| 2 | Bùi Quốc Việt | | | Data Foundation & Ingestion (`crossref.py`, `cleaning.py`, `corruption.py`) | `report/BuiQuocViet.md` |
-| 3 | Nguyễn Thị Lê Na | | | RAG & Vector Index (`retrieval/index.py`, `llm.py`, ChromaDB) | `report/NguyenThiLeNa.md` |
+| 2 | Nguyễn Thị Lê Na | | | Data Foundation & Ingestion (`crossref.py`, `cleaning.py`, `corruption.py`) | `report/NguyenThiLeNa.md` |
+| 3 | Bùi Quốc Việt | | | RAG & Vector Index (`retrieval/index.py`, `llm.py`, ChromaDB) | `report/BuiQuocViet.md` |
 | 4 | Lê Thị Duyên | | | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/LeThiDuyen.md` |
 
 ---
@@ -26,14 +26,14 @@
   - Tích hợp luồng thực thi trong `src/pipelines/phase1.py` và `src/pipelines/corruption_flow.py`.
   - Kiểm tra tính nhất quán của các artifacts và theo dõi Contributor tracking trên GitHub.
 
-### ## Bùi Quốc Việt
+### ## Nguyễn Thị Lê Na
 - **Vai trò:** Phụ trách Ingestion, Làm sạch & Phục hồi dữ liệu.
 - **Công việc chi tiết đã hoàn thành:**
   - Xây dựng module thu thập Crossref API với cơ chế Fallback offline trong `src/ingestion/crossref.py`.
   - Chuẩn hóa schema, tính toán trường `age_days` và `text_for_embedding` trong `src/ingestion/cleaning.py`.
   - Tiêm lỗi dữ liệu (`src/ingestion/corruption.py`) và thực thi cơ chế Idempotent Repair.
 
-### ## Nguyễn Thị Lê Na
+### ## Bùi Quốc Việt
 - **Vai trò:** Phụ trách RAG, Vector Database & Embedding.
 - **Công việc chi tiết đã hoàn thành:**
   - Quản lý mô hình embedding `sentence-transformers/all-MiniLM-L6-v2`.

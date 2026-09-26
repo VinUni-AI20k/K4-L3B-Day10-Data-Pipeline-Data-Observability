@@ -1,0 +1,63 @@
+[
+  {
+    "scenario": "drop_latest_records",
+    "dropped_count": 4,
+    "dropped_paper_ids": [
+      "10.1145/3637528.3671821",
+      "10.1145/3637528.3671822",
+      "10.1145/3637528.3671823",
+      "10.1145/3637528.3671824"
+    ]
+  },
+  {
+    "scenario": "blank_summary",
+    "paper_id": "10.1145/3637528.3671801",
+    "action": "summary cleared to blank"
+  },
+  {
+    "scenario": "blank_summary",
+    "paper_id": "10.1145/3637528.3671802",
+    "action": "summary cleared to blank"
+  },
+  {
+    "scenario": "inject_noise",
+    "paper_id": "10.1145/3637528.3671803",
+    "action": "appended corruption noise string to summary"
+  },
+  {
+    "scenario": "inject_noise",
+    "paper_id": "10.1145/3637528.3671804",
+    "action": "appended corruption noise string to summary"
+  },
+  {
+    "scenario": "truncate_title",
+    "paper_id": "10.1145/3637528.3671805",
+    "original_title": "Evaluating Retrieval Precision with Token F1 and LLM Judges",
+    "truncated_title": "Evalu"
+  },
+  {
+    "scenario": "truncate_title",
+    "paper_id": "10.1145/3637528.3671806",
+    "original_title": "Semantic Layer Integration for Agentic Text-to-SQL Pipelines",
+    "truncated_title": "Seman"
+  },
+  {
+    "scenario": "stale_date",
+    "paper_id": "10.1145/3637528.3671807",
+    "action": "aged published date back by 365 days"
+  },
+  {
+    "scenario": "stale_date",
+    "paper_id": "10.1145/3637528.3671808",
+    "action": "aged published date back by 365 days"
+  },
+  {
+    "scenario": "stale_date",
+    "paper_id": "10.1145/3637528.3671809",
+    "action": "aged published date back by 365 days"
+  },
+  {
+    "scenario": "duplicate_rows",
+    "duplicated_count": 3
+  }
+]
