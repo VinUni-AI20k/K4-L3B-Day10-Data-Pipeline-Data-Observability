@@ -123,7 +123,7 @@ def load_settings(project_dir: Path | None = None) -> Settings:
         ollama_base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
         custom_llm_api_key=os.getenv("CUSTOM_LLM_API_KEY"),
         custom_llm_base_url=os.getenv("CUSTOM_LLM_BASE_URL"),
-        embedding_model="sentence-transformers/all-MiniLM-L6-v2",
+        embedding_model=os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2"),
         baseline_collection_name="papers-baseline",
         corrupted_collection_name="papers-corrupted",
         repaired_collection_name="papers-repaired",
@@ -141,6 +141,8 @@ def load_settings(project_dir: Path | None = None) -> Settings:
 
 def normalized_provider(settings: Settings) -> str:
     provider = settings.llm_provider.strip().lower().replace(" ", "").replace("-", "")
+    if provider == "google":
+        return "gemini"
     if provider == "anthorpic":
         return "anthropic"
     if provider == "customllm":
