@@ -9,7 +9,7 @@ import pandas as pd
 
 from core.config import Settings
 from core.utils import read_json, safe_slug, write_json
-from retrieval.embeddings import MiniLMEmbeddings
+from retrieval.embeddings import MiniLMEmbeddings, build_embeddings
 
 
 @dataclass(frozen=True)
@@ -28,13 +28,14 @@ class LocalEmbeddingIndex:
         collection_name: str,
         documents: list[dict[str, Any]],
         persist_path: Path,
+        embedding_model: Any | None = None,
     ):
         self.settings = settings
         self.collection_name = collection_name
         self.documents = documents
         self.persist_path = persist_path
         self.embedding_backend = "chroma"
-        self.embedding_model = MiniLMEmbeddings(settings.embedding_model)
+        self.embedding_model = embedding_model or build_embeddings(settings)
         self.client = chromadb.PersistentClient(path=str(persist_path))
         self.collection = self.client.get_collection(name=collection_name)
         self.documents_by_paper_id = {document["paper_id"].lower(): document for document in documents}
@@ -86,13 +87,14 @@ class LocalEmbeddingIndex:
         df: pd.DataFrame,
         settings: Settings,
         embeddings_output_path: Path | None = None,
+        embedding_model: Any | None = None,
     ) -> "LocalEmbeddingIndex":
         collection_name = cls._derive_collection_name(settings, embeddings_output_path)
         documents = cls._build_documents(df)
         persist_path = settings.paths.chroma_dir
         persist_path.mkdir(parents=True, exist_ok=True)
 
-        embedding_model = MiniLMEmbeddings(settings.embedding_model)
+        embedder = embedding_model or build_embeddings(settings)
         client = chromadb.PersistentClient(path=str(persist_path))
         try:
             client.delete_collection(name=collection_name)
@@ -102,7 +104,7 @@ class LocalEmbeddingIndex:
             name=collection_name,
             configuration={"hnsw": {"space": "cosine"}},
         )
-        embeddings = embedding_model.embed_documents([document["content"] for document in documents])
+        embeddings = embedder.embed_documents([document["content"] for document in documents])
         collection.add(
             ids=[document["record_id"] for document in documents],
             embeddings=embeddings,
@@ -110,12 +112,13 @@ class LocalEmbeddingIndex:
             metadatas=[document["metadata"] for document in documents],
         )
 
+        model_name_str = getattr(embedder, "model_name", getattr(embedder, "model", settings.embedding_model))
         manifest_path = embeddings_output_path or settings.paths.embeddings_json
         write_json(
             manifest_path,
             {
                 "backend": "chroma",
-                "embedding_model": settings.embedding_model,
+                "embedding_model": str(model_name_str),
                 "persist_path": str(persist_path),
                 "collection_name": collection_name,
                 "documents": documents,
@@ -126,16 +129,18 @@ class LocalEmbeddingIndex:
             collection_name=collection_name,
             documents=documents,
             persist_path=persist_path,
+            embedding_model=embedder,
         )
 
     @classmethod
-    def load(cls, settings: Settings, embeddings_path: Path | None = None) -> "LocalEmbeddingIndex":
+    def load(cls, settings: Settings, embeddings_path: Path | None = None, embedding_model: Any | None = None) -> "LocalEmbeddingIndex":
         payload = read_json(embeddings_path or settings.paths.embeddings_json)
         return cls(
             settings=settings,
             collection_name=payload["collection_name"],
             documents=payload["documents"],
             persist_path=Path(payload["persist_path"]),
+            embedding_model=embedding_model,
         )
 
     def search(self, query: str, top_k: int | None = None) -> list[SearchResult]:

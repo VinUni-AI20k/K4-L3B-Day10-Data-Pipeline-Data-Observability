@@ -29,7 +29,40 @@ def _extract_answer(question: str, top_result: SearchResult) -> str:
     return first_sentence(metadata["summary"])
 
 
-def answer_question(question: str, settings: Settings, index: LocalEmbeddingIndex, top_k: int | None = None) -> AnswerResult:
+def generate_rag_answer(question: str, contexts: list[str], settings: Settings) -> str:
+    """Sử dụng LLM model cấu hình trong .env (Gemini, OpenAI, v.v.) để sinh câu trả lời RAG."""
+    from retrieval.llm import build_llm
+
+    if not contexts:
+        return "I don't know from the indexed corpus."
+
+    joined_contexts = "\n\n".join(f"--- Document [{i+1}] ---\n{c}" for i, c in enumerate(contexts))
+    prompt = f"""You are an expert AI assistant answering questions about scholarly papers based solely on the provided contexts.
+
+{joined_contexts}
+
+Question: {question}
+
+Instructions:
+1. Provide a direct, concise, and accurate answer grounded strictly in the given documents.
+2. If the answer cannot be determined from the documents, clearly say: "I don't know from the indexed corpus."
+3. Do not assume or extrapolate beyond the provided text.
+"""
+    try:
+        llm = build_llm(settings=settings, temperature=0.0)
+        response = llm.invoke(prompt)
+        return getattr(response, "content", str(response)).strip()
+    except Exception as exc:
+        return ""
+
+
+def answer_question(
+    question: str,
+    settings: Settings,
+    index: LocalEmbeddingIndex,
+    top_k: int | None = None,
+    use_llm: bool = False,
+) -> AnswerResult:
     title_match = re.search(r"'([^']+)'", question)
     exact = index.lookup(title_match.group(1)) if title_match else None
     retrieved = index.search(question, top_k=top_k)
@@ -45,6 +78,10 @@ def answer_question(question: str, settings: Settings, index: LocalEmbeddingInde
         retrieved = deduped[: (top_k or settings.top_k)]
     if not retrieved:
         answer = "I don't know from the indexed corpus."
+    elif use_llm:
+        # Gọi mô hình LLM từ provider trong .env
+        llm_answer = generate_rag_answer(question, [item.content for item in retrieved], settings)
+        answer = llm_answer if llm_answer else _extract_answer(question, retrieved[0])
     else:
         answer = _extract_answer(question, retrieved[0])
     return AnswerResult(
