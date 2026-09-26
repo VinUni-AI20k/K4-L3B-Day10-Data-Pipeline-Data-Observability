@@ -11,7 +11,7 @@
 | STT | Họ và tên | MSSV | Email | Vai trò & Phân công công việc | Báo cáo cá nhân |
 |---:|---|---|---|---|---|
 | 1 | | | | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption_flow.py`) | `report/<MSSV1>_HoTen.md` |
-| 2 | | | | Data Foundation & Recovery (`crossref.py`, `cleaning.py`, raw data) | `report/<MSSV2>_HoTen.md` |
+| 2 | Nguyễn Minh Ngọc | 2A202602530 | | Evaluation & Failure Injection Engineer (`evaluation/testset.py`, `ingestion/corruption.py`; theo ảnh phân công nhóm) | [Báo cáo cá nhân](../report/2A202602530_NguyenMinhNgoc.md) |
 | 3 | | | | RAG & Vector Index (`retrieval/index.py`, `embeddings.py`, ChromaDB) | `report/<MSSV3>_HoTen.md` |
 | 4 | | | | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/<MSSV4>_HoTen.md` |
 
@@ -30,14 +30,16 @@
 - **Điều học được / Đóng góp chính:**
   - Hiểu sâu sắc về thiết kế Idempotent Pipeline và quản lý trạng thái luồng dữ liệu đa tầng.
 
-### ## HoVaTen2-MSSV2
-- **Vai trò:** Phụ trách Ingestion, Làm sạch & Phục hồi dữ liệu.
+### ## Nguyễn Minh Ngọc — 2A202602530
+- **Vai trò:** Evaluation & Failure Injection Engineer (theo ảnh phân công nhóm).
 - **Công việc chi tiết đã hoàn thành:**
-  - Xây dựng module thu thập Crossref API với cơ chế Fallback offline trong `src/ingestion/crossref.py`.
-  - Chuẩn hóa schema, tính toán trường `age_days` và `text_for_embedding` trong `src/ingestion/cleaning.py`.
-  - Thực thi cơ chế Idempotent Repair phục hồi dữ liệu từ raw snapshot.
+  - Tạo benchmark 10 câu thuộc 4 nhóm trong `src/evaluation/testset.py`, có ground truth và document IDs.
+  - Triển khai đủ 6 kịch bản corruption trong `src/ingestion/corruption.py`, cập nhật trường dẫn xuất và ghi log trước/sau.
+  - Bổ sung `tests/test_member2.py` (15 kiểm thử đạt) và `script/verify_member2.py` để tái hiện bằng chứng offline.
+  - Sinh `data/eval/test_set.json`, `data/results/corruption_log.json`, `data/results/member2_validation.json` từ snapshot fixture; chưa đo RAG end-to-end.
 - **Điều học được / Đóng góp chính:**
-  - Kỹ thuật truy vết nguồn gốc dữ liệu (Data Lineage) và bảo toàn raw snapshot trước khi biến đổi.
+  - Benchmark cố định giúp so sánh công bằng giữa baseline, corrupted và repaired; log theo document ID giúp truy vết từng lỗi.
+  - Chi tiết kết quả, giới hạn tích hợp và nội dung cần tự xác nhận: [báo cáo cá nhân](../report/2A202602530_NguyenMinhNgoc.md).
 
 ### ## HoVaTen3-MSSV3
 - **Vai trò:** Phụ trách RAG, Vector Database & Embedding.
