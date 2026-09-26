@@ -197,4 +197,4 @@ Bước 8: Đo Lường Suy Giảm, Phục Hồi Dữ Liệu & Đối Chiếu 3 
 🎯 Nhiệm vụ của bạn: Mở file src/pipelines/corruption_flow.py, hoàn thiện hàm run_corruption_flow_pipeline(settings) để: 1. Nạp dữ liệu bẩn vào ChromaDB và đo lường sự suy giảm hiệu năng của AI (quan sát hiện tượng Silent Failure). 2. Kích hoạt hàm phục hồi an toàn repair_from_raw_snapshot() từ snapshot thô ban đầu để ghi đè dữ liệu hỏng. 3. Tái đánh giá hệ thống và kết xuất bảng so sánh 3 trạng thái tại data/reports/corruption_report.md. Sau đó, thực thi script chạy toàn tuyến Phase 2:
 python script/run_corruption_flow.py
 Chép
-Tín hiệu hoàn thành: - Console in ra bảng so sánh hiệu năng 3 cột rõ ràng (Baseline vs Corrupted vs Repaired). - Báo cáo data/reports/corruption_report.md được tạo thành công, thể hiện rõ mức độ phục hồi hiệu năng của hệ thống.
+Tín hiệu hoàn thành: - Console in ra bảng so sánh hiệu năng 3 cột rõ ràng (Baseline vs Corrupted vs Repaired). - Báo cáo data/reports/corruption_report.md được tạo thành công, thể hiện rõ mức độ phục hồi hiệu năng của hệ thống.b

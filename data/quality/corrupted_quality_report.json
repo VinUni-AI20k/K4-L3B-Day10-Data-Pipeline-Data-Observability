@@ -5,7 +5,7 @@
   "is_fresh": true,
   "total_records": 23,
   "freshness": {
-    "latest_published": "2026-07-22",
+    "latest_published": "2026-06-12",
     "oldest_published": "2024-01-01",
     "stale_rows": 4,
     "stale_ratio": 0.1739,
@@ -25,7 +25,7 @@
             "max_value": 5000
           },
           "meta": {},
-          "id": "2464d77e-2996-4226-aab7-805d694661b4",
+          "id": "fb2d7ce9-9901-49b2-897d-da236cc3c412",
           "severity": "critical"
         },
         "result": {
@@ -47,7 +47,7 @@
             "column": "paper_id"
           },
           "meta": {},
-          "id": "e18a440f-9f4d-4437-86c6-3dad9f08e068",
+          "id": "1dd7fa92-109c-4ddc-966c-fab0333295b4",
           "severity": "critical"
         },
         "result": {
@@ -74,7 +74,7 @@
             "column": "paper_id"
           },
           "meta": {},
-          "id": "4e1cf89f-c0d0-4dc9-b7d3-e0cd5552f4e4",
+          "id": "d85881da-c20a-49a2-95b1-4f03501a3415",
           "severity": "critical"
         },
         "result": {
@@ -132,7 +132,7 @@
             "column": "title"
           },
           "meta": {},
-          "id": "050f4bf1-d3b7-432c-a7ee-5a40c9bdddbd",
+          "id": "4e73c2ed-7435-4a29-8092-eef98f10aaf0",
           "severity": "critical"
         },
         "result": {
@@ -159,7 +159,7 @@
             "column": "text_for_embedding"
           },
           "meta": {},
-          "id": "1197241b-380a-4469-bf7d-3bc2706bdf34",
+          "id": "867659a2-1292-4060-8250-335a71890909",
           "severity": "critical"
         },
         "result": {
@@ -187,7 +187,7 @@
             "min_value": 30
           },
           "meta": {},
-          "id": "27b301bb-68d3-4b4a-a9ee-55dc910bb8a7",
+          "id": "96c0f80c-6079-43e3-a01e-53a7b2552fef",
           "severity": "critical"
         },
         "result": {
@@ -239,8 +239,8 @@
         "batch_data": "PandasDataFrame"
       },
       "batch_markers": {
-        "ge_load_time": "20260926T031920.963761Z",
-        "pandas_data_fingerprint": "67d9f3ce05d3b3c0ea1f1c77f4dd451a"
+        "ge_load_time": "20260926T035725.848775Z",
+        "pandas_data_fingerprint": "7ef5c6d4459f65a170700e94fcee795b"
       },
       "active_batch_definition": {
         "datasource_name": "papers_source_corrupted",
