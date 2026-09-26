@@ -7,7 +7,7 @@
 | Họ và tên       | Trần Tuấn Hoàng      |
 | MSSV               | 2A202602832               |
 | Khóa/Lớp         | K4-H202      |
-| Tên nhóm         | 4anhemsieunhan         |
+| Tên nhóm         | 4aesieunhan         |
 | Vai trò chính    | Xử lý dữ liệu từ các bài báo |
 | Repository         | https://github.com/TuTu99999/K4-L3B-DAY10-4aesieunhan-DataPipelineDataObservability/tree/main    |
 | Ngày hoàn thành | [2026-09-26]               |
