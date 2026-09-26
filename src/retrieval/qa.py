@@ -4,7 +4,6 @@ from dataclasses import dataclass
 import re
 
 from core.config import Settings
-from core.utils import first_sentence
 from retrieval.index import LocalEmbeddingIndex, SearchResult
 
 
@@ -18,15 +17,24 @@ class AnswerResult:
 
 
 def _extract_answer(question: str, top_result: SearchResult) -> str:
-    lowered = question.lower()
+    """Return the requested field from the highest-ranked paper.
+
+    Benchmark questions are written in Vietnamese, while the original routing
+    keywords only covered English.  Metadata answers are deterministic and
+    avoid asking the LLM to infer a value that is already present in the index.
+    """
+    lowered = question.casefold()
     metadata = top_result.metadata
-    if "who authored" in lowered or "list the authors" in lowered:
-        return metadata["authors_joined"]
-    if "when was" in lowered or "publication date" in lowered or "published on" in lowered:
-        return metadata["published"]
-    if "what categories" in lowered:
-        return metadata["categories_joined"]
-    return first_sentence(metadata["summary"])
+    if any(keyword in lowered for keyword in ("who authored", "list the authors", "author", "tác giả")):
+        return str(metadata.get("authors_joined", ""))
+    if any(
+        keyword in lowered
+        for keyword in ("when was", "publication date", "published on", "ngày công bố", "công bố vào", "ngày tháng năm")
+    ):
+        return str(metadata.get("published", ""))
+    if any(keyword in lowered for keyword in ("what categories", "category", "categories", "lĩnh vực", "phân loại")):
+        return str(metadata.get("categories_joined", ""))
+    return str(metadata.get("summary", ""))
 
 
 def generate_rag_answer(question: str, contexts: list[str], settings: Settings) -> str:
