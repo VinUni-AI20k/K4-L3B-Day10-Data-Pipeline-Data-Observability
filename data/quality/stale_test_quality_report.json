@@ -1,37 +1,37 @@
 {
-  "report_name": "repaired",
-  "success": true,
-  "gx_success": true,
-  "is_fresh": true,
+  "report_name": "stale_test",
+  "success": false,
+  "gx_success": false,
+  "is_fresh": false,
   "statistics": {
     "evaluated_expectations": 8,
-    "successful_expectations": 8,
-    "unsuccessful_expectations": 0,
-    "success_percent": 100.0
+    "successful_expectations": 7,
+    "unsuccessful_expectations": 1,
+    "success_percent": 87.5
   },
   "freshness": {
-    "latest_published": "2026-07-22",
-    "oldest_published": "2026-03-28",
-    "stale_rows": 1,
+    "latest_published": "2020-01-01",
+    "oldest_published": "2020-01-01",
+    "stale_rows": 24,
     "total_rows": 24,
-    "stale_ratio": 0.041666666666666664,
-    "stale_percentage": 4.17,
+    "stale_ratio": 1.0,
+    "stale_percentage": 100.0,
     "threshold_days": 180,
     "max_stale_ratio_allowed": 0.25,
-    "is_fresh": true
+    "is_fresh": false
   },
   "evaluated_expectations_count": 8,
-  "successful_expectations_count": 8,
-  "unsuccessful_expectations_count": 0,
+  "successful_expectations_count": 7,
+  "unsuccessful_expectations_count": 1,
   "details": {
-    "success": true,
+    "success": false,
     "results": [
       {
         "success": true,
         "expectation_config": {
           "type": "expect_table_row_count_to_be_between",
           "kwargs": {
-            "batch_id": "papers_source_repaired-papers_asset_repaired",
+            "batch_id": "papers_source_stale_test-papers_asset_stale_test",
             "min_value": 20,
             "max_value": 30
           },
@@ -53,7 +53,7 @@
         "expectation_config": {
           "type": "expect_column_values_to_not_be_null",
           "kwargs": {
-            "batch_id": "papers_source_repaired-papers_asset_repaired",
+            "batch_id": "papers_source_stale_test-papers_asset_stale_test",
             "column": "paper_id"
           },
           "meta": {},
@@ -79,7 +79,7 @@
         "expectation_config": {
           "type": "expect_column_values_to_be_unique",
           "kwargs": {
-            "batch_id": "papers_source_repaired-papers_asset_repaired",
+            "batch_id": "papers_source_stale_test-papers_asset_stale_test",
             "column": "paper_id"
           },
           "meta": {},
@@ -109,7 +109,7 @@
         "expectation_config": {
           "type": "expect_column_values_to_not_be_null",
           "kwargs": {
-            "batch_id": "papers_source_repaired-papers_asset_repaired",
+            "batch_id": "papers_source_stale_test-papers_asset_stale_test",
             "column": "title"
           },
           "meta": {},
@@ -131,11 +131,11 @@
         }
       },
       {
-        "success": true,
+        "success": false,
         "expectation_config": {
           "type": "expect_column_value_lengths_to_be_between",
           "kwargs": {
-            "batch_id": "papers_source_repaired-papers_asset_repaired",
+            "batch_id": "papers_source_stale_test-papers_asset_stale_test",
             "column": "title",
             "min_value": 8
           },
@@ -144,15 +144,78 @@
         },
         "result": {
           "element_count": 24,
-          "unexpected_count": 0,
-          "unexpected_percent": 0.0,
-          "partial_unexpected_list": [],
+          "unexpected_count": 10,
+          "unexpected_percent": 41.66666666666667,
+          "partial_unexpected_list": [
+            "Title 0",
+            "Title 1",
+            "Title 2",
+            "Title 3",
+            "Title 4",
+            "Title 5",
+            "Title 6",
+            "Title 7",
+            "Title 8",
+            "Title 9"
+          ],
           "missing_count": 0,
           "missing_percent": 0.0,
-          "unexpected_percent_total": 0.0,
-          "unexpected_percent_nonmissing": 0.0,
-          "partial_unexpected_counts": [],
-          "partial_unexpected_index_list": []
+          "unexpected_percent_total": 41.66666666666667,
+          "unexpected_percent_nonmissing": 41.66666666666667,
+          "partial_unexpected_counts": [
+            {
+              "value": "Title 0",
+              "count": 1
+            },
+            {
+              "value": "Title 1",
+              "count": 1
+            },
+            {
+              "value": "Title 2",
+              "count": 1
+            },
+            {
+              "value": "Title 3",
+              "count": 1
+            },
+            {
+              "value": "Title 4",
+              "count": 1
+            },
+            {
+              "value": "Title 5",
+              "count": 1
+            },
+            {
+              "value": "Title 6",
+              "count": 1
+            },
+            {
+              "value": "Title 7",
+              "count": 1
+            },
+            {
+              "value": "Title 8",
+              "count": 1
+            },
+            {
+              "value": "Title 9",
+              "count": 1
+            }
+          ],
+          "partial_unexpected_index_list": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
         },
         "meta": {},
         "exception_info": {
@@ -166,7 +229,7 @@
         "expectation_config": {
           "type": "expect_column_values_to_not_be_null",
           "kwargs": {
-            "batch_id": "papers_source_repaired-papers_asset_repaired",
+            "batch_id": "papers_source_stale_test-papers_asset_stale_test",
             "column": "summary"
           },
           "meta": {},
@@ -192,7 +255,7 @@
         "expectation_config": {
           "type": "expect_column_value_lengths_to_be_between",
           "kwargs": {
-            "batch_id": "papers_source_repaired-papers_asset_repaired",
+            "batch_id": "papers_source_stale_test-papers_asset_stale_test",
             "column": "summary",
             "min_value": 20
           },
@@ -223,7 +286,7 @@
         "expectation_config": {
           "type": "expect_column_values_to_not_be_null",
           "kwargs": {
-            "batch_id": "papers_source_repaired-papers_asset_repaired",
+            "batch_id": "papers_source_stale_test-papers_asset_stale_test",
             "column": "text_for_embedding"
           },
           "meta": {},
@@ -245,13 +308,13 @@
         }
       }
     ],
-    "suite_name": "papers_repaired_suite",
+    "suite_name": "papers_stale_test_suite",
     "suite_parameters": {},
     "statistics": {
       "evaluated_expectations": 8,
-      "successful_expectations": 8,
-      "unsuccessful_expectations": 0,
-      "success_percent": 100.0
+      "successful_expectations": 7,
+      "unsuccessful_expectations": 1,
+      "success_percent": 87.5
     },
     "meta": {
       "great_expectations_version": "1.23.2",
@@ -259,13 +322,13 @@
         "batch_data": "PandasDataFrame"
       },
       "batch_markers": {
-        "ge_load_time": "20260926T160226.424074Z",
-        "pandas_data_fingerprint": "188080e2159eb3d693d837e72bab5880"
+        "ge_load_time": "20260926T045136.246702Z",
+        "pandas_data_fingerprint": "527730e4156e54f059c90952a3bfe734"
       },
       "active_batch_definition": {
-        "datasource_name": "papers_source_repaired",
+        "datasource_name": "papers_source_stale_test",
         "data_connector_name": "fluent",
-        "data_asset_name": "papers_asset_repaired",
+        "data_asset_name": "papers_asset_stale_test",
         "batch_identifiers": {
           "dataframe": "<DATAFRAME>"
         }

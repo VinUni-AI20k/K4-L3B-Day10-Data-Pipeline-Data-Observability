@@ -2,7 +2,14 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
+import sys
 from typing import Any
+
+if sys.stdout and hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 import pandas as pd
 
