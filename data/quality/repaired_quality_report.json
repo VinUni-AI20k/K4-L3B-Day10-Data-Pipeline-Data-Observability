@@ -1,0 +1,15 @@
+{
+  "report_name": "repaired",
+  "success": true,
+  "gx_success": true,
+  "is_fresh": true,
+  "total_rows": 24,
+  "stale_rows": 1,
+  "stale_ratio": 0.0417,
+  "failed_expectations": [],
+  "statistics": {
+    "evaluated_expectations": 4,
+    "successful_expectations": 4,
+    "unsuccessful_expectations": 0
+  }
+}

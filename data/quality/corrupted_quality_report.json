@@ -1,0 +1,18 @@
+{
+  "report_name": "corrupted",
+  "success": false,
+  "gx_success": false,
+  "is_fresh": false,
+  "total_rows": 23,
+  "stale_rows": 12,
+  "stale_ratio": 0.5217,
+  "failed_expectations": [
+    "expect_column_values_to_be_unique",
+    "expect_column_value_lengths_to_be_between"
+  ],
+  "statistics": {
+    "evaluated_expectations": 4,
+    "successful_expectations": 2,
+    "unsuccessful_expectations": 2
+  }
+}
