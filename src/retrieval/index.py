@@ -69,6 +69,8 @@ class LocalEmbeddingIndex:
                 raise ValueError(
                     f"Cannot index row {index}; paper_id, title, and text_for_embedding are required."
                 )
+            published = pd.to_datetime(row["published"], errors="coerce")
+            published_text = "" if pd.isna(published) else published.strftime("%Y-%m-%d")
             documents.append(
                 {
                     "record_id": f"{paper_id}::{index}",
@@ -78,7 +80,7 @@ class LocalEmbeddingIndex:
                     "metadata": {
                         "paper_id": paper_id,
                         "title": title,
-                        "published": str(row["published"]),
+                        "published": published_text,
                         "authors_joined": str(row["authors_joined"]),
                         "categories_joined": str(row["categories_joined"]),
                         "summary": str(row["summary"]),
