@@ -6,20 +6,18 @@
 
 | Thông tin         | Nội dung                  |
 | ------------------ | -------------------------- |
-| Khóa/Lớp         | [K3 hoặc K4]              |
-| Tên nhóm         | [Tên hoặc mã nhóm]     |
-| Repository         | [Đường dẫn repository] |
-| Ngày hoàn thành | [YYYY-MM-DD]               |
+| Khóa/Lớp         | K4 (K4-L3-DAY10)          |
+| Tên nhóm         | hihi                      |
+| Repository         | https://github.com/nace1504/K4-L3B-Day10-hihi-Data-Pipeline-Data-Observability |
+| Ngày hoàn thành | [Chờ cập nhật khi cả nhóm hoàn thành CP5] |
 
 ### Thành viên và phân công
 
 | STT | Họ và tên | MSSV | Vai trò chính | Module/deliverable sở hữu |
 | --: | --- | --- | --- | --- |
-| 1 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 2 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 3 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 4 | [Nếu có] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 5 | [Nếu có] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
+| 1 | Doãn Hữu Nguyên | 2A202602671 | Trưởng nhóm — A: Data & Ingestion | `src/ingestion/crossref.py`, `src/ingestion/cleaning.py`; `data/raw/crossref_response.json`, `data/raw/crossref_records.json` |
+| 2 | Vũ Đình Thư | 2A202602652 | B: Observability & Evaluation | `src/observability/quality.py`, `src/evaluation/testset.py`, `src/observability/reporting.py` |
+| 3 | Lê Quang Ngọc | 2A202602664 | C: Pipeline & Corruption | `src/pipelines/phase1.py`, `src/ingestion/corruption.py`, `src/pipelines/corruption_flow.py` |
 
 ## 2. Tóm tắt kết quả
 
@@ -33,7 +31,15 @@ Viết từ 150–250 từ, trả lời ngắn gọn:
 
 **Tóm tắt của nhóm:**
 
-[Viết phần tóm tắt tại đây.]
+*Phần đã có bằng chứng chạy thật (CP0 + cleaning của CP1 — Doãn Hữu Nguyên, 2026-09-26):*
+
+- **Môi trường:** `python -c "import chromadb, great_expectations, sentence_transformers; ..."` → `Môi trường sẵn sàng`.
+- **Ingestion (CP0):** `fetch_source_records` → `Tín hiệu hoàn thành: Đã tải 24 bài báo`. Artifact: `data/raw/crossref_response.json` (24 items) và `data/raw/crossref_records.json` (24 records). Lần chạy này dùng snapshot có sẵn (`REFRESH_SOURCE` không bật), không gọi API thật. Cơ chế retry (tối đa 3 lần, backoff 1s/2s khi 429/503/lỗi mạng) và fallback snapshot đã được kiểm tra bằng mock: mất mạng hoặc 429 x3 vẫn trả 24 records.
+- **Cleaning (CP1, phần `cleaning.py`):** `build_clean_dataframe` → `Tín hiệu hoàn thành: Clean thành công 24 dòng`. `paper_id` duy nhất, 14 cột gồm `age_days` (66–182 ngày tại 2026-09-26, không null) và `text_for_embedding` 5 phần (Title/Authors/Categories/Published/Summary); 0 summary còn tag JATS.
+
+*Baseline / corrupted / repaired, quality checks, freshness và blocker còn lại:*
+
+[Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5]
 
 ## 3. Kiến trúc và luồng dữ liệu
 
@@ -58,13 +64,13 @@ Crossref API
 
 | Khối             | Input          | Xử lý chính             | Output/artifact          | Owner          |
 | ----------------- | -------------- | -------------------------- | ------------------------ | -------------- |
-| Ingestion         | [Nguồn/input] | [Fetch, retry, parse...]   | [Đường dẫn artifact] | [Thành viên] |
-| Cleaning          | [Input]        | [Các quy tắc chính]     | [Đường dẫn artifact] | [Thành viên] |
-| Embedding/index   | [Input]        | [Model/index config]       | [Đường dẫn artifact] | [Thành viên] |
-| Evaluation        | [Input]        | [Test set và metrics]     | [Đường dẫn artifact] | [Thành viên] |
-| Observability     | [Input]        | [Quality/freshness checks] | [Đường dẫn artifact] | [Thành viên] |
-| Corruption/repair | [Input]        | [Corruption và repair]    | [Đường dẫn artifact] | [Thành viên] |
-| Orchestration     | [Input]        | [Thứ tự chạy]           | [Reports/metrics]        | [Thành viên] |
+| Ingestion         | Crossref `GET https://api.crossref.org/works` (query `agentic retrieval augmented generation large language model`, filter `from-pub-date:<run_date - 180 ngày>,has-abstract:true`, rows 24) hoặc snapshot `data/raw/crossref_response.json` | Mặc định đọc snapshot; khi `REFRESH_SOURCE` bật: gọi API, retry 3 lần + backoff 1s/2s (429/503/lỗi mạng), hết retry thì fallback snapshot; parse DOI/title/abstract (bỏ tag JATS)/authors/subjects/date/URL, loại record thiếu DOI/title/abstract | `data/raw/crossref_response.json`, `data/raw/crossref_records.json` (24 records) | Doãn Hữu Nguyên |
+| Cleaning          | `list[PaperRecord]` từ `data/raw/crossref_records.json` + `run_date` | Chuẩn hóa khoảng trắng, `age_days = (run_date - published).days`, `authors_joined`, `categories_joined`, `summary_chars`, `text_for_embedding` 5 phần, dedupe theo `paper_id`, lọc title/summary rỗng, sort `published` giảm dần | DataFrame 24 dòng × 14 cột (ghi ra `data/clean/papers_clean.{csv,json}` bởi `phase1.py`) | Doãn Hữu Nguyên |
+| Embedding/index   | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] |
+| Evaluation        | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | Vũ Đình Thư |
+| Observability     | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | Vũ Đình Thư |
+| Corruption/repair | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | Lê Quang Ngọc |
+| Orchestration     | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | [Chờ cập nhật sau khi Thư/Ngọc hoàn thành CP2-CP5] | Lê Quang Ngọc |
 
 ## 4. Cách tái hiện kết quả
 
