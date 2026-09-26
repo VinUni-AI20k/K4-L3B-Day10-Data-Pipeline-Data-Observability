@@ -286,7 +286,7 @@
     "judge": {
       "score": 1,
       "correct": false,
-      "reasoning": "The model answer does not provide the names of the authors, which is the specific information requested in the question. Instead, it discusses a related concept about data quality checks."
+      "reasoning": "The model answer does not provide the names of the authors, which is the specific information requested in the question."
     }
   }
 ]
