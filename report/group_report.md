@@ -4,22 +4,20 @@
 
 ## 1. Thông tin bài nộp
 
-| Thông tin         | Nội dung                  |
-| ------------------ | -------------------------- |
-| Khóa/Lớp         | [K3 hoặc K4]              |
-| Tên nhóm         | [Tên hoặc mã nhóm]     |
-| Repository         | [Đường dẫn repository] |
-| Ngày hoàn thành | [YYYY-MM-DD]               |
+| Thông tin         | Nội dung                                                                 |
+| ------------------ | ------------------------------------------------------------------------ |
+| Khóa/Lớp           | K4-L3B-DAY10 (Ca Sáng, Thứ 7 26/09/2026)                                |
+| Tên nhóm           | EasyGame                                                                 |
+| Repository         | K4-L3B-DAY10-EasyGame-Data-Pipeline-Data-Observability                  |
+| Ngày hoàn thành    | 2026-09-26                                                               |
 
-### Thành viên và phân công
+### Thành viên và phân công (Nhóm 3 người)
 
 | STT | Họ và tên | MSSV | Vai trò chính | Module/deliverable sở hữu |
 | --: | --- | --- | --- | --- |
-| 1 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 2 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 3 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 4 | [Nếu có] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 5 | [Nếu có] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
+| 1 | Phạm Thành Đạt | 2A202602721 | Trưởng nhóm / Pipeline Integrator & Vector Store | `core/`, `retrieval/index.py`, `phase1.py`, `corruption_flow.py`, `script/` |
+| 2 | Nguyễn Tiến Đạt | 2A202602970 | Data Engineering & Corruption | `crossref.py`, `cleaning.py`, `corruption.py`, raw data & repair loader |
+| 3 | Ngô Hoàng Thụy Khuê | 2A202603017 | Observability, Evaluation & Reporting | `quality.py` GX 1.x, `testset.py`, `reporting.py`, Freshness SLA |
 
 ## 2. Tóm tắt kết quả
 
@@ -58,13 +56,13 @@ Crossref API
 
 | Khối             | Input          | Xử lý chính             | Output/artifact          | Owner          |
 | ----------------- | -------------- | -------------------------- | ------------------------ | -------------- |
-| Ingestion         | [Nguồn/input] | [Fetch, retry, parse...]   | [Đường dẫn artifact] | [Thành viên] |
-| Cleaning          | [Input]        | [Các quy tắc chính]     | [Đường dẫn artifact] | [Thành viên] |
-| Embedding/index   | [Input]        | [Model/index config]       | [Đường dẫn artifact] | [Thành viên] |
-| Evaluation        | [Input]        | [Test set và metrics]     | [Đường dẫn artifact] | [Thành viên] |
-| Observability     | [Input]        | [Quality/freshness checks] | [Đường dẫn artifact] | [Thành viên] |
-| Corruption/repair | [Input]        | [Corruption và repair]    | [Đường dẫn artifact] | [Thành viên] |
-| Orchestration     | [Input]        | [Thứ tự chạy]           | [Reports/metrics]        | [Thành viên] |
+| Ingestion         | Crossref API / Local fallback | Fetch retry, parse JSON thành `PaperRecord` | `data/raw/crossref_records.json` | Nguyễn Tiến Đạt (Member 2) |
+| Cleaning          | `list[PaperRecord]` | Bóc tách XML, tính `age_days`, tạo `text_for_embedding` | `data/clean/papers_clean.csv`, `.json` | Nguyễn Tiến Đạt (Member 2) |
+| Embedding/index   | Clean DataFrame | Nạp vector MiniLM, quản lý 3 collection ChromaDB | `data/chroma/`, `papers_embeddings*.json` | Phạm Thành Đạt (Member 1) |
+| Evaluation        | Clean DataFrame & ChromaDB | Tạo 10 câu test set, tính Hit Rate & Token F1 | `data/eval/test_set.json`, `baseline_metrics.json` | Ngô Hoàng Thụy Khuê (Member 3) |
+| Observability     | Clean/Corrupted DataFrame | Chốt kiểm dịch GX 1.x (4 expectations) & Freshness SLA | `data/quality/*_quality_report.json` | Ngô Hoàng Thụy Khuê (Member 3) |
+| Corruption/repair | Clean DataFrame & Raw records | Tiêm 6 kịch bản lỗi & Phục hồi từ raw snapshot | `corruption_log.json`, `papers-repaired` | Nguyễn Tiến Đạt & Phạm Thành Đạt |
+| Orchestration     | Toàn bộ modules | Kết nối luồng Phase 1 & Corruption Flow end-to-end | `data/reports/phase1_report.md`, `corruption_report.md` | Phạm Thành Đạt (Member 1) |
 
 ## 4. Cách tái hiện kết quả
 
