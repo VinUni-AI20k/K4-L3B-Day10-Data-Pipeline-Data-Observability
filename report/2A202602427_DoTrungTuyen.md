@@ -8,9 +8,9 @@
 | MSSV               | 2A202602427               |
 | Khóa/Lớp         | K4 - Lớp B (Ca Sáng)      |
 | Tên nhóm         | Team 03 - DataObservability |
-| Vai trò chính    | RAG Vector Store, Data Observability & Benchmark Evaluation |
+| Vai trò chính    | RAG Agent & Vector Index Architecture |
 | Repository         | K4-L3B-DAY10-Team03-DataPipelineDataObservability |
-| Ngày hoàn thành | 2026-09-26               |
+| Ngày hoàn thành | 2026-09-26.              |
 
 ---
 
@@ -20,19 +20,18 @@
 
 | Module/deliverable | File/hàm phụ trách | Input nhận vào | Output bàn giao  | Trạng thái |
 | ------------------ | --------------------- | ---------------- | ----------------- | ---------- |
-| Great Expectations 1.x Quality Gate & Freshness SLA | `src/observability/quality.py` (`run_data_quality_checks`, `build_freshness_report`) | DataFrame, `Settings` | `baseline_quality_report.json`, `freshness_report.json` | Hoàn thành |
-| ChromaDB Vector Indexing & Semantic Search | `src/retrieval/index.py`, `src/retrieval/embeddings.py` | Cleaned DataFrame, `all-MiniLM-L6-v2` | 3 collection trong `data/chroma/`, `papers_embeddings.json` | Hoàn thành |
-| Benchmark Test Set Generation | `src/evaluation/testset.py` (`build_test_set`) | Cleaned DataFrame | `data/eval/test_set.json` (10 câu hỏi qua 4 domains) | Hoàn thành |
-| Pipeline Evaluation & Reporting Engine | `src/evaluation/metrics.py`, `src/observability/reporting.py` | Test set, ChromaDB index, LLM Judge | `baseline_metrics.json`, `phase1_report.md`, `corruption_report.md` | Hoàn thành |
-| Interactive Observability Dashboard (Bonus B1) | `report/observability_dashboard.html` | Kết quả benchmark và quality reports thực tế | Giao diện web HTML trực quan hiện đại | Hoàn thành |
+| ChromaDB Vector Store & Embedding Manager | `src/retrieval/index.py`, `src/retrieval/embeddings.py` | Cleaned DataFrame, `all-MiniLM-L6-v2` | 3 collections độc lập trong `data/chroma/`, manifest JSON | Hoàn thành |
+| Multi-Provider LLM Router | `src/retrieval/llm.py` (`build_llm`) | Cấu hình `Settings`, API credentials | LangChain LLM Client (`gemini`, `openai`, `mock`) | Hoàn thành |
+| Semantic Search & QA Extraction | `src/retrieval/qa.py` (`answer_question`, `_extract_answer`) | Câu hỏi tự nhiên, vector index | Câu trả lời trích xuất, danh sách retrieved IDs | Hoàn thành |
+| Agentic Tool-Use Integration | `src/retrieval/agent.py` (`build_agent`, `run_agent_question`) | LLM model, tools semantic search & lookup | LangChain Agent có khả năng suy luận trên kho dữ liệu | Hoàn thành |
 
 ### Việc hỗ trợ ngoài phạm vi chính
 
 | Hoạt động | Thành viên/module được hỗ trợ | Kết quả |
 | --------- | ----------------------------- | ------- |
-| Kiểm thử Schema & Data Quality | Đặng Thái Anh (`cleaning.py`) | Xác minh DataFrame làm sạch đáp ứng 100% 7 expectations của GX 1.x |
-| Tích hợp End-to-End Evaluation | Nguyễn Đức Anh (`phase1.py`, `corruption_flow.py`) | Đảm bảo logic tính Hit Rate, Token F1 và LLM Judge chạy mượt mà trong pipeline |
-| Phân tích tác động dữ liệu bẩn | Cả nhóm | Cung cấp phân tích chi tiết về sự suy thoái của từng câu hỏi trong test set |
+| Tích hợp Vector Retrieval vào Pipeline | Nguyễn Đức Anh (`phase1.py`, `corruption_flow.py`) | Đảm bảo quá trình tạo và nạp ChromaDB collection chạy ổn định trong pipeline |
+| Phối hợp định dạng Embedding Text | Đặng Thái Anh (`cleaning.py`) | Kiểm chứng cấu trúc 5 phần của `text_for_embedding` tương thích tối đa với MiniLM |
+| Cung cấp kết quả truy vấn cho Benchmark | Nguyễn Khánh Duy (`metrics.py`, `testset.py`) | Cung cấp đầu ra `retrieved_doc_ids` để tính toán chính xác Retrieval Hit Rate |
 
 ---
 
@@ -40,81 +39,64 @@
 
 | Nhiệm vụ đã thực hiện | File/hàm/artifact liên quan | Kết quả bàn giao | Cách xác minh |
 | --------------------- | --------------------------- | ---------------- | ------------- |
-| Thiết lập GX 1.x Ephemeral Quality Gate | `src/observability/quality.py` | 7 expectations kiểm định toàn vẹn dữ liệu | `data/quality/baseline_quality_report.json` đạt `success=True` |
-| Quản lý Freshness SLA | `src/observability/quality.py` | Cảnh báo vi phạm độ tươi bài báo (> 180 ngày) | Baseline: 4.2% stale (Healthy); Corrupted: 40.9% stale (Alert) |
-| Xây dựng ChromaDB Vector Store | `src/retrieval/index.py` | Đánh chỉ mục 24 tài liệu vào collection riêng biệt | 3 collections độc lập trong `data/chroma/` |
-| Sinh Benchmark Test Set 10 câu | `src/evaluation/testset.py` | 10 câu hỏi chia đều: 3 summary, 3 authors, 2 date, 2 categories | `data/eval/test_set.json` sinh thành công |
-| Đánh giá & Báo cáo so sánh | `src/evaluation/metrics.py`, `src/observability/reporting.py` | Báo cáo Markdown & Interactive Dashboard | `data/reports/corruption_report.md`, `report/observability_dashboard.html` |
+| Quản lý mô hình MiniLM Embedding | `src/retrieval/embeddings.py` | Sinh vector 384 chiều chuẩn hóa cosine | Vector độ dài 384, normalize L2 thành công |
+| Khởi tạo 3 ChromaDB collections | `src/retrieval/index.py` | `papers-baseline`, `papers-corrupted`, `papers-repaired` | Lưu trữ persistent tại `data/chroma/` |
+| Xây dựng Multi-Provider LLM | `src/retrieval/llm.py` | Hỗ trợ Gemini 2.5 Flash và Mock model | Chạy mượt mà cả online và offline |
+| Triển khai QA Engine | `src/retrieval/qa.py` | Kết hợp exact match title và semantic cosine | Hit Rate đạt 100% trên dữ liệu sạch |
 
 **Output cụ thể:**
-Interactive HTML Observability Dashboard (`report/observability_dashboard.html`) hiển thị trực quan biểu đồ, KPI cards và bảng so sánh 3 trạng thái.
+Hệ thống vector index ChromaDB với 3 collection độc lập lưu trữ tại `data/chroma/` và file manifest `data/embeddings/papers_embeddings.json`.
 
 ---
 
 ## 4. Giải thích phần kỹ thuật đã thực hiện
 
 ### Vấn đề cần giải quyết
-1. Các phiên bản Great Expectations cũ (0.18 trở về trước) thường yêu cầu cấu hình file YAML phức tạp và sinh ra nhiều lỗi deprecated khi chạy trong môi trường in-memory. Cần áp dụng chuẩn mới nhất **Great Expectations 1.x** với Ephemeral Context để kiểm định nhanh chóng và nhẹ nhàng.
-2. Cần phân định rõ ràng giữa **Data Quality** (tính toàn vẹn cấu trúc tĩnh) và **Freshness SLA** (tính thời điểm dữ liệu).
-3. Đánh giá chất lượng RAG không thể chỉ dựa vào một câu hỏi chung chung, mà cần một benchmark đa chiều bao phủ đủ các dạng câu hỏi thực tế: tóm tắt nội dung, tra cứu tác giả, ngày xuất bản, và phân loại chuyên ngành.
+1. Trong hệ thống RAG, vector store là cầu nối quan trọng nhất giữa dữ liệu thô và mô hình ngôn ngữ lớn (LLM). Nếu việc đánh chỉ mục vector bị lỗi hoặc không gian vector giữa các trạng thái (sạch vs lỗi) bị trộn lẫn, các đánh giá khoa học sẽ mất đi tính khách quan.
+2. Cần xây dựng cơ chế truy vấn thông minh có khả năng kết hợp giữa tìm kiếm tương đồng ngữ nghĩa (Semantic Vector Search) và tra cứu chính xác theo tiêu đề (Exact Title Lookup) để tối đa hóa Retrieval Hit Rate.
+3. Cần hỗ trợ đa dạng nhà cung cấp LLM (Gemini, OpenAI, Mock) để phục vụ chấm điểm và chạy kiểm thử tự động trong CI/CD.
 
 ### Cách triển khai
-1. **Great Expectations 1.x Ephemeral Implementation:**
-   ```python
-   context = gx.get_context(mode="ephemeral")
-   data_source = context.data_sources.add_pandas(name=f"papers_source_{report_name}")
-   data_asset = data_source.add_dataframe_asset(name=f"papers_asset_{report_name}")
-   batch_def = data_asset.add_batch_definition_whole_dataframe(f"papers_batch_{report_name}")
-   batch = batch_def.get_batch(batch_parameters={"dataframe": df})
-   suite = gx.ExpectationSuite(name=f"papers_suite_{report_name}")
-   
-   # Định nghĩa 7 expectations bắt buộc
-   suite.add_expectation(gxe.ExpectTableRowCountToBeBetween(min_value=20, max_value=30))
-   suite.add_expectation(gxe.ExpectColumnValuesToNotBeNull(column="paper_id"))
-   suite.add_expectation(gxe.ExpectColumnValuesToNotBeNull(column="title"))
-   suite.add_expectation(gxe.ExpectColumnValuesToNotBeNull(column="summary"))
-   suite.add_expectation(gxe.ExpectColumnValuesToBeUnique(column="paper_id"))
-   suite.add_expectation(gxe.ExpectColumnValueLengthsToBeBetween(column="title", min_value=8))
-   suite.add_expectation(gxe.ExpectColumnValueLengthsToBeBetween(column="summary", min_value=20))
-   ```
-2. **Freshness SLA Monitoring:**
-   Tính toán tỷ lệ các bài báo có `age_days > 180`. Nếu tỷ lệ này vượt quá 25% (ngưỡng quy định), cờ `is_fresh` sẽ tự động chuyển thành `False`, kích hoạt cảnh báo suy thoái dữ liệu.
-3. **Bộ Benchmark Test Set (10 câu qua 4 domains):**
-   - 3 câu hỏi nhóm `summary` $\rightarrow$ Đo khả năng trích xuất nội dung tóm tắt chính xác.
-   - 3 câu hỏi nhóm `authors` $\rightarrow$ Đo khả năng tra cứu danh sách tác giả.
-   - 2 câu hỏi nhóm `date` $\rightarrow$ Đo khả năng xác định ngày công bố.
-   - 2 câu hỏi nhóm `categories` $\rightarrow$ Đo khả năng nhận diện phân loại chuyên ngành.
+1. **Quản lý Vector Embeddings với `sentence-transformers/all-MiniLM-L6-v2`:**
+   Sử dụng mô hình MiniLM 384 chiều, chuẩn hóa `normalize_embeddings=True` để áp dụng khoảng cách Cosine Distance tối ưu trong không gian đa chiều.
+2. **Cô lập không gian Vector (Vector Space Isolation):**
+   Thay vì ghi đè một collection duy nhất, tôi khởi tạo 3 collection riêng biệt:
+   - `papers-baseline`: Chứa 24 tài liệu sạch ban đầu.
+   - `papers-corrupted`: Chứa dữ liệu đã bị tiêm 6 lỗi (thiếu bài, summary rác, title ngắn).
+   - `papers-repaired`: Chứa 24 tài liệu sạch đã được phục hồi bất biến từ raw snapshot.
+3. **Cơ chế Truy vấn Phối hợp (Hybrid Retrieval Strategy):**
+   Trong `answer_question`, tôi trích xuất tiêu đề trong dấu nháy đơn `'...'` nếu có để lookup chính xác. Sau đó kết hợp với kết quả tìm kiếm ngữ nghĩa vector `search()` để đảm bảo câu trả lời luôn nhận được văn cảnh tối ưu nhất trong top_k.
 
 ### Input, output và contract
 
 | Thành phần | Mô tả |
 | ---------- | ----- |
-| Input | DataFrame cleaned/corrupted/repaired, `Settings` |
-| Output | Validation result dictionary, `test_set.json`, `*_metrics.json`, Markdown reports |
-| Module phụ thuộc | `ingestion/cleaning.py`, `retrieval/index.py` |
-| Module sử dụng output | Pipeline runner, ban giám khảo đánh giá |
-| Điều kiện lỗi cần xử lý | Tên collection trùng lặp trong ChromaDB, LLM Judge API timeout |
+| Input | `text_for_embedding` từ DataFrame, câu hỏi tự nhiên từ user hoặc test set |
+| Output | Vector embeddings (list float 384d), `SearchResult` (paper_id, score, content, metadata) |
+| Module phụ thuộc | `sentence_transformers`, `chromadb`, `core/config.py` |
+| Module sử dụng output | `evaluation/metrics.py`, `retrieval/agent.py`, pipeline runner |
+| Điều kiện lỗi cần xử lý | Collection đã tồn tại trong ChromaDB (xóa an toàn trước khi tạo mới) |
 
 ### Cách xác minh
 
 ```bash
-# Kiểm tra Quality Gate và Freshness SLA
-python -c "from core.config import load_settings; from observability.quality import run_data_quality_checks, build_freshness_report; import pandas as pd; s=load_settings(); df=pd.read_json(s.paths.clean_json); q=run_data_quality_checks(df, s, 'test'); f=build_freshness_report(df, s); print(f'GX Success: {q[\"success\"]}, Freshness: {f[\"is_fresh\"]}')"
+# Kiểm tra Vector Index và Semantic Search
+python -c "from core.config import load_settings; from retrieval.index import LocalEmbeddingIndex; import pandas as pd; s=load_settings(); df=pd.read_json(s.paths.clean_json); idx=LocalEmbeddingIndex.load(s); res=idx.search('large language model', top_k=2); print(f'Tim thay {len(res)} ket qua, top doc: {res[0].paper_id}')"
 ```
 
-- **Kết quả mong đợi:** In ra `GX Success: True, Freshness: True`.
-- **Kết quả thực tế:** Hoàn toàn chính xác theo mong đợi.
+- **Kết quả mong đợi:** Tìm thấy 2 kết quả, in ra DOI hợp lệ của bài báo.
+- **Kết quả thực tế:** Chính xác 100%.
 
 ---
 
 ## 5. Một quyết định kỹ thuật quan trọng
 
-- **Bối cảnh:** Lựa chọn phương pháp cô lập không gian vector (Vector Space Isolation) giữa ba trạng thái: Baseline, Corrupted, và Repaired.
+- **Bối cảnh:** Lựa chọn phương pháp quản lý collection ChromaDB khi chạy luồng kiểm chứng suy thoái và phục hồi.
 - **Các phương án đã cân nhắc:**
-  - *Phương án 1:* Dùng chung 1 collection ChromaDB duy nhất (`papers`), xóa và ghi đè nội dung mỗi khi chuyển pha.
-  - *Phương án 2:* Khởi tạo 3 collections riêng biệt (`papers-baseline`, `papers-corrupted`, `papers-repaired`) trong cùng một PersistentClient.
+  - *Phương án 1:* Dùng chung một collection duy nhất (`papers`), mỗi lần chuyển pha thì xóa dữ liệu bên trong và ghi đè.
+  - *Phương án 2:* Khởi tạo 3 collections riêng biệt (`papers-baseline`, `papers-corrupted`, `papers-repaired`) trong cùng một thư mục lưu trữ persistent.
 - **Phương án đã chọn:** Phương án 2 (3 collections độc lập).
-- **Lý do:** Dùng chung 1 collection có nguy cơ "rò rỉ vector" (Vector Leakage) do bộ đệm HNSW index chưa kịp flush xuống ổ đĩa, dẫn đến việc dữ liệu sạch và dữ liệu bẩn bị lẫn lộn. Sử dụng 3 collection riêng biệt giúp cô lập hoàn toàn không gian vector, cho phép người dùng hoặc giám khảo có thể truy vấn kiểm chứng chéo bất kỳ lúc nào mà không cần chạy lại pipeline từ đầu.
+- **Lý do:** Dùng chung 1 collection có nguy cơ "rò rỉ vector" (Vector Leakage) do bộ đệm HNSW index chưa kịp flush xuống đĩa, dẫn đến việc dữ liệu sạch và dữ liệu bẩn bị lẫn lộn. Sử dụng 3 collection riêng biệt giúp cô lập hoàn toàn không gian vector, cho phép người dùng hoặc giám khảo có thể truy vấn kiểm chứng chéo bất kỳ lúc nào mà không cần chạy lại pipeline từ đầu.
 - **Bằng chứng quyết định phù hợp:** Kết quả benchmark trên `papers-baseline` và `papers-corrupted` phản ánh sự phân biệt rạch ròi: Hit Rate 100% vs 60%, không hề có hiện tượng nhiễu chéo.
 
 ---
@@ -123,34 +105,31 @@ python -c "from core.config import load_settings; from observability.quality imp
 
 - **Triệu chứng/lỗi nguyên văn:**
   ```text
-  UserWarning: Direct use of automatic function calling (AFC) in Models.generate_content is not recommended.
+  chromadb.errors.UniqueConstraintError: Collection papers-baseline already exists.
   ```
-  Và đôi khi LLM Evaluator bị nghẽn mạng khi chấm điểm 10 câu hỏi liên tiếp bằng API Gemini.
-- **Lệnh tái hiện:** Chạy hàm `evaluate_pipeline` với cấu hình mặc định khi kết nối Internet không ổn định.
-- **Nguyên nhân gốc:** Khi LLM API gọi ra Internet gặp sự cố mạng hoặc rate-limit, việc thiếu cơ chế fallback sẽ làm sập toàn bộ chu trình đánh giá.
+- **Lệnh tái hiện:** Chạy lại `python script/run_phase1.py` lần thứ 2 khi thư mục `data/chroma/` đã tồn tại collection từ lần chạy trước.
+- **Nguyên nhân gốc:** Hàm `client.create_collection(name=collection_name)` ném ngoại lệ nếu collection cùng tên đã tồn tại trên ổ đĩa.
 - **Cách xử lý:** 
-  Tích hợp cơ chế chấm điểm dự phòng (Heuristic Fallback Judge) trong `src/evaluation/metrics.py`:
+  Bổ sung khối lệnh xử lý an toàn trước khi tạo mới collection trong `LocalEmbeddingIndex.build`:
   ```python
   try:
-      llm = build_llm(settings=settings, temperature=0.0).with_structured_output(JudgeVerdict)
-      return llm.invoke(prompt)
+      client.delete_collection(name=collection_name)
   except Exception:
-      score = 5 if _token_f1(reference, prediction) >= 0.95 else 3 if _token_f1(reference, prediction) >= 0.5 else 1
-      return JudgeVerdict(
-          score=score,
-          correct=score >= 3,
-          reasoning="Fallback heuristic judge used because the LLM evaluator was unavailable.",
-      )
+      pass
+  collection = client.create_collection(
+      name=collection_name,
+      configuration={"hnsw": {"space": "cosine"}},
+  )
   ```
-- **Cách xác minh sau khi sửa:** Kể cả khi tắt mạng hoặc không có API key, pipeline vẫn hoàn tất đánh giá với điểm số Token F1 và Heuristic Judge chính xác, không bao giờ bị dừng đột ngột.
-- **Điều học được:** Một hệ thống kiểm định chất lượng trong sản xuất luôn cần cơ chế Graceful Degradation (suy giảm chức năng an toàn) khi các dịch vụ bên thứ ba gặp sự cố.
+- **Cách xác minh sau khi sửa:** Chạy lặp lại `run_phase1.py` nhiều lần liên tiếp, hệ thống luôn dọn dẹp sạch sẽ và tạo collection mới thành công mà không gặp lỗi.
+- **Điều học được:** Khi làm việc với cơ sở dữ liệu Vector lưu trữ persistent, luôn phải thiết kế các thao tác nạp dữ liệu có tính Idempotent để tránh xung đột trạng thái cũ.
 
 ---
 
 ## 7. Hiểu biết về luồng end-to-end
 
 1. **Dữ liệu đi từ Crossref đến vector index như thế nào?**
-   Dữ liệu được lấy từ Crossref REST API $\rightarrow$ lưu raw artifacts $\rightarrow$ làm sạch và tạo văn bản nhúng $\rightarrow$ tính toán vector embedding 384 chiều $\rightarrow$ lưu trữ trên ChromaDB vector database.
+   Dữ liệu thô từ Crossref API $\rightarrow$ lưu raw snapshot $\rightarrow$ làm sạch và tạo văn bản nhúng $\rightarrow$ tính toán vector embedding 384 chiều $\rightarrow$ lưu trữ trên ChromaDB vector database.
 2. **Evaluation set và ground-truth document IDs dùng để đo retrieval/answer quality ra sao?**
    Đo lường bằng cách kiểm tra xem bài báo chứa câu trả lời đúng (`ground_truth_doc_ids`) có xuất hiện trong danh sách bài báo mà ChromaDB tìm thấy hay không. Nếu có là Hit; sau đó so sánh câu trả lời của AI với câu trả lời chuẩn bằng Token F1 và LLM Judge.
 3. **Quality checks khác freshness monitoring ở điểm nào trong bài lab?**
@@ -176,20 +155,20 @@ python -c "from core.config import load_settings; from observability.quality imp
 | Freshness status       |  HEALTHY |  VIOLATED |  HEALTHY | Tỷ lệ stale 40.9% vượt xa ngưỡng cho phép 25% |
 
 ### Kết luận từ số liệu
-- Tác động của Data Corruption thể hiện rõ rệt nhất ở chỉ số **Retrieval Hit Rate** (giảm 40.0%), chứng minh rằng khi dữ liệu nền bị suy thoái, RAG Agent không thể tìm đúng thông tin cần thiết.
-- Sau khi chạy Idempotent Repair, cả 4 chỉ số hiệu năng và 2 tín hiệu Observability đều được phục hồi 100%, chứng minh tính hiệu quả tuyệt đối của kiến trúc tự chữa lành.
+- Việc dữ liệu bị tiêm lỗi làm biến dạng nghiêm trọng không gian vector embedding, khiến thuật toán k-NN cosine tìm kiếm sai lệch tài liệu liên quan.
+- Sau khi chạy Idempotent Repair, vector index được tái tạo hoàn toàn, đưa toàn bộ chỉ số Retrieval Hit Rate và Token F1 về mức tuyệt đối 100.0%.
 
 ---
 
 ## 9. Điều học được và hướng cải thiện
 
 ### Ba điều quan trọng nhất
-1. **Sức mạnh của Great Expectations 1.x:** Cung cấp giải pháp chốt kiểm dịch chất lượng tự động cực kỳ mạnh mẽ và thanh lịch với cú pháp mới.
-2. **Khái niệm Data Observability:** Không chỉ quan sát hệ thống máy chủ (CPU, RAM) mà phải quan sát chính bản thân dòng dữ liệu (Dòng chảy, Độ tươi, Tính đúng đắn).
-3. **Đánh giá RAG đa chiều:** Phải kết hợp giữa Retrieval Metrics (Hit Rate) và Generation Metrics (Token F1, LLM as a Judge) để có cái nhìn toàn diện.
+1. **Tầm quan trọng của Cấu trúc Văn bản Nhúng:** Ghép thông tin có cấu trúc 5 phần (Title, Authors, Categories, Published, Summary) mang lại độ chính xác ngữ nghĩa vượt trội so với chỉ embed tóm tắt thuần túy.
+2. **Kỹ thuật Vector Isolation:** Tách biệt các collection giúp ngăn ngừa triệt để lỗi rò rỉ dữ liệu giữa các phiên kiểm thử.
+3. **Mô hình Hybrid Retrieval:** Kết hợp giữa exact lookup và semantic search là giải pháp tối ưu cho các bài toán QA trên tài liệu học thuật.
 
 ### Nếu có thêm thời gian
-Tôi sẽ tích hợp thêm công cụ Ragas để đo lường tự động 4 chỉ số nâng cao: Faithfulness, Answer Relevancy, Context Precision, và Context Recall trực tiếp trên giao diện Dashboard.
+Tôi sẽ tích hợp kỹ thuật Re-ranking (Cross-Encoder / Cohere Rerank) sau bước vector retrieval để sắp xếp lại top 4 tài liệu có độ liên quan cao nhất trước khi đưa vào LLM.
 
 ---
 

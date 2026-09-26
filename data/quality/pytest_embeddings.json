@@ -1,0 +1,88 @@
+{
+  "backend": "chroma",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "persist_path": "D:\\LabCode\\Afternoon\\K4-L3B-DAY10-0.5SKT-DataPipelineDataObservability\\data\\chroma",
+  "collection_name": "pytest-embeddings",
+  "documents": [
+    {
+      "record_id": "10.1145/3637528.3671812::0",
+      "paper_id": "10.1145/3637528.3671812",
+      "title": "Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines",
+      "content": "Title: Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\nAuthors: Quang Le, Yen Vu\nCategories: Evaluation Methodology, Enterprise Systems\nPublished: 2026-07-22\nSummary: Static benchmarks fail to capture domain drift in enterprise knowledge bases. We establish a synthetic test generator that auto-creates paired evaluation sets whenever new corpora are ingested.",
+      "metadata": {
+        "paper_id": "10.1145/3637528.3671812",
+        "title": "Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines",
+        "published": "2026-07-22",
+        "authors_joined": "Quang Le, Yen Vu",
+        "categories_joined": "Evaluation Methodology, Enterprise Systems",
+        "summary": "Static benchmarks fail to capture domain drift in enterprise knowledge bases. We establish a synthetic test generator that auto-creates paired evaluation sets whenever new corpora are ingested.",
+        "abs_url": "https://doi.org/10.1145/3637528.3671812",
+        "pdf_url": "https://doi.org/10.1145/3637528.3671812"
+      }
+    },
+    {
+      "record_id": "10.1145/3637528.3671808::1",
+      "paper_id": "10.1145/3637528.3671808",
+      "title": "Multi-Agent Consensus for High-Stakes Fact Verification",
+      "content": "Title: Multi-Agent Consensus for High-Stakes Fact Verification\nAuthors: Phong Vu, Ngan Hoang\nCategories: Multi-Agent Systems, Artificial Intelligence\nPublished: 2026-07-19\nSummary: A single LLM is susceptible to confirmation bias when evaluating retrieved evidence. We demonstrate a multi-agent debate architecture where specialized verifier agents critique and corroborate citations.",
+      "metadata": {
+        "paper_id": "10.1145/3637528.3671808",
+        "title": "Multi-Agent Consensus for High-Stakes Fact Verification",
+        "published": "2026-07-19",
+        "authors_joined": "Phong Vu, Ngan Hoang",
+        "categories_joined": "Multi-Agent Systems, Artificial Intelligence",
+        "summary": "A single LLM is susceptible to confirmation bias when evaluating retrieved evidence. We demonstrate a multi-agent debate architecture where specialized verifier agents critique and corroborate citations.",
+        "abs_url": "https://doi.org/10.1145/3637528.3671808",
+        "pdf_url": "https://doi.org/10.1145/3637528.3671808"
+      }
+    },
+    {
+      "record_id": "10.1145/3637528.3671804::2",
+      "paper_id": "10.1145/3637528.3671804",
+      "title": "Freshness SLAs for Real-Time LLM Knowledge Augmentation",
+      "content": "Title: Freshness SLAs for Real-Time LLM Knowledge Augmentation\nAuthors: Bao Do, Linh Ngo\nCategories: Data Management, Artificial Intelligence\nPublished: 2026-07-05\nSummary: We define freshness service-level agreements (SLAs) for temporal document ingestion. By tracking document age and update cadence, our orchestrator dynamically prioritizes recrawling high-churn technical corpora.",
+      "metadata": {
+        "paper_id": "10.1145/3637528.3671804",
+        "title": "Freshness SLAs for Real-Time LLM Knowledge Augmentation",
+        "published": "2026-07-05",
+        "authors_joined": "Bao Do, Linh Ngo",
+        "categories_joined": "Data Management, Artificial Intelligence",
+        "summary": "We define freshness service-level agreements (SLAs) for temporal document ingestion. By tracking document age and update cadence, our orchestrator dynamically prioritizes recrawling high-churn technical corpora.",
+        "abs_url": "https://doi.org/10.1145/3637528.3671804",
+        "pdf_url": "https://doi.org/10.1145/3637528.3671804"
+      }
+    },
+    {
+      "record_id": "10.1145/3637528.3671807::3",
+      "paper_id": "10.1145/3637528.3671807",
+      "title": "Synthetic Corruption Testing: Stress-Testing Vector Search Robustness",
+      "content": "Title: Synthetic Corruption Testing: Stress-Testing Vector Search Robustness\nAuthors: Kien Duong, Vy Ly\nCategories: Robustness, Information Retrieval\nPublished: 2026-06-25\nSummary: We introduce an automated fuzzing suite that corrupts text chunks by injecting noise, truncating titles, and blanking summaries. Experiments reveal critical failure thresholds for dense embedding retrieval.",
+      "metadata": {
+        "paper_id": "10.1145/3637528.3671807",
+        "title": "Synthetic Corruption Testing: Stress-Testing Vector Search Robustness",
+        "published": "2026-06-25",
+        "authors_joined": "Kien Duong, Vy Ly",
+        "categories_joined": "Robustness, Information Retrieval",
+        "summary": "We introduce an automated fuzzing suite that corrupts text chunks by injecting noise, truncating titles, and blanking summaries. Experiments reveal critical failure thresholds for dense embedding retrieval.",
+        "abs_url": "https://doi.org/10.1145/3637528.3671807",
+        "pdf_url": "https://doi.org/10.1145/3637528.3671807"
+      }
+    },
+    {
+      "record_id": "10.1145/3637528.3671802::4",
+      "paper_id": "10.1145/3637528.3671802",
+      "title": "Data Observability and Quality Gates for Production RAG Systems",
+      "content": "Title: Data Observability and Quality Gates for Production RAG Systems\nAuthors: Anh Tran, Quoc Pham\nCategories: Software Engineering, Data Systems\nPublished: 2026-06-12\nSummary: Silent data corruption in RAG pipelines degrades LLM answer faithfulness without throwing runtime errors. We introduce automated quality gates using Great Expectations 1.x to catch stale and malformed embeddings before serving.",
+      "metadata": {
+        "paper_id": "10.1145/3637528.3671802",
+        "title": "Data Observability and Quality Gates for Production RAG Systems",
+        "published": "2026-06-12",
+        "authors_joined": "Anh Tran, Quoc Pham",
+        "categories_joined": "Software Engineering, Data Systems",
+        "summary": "Silent data corruption in RAG pipelines degrades LLM answer faithfulness without throwing runtime errors. We introduce automated quality gates using Great Expectations 1.x to catch stale and malformed embeddings before serving.",
+        "abs_url": "https://doi.org/10.1145/3637528.3671802",
+        "pdf_url": "https://doi.org/10.1145/3637528.3671802"
+      }
+    }
+  ]
+}

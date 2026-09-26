@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-09-26T04:14:50.337595+00:00",
+  "input_rows": 22,
+  "precheck": {
+    "gx_success": false,
+    "is_fresh": false,
+    "stale_ratio": 0.4091
+  },
+  "action": "AUTO_REPAIR_TRIGGERED",
+  "violations": [
+    "Great Expectations 1.x Quality Gate violation detected",
+    "Freshness SLA violation: stale_ratio=40.9% > 25%"
+  ],
+  "postcheck": {
+    "repaired_rows": 24,
+    "gx_success": true,
+    "is_fresh": true,
+    "recovery_status": "FULLY_RESTORED"
+  }
+}
