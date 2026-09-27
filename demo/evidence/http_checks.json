@@ -1,0 +1,547 @@
+{
+  "checks": {
+    "dashboard_counts": true,
+    "static:/": true,
+    "static:/app.js": true,
+    "static:/styles.css": true,
+    "static:/favicon.svg": true,
+    "env_not_served": true,
+    "cross_origin_rejected": true,
+    "local_stale_three_states": true,
+    "local_dropped_three_states": true,
+    "gemini_stale_three_states": true,
+    "gemini_real_tools": true,
+    "gemini_absent_abstains": true,
+    "new_pipeline_completed": true,
+    "new_pipeline_verified": true,
+    "chat_uses_new_run": true
+  },
+  "jobs": [
+    {
+      "id": "ff9e0dd7a86e413e",
+      "kind": "chat",
+      "status": "complete",
+      "progress": "Hoàn tất",
+      "answers": [
+        {
+          "state": "baseline",
+          "answer": "2026-05-02",
+          "sources": [
+            {
+              "paper_id": "10.1145/3637528.3671806",
+              "title": "Semantic Layer Integration for Agentic Text-to-SQL Pipelines",
+              "published": "2026-05-02"
+            }
+          ],
+          "tool_calls": [],
+          "trace": [],
+          "tokens": 0,
+          "models": [
+            "extractive_metadata"
+          ],
+          "mode": "local",
+          "elapsed_seconds": 4.22
+        },
+        {
+          "state": "corrupted",
+          "answer": "2025-05-02",
+          "sources": [
+            {
+              "paper_id": "10.1145/3637528.3671806",
+              "title": "Semantic Layer Integration for Agentic Text-to-SQL Pipelines",
+              "published": "2025-05-02"
+            }
+          ],
+          "tool_calls": [],
+          "trace": [],
+          "tokens": 0,
+          "models": [
+            "extractive_metadata"
+          ],
+          "mode": "local",
+          "elapsed_seconds": 0.09
+        },
+        {
+          "state": "repaired",
+          "answer": "2026-05-02",
+          "sources": [
+            {
+              "paper_id": "10.1145/3637528.3671806",
+              "title": "Semantic Layer Integration for Agentic Text-to-SQL Pipelines",
+              "published": "2026-05-02"
+            }
+          ],
+          "tool_calls": [],
+          "trace": [],
+          "tokens": 0,
+          "models": [
+            "extractive_metadata"
+          ],
+          "mode": "local",
+          "elapsed_seconds": 0.11
+        }
+      ],
+      "question": "When was the paper '10.1145/3637528.3671806' published? Return only YYYY-MM-DD.",
+      "mode": "local",
+      "run_id": "cp6_pipeline_20260927_04",
+      "finished_at": "2026-09-27T09:51:23.443231+00:00"
+    },
+    {
+      "id": "5b8462819c9948b0",
+      "kind": "chat",
+      "status": "complete",
+      "progress": "Hoàn tất",
+      "answers": [
+        {
+          "state": "baseline",
+          "answer": "2026-07-22",
+          "sources": [
+            {
+              "paper_id": "10.1145/3637528.3671812",
+              "title": "Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines",
+              "published": "2026-07-22"
+            }
+          ],
+          "tool_calls": [],
+          "trace": [],
+          "tokens": 0,
+          "models": [
+            "extractive_metadata"
+          ],
+          "mode": "local",
+          "elapsed_seconds": 0.02
+        },
+        {
+          "state": "corrupted",
+          "answer": "I don't know from the indexed corpus.",
+          "sources": [],
+          "tool_calls": [],
+          "trace": [],
+          "tokens": 0,
+          "models": [
+            "extractive_metadata"
+          ],
+          "mode": "local",
+          "elapsed_seconds": 0.0
+        },
+        {
+          "state": "repaired",
+          "answer": "2026-07-22",
+          "sources": [
+            {
+              "paper_id": "10.1145/3637528.3671812",
+              "title": "Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines",
+              "published": "2026-07-22"
+            }
+          ],
+          "tool_calls": [],
+          "trace": [],
+          "tokens": 0,
+          "models": [
+            "extractive_metadata"
+          ],
+          "mode": "local",
+          "elapsed_seconds": 0.01
+        }
+      ],
+      "question": "When was the paper '10.1145/3637528.3671812' published?",
+      "mode": "local",
+      "run_id": "cp6_pipeline_20260927_04",
+      "finished_at": "2026-09-27T09:51:24.154198+00:00"
+    },
+    {
+      "id": "9007458a6f944cba",
+      "kind": "chat",
+      "status": "complete",
+      "progress": "Hoàn tất",
+      "answers": [
+        {
+          "state": "baseline",
+          "answer": "2026-05-02",
+          "sources": [
+            {
+              "paper_id": "10.1145/3637528.3671806",
+              "title": "Semantic Layer Integration for Agentic Text-to-SQL Pipelines",
+              "published": "2026-05-02"
+            }
+          ],
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.1145/3637528.3671806"
+              },
+              "id": "call_174037",
+              "type": "tool_call"
+            }
+          ],
+          "trace": [
+            {
+              "type": "ai",
+              "content": "",
+              "tool_calls": [
+                {
+                  "name": "lookup_paper",
+                  "args": {
+                    "paper_id_or_title": "10.1145/3637528.3671806"
+                  },
+                  "id": "call_174037",
+                  "type": "tool_call"
+                }
+              ],
+              "usage": {
+                "input_tokens": 241,
+                "output_tokens": 44,
+                "total_tokens": 285,
+                "input_token_details": {
+                  "cache_read": 0
+                }
+              },
+              "response_model": "gemini-3.5-flash-lite",
+              "finish_reason": "STOP"
+            },
+            {
+              "type": "tool",
+              "content": "paper_id: 10.1145/3637528.3671806\ntitle: Semantic Layer Integration for Agentic Text-to-SQL Pipelines\nTitle: Semantic Layer Integration for Agentic Text-to-SQL Pipelines\nSummary: Connecting LLMs directly to raw warehouse tables often results in schema misunderstandings. A governed semantic layer standardizes business metric definitions, dramatically boosting SQL generation accuracy.\nAuthors: Huy Dinh, Trang Vo\nPublished: 2026-05-02\nCategories: Databases, Information Systems",
+              "name": "lookup_paper",
+              "tool_call_id": "call_174037"
+            },
+            {
+              "type": "ai",
+              "content": "2026-05-02",
+              "tool_calls": [],
+              "usage": {
+                "input_tokens": 420,
+                "output_tokens": 10,
+                "total_tokens": 430,
+                "input_token_details": {
+                  "cache_read": 0
+                }
+              },
+              "response_model": "gemini-3.5-flash-lite",
+              "finish_reason": "STOP"
+            }
+          ],
+          "tokens": 715,
+          "models": [
+            "gemini-3.5-flash-lite"
+          ],
+          "mode": "gemini",
+          "elapsed_seconds": 4.92
+        },
+        {
+          "state": "corrupted",
+          "answer": "2025-05-02",
+          "sources": [
+            {
+              "paper_id": "10.1145/3637528.3671806",
+              "title": "Semantic Layer Integration for Agentic Text-to-SQL Pipelines",
+              "published": "2025-05-02"
+            }
+          ],
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.1145/3637528.3671806"
+              },
+              "id": "call_172916",
+              "type": "tool_call"
+            }
+          ],
+          "trace": [
+            {
+              "type": "ai",
+              "content": "",
+              "tool_calls": [
+                {
+                  "name": "lookup_paper",
+                  "args": {
+                    "paper_id_or_title": "10.1145/3637528.3671806"
+                  },
+                  "id": "call_172916",
+                  "type": "tool_call"
+                }
+              ],
+              "usage": {
+                "input_tokens": 241,
+                "output_tokens": 44,
+                "total_tokens": 285,
+                "input_token_details": {
+                  "cache_read": 0
+                }
+              },
+              "response_model": "gemini-3.5-flash-lite",
+              "finish_reason": "STOP"
+            },
+            {
+              "type": "tool",
+              "content": "paper_id: 10.1145/3637528.3671806\ntitle: Semantic Layer Integration for Agentic Text-to-SQL Pipelines\nTitle: Semantic Layer Integration for Agentic Text-to-SQL Pipelines\nSummary: Connecting LLMs directly to raw warehouse tables often results in schema misunderstandings. A governed semantic layer standardizes business metric definitions, dramatically boosting SQL generation accuracy.\nAuthors: Huy Dinh, Trang Vo\nPublished: 2025-05-02\nCategories: Databases, Information Systems",
+              "name": "lookup_paper",
+              "tool_call_id": "call_172916"
+            },
+            {
+              "type": "ai",
+              "content": "2025-05-02",
+              "tool_calls": [],
+              "usage": {
+                "input_tokens": 420,
+                "output_tokens": 10,
+                "total_tokens": 430,
+                "input_token_details": {
+                  "cache_read": 0
+                }
+              },
+              "response_model": "gemini-3.5-flash-lite",
+              "finish_reason": "STOP"
+            }
+          ],
+          "tokens": 715,
+          "models": [
+            "gemini-3.5-flash-lite"
+          ],
+          "mode": "gemini",
+          "elapsed_seconds": 8.16
+        },
+        {
+          "state": "repaired",
+          "answer": "2026-05-02",
+          "sources": [
+            {
+              "paper_id": "10.1145/3637528.3671806",
+              "title": "Semantic Layer Integration for Agentic Text-to-SQL Pipelines",
+              "published": "2026-05-02"
+            }
+          ],
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.1145/3637528.3671806"
+              },
+              "id": "call_1199206",
+              "type": "tool_call"
+            }
+          ],
+          "trace": [
+            {
+              "type": "ai",
+              "content": "",
+              "tool_calls": [
+                {
+                  "name": "lookup_paper",
+                  "args": {
+                    "paper_id_or_title": "10.1145/3637528.3671806"
+                  },
+                  "id": "call_1199206",
+                  "type": "tool_call"
+                }
+              ],
+              "usage": {
+                "input_tokens": 241,
+                "output_tokens": 44,
+                "total_tokens": 285,
+                "input_token_details": {
+                  "cache_read": 0
+                }
+              },
+              "response_model": "gemini-3.5-flash-lite",
+              "finish_reason": "STOP"
+            },
+            {
+              "type": "tool",
+              "content": "paper_id: 10.1145/3637528.3671806\ntitle: Semantic Layer Integration for Agentic Text-to-SQL Pipelines\nTitle: Semantic Layer Integration for Agentic Text-to-SQL Pipelines\nSummary: Connecting LLMs directly to raw warehouse tables often results in schema misunderstandings. A governed semantic layer standardizes business metric definitions, dramatically boosting SQL generation accuracy.\nAuthors: Huy Dinh, Trang Vo\nPublished: 2026-05-02\nCategories: Databases, Information Systems",
+              "name": "lookup_paper",
+              "tool_call_id": "call_1199206"
+            },
+            {
+              "type": "ai",
+              "content": "2026-05-02",
+              "tool_calls": [],
+              "usage": {
+                "input_tokens": 420,
+                "output_tokens": 10,
+                "total_tokens": 430,
+                "input_token_details": {
+                  "cache_read": 0
+                }
+              },
+              "response_model": "gemini-3.5-flash-lite",
+              "finish_reason": "STOP"
+            }
+          ],
+          "tokens": 715,
+          "models": [
+            "gemini-3.5-flash-lite"
+          ],
+          "mode": "gemini",
+          "elapsed_seconds": 8.16
+        }
+      ],
+      "question": "When was the paper '10.1145/3637528.3671806' published? Return only YYYY-MM-DD.",
+      "mode": "gemini",
+      "run_id": "cp6_pipeline_20260927_04",
+      "finished_at": "2026-09-27T09:51:47.049971+00:00"
+    },
+    {
+      "id": "05a1fefcad4646a4",
+      "kind": "chat",
+      "status": "complete",
+      "progress": "Hoàn tất",
+      "answers": [
+        {
+          "state": "corrupted",
+          "answer": "I don't know from the indexed corpus.",
+          "sources": [],
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.9999/cp6-not-in-corpus"
+              },
+              "id": "call_1457821",
+              "type": "tool_call"
+            }
+          ],
+          "trace": [
+            {
+              "type": "ai",
+              "content": "",
+              "tool_calls": [
+                {
+                  "name": "lookup_paper",
+                  "args": {
+                    "paper_id_or_title": "10.9999/cp6-not-in-corpus"
+                  },
+                  "id": "call_1457821",
+                  "type": "tool_call"
+                }
+              ],
+              "usage": {
+                "input_tokens": 238,
+                "output_tokens": 37,
+                "total_tokens": 275,
+                "input_token_details": {
+                  "cache_read": 0
+                }
+              },
+              "response_model": "gemini-3.5-flash-lite",
+              "finish_reason": "STOP"
+            },
+            {
+              "type": "tool",
+              "content": "No exact paper match found.",
+              "name": "lookup_paper",
+              "tool_call_id": "call_1457821"
+            },
+            {
+              "type": "ai",
+              "content": "I don't know from the indexed corpus.",
+              "tool_calls": [],
+              "usage": {
+                "input_tokens": 294,
+                "output_tokens": 10,
+                "total_tokens": 304,
+                "input_token_details": {
+                  "cache_read": 0
+                }
+              },
+              "response_model": "gemini-3.5-flash-lite",
+              "finish_reason": "STOP"
+            }
+          ],
+          "tokens": 579,
+          "models": [
+            "gemini-3.5-flash-lite"
+          ],
+          "mode": "gemini",
+          "elapsed_seconds": 5.24
+        }
+      ],
+      "question": "Who authored the paper '10.9999/cp6-not-in-corpus'? If unavailable, reply exactly: I don't know from the indexed corpus.",
+      "mode": "gemini",
+      "run_id": "cp6_pipeline_20260927_04",
+      "finished_at": "2026-09-27T09:51:53.088860+00:00"
+    },
+    {
+      "id": "a5a49fbfc5c2404e",
+      "kind": "pipeline",
+      "status": "complete",
+      "progress": "Hoàn tất",
+      "answers": [],
+      "run_id": "web_60a5d93948",
+      "verified_checks": 99,
+      "finished_at": "2026-09-27T09:52:29.851533+00:00"
+    },
+    {
+      "id": "4ef3bf89fa07475b",
+      "kind": "chat",
+      "status": "complete",
+      "progress": "Hoàn tất",
+      "answers": [
+        {
+          "state": "baseline",
+          "answer": "2026-05-02",
+          "sources": [
+            {
+              "paper_id": "10.1145/3637528.3671806",
+              "title": "Semantic Layer Integration for Agentic Text-to-SQL Pipelines",
+              "published": "2026-05-02"
+            }
+          ],
+          "tool_calls": [],
+          "trace": [],
+          "tokens": 0,
+          "models": [
+            "extractive_metadata"
+          ],
+          "mode": "local",
+          "elapsed_seconds": 0.09
+        },
+        {
+          "state": "corrupted",
+          "answer": "2025-05-02",
+          "sources": [
+            {
+              "paper_id": "10.1145/3637528.3671806",
+              "title": "Semantic Layer Integration for Agentic Text-to-SQL Pipelines",
+              "published": "2025-05-02"
+            }
+          ],
+          "tool_calls": [],
+          "trace": [],
+          "tokens": 0,
+          "models": [
+            "extractive_metadata"
+          ],
+          "mode": "local",
+          "elapsed_seconds": 0.08
+        },
+        {
+          "state": "repaired",
+          "answer": "2026-05-02",
+          "sources": [
+            {
+              "paper_id": "10.1145/3637528.3671806",
+              "title": "Semantic Layer Integration for Agentic Text-to-SQL Pipelines",
+              "published": "2026-05-02"
+            }
+          ],
+          "tool_calls": [],
+          "trace": [],
+          "tokens": 0,
+          "models": [
+            "extractive_metadata"
+          ],
+          "mode": "local",
+          "elapsed_seconds": 0.09
+        }
+      ],
+      "question": "When was the paper '10.1145/3637528.3671806' published? Return only YYYY-MM-DD.",
+      "mode": "local",
+      "run_id": "web_60a5d93948",
+      "finished_at": "2026-09-27T09:52:30.941446+00:00"
+    }
+  ],
+  "passed": true
+}

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, fields, replace
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 import os
@@ -141,11 +141,25 @@ def load_settings(project_dir: Path | None = None) -> Settings:
 
 def normalized_provider(settings: Settings) -> str:
     provider = settings.llm_provider.strip().lower().replace(" ", "").replace("-", "")
+    if provider == "google":
+        return "gemini"
     if provider == "anthorpic":
         return "anthropic"
     if provider == "customllm":
         return "custom"
     return provider
+
+
+def with_output_dir(settings: Settings, output_dir: Path) -> Settings:
+    """Rebase generated artifacts, preserving the source snapshot paths."""
+    old_data = settings.paths.clean_json.parent.parent
+    output_dir = output_dir.resolve()
+    preserved = {"project_dir", "workspace_dir", "raw_api_response", "raw_records_json"}
+    updates = {
+        field.name: output_dir / getattr(settings.paths, field.name).relative_to(old_data)
+        for field in fields(settings.paths) if field.name not in preserved
+    }
+    return replace(settings, paths=replace(settings.paths, **updates))
 
 
 def require_llm_credentials(settings: Settings) -> None:

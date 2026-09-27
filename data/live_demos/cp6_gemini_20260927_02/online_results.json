@@ -1,0 +1,906 @@
+{
+  "schema_version": 1,
+  "demo_id": "cp6_gemini_20260927_02",
+  "status": "complete",
+  "started_at_utc": "2026-09-27T08:52:59.497298+00:00",
+  "provider": "gemini",
+  "model": "gemini-3.5-flash-lite",
+  "pipeline_run_id": "cp6_pipeline_20260927_04",
+  "mode": "online",
+  "answers": [
+    {
+      "state": "baseline",
+      "case_id": "dropped_paper",
+      "question": "When was the paper '10.1145/3637528.3671812' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "paper_id": "10.1145/3637528.3671812",
+      "ground_truth": "2026-07-22",
+      "expected_from_index": "2026-07-22",
+      "answer": "2026-07-22",
+      "checks": {
+        "matches_indexed_context": true,
+        "correct_against_raw": true,
+        "abstained": false,
+        "used_exact_lookup": true,
+        "passed": true
+      },
+      "trace": [
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.1145/3637528.3671812"
+              },
+              "id": "call_140052",
+              "type": "tool_call"
+            }
+          ],
+          "usage": {
+            "input_tokens": 261,
+            "output_tokens": 44,
+            "total_tokens": 305,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        },
+        {
+          "type": "tool",
+          "content": "paper_id: 10.1145/3637528.3671812\ntitle: Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\nTitle: Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\nSummary: Static benchmarks fail to capture domain drift in enterprise knowledge bases. We establish a synthetic test generator that auto-creates paired evaluation sets whenever new corpora are ingested.\nAuthors: Quang Le, Yen Vu\nPublished: 2026-07-22\nCategories: Evaluation Methodology, Enterprise Systems",
+          "name": "lookup_paper",
+          "tool_call_id": "call_140052"
+        },
+        {
+          "type": "ai",
+          "content": "2026-07-22",
+          "tool_calls": [],
+          "usage": {
+            "input_tokens": 430,
+            "output_tokens": 10,
+            "total_tokens": 440,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        }
+      ],
+      "elapsed_seconds": 4.359,
+      "source_attempt": "cp6_gemini_20260927_01"
+    },
+    {
+      "state": "baseline",
+      "case_id": "stale_date",
+      "question": "When was the paper '10.1145/3637528.3671806' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "paper_id": "10.1145/3637528.3671806",
+      "ground_truth": "2026-05-02",
+      "expected_from_index": "2026-05-02",
+      "answer": "2026-05-02",
+      "checks": {
+        "matches_indexed_context": true,
+        "correct_against_raw": true,
+        "abstained": false,
+        "used_exact_lookup": true,
+        "passed": true
+      },
+      "trace": [
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.1145/3637528.3671806"
+              },
+              "id": "call_111888",
+              "type": "tool_call"
+            }
+          ],
+          "usage": {
+            "input_tokens": 261,
+            "output_tokens": 44,
+            "total_tokens": 305,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        },
+        {
+          "type": "tool",
+          "content": "paper_id: 10.1145/3637528.3671806\ntitle: Semantic Layer Integration for Agentic Text-to-SQL Pipelines\nTitle: Semantic Layer Integration for Agentic Text-to-SQL Pipelines\nSummary: Connecting LLMs directly to raw warehouse tables often results in schema misunderstandings. A governed semantic layer standardizes business metric definitions, dramatically boosting SQL generation accuracy.\nAuthors: Huy Dinh, Trang Vo\nPublished: 2026-05-02\nCategories: Databases, Information Systems",
+          "name": "lookup_paper",
+          "tool_call_id": "call_111888"
+        },
+        {
+          "type": "ai",
+          "content": "2026-05-02",
+          "tool_calls": [],
+          "usage": {
+            "input_tokens": 440,
+            "output_tokens": 10,
+            "total_tokens": 450,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        }
+      ],
+      "elapsed_seconds": 6.422,
+      "source_attempt": "cp6_gemini_20260927_01"
+    },
+    {
+      "state": "baseline",
+      "case_id": "stable_control",
+      "question": "When was the paper '10.1145/3637528.3671824' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "paper_id": "10.1145/3637528.3671824",
+      "ground_truth": "2026-06-12",
+      "expected_from_index": "2026-06-12",
+      "answer": "2026-06-12",
+      "checks": {
+        "matches_indexed_context": true,
+        "correct_against_raw": true,
+        "abstained": false,
+        "used_exact_lookup": true,
+        "passed": true
+      },
+      "trace": [
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.1145/3637528.3671824"
+              },
+              "id": "call_151328",
+              "type": "tool_call"
+            }
+          ],
+          "usage": {
+            "input_tokens": 261,
+            "output_tokens": 44,
+            "total_tokens": 305,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        },
+        {
+          "type": "tool",
+          "content": "paper_id: 10.1145/3637528.3671824\ntitle: Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\nTitle: Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\nSummary: An extended empirical study on tatic benchmarks fail to capture domain drift in enterprise knowledge bases. We establish a synthetic test generator that auto-creates paired evaluation sets whenever new corpora are ingested Further analysis on scaling parameters.\nAuthors: Quang Le, Yen Vu\nPublished: 2026-06-12\nCategories: Evaluation Methodology, Enterprise Systems",
+          "name": "lookup_paper",
+          "tool_call_id": "call_151328"
+        },
+        {
+          "type": "ai",
+          "content": "2026-06-12",
+          "tool_calls": [],
+          "usage": {
+            "input_tokens": 447,
+            "output_tokens": 10,
+            "total_tokens": 457,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        }
+      ],
+      "elapsed_seconds": 6.125,
+      "source_attempt": "cp6_gemini_20260927_01"
+    },
+    {
+      "state": "baseline",
+      "case_id": "absent_control",
+      "question": "When was the paper '10.9999/cp6-not-in-corpus' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "paper_id": "10.9999/cp6-not-in-corpus",
+      "ground_truth": "I don't know from the indexed corpus.",
+      "expected_from_index": "I don't know from the indexed corpus.",
+      "answer": "I don't know from the indexed corpus.",
+      "checks": {
+        "matches_indexed_context": true,
+        "correct_against_raw": true,
+        "abstained": true,
+        "used_exact_lookup": true,
+        "passed": true
+      },
+      "trace": [
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.9999/cp6-not-in-corpus"
+              },
+              "id": "call_1157331",
+              "type": "tool_call"
+            }
+          ],
+          "usage": {
+            "input_tokens": 254,
+            "output_tokens": 37,
+            "total_tokens": 291,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        },
+        {
+          "type": "tool",
+          "content": "No exact paper match found.",
+          "name": "lookup_paper",
+          "tool_call_id": "call_1157331"
+        },
+        {
+          "type": "ai",
+          "content": "I don't know from the indexed corpus.",
+          "tool_calls": [],
+          "usage": {
+            "input_tokens": 310,
+            "output_tokens": 10,
+            "total_tokens": 320,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        }
+      ],
+      "elapsed_seconds": 7.062,
+      "source_attempt": "cp6_gemini_20260927_01"
+    },
+    {
+      "state": "corrupted",
+      "case_id": "dropped_paper",
+      "question": "When was the paper '10.1145/3637528.3671812' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "paper_id": "10.1145/3637528.3671812",
+      "ground_truth": "2026-07-22",
+      "expected_from_index": "I don't know from the indexed corpus.",
+      "answer": "I don't know from the indexed corpus.",
+      "checks": {
+        "matches_indexed_context": true,
+        "correct_against_raw": false,
+        "abstained": true,
+        "used_exact_lookup": true,
+        "passed": true
+      },
+      "trace": [
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.1145/3637528.3671812"
+              },
+              "id": "call_1213395",
+              "type": "tool_call"
+            }
+          ],
+          "usage": {
+            "input_tokens": 261,
+            "output_tokens": 44,
+            "total_tokens": 305,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        },
+        {
+          "type": "tool",
+          "content": "No exact paper match found.",
+          "name": "lookup_paper",
+          "tool_call_id": "call_1213395"
+        },
+        {
+          "type": "ai",
+          "content": "I don't know from the indexed corpus.",
+          "tool_calls": [],
+          "usage": {
+            "input_tokens": 324,
+            "output_tokens": 10,
+            "total_tokens": 334,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        }
+      ],
+      "elapsed_seconds": 5.782,
+      "source_attempt": "cp6_gemini_20260927_01"
+    },
+    {
+      "state": "corrupted",
+      "case_id": "stale_date",
+      "question": "When was the paper '10.1145/3637528.3671806' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "paper_id": "10.1145/3637528.3671806",
+      "ground_truth": "2026-05-02",
+      "expected_from_index": "2025-05-02",
+      "answer": "2025-05-02",
+      "checks": {
+        "matches_indexed_context": true,
+        "correct_against_raw": false,
+        "abstained": false,
+        "used_exact_lookup": true,
+        "passed": true
+      },
+      "trace": [
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.1145/3637528.3671806"
+              },
+              "id": "call_721897",
+              "type": "tool_call"
+            }
+          ],
+          "usage": {
+            "input_tokens": 261,
+            "output_tokens": 44,
+            "total_tokens": 305,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        },
+        {
+          "type": "tool",
+          "content": "paper_id: 10.1145/3637528.3671806\ntitle: Semantic Layer Integration for Agentic Text-to-SQL Pipelines\nTitle: Semantic Layer Integration for Agentic Text-to-SQL Pipelines\nSummary: Connecting LLMs directly to raw warehouse tables often results in schema misunderstandings. A governed semantic layer standardizes business metric definitions, dramatically boosting SQL generation accuracy.\nAuthors: Huy Dinh, Trang Vo\nPublished: 2025-05-02\nCategories: Databases, Information Systems",
+          "name": "lookup_paper",
+          "tool_call_id": "call_721897"
+        },
+        {
+          "type": "ai",
+          "content": "2025-05-02",
+          "tool_calls": [],
+          "usage": {
+            "input_tokens": 440,
+            "output_tokens": 10,
+            "total_tokens": 450,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        }
+      ],
+      "elapsed_seconds": 6.468,
+      "source_attempt": "cp6_gemini_20260927_01"
+    },
+    {
+      "state": "corrupted",
+      "case_id": "stable_control",
+      "question": "When was the paper '10.1145/3637528.3671824' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "paper_id": "10.1145/3637528.3671824",
+      "ground_truth": "2026-06-12",
+      "expected_from_index": "2026-06-12",
+      "answer": "2026-06-12",
+      "checks": {
+        "matches_indexed_context": true,
+        "correct_against_raw": true,
+        "abstained": false,
+        "used_exact_lookup": true,
+        "passed": true
+      },
+      "trace": [
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.1145/3637528.3671824"
+              },
+              "id": "call_127960",
+              "type": "tool_call"
+            }
+          ],
+          "usage": {
+            "input_tokens": 261,
+            "output_tokens": 44,
+            "total_tokens": 305,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        },
+        {
+          "type": "tool",
+          "content": "paper_id: 10.1145/3637528.3671824\ntitle: Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\nTitle: Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\nSummary: An extended empirical study on tatic benchmarks fail to capture domain drift in enterprise knowledge bases. We establish a synthetic test generator that auto-creates paired evaluation sets whenever new corpora are ingested Further analysis on scaling parameters.\nAuthors: Quang Le, Yen Vu\nPublished: 2026-06-12\nCategories: Evaluation Methodology, Enterprise Systems",
+          "name": "lookup_paper",
+          "tool_call_id": "call_127960"
+        },
+        {
+          "type": "ai",
+          "content": "2026-06-12",
+          "tool_calls": [],
+          "usage": {
+            "input_tokens": 447,
+            "output_tokens": 10,
+            "total_tokens": 457,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        }
+      ],
+      "elapsed_seconds": 6.141,
+      "source_attempt": "cp6_gemini_20260927_01"
+    },
+    {
+      "state": "corrupted",
+      "case_id": "absent_control",
+      "question": "When was the paper '10.9999/cp6-not-in-corpus' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "paper_id": "10.9999/cp6-not-in-corpus",
+      "ground_truth": "I don't know from the indexed corpus.",
+      "expected_from_index": "I don't know from the indexed corpus.",
+      "answer": "I don't know from the indexed corpus.",
+      "checks": {
+        "matches_indexed_context": true,
+        "correct_against_raw": true,
+        "abstained": true,
+        "used_exact_lookup": true,
+        "passed": true
+      },
+      "trace": [
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.9999/cp6-not-in-corpus"
+              },
+              "id": "call_120758",
+              "type": "tool_call"
+            }
+          ],
+          "usage": {
+            "input_tokens": 254,
+            "output_tokens": 37,
+            "total_tokens": 291,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        },
+        {
+          "type": "tool",
+          "content": "No exact paper match found.",
+          "name": "lookup_paper",
+          "tool_call_id": "call_120758"
+        },
+        {
+          "type": "ai",
+          "content": "I don't know from the indexed corpus.",
+          "tool_calls": [],
+          "usage": {
+            "input_tokens": 310,
+            "output_tokens": 10,
+            "total_tokens": 320,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        }
+      ],
+      "elapsed_seconds": 6.687,
+      "source_attempt": "cp6_gemini_20260927_01"
+    },
+    {
+      "state": "repaired",
+      "case_id": "dropped_paper",
+      "question": "When was the paper '10.1145/3637528.3671812' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "paper_id": "10.1145/3637528.3671812",
+      "ground_truth": "2026-07-22",
+      "expected_from_index": "2026-07-22",
+      "answer": "2026-07-22",
+      "checks": {
+        "matches_indexed_context": true,
+        "correct_against_raw": true,
+        "abstained": false,
+        "used_exact_lookup": true,
+        "passed": true
+      },
+      "trace": [
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.1145/3637528.3671812"
+              },
+              "id": "call_126063",
+              "type": "tool_call"
+            }
+          ],
+          "usage": {
+            "input_tokens": 261,
+            "output_tokens": 44,
+            "total_tokens": 305,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        },
+        {
+          "type": "tool",
+          "content": "paper_id: 10.1145/3637528.3671812\ntitle: Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\nTitle: Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\nSummary: Static benchmarks fail to capture domain drift in enterprise knowledge bases. We establish a synthetic test generator that auto-creates paired evaluation sets whenever new corpora are ingested.\nAuthors: Quang Le, Yen Vu\nPublished: 2026-07-22\nCategories: Evaluation Methodology, Enterprise Systems",
+          "name": "lookup_paper",
+          "tool_call_id": "call_126063"
+        },
+        {
+          "type": "ai",
+          "content": "2026-07-22",
+          "tool_calls": [],
+          "usage": {
+            "input_tokens": 430,
+            "output_tokens": 10,
+            "total_tokens": 440,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        }
+      ],
+      "elapsed_seconds": 6.078,
+      "source_attempt": "cp6_gemini_20260927_01"
+    },
+    {
+      "state": "repaired",
+      "case_id": "stale_date",
+      "question": "When was the paper '10.1145/3637528.3671806' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "paper_id": "10.1145/3637528.3671806",
+      "ground_truth": "2026-05-02",
+      "expected_from_index": "2026-05-02",
+      "answer": "2026-05-02",
+      "checks": {
+        "matches_indexed_context": true,
+        "correct_against_raw": true,
+        "abstained": false,
+        "used_exact_lookup": true,
+        "passed": true
+      },
+      "trace": [
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.1145/3637528.3671806"
+              },
+              "id": "call_1218337",
+              "type": "tool_call"
+            }
+          ],
+          "usage": {
+            "input_tokens": 261,
+            "output_tokens": 44,
+            "total_tokens": 305,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        },
+        {
+          "type": "tool",
+          "content": "paper_id: 10.1145/3637528.3671806\ntitle: Semantic Layer Integration for Agentic Text-to-SQL Pipelines\nTitle: Semantic Layer Integration for Agentic Text-to-SQL Pipelines\nSummary: Connecting LLMs directly to raw warehouse tables often results in schema misunderstandings. A governed semantic layer standardizes business metric definitions, dramatically boosting SQL generation accuracy.\nAuthors: Huy Dinh, Trang Vo\nPublished: 2026-05-02\nCategories: Databases, Information Systems",
+          "name": "lookup_paper",
+          "tool_call_id": "call_1218337"
+        },
+        {
+          "type": "ai",
+          "content": "2026-05-02",
+          "tool_calls": [],
+          "usage": {
+            "input_tokens": 440,
+            "output_tokens": 10,
+            "total_tokens": 450,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        }
+      ],
+      "elapsed_seconds": 6.562,
+      "source_attempt": "cp6_gemini_20260927_01"
+    },
+    {
+      "state": "repaired",
+      "case_id": "stable_control",
+      "question": "When was the paper '10.1145/3637528.3671824' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "paper_id": "10.1145/3637528.3671824",
+      "ground_truth": "2026-06-12",
+      "expected_from_index": "2026-06-12",
+      "answer": "2026-06-12",
+      "checks": {
+        "matches_indexed_context": true,
+        "correct_against_raw": true,
+        "abstained": false,
+        "used_exact_lookup": true,
+        "passed": true
+      },
+      "trace": [
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.1145/3637528.3671824"
+              },
+              "id": "call_1215767",
+              "type": "tool_call"
+            }
+          ],
+          "usage": {
+            "input_tokens": 261,
+            "output_tokens": 44,
+            "total_tokens": 305,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        },
+        {
+          "type": "tool",
+          "content": "paper_id: 10.1145/3637528.3671824\ntitle: Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\nTitle: Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\nSummary: An extended empirical study on tatic benchmarks fail to capture domain drift in enterprise knowledge bases. We establish a synthetic test generator that auto-creates paired evaluation sets whenever new corpora are ingested Further analysis on scaling parameters.\nAuthors: Quang Le, Yen Vu\nPublished: 2026-06-12\nCategories: Evaluation Methodology, Enterprise Systems",
+          "name": "lookup_paper",
+          "tool_call_id": "call_1215767"
+        },
+        {
+          "type": "ai",
+          "content": "2026-06-12",
+          "tool_calls": [],
+          "usage": {
+            "input_tokens": 447,
+            "output_tokens": 10,
+            "total_tokens": 457,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        }
+      ],
+      "elapsed_seconds": 6.219,
+      "source_attempt": "cp6_gemini_20260927_01"
+    },
+    {
+      "state": "repaired",
+      "case_id": "absent_control",
+      "question": "When was the paper '10.9999/cp6-not-in-corpus' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "paper_id": "10.9999/cp6-not-in-corpus",
+      "ground_truth": "I don't know from the indexed corpus.",
+      "expected_from_index": "I don't know from the indexed corpus.",
+      "answer": "I don't know from the indexed corpus.",
+      "checks": {
+        "matches_indexed_context": true,
+        "correct_against_raw": true,
+        "abstained": true,
+        "used_exact_lookup": true,
+        "passed": true
+      },
+      "trace": [
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "lookup_paper",
+              "args": {
+                "paper_id_or_title": "10.9999/cp6-not-in-corpus"
+              },
+              "id": "call_1282711",
+              "type": "tool_call"
+            }
+          ],
+          "usage": {
+            "input_tokens": 254,
+            "output_tokens": 37,
+            "total_tokens": 291,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        },
+        {
+          "type": "tool",
+          "content": "No exact paper match found.",
+          "name": "lookup_paper",
+          "tool_call_id": "call_1282711"
+        },
+        {
+          "type": "ai",
+          "content": "I don't know from the indexed corpus.",
+          "tool_calls": [],
+          "usage": {
+            "input_tokens": 310,
+            "output_tokens": 10,
+            "total_tokens": 320,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        }
+      ],
+      "elapsed_seconds": 5.641,
+      "source_attempt": "gemini_last_case_retry"
+    }
+  ],
+  "online_requests": 26,
+  "pipeline_manifest_sha256": "2413c87e2deb99ad32bfd5a004a5944277d6ac97b146c6675c74a39a46083b3e",
+  "source_sha256": {
+    "pyproject.toml": "5a24aa0fa345ab958fcdb393f27b308cbb5ac582a936cd2ca7c5f432804d1c2c",
+    "requirements.txt": "eb155fad2964d22953f6c12aa943699fdc2f33bab9bd5029a1583d140adf20c3",
+    "script/run_corruption_flow.py": "bb46114613732d774f4ccf3b6bf0db1ea94f8e634b71f369236e878d5878a3e9",
+    "script/run_live_demo.py": "095c7bbb17d9aa1262a80653f974c533c482ad1544b8f233750a6d205a355216",
+    "script/run_phase1.py": "3d16e560ae09d5a80d5e80ea90d138cb13e70eb3ca0917df27ccffba8c319078",
+    "script/verify_run.py": "9fb1d3b8b13f7c720ee820e6263e99e8e5e96ded0418dfd39dfddb4bdcb5b943",
+    "src/core/__init__.py": "56882e5b4e8120a1327a7b7c0b5d38238ebf3173b00ce18f3a7ecb262a134c4e",
+    "src/core/config.py": "68a11836a8f6535c943b9676bd029ed24df92cadc8e46f461ab856413caa5c4e",
+    "src/core/utils.py": "58cddfcb16a16a97258f23b849bfd588b4801d1b76e722ea7855e2ef6296e2f2",
+    "src/evaluation/__init__.py": "8977c88539e5bafad0ae8af78f65403d478d53f5f5fca76cb2964c3cc2b5d605",
+    "src/evaluation/metrics.py": "9a3039e96e130a4d7e55f300e21499e5d97fe3a138d09c26902ac5831a7e07f6",
+    "src/evaluation/testset.py": "407f90a3cb0941996d3f3690c9a84e5bee6cc93f6084eea4308eb2d4eee550a3",
+    "src/ingestion/__init__.py": "ffc65836acab6538fb00a0c6f9b8c495260ffb08c3ae3b5d6cdf6cfe5473dc64",
+    "src/ingestion/cleaning.py": "ab31de6355eeb02f7ce0eab890dad89ef55d61affddd9221c1417c7a4192fd4b",
+    "src/ingestion/corruption.py": "b2f700db86841cc5bf9e223962509c43162be07b831d01202986521fcdde3932",
+    "src/ingestion/crossref.py": "e34d15b7d913757737ae0d7e423f5ab8216b626c487a8eb2969c6c824b529fd3",
+    "src/observability/__init__.py": "a7bc8cfa26dfd8d9c22eaf6a12624759c4e9c69eb7cc9086dc6baeb37491eb5b",
+    "src/observability/quality.py": "aecebacad3c06069c5d3d864ec3c40e5c4d8bcc35de65d6597b0dc2563d33f31",
+    "src/observability/reporting.py": "47da2c18c6b06fe667e027235535b6f29582f8ae633ab27a52a740dd51310f59",
+    "src/pipelines/__init__.py": "96aff8f4263426f8f403a5dd02828e9541ec6803c5ae56e432261044570a1d2d",
+    "src/pipelines/corruption_flow.py": "8096f3b4649726406f5c5cae5e608ead4d5f61ffcc681444bb3e03dd01769ef7",
+    "src/pipelines/phase1.py": "027b1ba4da3b88db299b02c943f63ce2bbf6fac3a11380d0fd08269fca4672bb",
+    "src/pipelines/runs.py": "7547bafe8427829e1d6f540437feebe4e765aff05141033f69f5e7c8c6a225b1",
+    "src/retrieval/__init__.py": "9ccee966664470ff957c843468662c09285c45913f027989e13fd3892d2c1a08",
+    "src/retrieval/agent.py": "1182d22388b0779bb2dfb4ce7739d8b729f274b7b05160afabb81bb0a6a5cb0a",
+    "src/retrieval/embeddings.py": "19fc439e365116155901e11cf5030016cbe3002f812fbf8f2e57ac52311040a1",
+    "src/retrieval/identity.py": "2d7c64eab01674000ac30c8c7949795431e94b9e36d9ad6f7f4c84480e059636",
+    "src/retrieval/index.py": "145912300fd6939181b3f1c1a57ec44f9956b83800c11dc9ade531c31ec49abf",
+    "src/retrieval/llm.py": "92c41cb33d0d8842a4d61c66434b5cac09442c686c28808618e03eef15315d94",
+    "src/retrieval/qa.py": "3ef2adf698eaf87584d668c4752db04d204b1c876f2d997dd7bd29fe3caadafa",
+    "uv.lock": "5f45458281bbdaa21881d3cc1edb5437fa3d7a1b34d752ff0ef57c5954b74c09"
+  },
+  "dependencies": {
+    "langchain-openai": "1.2.2",
+    "langchain-google-genai": "4.2.4",
+    "google-genai": "2.8.0",
+    "langchain": "1.3.4",
+    "openai": "2.41.0",
+    "chromadb": "1.5.9"
+  },
+  "cases": [
+    {
+      "id": "dropped_paper",
+      "paper_id": "10.1145/3637528.3671812",
+      "question": "When was the paper '10.1145/3637528.3671812' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "ground_truth": "2026-07-22",
+      "expected_by_state": {
+        "baseline": "2026-07-22",
+        "corrupted": "I don't know from the indexed corpus.",
+        "repaired": "2026-07-22"
+      }
+    },
+    {
+      "id": "stale_date",
+      "paper_id": "10.1145/3637528.3671806",
+      "question": "When was the paper '10.1145/3637528.3671806' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "ground_truth": "2026-05-02",
+      "expected_by_state": {
+        "baseline": "2026-05-02",
+        "corrupted": "2025-05-02",
+        "repaired": "2026-05-02"
+      }
+    },
+    {
+      "id": "stable_control",
+      "paper_id": "10.1145/3637528.3671824",
+      "question": "When was the paper '10.1145/3637528.3671824' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "ground_truth": "2026-06-12",
+      "expected_by_state": {
+        "baseline": "2026-06-12",
+        "corrupted": "2026-06-12",
+        "repaired": "2026-06-12"
+      }
+    },
+    {
+      "id": "absent_control",
+      "paper_id": "10.9999/cp6-not-in-corpus",
+      "question": "When was the paper '10.9999/cp6-not-in-corpus' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+      "ground_truth": "I don't know from the indexed corpus.",
+      "expected_by_state": {
+        "baseline": "I don't know from the indexed corpus.",
+        "corrupted": "I don't know from the indexed corpus.",
+        "repaired": "I don't know from the indexed corpus."
+      }
+    }
+  ],
+  "finished_at_utc": "2026-09-27T08:58:14.746973+00:00",
+  "resumed_from_demo": "cp6_gemini_20260927_01",
+  "resumed_at_utc": "2026-09-27T08:58:04.461286+00:00",
+  "initial_attempt_error": {
+    "type": "ChatGoogleGenerativeAIError",
+    "http_status": null
+  },
+  "sealed_pipeline_unchanged": true,
+  "summary": {
+    "baseline": {
+      "samples": 4,
+      "context_checks_passed": 4,
+      "correct_against_raw": 4
+    },
+    "corrupted": {
+      "samples": 4,
+      "context_checks_passed": 4,
+      "correct_against_raw": 2
+    },
+    "repaired": {
+      "samples": 4,
+      "context_checks_passed": 4,
+      "correct_against_raw": 4
+    }
+  }
+}

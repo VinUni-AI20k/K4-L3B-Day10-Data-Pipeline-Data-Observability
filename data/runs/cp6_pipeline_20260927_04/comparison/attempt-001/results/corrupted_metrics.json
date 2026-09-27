@@ -1,0 +1,17 @@
+{
+  "samples": 10,
+  "retrieval_hit_rate": 0.8,
+  "mean_token_f1": 0.8,
+  "judge_accuracy": 0.8,
+  "mean_judge_score": 4.2,
+  "answer_source_hit_rate": 0.8,
+  "mean_grounded_token_f1": 0.8,
+  "abstention_rate": 0.2,
+  "heuristic_judge_count": 10,
+  "judge_provider": "mock",
+  "answer_backend": "extractive_metadata",
+  "token_f1_definition": "whitespace_lowercase_token_set_overlap",
+  "ragas": {
+    "skipped": "Set RUN_RAGAS=1 to enable the slower Ragas pass."
+  }
+}

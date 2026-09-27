@@ -1,0 +1,13 @@
+{
+  "data_files_checked": 754,
+  "changed_original_data": [],
+  "http_checks_passed": 15,
+  "http_checks_total": 15,
+  "unit_tests_passed": 7,
+  "javascript_syntax": "compiled successfully with V8; no browser execution",
+  "html_ids_unique": true,
+  "javascript_dom_targets_exist": true,
+  "secret_scan_passed": true,
+  "browser_visual_check": "not available: no connected Chrome or in-app browser",
+  "semantic_online_chat": "passed with semantic_search_papers and 3 retrieved sources"
+}

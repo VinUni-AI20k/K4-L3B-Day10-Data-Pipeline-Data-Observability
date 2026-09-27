@@ -1,0 +1,98 @@
+{
+  "id": "2e3bf07fa76940c0",
+  "kind": "chat",
+  "status": "complete",
+  "progress": "Hoàn tất",
+  "answers": [
+    {
+      "state": "baseline",
+      "answer": "Dưới đây là một bài báo về Retrieval-Augmented Generation (RAG) có trong cơ sở dữ liệu:\n\n* **Tiêu đề:** Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks\n* **DOI:** 10.1145/3637528.3671801\n* **Tóm tắt ngắn (tiếng Việt):** Kỹ thuật Tăng cường Sinh bằng Truy xuất (RAG) giúp cải thiện đáng kể độ chính xác của các mô hình ngôn ngữ lớn bằng cách neo giữ các câu trả lời dựa trên những đoạn văn bản được truy xuất. Bài báo này khám phá khả năng suy luận đa chặng (multi-hop reasoning) mang tính tác nhân (agentic) và định tuyến qua các chỉ mục véc-tơ không đồng nhất.",
+      "sources": [
+        {
+          "paper_id": "10.1145/3637528.3671801",
+          "title": "Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks",
+          "published": "2026-05-20"
+        },
+        {
+          "paper_id": "10.1145/3637528.3671813",
+          "title": "Advanced Perspectives on Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks",
+          "published": "2026-06-01"
+        },
+        {
+          "paper_id": "10.1145/3637528.3671823",
+          "title": "Advanced Perspectives on Hybrid Search Architectures: Combining BM25 with Dense Representations",
+          "published": "2026-06-11"
+        }
+      ],
+      "tool_calls": [
+        {
+          "name": "semantic_search_papers",
+          "args": {
+            "query": "retrieval-augmented generation",
+            "top_k": 3
+          },
+          "id": "call_1437646",
+          "type": "tool_call"
+        }
+      ],
+      "trace": [
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "semantic_search_papers",
+              "args": {
+                "query": "retrieval-augmented generation",
+                "top_k": 3
+              },
+              "id": "call_1437646",
+              "type": "tool_call"
+            }
+          ],
+          "usage": {
+            "input_tokens": 227,
+            "output_tokens": 29,
+            "total_tokens": 256,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        },
+        {
+          "type": "tool",
+          "content": "paper_id: 10.1145/3637528.3671801\ntitle: Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks\nscore: 0.6508\nTitle: Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks\nSummary: Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages. We explore agentic multi-hop reasoning and routing across heterogeneous vector indices.\nAuthors: Minh Nguyen, Hoang Le\nPublished: 2026-05-20\nCategories: Artificial Intelligence, Information Retrieval\n\npaper_id: 10.1145/3637528.3671813\ntitle: Advanced Perspectives on Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks\nscore: 0.6497\nTitle: Advanced Perspectives on Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks\nSummary: An extended empirical study on etrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages. We explore agentic multi-hop reasoning and routing across heterogeneous vector indices Further analysis on scaling parameters.\nAuthors: Minh Nguyen, Hoang Le\nPublished: 2026-06-01\nCategories: Artificial Intelligence, Information Retrieval\n\npaper_id: 10.1145/3637528.3671823\ntitle: Advanced Perspectives on Hybrid Search Architectures: Combining BM25 with Dense Representations\nscore: 0.4229\nTitle: Advanced Perspectives on Hybrid Search Architectures: Combining BM25 with Dense Representations\nSummary: An extended empirical study on ense vector search excels at conceptual similarity but struggles with exact acronyms and serial numbers. Reciprocal Rank Fusion of sparse lexical scores and dense embeddings achieves optimal recall Further analysis on scaling parameters.\nAuthors: Dat Tran, Lan Pham\nPublished: 2026-06-11\nCategories: Information Retrieval, Algorithms",
+          "name": "semantic_search_papers",
+          "tool_call_id": "call_1437646"
+        },
+        {
+          "type": "ai",
+          "content": "Dưới đây là một bài báo về Retrieval-Augmented Generation (RAG) có trong cơ sở dữ liệu:\n\n* **Tiêu đề:** Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks\n* **DOI:** 10.1145/3637528.3671801\n* **Tóm tắt ngắn (tiếng Việt):** Kỹ thuật Tăng cường Sinh bằng Truy xuất (RAG) giúp cải thiện đáng kể độ chính xác của các mô hình ngôn ngữ lớn bằng cách neo giữ các câu trả lời dựa trên những đoạn văn bản được truy xuất. Bài báo này khám phá khả năng suy luận đa chặng (multi-hop reasoning) mang tính tác nhân (agentic) và định tuyến qua các chỉ mục véc-tơ không đồng nhất.",
+          "tool_calls": [],
+          "usage": {
+            "input_tokens": 721,
+            "output_tokens": 175,
+            "total_tokens": 896,
+            "input_token_details": {
+              "cache_read": 0
+            }
+          },
+          "response_model": "gemini-3.5-flash-lite",
+          "finish_reason": "STOP"
+        }
+      ],
+      "tokens": 1152,
+      "models": [
+        "gemini-3.5-flash-lite"
+      ],
+      "mode": "gemini",
+      "elapsed_seconds": 5.39
+    }
+  ],
+  "question": "Tìm một bài báo về retrieval-augmented generation trong corpus. Nêu tiêu đề, DOI và tóm tắt ngắn bằng tiếng Việt.",
+  "mode": "gemini",
+  "run_id": "web_60a5d93948",
+  "finished_at": "2026-09-27T09:54:35.538165+00:00"
+}

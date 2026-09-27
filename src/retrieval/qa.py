@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-import re
 
 from core.config import Settings
 from core.utils import first_sentence
 from retrieval.index import LocalEmbeddingIndex, SearchResult
+from retrieval.identity import ABSTENTION, explicit_paper_reference
 
 
 @dataclass(frozen=True)
@@ -15,6 +15,8 @@ class AnswerResult:
     retrieved_doc_ids: list[str]
     retrieved_contexts: list[str]
     retrieved_titles: list[str]
+    answer_doc_ids: list[str]
+    abstained: bool
 
 
 def _extract_answer(question: str, top_result: SearchResult) -> str:
@@ -30,8 +32,10 @@ def _extract_answer(question: str, top_result: SearchResult) -> str:
 
 
 def answer_question(question: str, settings: Settings, index: LocalEmbeddingIndex, top_k: int | None = None) -> AnswerResult:
-    title_match = re.search(r"'([^']+)'", question)
-    exact = index.lookup(title_match.group(1)) if title_match else None
+    reference = explicit_paper_reference(question)
+    exact = index.lookup(reference) if reference else None
+    if reference and not exact:
+        return AnswerResult(question, ABSTENTION, [], [], [], [], True)
     retrieved = index.search(question, top_k=top_k)
     if exact:
         exact_result = SearchResult(
@@ -44,13 +48,16 @@ def answer_question(question: str, settings: Settings, index: LocalEmbeddingInde
         deduped = [exact_result] + [item for item in retrieved if item.paper_id != exact_result.paper_id]
         retrieved = deduped[: (top_k or settings.top_k)]
     if not retrieved:
-        answer = "I don't know from the indexed corpus."
+        answer = ABSTENTION
     else:
-        answer = _extract_answer(question, retrieved[0])
+        answer = _extract_answer(question, retrieved[0]).strip() or ABSTENTION
+    abstained = answer == ABSTENTION
     return AnswerResult(
         question=question,
         answer=answer,
         retrieved_doc_ids=[item.paper_id for item in retrieved],
         retrieved_contexts=[item.content for item in retrieved],
         retrieved_titles=[item.title for item in retrieved],
+        answer_doc_ids=[] if abstained else [retrieved[0].paper_id],
+        abstained=abstained,
     )

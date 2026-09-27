@@ -7,10 +7,9 @@ import sys
 import types
 from typing import Any
 
-from datasets import Dataset
 from pydantic import BaseModel, Field
 
-from core.config import Settings
+from core.config import Settings, normalized_provider
 from core.utils import normalize_whitespace, read_json, write_json
 from retrieval.embeddings import MiniLMEmbeddings
 from retrieval.index import LocalEmbeddingIndex
@@ -22,6 +21,7 @@ class JudgeVerdict(BaseModel):
     score: int = Field(ge=1, le=5)
     correct: bool
     reasoning: str
+    backend: str = "llm"
 
 
 @dataclass(frozen=True)
@@ -67,6 +67,7 @@ Return:
             score=score,
             correct=score >= 3,
             reasoning="Fallback heuristic judge used because the LLM evaluator was unavailable.",
+            backend="heuristic",
         )
 
 
@@ -74,6 +75,7 @@ def _run_ragas(settings: Settings, answers: list[dict[str, Any]]) -> dict[str, A
     if os.getenv("RUN_RAGAS", "").lower() not in {"1", "true", "yes"}:
         return {"skipped": "Set RUN_RAGAS=1 to enable the slower Ragas pass."}
     try:
+        from datasets import Dataset
         if "langchain_community.chat_models.vertexai" not in sys.modules:
             shim = types.ModuleType("langchain_community.chat_models.vertexai")
             shim.ChatVertexAI = type("ChatVertexAI", (), {})
@@ -108,6 +110,8 @@ def evaluate_pipeline(
     answers_output_path,
 ) -> EvaluationBundle:
     test_set = read_json(test_set_path)
+    if not test_set:
+        raise ValueError("Evaluation test set must not be empty")
     answers: list[dict[str, Any]] = []
 
     for item in test_set:
@@ -124,6 +128,9 @@ def evaluate_pipeline(
                 "answer": result.answer,
                 "retrieved_doc_ids": result.retrieved_doc_ids,
                 "retrieved_contexts": result.retrieved_contexts,
+                "answer_doc_ids": result.answer_doc_ids,
+                "abstained": result.abstained,
+                "answer_source_hit": any(doc_id in item["ground_truth_doc_ids"] for doc_id in result.answer_doc_ids),
                 "retrieval_hit": retrieval_hit,
                 "token_f1": _token_f1(item["ground_truth"], result.answer),
                 "judge": judge.model_dump(),
@@ -136,6 +143,13 @@ def evaluate_pipeline(
         "mean_token_f1": mean(item["token_f1"] for item in answers),
         "judge_accuracy": mean(1.0 if item["judge"]["correct"] else 0.0 for item in answers),
         "mean_judge_score": mean(item["judge"]["score"] for item in answers),
+        "answer_source_hit_rate": mean(float(item["answer_source_hit"]) for item in answers),
+        "mean_grounded_token_f1": mean(item["token_f1"] if item["answer_source_hit"] else 0.0 for item in answers),
+        "abstention_rate": mean(float(item["abstained"]) for item in answers),
+        "heuristic_judge_count": sum(item["judge"]["backend"] == "heuristic" for item in answers),
+        "judge_provider": normalized_provider(settings),
+        "answer_backend": "extractive_metadata",
+        "token_f1_definition": "whitespace_lowercase_token_set_overlap",
     }
     summary["ragas"] = _run_ragas(settings, answers)
 
@@ -143,3 +157,24 @@ def evaluate_pipeline(
     write_json(metrics_output_path, summary)
     write_json(answers_output_path, answers)
     return bundle
+
+
+def evaluate_abstention_challenges(settings, index, output_path, extra_questions=()) -> dict:
+    """Keep negative cases separate from the unchanged ten-question benchmark."""
+    questions = [
+        "Who authored the paper '10.9999/not-in-this-corpus'?",
+        "When was 10.9999/not-in-this-corpus published?",
+        'What does the paper "A deliberately absent audit title" describe?',
+        *extra_questions,
+    ]
+    answers = []
+    for question in questions:
+        result = answer_question(question, settings, index)
+        answers.append({"question": question, "answer": result.answer, "abstained": result.abstained,
+                        "answer_doc_ids": result.answer_doc_ids,
+                        "passed": result.abstained and not result.answer_doc_ids})
+    payload = {"samples": len(answers), "passed": sum(a["passed"] for a in answers), "answers": answers}
+    write_json(output_path, payload)
+    if payload["passed"] != payload["samples"]:
+        raise RuntimeError("Out-of-corpus challenge failed")
+    return payload

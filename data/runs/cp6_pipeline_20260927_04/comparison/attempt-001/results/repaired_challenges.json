@@ -1,0 +1,27 @@
+{
+  "samples": 3,
+  "passed": 3,
+  "answers": [
+    {
+      "question": "Who authored the paper '10.9999/not-in-this-corpus'?",
+      "answer": "I don't know from the indexed corpus.",
+      "abstained": true,
+      "answer_doc_ids": [],
+      "passed": true
+    },
+    {
+      "question": "When was 10.9999/not-in-this-corpus published?",
+      "answer": "I don't know from the indexed corpus.",
+      "abstained": true,
+      "answer_doc_ids": [],
+      "passed": true
+    },
+    {
+      "question": "What does the paper \"A deliberately absent audit title\" describe?",
+      "answer": "I don't know from the indexed corpus.",
+      "abstained": true,
+      "answer_doc_ids": [],
+      "passed": true
+    }
+  ]
+}

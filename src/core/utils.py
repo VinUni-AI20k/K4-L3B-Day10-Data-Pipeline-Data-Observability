@@ -2,8 +2,10 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 import json
+import os
 from pathlib import Path
 import re
+import tempfile
 from typing import Any, Iterable
 
 
@@ -12,8 +14,7 @@ def ensure_parent(path: Path) -> None:
 
 
 def write_json(path: Path, payload: Any) -> None:
-    ensure_parent(path)
-    path.write_text(json.dumps(payload, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
+    write_text(path, json.dumps(payload, indent=2, ensure_ascii=True, allow_nan=False) + "\n")
 
 
 def read_json(path: Path) -> Any:
@@ -21,13 +22,26 @@ def read_json(path: Path) -> Any:
 
 
 def write_csv(df, path: Path) -> None:
-    ensure_parent(path)
-    df.to_csv(path, index=False)
+    write_text(path, df.to_csv(index=False))
 
 
 def write_text(path: Path, text: str) -> None:
+    """Publish a complete file with a same-directory atomic replacement."""
+    path = Path(path)
     ensure_parent(path)
-    path.write_text(text, encoding="utf-8")
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", newline="\n",
+                                         dir=path.parent, prefix=f".{path.name}.",
+                                         suffix=".tmp", delete=False) as handle:
+            temporary = Path(handle.name)
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary is not None and temporary.exists():
+            temporary.unlink()
 
 
 def now_utc() -> datetime:

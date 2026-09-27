@@ -8,12 +8,16 @@ from langchain.tools import tool
 from core.config import Settings
 from retrieval.index import LocalEmbeddingIndex
 from retrieval.llm import build_llm
+from retrieval.identity import ABSTENTION, explicit_paper_reference
 
 
-def build_agent(settings: Settings, index: LocalEmbeddingIndex):
+def build_agent(settings: Settings, index: LocalEmbeddingIndex, *, llm: Any | None = None):
     @tool
     def semantic_search_papers(query: str, top_k: int = 4) -> str:
         """Search the local paper corpus with embeddings and return the most relevant papers."""
+        reference = explicit_paper_reference(query)
+        if reference and index.lookup(reference) is None:
+            return ABSTENTION
         results = index.search(query, top_k=top_k)
         lines = []
         for result in results:
@@ -37,13 +41,15 @@ def build_agent(settings: Settings, index: LocalEmbeddingIndex):
             f"{record['content']}"
         )
 
-    llm = build_llm(settings=settings, temperature=0.0)
+    llm = llm if llm is not None else build_llm(settings=settings, temperature=0.0)
     return create_agent(
         model=llm,
         tools=[semantic_search_papers, lookup_paper],
         system_prompt=(
             "You answer questions about the indexed scholarly paper corpus sourced from Crossref. "
             "Use tools before answering factual questions. "
+            "For an explicit DOI or quoted title, use lookup_paper and answer only about that exact paper. "
+            "If lookup fails, abstain; never substitute a different paper from semantic search. "
             "If the indexed corpus does not support the answer, say so clearly."
         ),
         name="paper_corpus_agent",

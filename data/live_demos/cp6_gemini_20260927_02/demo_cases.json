@@ -1,0 +1,46 @@
+[
+  {
+    "id": "dropped_paper",
+    "paper_id": "10.1145/3637528.3671812",
+    "question": "When was the paper '10.1145/3637528.3671812' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+    "ground_truth": "2026-07-22",
+    "expected_by_state": {
+      "baseline": "2026-07-22",
+      "corrupted": "I don't know from the indexed corpus.",
+      "repaired": "2026-07-22"
+    }
+  },
+  {
+    "id": "stale_date",
+    "paper_id": "10.1145/3637528.3671806",
+    "question": "When was the paper '10.1145/3637528.3671806' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+    "ground_truth": "2026-05-02",
+    "expected_by_state": {
+      "baseline": "2026-05-02",
+      "corrupted": "2025-05-02",
+      "repaired": "2026-05-02"
+    }
+  },
+  {
+    "id": "stable_control",
+    "paper_id": "10.1145/3637528.3671824",
+    "question": "When was the paper '10.1145/3637528.3671824' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+    "ground_truth": "2026-06-12",
+    "expected_by_state": {
+      "baseline": "2026-06-12",
+      "corrupted": "2026-06-12",
+      "repaired": "2026-06-12"
+    }
+  },
+  {
+    "id": "absent_control",
+    "paper_id": "10.9999/cp6-not-in-corpus",
+    "question": "When was the paper '10.9999/cp6-not-in-corpus' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+    "ground_truth": "I don't know from the indexed corpus.",
+    "expected_by_state": {
+      "baseline": "I don't know from the indexed corpus.",
+      "corrupted": "I don't know from the indexed corpus.",
+      "repaired": "I don't know from the indexed corpus."
+    }
+  }
+]

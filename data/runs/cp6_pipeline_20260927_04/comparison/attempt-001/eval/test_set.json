@@ -1,0 +1,92 @@
+[
+  {
+    "id": "q001",
+    "question_type": "summary",
+    "question": "What does the paper '10.1145/3637528.3671812' about Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines describe?",
+    "ground_truth": "Static benchmarks fail to capture domain drift in enterprise knowledge bases.",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671812"
+    ]
+  },
+  {
+    "id": "q002",
+    "question_type": "authors",
+    "question": "Who authored the paper '10.1145/3637528.3671804' about Freshness SLAs for Real-Time LLM Knowledge Augmentation?",
+    "ground_truth": "Bao Do, Linh Ngo",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671804"
+    ]
+  },
+  {
+    "id": "q003",
+    "question_type": "date",
+    "question": "When was the paper '10.1145/3637528.3671824' about Advanced Perspectives on Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines published?",
+    "ground_truth": "2026-06-12",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671824"
+    ]
+  },
+  {
+    "id": "q004",
+    "question_type": "categories",
+    "question": "What categories describe the paper '10.1145/3637528.3671822' about Advanced Perspectives on Automated Data Quality Profiling with Great Expectations in CI/CD?",
+    "ground_truth": "Data Quality, DevOps",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671822"
+    ]
+  },
+  {
+    "id": "q005",
+    "question_type": "summary",
+    "question": "What does the paper '10.1145/3637528.3671820' about Advanced Perspectives on Multi-Agent Consensus for High-Stakes Fact Verification describe?",
+    "ground_truth": "An extended empirical study on single LLM is susceptible to confirmation bias when evaluating retrieved evidence.",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671820"
+    ]
+  },
+  {
+    "id": "q006",
+    "question_type": "authors",
+    "question": "Who authored the paper '10.1145/3637528.3671818' about Advanced Perspectives on Semantic Layer Integration for Agentic Text-to-SQL Pipelines?",
+    "ground_truth": "Huy Dinh, Trang Vo",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671818"
+    ]
+  },
+  {
+    "id": "q007",
+    "question_type": "date",
+    "question": "When was the paper '10.1145/3637528.3671815' about Advanced Perspectives on Mitigating Ghost Vectors in Dense Retrieval via Idempotent Indexing published?",
+    "ground_truth": "2026-06-03",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671815"
+    ]
+  },
+  {
+    "id": "q008",
+    "question_type": "categories",
+    "question": "What categories describe the paper '10.1145/3637528.3671813' about Advanced Perspectives on Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks?",
+    "ground_truth": "Artificial Intelligence, Information Retrieval",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671813"
+    ]
+  },
+  {
+    "id": "q009",
+    "question_type": "summary",
+    "question": "What does the paper '10.1145/3637528.3671806' about Semantic Layer Integration for Agentic Text-to-SQL Pipelines describe?",
+    "ground_truth": "Connecting LLMs directly to raw warehouse tables often results in schema misunderstandings.",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671806"
+    ]
+  },
+  {
+    "id": "q010",
+    "question_type": "authors",
+    "question": "Who authored the paper '10.1145/3637528.3671805' about Evaluating Retrieval Precision with Token F1 and LLM Judges?",
+    "ground_truth": "Tuan Phan, Mai Bui",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671805"
+    ]
+  }
+]

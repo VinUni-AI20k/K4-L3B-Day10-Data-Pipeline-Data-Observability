@@ -1,0 +1,62 @@
+{
+  "samples": 8,
+  "passed": 8,
+  "answers": [
+    {
+      "question": "Who authored the paper '10.9999/not-in-this-corpus'?",
+      "answer": "I don't know from the indexed corpus.",
+      "abstained": true,
+      "answer_doc_ids": [],
+      "passed": true
+    },
+    {
+      "question": "When was 10.9999/not-in-this-corpus published?",
+      "answer": "I don't know from the indexed corpus.",
+      "abstained": true,
+      "answer_doc_ids": [],
+      "passed": true
+    },
+    {
+      "question": "What does the paper \"A deliberately absent audit title\" describe?",
+      "answer": "I don't know from the indexed corpus.",
+      "abstained": true,
+      "answer_doc_ids": [],
+      "passed": true
+    },
+    {
+      "question": "Who authored the paper '10.1145/3637528.3671812'?",
+      "answer": "I don't know from the indexed corpus.",
+      "abstained": true,
+      "answer_doc_ids": [],
+      "passed": true
+    },
+    {
+      "question": "Who authored the paper '10.1145/3637528.3671808'?",
+      "answer": "I don't know from the indexed corpus.",
+      "abstained": true,
+      "answer_doc_ids": [],
+      "passed": true
+    },
+    {
+      "question": "Who authored the paper '10.1145/3637528.3671804'?",
+      "answer": "I don't know from the indexed corpus.",
+      "abstained": true,
+      "answer_doc_ids": [],
+      "passed": true
+    },
+    {
+      "question": "Who authored the paper '10.1145/3637528.3671807'?",
+      "answer": "I don't know from the indexed corpus.",
+      "abstained": true,
+      "answer_doc_ids": [],
+      "passed": true
+    },
+    {
+      "question": "Who authored the paper '10.1145/3637528.3671802'?",
+      "answer": "I don't know from the indexed corpus.",
+      "abstained": true,
+      "answer_doc_ids": [],
+      "passed": true
+    }
+  ]
+}

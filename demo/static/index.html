@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Data Observatory · RAG Lab</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/styles.css"><script src="/app.js" defer></script></head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="#overview"><span class="brand-icon">▥</span><span>Data<br><strong>Observatory</strong></span></a>
+  <div class="nav-label">WORKSPACE / LAB 10</div>
+  <nav aria-label="Điều hướng"><a href="#overview" class="active">◉ <span>Tổng quan</span></a><a href="#flow">⌘ <span>Luồng dữ liệu</span></a><a href="#benchmark">▥ <span>Benchmark</span></a><a href="#data">▤ <span>Kiểm tra dữ liệu</span></a><a href="#chat">✧ <span>Phòng chat</span><span class="nav-tag">LIVE</span></a></nav>
+  <div class="sidebar-bottom"><span class="live-dot"></span> LOCAL WORKSPACE<p>Crossref → Chroma → Gemini</p><small>Quan sát dữ liệu.<br>Hiểu câu trả lời.</small></div>
+</aside>
+<main>
+  <header class="topbar"><div><span class="breadcrumb">LABWORK</span><span class="slash">/</span> Data quality & RAG</div><div class="connection"><span class="live-dot" id="connectionDot"></span><span id="connectionText">Đang kết nối…</span></div></header>
+  <section id="overview" class="hero">
+    <div><div class="eyebrow">DATA PIPELINE & OBSERVABILITY</div><h1>Dữ liệu thay đổi.<br><span>Câu trả lời cũng vậy.</span></h1><p>Theo dõi hành trình từ dữ liệu sạch đến lỗi và phục hồi.<br>Đặt cùng một câu hỏi để nhìn thấy tác động lên chatbot.</p></div>
+    <div class="hero-actions"><button id="runPipeline" class="button primary">↻ Chạy pipeline mới</button><a href="#chat" class="button light">Thử hỏi chatbot ↗</a><small>Pipeline thật · Output riêng trong demo/</small></div>
+  </section>
+  <div id="notice" class="notice hidden" role="status" aria-live="polite"></div>
+  <div class="state-toolbar"><div class="segmented" id="stateTabs" aria-label="Chọn trạng thái dữ liệu"><button data-state="baseline" class="selected">● Dữ liệu sạch</button><button data-state="corrupted">● Corrupted</button><button data-state="repaired">● Repaired</button></div><span class="verified" id="verifiedText">Đang kiểm tra bằng chứng</span></div>
+  <div class="kpis" id="kpis"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+
+  <section id="flow" class="panel flow-panel"><div class="section-head"><div><div class="eyebrow">01 / DATA FLOW</div><h2>Từ nguồn dữ liệu đến câu trả lời</h2></div><button id="animateFlow" class="button small">▷ Trình diễn flow</button></div><p class="muted small-copy">Sơ đồ thể hiện trạng thái đã lưu. Chọn một bước để xem chi tiết; nút “Chạy pipeline mới” thực thi lại toàn bộ quá trình.</p><div id="flowNodes" class="flow-nodes"></div><div class="flow-detail" id="flowDetail"></div><div class="repair-band"><span class="repair-icon">↻</span><div><strong>Quality alert → Repair từ raw gốc → Kiểm tra lại → Index mới</strong><p>Dữ liệu corrupted được đánh giá ở collection thử nghiệm riêng. Raw và index bàn giao được bảo toàn.</p></div><span class="pill green">AUTO REPAIR</span></div></section>
+
+  <section id="benchmark"><div class="section-head outside"><div><div class="eyebrow">02 / MEASURE THE IMPACT</div><h2>Một benchmark. Ba trạng thái.</h2></div><div class="legend"><span class="baseline">● Sạch</span><span class="corrupted">● Corrupted</span><span class="repaired">● Repaired</span></div></div>
+    <div class="benchmark-grid"><div class="panel"><div class="card-heading"><h3>Hiệu năng pipeline</h3><span class="pill neutral">10 câu · 4 loại</span></div><div id="benchmarkChart" class="chart" aria-label="Biểu đồ benchmark ba trạng thái"></div><p class="chart-note">Benchmark xác định: extractive QA + mock judge. MiniLM và Chroma thật. Không gọi đây là điểm LLM online.</p></div><div class="panel"><div class="card-heading"><h3>Gemini · đúng so với raw</h3><span class="pill neutral">Bằng chứng đã lưu</span></div><div id="onlineChart"></div><p id="onlineNote" class="chart-note"></p></div></div>
+    <div class="panel table-panel"><div class="card-heading"><h3>Đối chiếu chỉ số</h3><span class="muted">Metrics lấy trực tiếp từ run đã xác minh</span></div><div class="table-scroll"><table id="metricsTable"></table></div></div>
+  </section>
+
+  <section id="data" class="panel"><div class="section-head"><div><div class="eyebrow">03 / INSPECT THE CHANGE</div><h2>Dữ liệu sai ở đâu?</h2></div><span class="pill amber">6 kịch bản corruption</span></div><div class="inspection"><div id="eventList" class="event-list"></div><div class="diff-area"><label for="paperSelect">Chọn bài để so sánh</label><select id="paperSelect"></select><div id="paperDiff"></div></div></div><details class="dataset-details"><summary>Xem corpus của trạng thái đang chọn <span id="corpusCount"></span></summary><input id="paperSearch" type="search" placeholder="Tìm DOI hoặc tiêu đề…" aria-label="Tìm bài báo"><div class="table-scroll corpus-table"><table id="corpusTable"></table></div></details></section>
+
+  <section id="chat" class="panel chat-panel"><div class="section-head"><div><div class="eyebrow">04 / ASK THE CORPUS</div><h2>Hỏi cùng câu. Đổi dữ liệu.</h2></div><span class="pill green" id="modelLabel">Gemini</span></div><p class="muted small-copy">Mỗi câu hỏi là một lượt độc lập. Chọn “So sánh cả 3” để nhìn câu trả lời cạnh nhau trên cùng dữ liệu nguồn.</p>
+    <div class="chat-controls"><div><label for="chatState">Dữ liệu hỏi</label><select id="chatState"><option value="baseline">Dữ liệu sạch</option><option value="corrupted">Corrupted</option><option value="repaired">Repaired</option></select></div><label class="checkbox"><input type="checkbox" id="compareAll" checked> So sánh cả 3</label><div class="mode-control"><label for="chatMode">Chế độ</label><select id="chatMode"><option value="gemini">Gemini online</option><option value="local">Trích xuất local · không API</option></select></div></div>
+    <div class="prompt-chips" id="promptChips"><button data-prompt="stale">↳ Ngày bị sửa</button><button data-prompt="dropped">↳ Bài bị mất</button><button data-prompt="absent">↳ DOI không tồn tại</button><button data-prompt="semantic">↳ Tìm kiếm ngữ nghĩa</button></div>
+    <div id="chatMessages" class="chat-messages" aria-live="polite"><div class="chat-empty" id="chatEmpty"><span>✧</span><h3>Dữ liệu của bạn có đang nói đúng?</h3><p>Thử câu “Ngày bị sửa” và so sánh ba câu trả lời.<br>Gemini sẽ tra cứu corpus trước khi trả lời.</p></div></div>
+    <form id="chatForm" class="chat-composer"><label class="sr-only" for="question">Câu hỏi cho chatbot</label><textarea id="question" rows="2" maxlength="2000" placeholder="Hỏi về bài báo trong corpus… Ví dụ: When was the paper '10.1145/3637528.3671806' published?" required></textarea><button id="sendChat" class="button primary" type="submit">Gửi câu hỏi ↗</button></form><div class="chat-footer"><span id="chatHint">Online dùng Gemini API. Local chỉ hỗ trợ tốt các câu mẫu trích xuất thông tin.</span><button id="clearChat" class="text-button">Xóa hội thoại trên màn hình</button></div>
+  </section>
+  <footer><span>DATA OBSERVATORY · CHECKPOINT 6</span><span id="runLabel"></span></footer>
+</main>
+</body></html>

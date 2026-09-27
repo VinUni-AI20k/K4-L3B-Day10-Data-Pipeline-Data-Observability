@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "artifacts": {
+    "continuation_result.json": "558e51527ccea88dfbcab13ba6d5bb75870936b2bcd504647032eaab03f76207",
+    "corruption_report.md": "117b997727d00179a4bfaec1e599208f69be1002f92923154c9ca10387a86cc9",
+    "demo_cases.json": "63503a57d28eb1036d10356c9f1fc290e8e53b96094a261f53e473ba87c94ff0",
+    "online_report.md": "73d98b428030c56813414f0de4acc0997881d69d44429d33e7dd456da475d78b",
+    "online_results.json": "17cb931151cd56e3d2412fa72431c1df198598b020c1d541b570c7ed21b0b18f",
+    "pipeline_verification.json": "d58ffd29993afe1c936595f9d962e9e7c5c6388024b2eb646c294ede7e237e2d",
+    "prior_attempt_results.json": "c388ac78b26ce4ff193d6f307b77ddd453472f6cda98b9bc16e21862dd4f706f",
+    "run_corruption_flow.log": "001d716255725bb17175f14ce7011468fdd59a7c49eae139fb79c3bffeb716c2",
+    "run_phase1.log": "98dabe1f6407c763fec776464a8f18697efed18b603d11ff0cb31f0df37093b4"
+  },
+  "pipeline_run_id": "cp6_pipeline_20260927_04",
+  "pipeline_manifest_sha256": "2413c87e2deb99ad32bfd5a004a5944277d6ac97b146c6675c74a39a46083b3e",
+  "resumed_from_demo": "cp6_gemini_20260927_01",
+  "prior_manifest_sha256": "3dc10382598d02f11634c7b677de66e5abb37b36819e221557db830a80804f47"
+}

@@ -1,0 +1,29 @@
+{
+  "scope": "Export HEAD plus explicit publication files to a separate directory, without .env. Reuse installed dependencies and local MiniLM cache; not a fresh dependency installation.",
+  "publication_file_count": 116,
+  "no_env": true,
+  "checks": {
+    "artifacts": true,
+    "web_units": true,
+    "no_key_dashboard": true,
+    "http_and_pipeline": true
+  },
+  "artifact_check_count": 99,
+  "http_checks": {
+    "dashboard_counts": true,
+    "static:/": true,
+    "static:/app.js": true,
+    "static:/styles.css": true,
+    "static:/favicon.svg": true,
+    "env_not_served": true,
+    "cross_origin_rejected": true,
+    "local_stale_three_states": true,
+    "local_dropped_three_states": true,
+    "new_pipeline_completed": true,
+    "new_pipeline_verified": true,
+    "chat_uses_new_run": true
+  },
+  "passed": true,
+  "publish_checker_synthetic_cases_passed": 7,
+  "publication_file_count_including_this_report": 117
+}

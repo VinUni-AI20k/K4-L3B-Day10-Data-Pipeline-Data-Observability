@@ -3,11 +3,11 @@ from __future__ import annotations
 from functools import lru_cache
 
 from langchain_core.embeddings import Embeddings
-from sentence_transformers import SentenceTransformer
 
 
 @lru_cache(maxsize=4)
-def _load_model(model_name: str) -> SentenceTransformer:
+def _load_model(model_name: str):
+    from sentence_transformers import SentenceTransformer
     return SentenceTransformer(model_name)
 
 

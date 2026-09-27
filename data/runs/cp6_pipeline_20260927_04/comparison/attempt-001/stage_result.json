@@ -1,0 +1,61 @@
+{
+  "baseline": {
+    "samples": 10,
+    "retrieval_hit_rate": 1.0,
+    "mean_token_f1": 1.0,
+    "judge_accuracy": 1.0,
+    "mean_judge_score": 5,
+    "answer_source_hit_rate": 1.0,
+    "mean_grounded_token_f1": 1.0,
+    "abstention_rate": 0.0,
+    "heuristic_judge_count": 10,
+    "judge_provider": "mock",
+    "answer_backend": "extractive_metadata",
+    "token_f1_definition": "whitespace_lowercase_token_set_overlap",
+    "ragas": {
+      "skipped": "Set RUN_RAGAS=1 to enable the slower Ragas pass."
+    }
+  },
+  "corrupted": {
+    "samples": 10,
+    "retrieval_hit_rate": 0.8,
+    "mean_token_f1": 0.8,
+    "judge_accuracy": 0.8,
+    "mean_judge_score": 4.2,
+    "answer_source_hit_rate": 0.8,
+    "mean_grounded_token_f1": 0.8,
+    "abstention_rate": 0.2,
+    "heuristic_judge_count": 10,
+    "judge_provider": "mock",
+    "answer_backend": "extractive_metadata",
+    "token_f1_definition": "whitespace_lowercase_token_set_overlap",
+    "ragas": {
+      "skipped": "Set RUN_RAGAS=1 to enable the slower Ragas pass."
+    }
+  },
+  "repaired": {
+    "samples": 10,
+    "retrieval_hit_rate": 1.0,
+    "mean_token_f1": 1.0,
+    "judge_accuracy": 1.0,
+    "mean_judge_score": 5,
+    "answer_source_hit_rate": 1.0,
+    "mean_grounded_token_f1": 1.0,
+    "abstention_rate": 0.0,
+    "heuristic_judge_count": 10,
+    "judge_provider": "mock",
+    "answer_backend": "extractive_metadata",
+    "token_f1_definition": "whitespace_lowercase_token_set_overlap",
+    "ragas": {
+      "skipped": "Set RUN_RAGAS=1 to enable the slower Ragas pass."
+    }
+  },
+  "test_set_sha256": "19d5ac3b18cab70db178c29a7bac72328f386c375e9df1abe12459fb3b4dd03f",
+  "repair_trigger": "corrupted_quality_failed",
+  "repair_content_equal": true,
+  "quality": {
+    "baseline": true,
+    "corrupted": false,
+    "repaired": true
+  }
+}

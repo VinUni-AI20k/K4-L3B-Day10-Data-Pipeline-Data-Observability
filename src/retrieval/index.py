@@ -3,6 +3,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+import math
+import os
+from uuid import uuid4
 
 import chromadb
 import pandas as pd
@@ -28,15 +31,22 @@ class LocalEmbeddingIndex:
         collection_name: str,
         documents: list[dict[str, Any]],
         persist_path: Path,
+        *,
+        client=None,
+        embedding_model=None,
     ):
         self.settings = settings
         self.collection_name = collection_name
         self.documents = documents
         self.persist_path = persist_path
         self.embedding_backend = "chroma"
-        self.embedding_model = MiniLMEmbeddings(settings.embedding_model)
-        self.client = chromadb.PersistentClient(path=str(persist_path))
-        self.collection = self.client.get_collection(name=collection_name)
+        self.embedding_model = embedding_model or MiniLMEmbeddings(settings.embedding_model)
+        self.client = client or chromadb.PersistentClient(path=str(persist_path))
+        try:
+            self.collection = self.client.get_collection(name=collection_name)
+        except Exception:
+            self.client.close()
+            raise
         self.documents_by_paper_id = {document["paper_id"].lower(): document for document in documents}
         self.documents_by_title = {document["title"].lower(): document for document in documents}
 
@@ -87,62 +97,97 @@ class LocalEmbeddingIndex:
         settings: Settings,
         embeddings_output_path: Path | None = None,
     ) -> "LocalEmbeddingIndex":
-        collection_name = cls._derive_collection_name(settings, embeddings_output_path)
+        logical_name = cls._derive_collection_name(settings, embeddings_output_path)
+        collection_name = f"{logical_name}-{uuid4().hex[:12]}"
         documents = cls._build_documents(df)
+        if not documents:
+            raise ValueError("Cannot build an empty index")
         persist_path = settings.paths.chroma_dir
-        persist_path.mkdir(parents=True, exist_ok=True)
-
         embedding_model = MiniLMEmbeddings(settings.embedding_model)
-        client = chromadb.PersistentClient(path=str(persist_path))
-        try:
-            client.delete_collection(name=collection_name)
-        except Exception:
-            pass
-        collection = client.create_collection(
-            name=collection_name,
-            configuration={"hnsw": {"space": "cosine"}},
-        )
+        # Encoding and validation must succeed before touching the database.
         embeddings = embedding_model.embed_documents([document["content"] for document in documents])
-        collection.add(
-            ids=[document["record_id"] for document in documents],
-            embeddings=embeddings,
-            documents=[document["content"] for document in documents],
-            metadatas=[document["metadata"] for document in documents],
-        )
-
-        manifest_path = embeddings_output_path or settings.paths.embeddings_json
-        write_json(
-            manifest_path,
-            {
+        if (len(embeddings) != len(documents) or not embeddings or not embeddings[0]
+                or any(len(vector) != len(embeddings[0]) or not all(math.isfinite(value) for value in vector)
+                       for vector in embeddings)):
+            raise ValueError("Embedding output has invalid count, dimension, or non-finite values")
+        persist_path.mkdir(parents=True, exist_ok=True)
+        client = chromadb.PersistentClient(path=str(persist_path))
+        created = False
+        try:
+            collection = client.create_collection(
+                name=collection_name,
+                configuration={"hnsw": {"space": "cosine"}},
+            )
+            created = True
+            collection.add(
+                ids=[document["record_id"] for document in documents],
+                embeddings=embeddings,
+                documents=[document["content"] for document in documents],
+                metadatas=[document["metadata"] for document in documents],
+            )
+            if collection.count() != len(documents):
+                raise RuntimeError("Candidate index document count differs from input")
+            if not collection.query(query_embeddings=[embeddings[0]], n_results=1)["ids"][0]:
+                raise RuntimeError("Candidate index failed its retrieval smoke test")
+            index = cls(settings, collection_name, documents, persist_path,
+                        client=client, embedding_model=embedding_model)
+            manifest_path = embeddings_output_path or settings.paths.embeddings_json
+            # The atomic manifest is the publication pointer. Existing collections stay intact.
+            write_json(manifest_path, {
+                "schema_version": 2,
                 "backend": "chroma",
                 "embedding_model": settings.embedding_model,
-                "persist_path": str(persist_path),
+                "persist_path": Path(os.path.relpath(persist_path, manifest_path.parent)).as_posix(),
                 "collection_name": collection_name,
+                "logical_collection_name": logical_name,
+                "dimension": len(embeddings[0]),
                 "documents": documents,
-            },
-        )
-        return cls(
-            settings=settings,
-            collection_name=collection_name,
-            documents=documents,
-            persist_path=persist_path,
-        )
+            })
+            return index
+        except Exception:
+            try:
+                if created:
+                    client.delete_collection(name=collection_name)
+            finally:
+                client.close()
+            raise
 
     @classmethod
     def load(cls, settings: Settings, embeddings_path: Path | None = None) -> "LocalEmbeddingIndex":
-        payload = read_json(embeddings_path or settings.paths.embeddings_json)
+        manifest_path = Path(embeddings_path or settings.paths.embeddings_json)
+        payload = read_json(manifest_path)
+        persist_path = Path(payload["persist_path"])
+        if not persist_path.is_absolute():
+            persist_path = (manifest_path.parent / persist_path).resolve()
+        elif payload.get("schema_version", 1) == 1:
+            # Old manifests may point at a different machine; use this workspace's DB.
+            persist_path = settings.paths.chroma_dir
+            if payload["collection_name"] in {settings.corrupted_collection_name, settings.repaired_collection_name}:
+                persist_path = persist_path / "comparison"
+        if payload["embedding_model"] != settings.embedding_model:
+            raise ValueError("Manifest embedding model does not match settings")
         return cls(
             settings=settings,
             collection_name=payload["collection_name"],
             documents=payload["documents"],
-            persist_path=Path(payload["persist_path"]),
+            persist_path=persist_path,
         )
 
+    def close(self) -> None:
+        """Flush/release the persistent database before hashing or copying artifacts."""
+        self.client.close()
+
     def search(self, query: str, top_k: int | None = None) -> list[SearchResult]:
+        limit = self.settings.top_k if top_k is None else top_k
+        if limit < 1:
+            raise ValueError("top_k must be positive")
+        count = self.collection.count()
+        if count == 0:
+            return []
         query_embedding = self.embedding_model.embed_query(query)
         results = self.collection.query(
             query_embeddings=[query_embedding],
-            n_results=top_k or self.settings.top_k,
+            n_results=min(limit, count),
             include=["documents", "metadatas", "distances"],
         )
         ids = results.get("ids", [[]])[0]

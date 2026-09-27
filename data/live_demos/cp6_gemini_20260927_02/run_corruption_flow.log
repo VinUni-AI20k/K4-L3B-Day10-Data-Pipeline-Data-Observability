@@ -1,0 +1,41 @@
+[1/4] Inject six deterministic corruptions
+[2/4] Evaluate corrupted corpus in its own collection
+[3/4] Quality alert triggers repair from immutable raw
+[4/4] Generate measured three-state report
+baseline: {'samples': 10, 'retrieval_hit_rate': 1.0, 'mean_token_f1': 1.0, 'judge_accuracy': 1.0, 'mean_judge_score': 5, 'answer_source_hit_rate': 1.0, 'mean_grounded_token_f1': 1.0, 'abstention_rate': 0.0, 'heuristic_judge_count': 10, 'judge_provider': 'mock', 'answer_backend': 'extractive_metadata', 'token_f1_definition': 'whitespace_lowercase_token_set_overlap', 'ragas': {'skipped': 'Set RUN_RAGAS=1 to enable the slower Ragas pass.'}}
+corrupted: {'samples': 10, 'retrieval_hit_rate': 0.8, 'mean_token_f1': 0.8, 'judge_accuracy': 0.8, 'mean_judge_score': 4.2, 'answer_source_hit_rate': 0.8, 'mean_grounded_token_f1': 0.8, 'abstention_rate': 0.2, 'heuristic_judge_count': 10, 'judge_provider': 'mock', 'answer_backend': 'extractive_metadata', 'token_f1_definition': 'whitespace_lowercase_token_set_overlap', 'ragas': {'skipped': 'Set RUN_RAGAS=1 to enable the slower Ragas pass.'}}
+repaired: {'samples': 10, 'retrieval_hit_rate': 1.0, 'mean_token_f1': 1.0, 'judge_accuracy': 1.0, 'mean_judge_score': 5, 'answer_source_hit_rate': 1.0, 'mean_grounded_token_f1': 1.0, 'abstention_rate': 0.0, 'heuristic_judge_count': 10, 'judge_provider': 'mock', 'answer_backend': 'extractive_metadata', 'token_f1_definition': 'whitespace_lowercase_token_set_overlap', 'ragas': {'skipped': 'Set RUN_RAGAS=1 to enable the slower Ragas pass.'}}
+Run manifest: D:\vin_AI20K\K4-L3B-Day10-KRAFTON-Data-Pipeline-Data-Observability\data\runs\cp6_pipeline_20260927_04\run_manifest.json
+
+Calculating Metrics:   0%|          | 0/36 [00:00<?, ?it/s]
+Calculating Metrics:   0%|          | 0/36 [00:00<?, ?it/s]
+Calculating Metrics:   8%|\u258a         | 3/36 [00:00<?, ?it/s]
+Calculating Metrics:   8%|\u258a         | 3/36 [00:00<?, ?it/s]
+Calculating Metrics:  11%|\u2588         | 4/36 [00:00<?, ?it/s]
+Calculating Metrics:  11%|\u2588         | 4/36 [00:00<?, ?it/s]
+Calculating Metrics:  28%|\u2588\u2588\u258a       | 10/36 [00:00<00:00, 2500.63it/s]
+Calculating Metrics:  28%|\u2588\u2588\u258a       | 10/36 [00:00<00:00, 1989.52it/s]
+Calculating Metrics:  78%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 28/36 [00:00<00:00, 1661.60it/s]
+Calculating Metrics:  78%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 28/36 [00:00<00:00, 1661.60it/s]
+Calculating Metrics: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 36/36 [00:00<00:00, 1517.86it/s]
+Calculating Metrics: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 36/36 [00:00<00:00, 1517.86it/s]
+Calculating Metrics: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 36/36 [00:00<00:00, 1517.86it/s]
+Calculating Metrics: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 36/36 [00:00<00:00, 1517.86it/s]
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 103/103 [00:00<00:00, 7336.56it/s]
+
+Calculating Metrics:   0%|          | 0/36 [00:00<?, ?it/s]
+Calculating Metrics:   0%|          | 0/36 [00:00<?, ?it/s]
+Calculating Metrics:   8%|\u258a         | 3/36 [00:00<?, ?it/s]
+Calculating Metrics:   8%|\u258a         | 3/36 [00:00<?, ?it/s]
+Calculating Metrics:  11%|\u2588         | 4/36 [00:00<?, ?it/s]
+Calculating Metrics:  11%|\u2588         | 4/36 [00:00<?, ?it/s]
+Calculating Metrics:  28%|\u2588\u2588\u258a       | 10/36 [00:00<00:00, 4621.31it/s]
+Calculating Metrics:  28%|\u2588\u2588\u258a       | 10/36 [00:00<00:00, 3116.12it/s]
+Calculating Metrics:  78%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 28/36 [00:00<00:00, 2616.18it/s]
+Calculating Metrics:  78%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 28/36 [00:00<00:00, 2616.18it/s]
+Calculating Metrics: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 36/36 [00:00<00:00, 2341.26it/s]
+Calculating Metrics: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 36/36 [00:00<00:00, 2341.26it/s]
+Calculating Metrics: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 36/36 [00:00<00:00, 2341.26it/s]
+Calculating Metrics: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 36/36 [00:00<00:00, 2193.04it/s]

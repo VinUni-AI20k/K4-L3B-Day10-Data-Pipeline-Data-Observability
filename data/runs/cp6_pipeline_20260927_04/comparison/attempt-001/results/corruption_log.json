@@ -1,0 +1,120 @@
+{
+  "selection": "Newest 20% by published date, then five lowest remaining DOI values",
+  "input_rows": 24,
+  "output_rows": 20,
+  "events": [
+    {
+      "type": "drop_latest",
+      "paper_ids": [
+        "10.1145/3637528.3671812",
+        "10.1145/3637528.3671808",
+        "10.1145/3637528.3671804",
+        "10.1145/3637528.3671807",
+        "10.1145/3637528.3671802"
+      ],
+      "changes": [
+        {
+          "paper_id": "10.1145/3637528.3671812",
+          "published_before": "2026-07-22",
+          "row_present_after": false
+        },
+        {
+          "paper_id": "10.1145/3637528.3671808",
+          "published_before": "2026-07-19",
+          "row_present_after": false
+        },
+        {
+          "paper_id": "10.1145/3637528.3671804",
+          "published_before": "2026-07-05",
+          "row_present_after": false
+        },
+        {
+          "paper_id": "10.1145/3637528.3671807",
+          "published_before": "2026-06-25",
+          "row_present_after": false
+        },
+        {
+          "paper_id": "10.1145/3637528.3671802",
+          "published_before": "2026-06-12",
+          "row_present_after": false
+        }
+      ]
+    },
+    {
+      "type": "blank_summary",
+      "paper_ids": [
+        "10.1145/3637528.3671801"
+      ],
+      "changes": [
+        {
+          "paper_id": "10.1145/3637528.3671801",
+          "field": "summary",
+          "before": "Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages. We explore agentic multi-hop reasoning and routing across heterogeneous vector indices.",
+          "after": ""
+        }
+      ]
+    },
+    {
+      "type": "inject_noise",
+      "paper_ids": [
+        "10.1145/3637528.3671803"
+      ],
+      "changes": [
+        {
+          "paper_id": "10.1145/3637528.3671803",
+          "field": "summary",
+          "before": "Soft-deletions in vector databases leave orphaned embeddings that lead to hallucinations. This paper designs an idempotent index synchronization protocol that guarantees complete purges of outdated vector artifacts.",
+          "after": "Soft-deletions in vector databases leave orphaned embeddings that lead to hallucinations. This paper designs an idempotent index synchronization protocol that guarantees complete purges of outdated vector artifacts. @@##!!?? 0xDEADBEEF @@##!!??"
+        }
+      ]
+    },
+    {
+      "type": "truncate_title",
+      "paper_ids": [
+        "10.1145/3637528.3671805"
+      ],
+      "changes": [
+        {
+          "paper_id": "10.1145/3637528.3671805",
+          "field": "title",
+          "before": "Evaluating Retrieval Precision with Token F1 and LLM Judges",
+          "after": "Evaluat"
+        }
+      ]
+    },
+    {
+      "type": "stale_date",
+      "paper_ids": [
+        "10.1145/3637528.3671806"
+      ],
+      "changes": [
+        {
+          "paper_id": "10.1145/3637528.3671806",
+          "field": "published",
+          "before": "2026-05-02",
+          "after": "2025-05-02"
+        },
+        {
+          "paper_id": "10.1145/3637528.3671806",
+          "field": "age_days",
+          "before": 148,
+          "after": 513
+        }
+      ]
+    },
+    {
+      "type": "duplicate_doi",
+      "paper_ids": [
+        "10.1145/3637528.3671809"
+      ],
+      "changes": [
+        {
+          "paper_id": "10.1145/3637528.3671809",
+          "field": "row_count_for_paper_id",
+          "before": 1,
+          "after": 2
+        }
+      ]
+    }
+  ]
+}

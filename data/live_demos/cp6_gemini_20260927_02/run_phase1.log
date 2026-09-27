@@ -1,0 +1,26 @@
+[1/6] Read immutable raw snapshot
+[2/6] Clean data in memory
+[3/6] Validate GX and freshness before indexing
+[4/6] Build and validate a new Chroma collection
+[5/6] Evaluate the frozen benchmark
+[6/6] Generate baseline report
+Baseline metrics: {'samples': 10, 'retrieval_hit_rate': 1.0, 'mean_token_f1': 1.0, 'judge_accuracy': 1.0, 'mean_judge_score': 5, 'answer_source_hit_rate': 1.0, 'mean_grounded_token_f1': 1.0, 'abstention_rate': 0.0, 'heuristic_judge_count': 10, 'judge_provider': 'mock', 'answer_backend': 'extractive_metadata', 'token_f1_definition': 'whitespace_lowercase_token_set_overlap', 'ragas': {'skipped': 'Set RUN_RAGAS=1 to enable the slower Ragas pass.'}}
+Run manifest: D:\vin_AI20K\K4-L3B-Day10-KRAFTON-Data-Pipeline-Data-Observability\data\runs\cp6_pipeline_20260927_04\run_manifest.json
+
+Calculating Metrics:   0%|          | 0/36 [00:00<?, ?it/s]
+Calculating Metrics:   0%|          | 0/36 [00:00<?, ?it/s]
+Calculating Metrics:   8%|\u258a         | 3/36 [00:00<?, ?it/s]
+Calculating Metrics:   8%|\u258a         | 3/36 [00:00<?, ?it/s]
+Calculating Metrics:  11%|\u2588         | 4/36 [00:00<00:00, 2674.94it/s]
+Calculating Metrics:  11%|\u2588         | 4/36 [00:00<00:00, 2674.94it/s]
+Calculating Metrics:  28%|\u2588\u2588\u258a       | 10/36 [00:00<00:00, 2561.72it/s]
+Calculating Metrics:  28%|\u2588\u2588\u258a       | 10/36 [00:00<00:00, 1858.35it/s]
+Calculating Metrics:  78%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 28/36 [00:00<00:00, 1707.28it/s]
+Calculating Metrics:  78%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 28/36 [00:00<00:00, 1707.28it/s]
+Calculating Metrics: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 36/36 [00:00<00:00, 1679.36it/s]
+Calculating Metrics: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 36/36 [00:00<00:00, 1604.59it/s]
+Calculating Metrics: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 36/36 [00:00<00:00, 1604.59it/s]
+Calculating Metrics: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 36/36 [00:00<00:00, 1604.59it/s]
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 103/103 [00:00<00:00, 6580.35it/s]

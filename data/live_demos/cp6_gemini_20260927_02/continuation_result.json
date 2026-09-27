@@ -1,0 +1,69 @@
+{
+  "source_demo_id": "cp6_gemini_20260927_01",
+  "state": "repaired",
+  "case_id": "absent_control",
+  "started_at_utc": "2026-09-27T08:58:04.461286+00:00",
+  "status": "complete",
+  "question": "When was the paper '10.9999/cp6-not-in-corpus' published? Return only the publication date as YYYY-MM-DD. If unavailable, return exactly: I don't know from the indexed corpus.",
+  "paper_id": "10.9999/cp6-not-in-corpus",
+  "ground_truth": "I don't know from the indexed corpus.",
+  "expected_from_index": "I don't know from the indexed corpus.",
+  "answer": "I don't know from the indexed corpus.",
+  "checks": {
+    "matches_indexed_context": true,
+    "correct_against_raw": true,
+    "abstained": true,
+    "used_exact_lookup": true,
+    "passed": true
+  },
+  "trace": [
+    {
+      "type": "ai",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "lookup_paper",
+          "args": {
+            "paper_id_or_title": "10.9999/cp6-not-in-corpus"
+          },
+          "id": "call_1282711",
+          "type": "tool_call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 254,
+        "output_tokens": 37,
+        "total_tokens": 291,
+        "input_token_details": {
+          "cache_read": 0
+        }
+      },
+      "response_model": "gemini-3.5-flash-lite",
+      "finish_reason": "STOP"
+    },
+    {
+      "type": "tool",
+      "content": "No exact paper match found.",
+      "name": "lookup_paper",
+      "tool_call_id": "call_1282711"
+    },
+    {
+      "type": "ai",
+      "content": "I don't know from the indexed corpus.",
+      "tool_calls": [],
+      "usage": {
+        "input_tokens": 310,
+        "output_tokens": 10,
+        "total_tokens": 320,
+        "input_token_details": {
+          "cache_read": 0
+        }
+      },
+      "response_model": "gemini-3.5-flash-lite",
+      "finish_reason": "STOP"
+    }
+  ],
+  "elapsed_seconds": 5.641,
+  "online_requests": 2,
+  "finished_at_utc": "2026-09-27T08:58:14.746973+00:00"
+}
